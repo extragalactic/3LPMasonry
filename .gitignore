@@ -1,0 +1,13 @@
+## Mac OS ##
+**/*.DS_Store
+## npm ##
+node_modules
+npm-debug.log
+## build directory ##
+client/dist/*
+creds.js
+certs
+.vscode
+bundle.js
+bundle.js.map
+browser/dist/*
