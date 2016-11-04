@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/app/
+hooks:
+  ApplicationStart:
+    - location: npm-start.sh
+      timeout: 60
+      runas: ubuntu
