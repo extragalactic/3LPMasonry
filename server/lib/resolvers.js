@@ -1,13 +1,10 @@
-import Customers from './connectors';
-
-const Resolvers = {
-  Query: {
-    customer(root, args, context, info) {
-      return Customers.find();
+const resolveFunctions = {
+  RootQuery: {
+    customer(_, { firstName }, ctx) {
+      const customer = new ctx.constructor.Customers();
+      return customer.findCustomer(firstName);
     },
   },
-
 };
 
-
-export default { Resolvers };
+module.exports = resolveFunctions;
