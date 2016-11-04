@@ -1,34 +1,46 @@
+import dotenv from 'dotenv'
 import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
+import Mongoose from 'mongoose';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-
 import Schema from './lib/schema';
 import Connectors from './lib/connectors';
 import Resolvers from './lib/resolvers';
 
-
-
 const app = express();
+dotenv.config();
 
+const cred = {
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS
+}
+
+Mongoose.Promise = global.Promise
+Mongoose.connect(process.env.DB_HOST, cred);
+Mongoose.connection.on('connected', () => {
+  console.log('mlab is connected!')
+})
 
 const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
   resolvers: Resolvers,
-  connectors: Connectors,
 });
 
-
-
+app.use('/graphql', bodyParser.json(), graphqlExpress({ 
+  schema: executableSchema,
+  context: {
+    constructor: Connectors,
+  },
+ }));
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: executableSchema }));
 
 app.set('port', (process.env.PORT || 8080));
-app.use(express.static(path.join(__dirname, '../browser')));
+app.use(express.static(path.join(__dirname, '../browser/')));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));

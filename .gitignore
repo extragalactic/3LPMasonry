@@ -11,3 +11,5 @@ certs
 bundle.js
 bundle.js.map
 browser/dist/*
+*.env
+creds.env
