@@ -3,7 +3,9 @@
 Three Little Pigs Masonry requires a hybrid(web and mobile) application to manage customer acquisition and tracking. Specifically they require the means to track all incoming inquiries, surveys, estimates, work orders and invoices. The application must be hybrid so will have 3 separate views
 
 Office users utilize a web view
-Surveyors utilize iOS iPhone devices  
+
+Surveyors utilize iOS iPhone devices 
+
 Estimators utilize  iOS iPad devices
 
 The application will handle customer input, surveyor dispatch, survey creation including photo captions and upload, estimate creation, work order creation and customer automated customer follow up.
