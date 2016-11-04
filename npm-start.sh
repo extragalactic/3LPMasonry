@@ -1,2 +1,2 @@
 cd /var/app
-/usr/local/bin/pm2 reload all
+/usr/bin/pm2 reload all
