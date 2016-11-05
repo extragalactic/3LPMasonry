@@ -17,7 +17,7 @@ const cred = {
   pass: process.env.DB_PASS
 }
 
-Mongoose.Promise = global.Promise
+Mongoose.Promise = global.Promise;
 Mongoose.connect(process.env.DB_HOST, cred);
 Mongoose.connection.on('connected', () => {
   console.log('mlab is connected!')

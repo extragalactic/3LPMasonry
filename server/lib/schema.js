@@ -1,5 +1,5 @@
 const typeDefinitions = `
-type Customer {
+type Customers {
  firstName: String
  lastName: String
  email1: String
@@ -14,12 +14,12 @@ type Customer {
  status: String
 }
 
-type RootQuery {
-  customer(firstName:String, lastName:String, email1: String, email2: String, hphone: String, cphone: String, 
-  wphone: String, address: String, notes: String, surveyor: String,estimator: String,status: String ): Customer
+type Query {
+  customers(firstName:String, lastName:String, email1: String, email2: String, hphone: String, cphone: String, 
+  wphone: String, address: String, notes: String, surveyor: String,estimator: String,status: String ): [Customers]
  }
   schema {
-      query: RootQuery
+      query:Query
   }
 
 `;
