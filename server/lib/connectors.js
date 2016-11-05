@@ -1,14 +1,17 @@
 import CustomersModel from '../lib/models'
 
 class Customers {
-  constructor () {
-    this.findCustomer = (firstName) => {
-      const customer = CustomersModel.findOne({firstName}, (error, data) => {
+  constructor() {
+    this.findCustomers = () => {
+      const customers = CustomersModel.find((error, data) => {
         return data;
       });
-      return customer;
-    }
+      console.log(customers);
+      return customers;
+    };
   }
 }
+
+
 
 module.exports = { Customers };

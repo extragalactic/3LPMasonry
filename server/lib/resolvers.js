@@ -1,8 +1,9 @@
 const resolveFunctions = {
-  RootQuery: {
-    customer(_, { firstName }, ctx) {
-      const customer = new ctx.constructor.Customers();
-      return customer.findCustomer(firstName);
+  Query: {
+    customers(_, __, ctx) {
+      console.log(_, _, ctx);
+      const customers = new ctx.constructor.Customers();
+      return customers.findCustomers();
     },
   },
 };

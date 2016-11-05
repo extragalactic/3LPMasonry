@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const CustomerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
