@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const CustomerSchema = new mongoose.Schema({
+  _id: ObjectId,
   firstName: String,
   lastName: String,
   email1: String,
