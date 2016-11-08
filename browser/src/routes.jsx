@@ -1,5 +1,5 @@
-import React from 'react'
-import {Route, IndexRoute} from 'react-router';
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
 import App from './components/App/App';
 import newCustomerForm from './components/Forms/newCustomer';
 
@@ -9,3 +9,4 @@ export default (
    <Route path="/newcustomer" component={newCustomerForm} />
   </Route>
    );
+

@@ -11,7 +11,6 @@ class Customers {
     };
   }
 }
-
 class NewCustomer {
   constructor() {
     this.submitCustomer = ({

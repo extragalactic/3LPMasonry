@@ -1,6 +1,6 @@
-import React from 'react'
-import {grey100,grey900,pinkA100} from 'material-ui/styles/colors'
-import { Footer, FooterSection, FooterLinkList } from 'react-mdl'
+import React from 'react';
+import { grey100, grey900, pinkA100 } from 'material-ui/styles/colors';
+import { Footer, FooterSection, FooterLinkList } from 'react-mdl';
 
 const footerStyle = {
   position: 'fixed',

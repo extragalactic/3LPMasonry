@@ -1,15 +1,30 @@
 const path = require('path')
 const webpack = require('webpack')
-
 var APP_DIR = path.resolve(__dirname, 'browser/src')
 var BUILD_DIR = path.resolve(__dirname, 'browser/dist')
 
 var config = {
-  entry: APP_DIR + '/index.jsx',
+
+  devtool: 'inline-source-map',
+  entry: [
+        APP_DIR + '/index.jsx',
+      'webpack/hot/dev-server',
+
+      'webpack-hot-middleware/client'
+  ],
   output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+    path: require("path").resolve(BUILD_DIR),
+    filename: 'bundle.js',
+    publicPath: "/",
+    hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
   },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -17,11 +32,9 @@ var config = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['react', 'es2015']
-        }
+        loaders: ['babel-loader', 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react'],
+        exclude: /node_modules/
+        
       }
     ]
   }

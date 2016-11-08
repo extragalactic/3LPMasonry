@@ -1,6 +1,6 @@
 const typeDefinitions = `
 type Customers {
-  _id: ID
+
  id: String 
  firstName: String
  lastName: String
@@ -24,6 +24,7 @@ type Query {
 type Mutation {
 
   newCustomer(
+  
     firstName: String
     lastName: String
     email1: String

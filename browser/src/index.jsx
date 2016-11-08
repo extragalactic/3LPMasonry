@@ -24,3 +24,5 @@ ReactDOM.render(
   <Router history={browserHistory} routes={routes}/>
   </ApolloProvider>
   ,document.getElementById('app'))
+  module.hot.accept();
+   

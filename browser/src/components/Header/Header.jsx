@@ -7,7 +7,6 @@ injectTapEventPlugin();
 
 const headerStyle = {
   backgroundColor: grey800,
-
 };
 
 const titleStyle = {
@@ -24,4 +23,3 @@ export default class Header extends React.Component {
     );
   }
 }
-
