@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 export default class App extends React.Component {
+
   render() {
     return (
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
@@ -18,3 +19,4 @@ export default class App extends React.Component {
            );
   }
 }
+  module.hot.accept();
