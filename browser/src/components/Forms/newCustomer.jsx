@@ -103,7 +103,8 @@ handleRequestClose (){
             <div>
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
-            <h3>Enter Customer Details</h3>
+            <h3>Enter Customer Details!</h3>
+
             <TextField
               hintText="First Name"
               underlineFocusStyle={styles.undelineStyle}
@@ -176,3 +177,8 @@ const submitUser = gql`
 const newCustomerForm = graphql(submitUser)(newCustomerFormComp);
 
 export default newCustomerForm
+
+if (module.hot) {
+  module.hot.accept();
+}
+
