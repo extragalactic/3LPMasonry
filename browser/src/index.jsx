@@ -1,9 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router,browserHistory,applyRouterMiddleware} from 'react-router'
-import routes from './routes'
+import routes  from './routes'
 import ApolloClient, {createNetworkInterface} from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
+
+if (module.hot) {
+  module.hot.accept();
+}
+
 
 const client = new ApolloClient({
   networkInterface : createNetworkInterface({
@@ -24,5 +29,4 @@ ReactDOM.render(
   <Router history={browserHistory} routes={routes}/>
   </ApolloProvider>
   ,document.getElementById('app'))
-  module.hot.accept();
-   
+
