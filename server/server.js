@@ -8,16 +8,21 @@ import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import Schema from './lib/schema';
 import Connectors from './lib/connectors';
 import Resolvers from './lib/resolvers';
-import config from '../webpack.config';
+import config from '../webpack.dev';
 import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-
-
+import webpackMiddleWare from 'webpack-dev-middleware';
+import webpackHotLoading from 'webpack-hot-middleware';
 const app = express();
 dotenv.config();
 
 const compiler = webpack(config);
+
+app.use(webpackMiddleWare(compiler,{
+  publicPath: '/dist/',
+  hot: true
+}));
+
+app.use(webpackHotLoading(compiler))
 
 const cred = {
   user: process.env.DB_USER,
@@ -35,9 +40,6 @@ const executableSchema = makeExecutableSchema({
   resolvers: Resolvers,
 });
 
-app.use(webpackDevMiddleware(compiler, {publicPath: config.output.publicPath}));
-app.use(webpackHotMiddleware(compiler));
-
 
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({
@@ -53,9 +55,6 @@ app.use('/graphiql', graphiqlExpress({
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
-
-
-
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));

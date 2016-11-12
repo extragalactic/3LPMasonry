@@ -19,4 +19,3 @@ export default class App extends React.Component {
            );
   }
 }
-  module.hot.accept();
