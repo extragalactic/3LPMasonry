@@ -193,13 +193,3 @@ export default newCustomerForm
 if (module.hot) {
   module.hot.accept();
 }
-
-<<<<<<< HEAD
-=======
-export default newCustomerForm
-
-if (module.hot) {
-  module.hot.accept();
-}
-
->>>>>>> upstream/master
