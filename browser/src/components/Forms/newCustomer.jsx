@@ -6,175 +6,186 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { grey800, grey500, grey50 } from 'material-ui/styles/colors';
 import Snackbar from 'material-ui/Snackbar';
+import Toggle from 'material-ui/Toggle';
+import Geosuggest from 'react-geosuggest';
+import SubmitCustForm from './reduxFormPage'
+import Infinite from 'react-infinite';
 
- class newCustomerFormComp extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email1: '',
-      cphone: '',
-      address: '',
-      open: false
-    };
-    this.changeFirstName = this.changeFirstName.bind(this);
-    this.changeLastName = this.changeLastName.bind(this);
-    this.changeEmail1 = this.changeEmail1.bind(this);
-    this.changeCellPhone = this.changeCellPhone.bind(this);
-    this.changeAddress = this.changeAddress.bind(this);
-    this.submitForm = this.submitForm.bind(this);
-    this.handleRequestClose = this.handleRequestClose.bind(this);
-  }
+import {
+  Step,
+  Stepper,
+  StepLabel,
+} from 'material-ui/Stepper';
+import FlatButton from 'material-ui/FlatButton';
+import ExpandTransition from 'material-ui/internal/ExpandTransition';
 
-  changeFirstName(event) {
-     this.setState({
-       firstName: event.target.value
-     })
-  }
-
-  changeLastName(event) {
-     this.setState({
-       lastName: event.target.value
-     })
-  }
-
-  changeEmail1(event) {
-     this.setState({
-       email1: event.target.value
-     })
-  }
-
-  changeCellPhone(event) {
-     this.setState({
-       cphone: event.target.value
-     })
-  }
-
-  changeAddress(event) {
-     this.setState({
-       address: event.target.value
-     })
-  }
-
- submitForm(){
-   this.props.mutate({ variables: { 
-     firstName: this.state.firstName,
-     lastName: this.state.lastName,
-     email1: this.state.email1,
-     cphone: this.state.cphone,
-     address: this.state.address    
-  }})
-     .then((data) => {
-       console.log(data)
-     })
+  const styles = {
+    paperStyle: {
    
-  this.setState({
-    firstName: '',
-     lastName: '',
-     email1: '',
-     cphone: '',
-     address: '',
-     open: true   
-  })  
-}
-
-handleRequestClose (){
-    this.setState({
-      open: false
-    });
-  };
-
-  render() {
-       const styles = {
-      paperStyle: {
-        height: 400,
-        width: 500,
-        position: 'relative',
-        margin: 'auto',
-        marginTop: 20,
-        textAlign: 'center',
-      },
+      width: 500,
+      position: 'relative',
+      margin: 'auto',
+      marginTop: 20,
+      textAlign: 'center',
+    },
       undelineStyle: {
         borderColor: grey50,
       },
     };
-    return (
+
+ class newCustomerForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+      finished: false,
+      stepIndex: 0,
+    };
+
+  this.dummyAsync = this.dummyAsync.bind(this);
+  this.handleNext = this.handleNext.bind(this);
+  this.handlePrev = this.handlePrev.bind(this);  
+  this.getStepContent = this.getStepContent.bind(this);
+  this.renderContent = this.renderContent.bind(this);
+}
+  
+  dummyAsync(cb) {
+    this.setState({loading: true}, () => {
+      this.asyncTimer = setTimeout(cb, 500);
+    });
+  };
+
+  handleNext () {
+    const {stepIndex} = this.state;
+      if (!this.state.loading) {
+      this.dummyAsync(() => this.setState({
+        loading: false,
+        stepIndex: stepIndex + 1,
+        finished: stepIndex >= 2,
+      }));
+    }
+
+
+  };
+
+  handlePrev () {
+    const {stepIndex} = this.state;
+    if (!this.state.loading) {
+      this.dummyAsync(() => this.setState({
+        loading: false,
+        stepIndex: stepIndex - 1,
+      }));
+    }
+  };
+
+getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return (
             <div>
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
-            <h3>Enter Customer Details!</h3>
+            <h3>Enter Customer Details</h3>
+            <SubmitCustForm next={this.handleNext}/>
+            </Paper>
+            </div>
+        );
+      case 1:
+        return (
+          <div>
+            <TextField style={{marginTop: 0}} floatingLabelText="Ad group name" />
+            <p>
+              Ad group status is different than the statuses for campaigns, ads, and keywords, though the
+              statuses can affect each other. Ad groups are contained within a campaign, and each campaign can
+              have one or more ad groups. Within each ad group are ads, keywords, and bids.
+            </p>
+            <p>Something something whatever cool</p>
+          </div>
+        );
+      case 2:
+        return (
+          <p>
+            Try out different ad text to see what brings in the most customers, and learn how to
+            enhance your ads using features like ad extensions. If you run into any problems with your
+            ads, find out how to tell if they're running and how to resolve approval issues.
+          </p>
+        );
+      default:
+        return 'You\'re a long way from home sonny jim!';
+    }
+  }
 
-            <TextField
-              hintText="First Name"
-              underlineFocusStyle={styles.undelineStyle}
-              onChange={this.changeFirstName}
-              value={this.state.firstName}
-            />
-              <TextField
-              hintText="Last Name"
-              underlineFocusStyle={styles.undelineStyle}
-              onChange={this.changeLastName}
-              value={this.state.lastName}
-            
-            />
-              <TextField
-              hintText="Email"
-              underlineFocusStyle={styles.undelineStyle}
-              onChange={this.changeEmail1}
-              value={this.state.email1}
-        
-            />
-              <TextField
-              hintText="Phone Number"
-              underlineFocusStyle={styles.undelineStyle}
-              onChange={this.changeCellPhone}
-              value={this.state.cphone}
-            
-            />         
-            
-              <TextField
-              hintText="Address"
-              underlineFocusStyle={styles.undelineStyle}
-              onChange={this.changeAddress}
-              value={this.state.address}
-            />
-            <br/>
-              <br/>
-            <RaisedButton label="Submit"
-              backgroundColor={grey500}
-              onTouchTap={this.submitForm.bind(this)}
-              />
-             </Paper>
+  renderContent() {
+    const {finished, stepIndex} = this.state;
+    const contentStyle = {margin: '0 16px', overflow: 'hidden'};
+    const hide = {display: 'none'}
 
-            <Snackbar
-             open={this.state.open}
-             message="Customer Added!"
-             autoHideDuration={4000}
-             onRequestClose={this.handleRequestClose}
-             />
-             </div>
-               );
+    if (finished) {
+      return (
+        <div style={contentStyle}>
+          <p>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                this.setState({stepIndex: 0, finished: false});
+              }}
+            >
+              Click here
+            </a> to reset the example.
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <div style={contentStyle}>
+        <div>{this.getStepContent(stepIndex)}</div>
+        <div style={{marginTop: 24, marginBottom: 12}}>
+          <FlatButton
+            label="Back"
+            disabled={stepIndex === 0}
+            onTouchTap={this.handlePrev}
+            style={{marginRight: 12}}
+          />
+          <RaisedButton
+            style={stepIndex === 0 ? hide : contentStyle}
+            label={stepIndex === 2 ? 'Finish' : 'Next'}
+            primary={true}
+            type='submit'
+            onTouchTap={this.handleNext}
+          />
+        </div>
+      </div>
+    );
+  }
+
+
+  render() {
+  const {loading, stepIndex} = this.state;
+
+    return (
+      <div style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
+        <Stepper activeStep={stepIndex}>
+          <Step>
+            <StepLabel>Customer Info</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Dispatch</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Confirm</StepLabel>
+          </Step>
+        </Stepper>
+        <ExpandTransition loading={loading} open={true}>
+          {this.renderContent()}
+        </ExpandTransition>
+      </div>
+    );
+
   }
 }
 
-newCustomerFormComp.propTypes = {
-  mutate: PropTypes.func.isRequired,
-};
-
-const submitUser = gql`
-  mutation newCustomer($firstName:String!, $lastName:String!, $cphone: String, $email1: String, $address: String) {
-  newCustomer(firstName:$firstName, lastName: $lastName, email1:$email1, cphone: $cphone, address:$address) {
-    id
-    firstName
-    lastName
-    email1
-    cphone
-    address
-  }
-}`;
-
-const newCustomerForm = graphql(submitUser)(newCustomerFormComp);
 
 export default newCustomerForm
 
