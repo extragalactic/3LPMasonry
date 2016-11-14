@@ -85,6 +85,7 @@ getStepContent(stepIndex) {
             <div>
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
+
             <h3>Enter Customer Details</h3>
             <SubmitCustForm next={this.handleNext}/>
             </Paper>
@@ -193,3 +194,12 @@ if (module.hot) {
   module.hot.accept();
 }
 
+<<<<<<< HEAD
+=======
+export default newCustomerForm
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+>>>>>>> upstream/master
