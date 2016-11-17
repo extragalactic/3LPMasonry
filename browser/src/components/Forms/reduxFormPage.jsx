@@ -9,19 +9,23 @@ class SubmitCustFormComp extends React.Component {
   }
     
   handleSubmit = (values) => {
-       
-   this.props.mutate({ variables: { 
+    this.props.mutate({ variables: { 
      firstName: values.firstName,
      lastName: values.lastName,
      email1: values.email1,
      cphone: values.cphone,
      address: 'testing' 
-  }})
+  }}).then((data)=> {
+    localStorage.getItem('current_customer', data.data.newCustomer.id);
+  })
     this.props.next()
    }
   render() {
     return (
+      <div>
       <CustomerForm onSubmit={this.handleSubmit}/>
+      <br/>
+      </div>
     );
   }
 }

@@ -8,8 +8,9 @@ import { grey800, grey500, grey50 } from 'material-ui/styles/colors';
 import Snackbar from 'material-ui/Snackbar';
 import Toggle from 'material-ui/Toggle';
 import Geosuggest from 'react-geosuggest';
-import SubmitCustForm from './reduxFormPage'
+import SubmitCustForm from './reduxFormPage';
 import Infinite from 'react-infinite';
+import AddressAutocomplete from '../Forms/googleAutocomplete';
 
 import {
   Step,
@@ -85,7 +86,6 @@ getStepContent(stepIndex) {
             <div>
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
-
             <h3>Enter Customer Details</h3>
             <SubmitCustForm next={this.handleNext}/>
             </Paper>
@@ -94,14 +94,14 @@ getStepContent(stepIndex) {
       case 1:
         return (
           <div>
-            <TextField style={{marginTop: 0}} floatingLabelText="Ad group name" />
-            <p>
-              Ad group status is different than the statuses for campaigns, ads, and keywords, though the
-              statuses can affect each other. Ad groups are contained within a campaign, and each campaign can
-              have one or more ad groups. Within each ad group are ads, keywords, and bids.
-            </p>
-            <p>Something something whatever cool</p>
-          </div>
+            <Paper style={styles.paperStyle} zDepth={1} >
+            <br/>
+            <h3>Dispatch Surveyor</h3>
+            <AddressAutocomplete hintText= {"Address"}/>
+           
+     
+            </Paper>
+            </div>
         );
       case 2:
         return (
@@ -186,7 +186,6 @@ getStepContent(stepIndex) {
 
   }
 }
-
 
 export default newCustomerForm
 

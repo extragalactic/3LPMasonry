@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { TextField,  Toggle} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import { grey800, grey500, grey50 } from 'material-ui/styles/colors';
+import AddressAutocomplete from '../Forms/googleAutocomplete';
+
 
 const toggleStyles = {
   block: {
@@ -95,8 +97,7 @@ class CustomerForm extends Component {
          <div>
           <Field name="wphone" component={TextField} hintText="Work Phone" 
             ref="name" withRef/>
-          </div>
-     
+          </div>    
         <br/>
         <RaisedButton
           type={"submit"}

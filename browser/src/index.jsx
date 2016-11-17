@@ -12,10 +12,6 @@ if (module.hot) {
   module.hot.accept();
 }
 
-if (module.hot) {
-  module.hot.accept();
-}
-
 
 const client = new ApolloClient({
   networkInterface : createNetworkInterface({

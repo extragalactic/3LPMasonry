@@ -24,6 +24,8 @@ module.exports = {
           query: {
           presets: ['react', 'es2015', 'babel-preset-react-hmre']
         }
-    }   
-    
+    },   
+    node: {
+      fs: "empty"
+   }
 }
