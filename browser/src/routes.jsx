@@ -6,8 +6,8 @@ import SubmitCustForm from './components/Forms/reduxFormPage';
 import AuthService from './utils/AuthService';
 import Home from './components/Home/Home';
 import Auth0Lock from 'auth0-lock';
-import auth0id from './assets/authcred.js';
-import AutoMaps from './components/Forms/autocomplete';
+import auth0id from './assets/cred/authcred.js';
+
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -23,7 +23,6 @@ export default (
   <IndexRedirect to="/home" />
   <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth}/>
   <Route path="/home" component={Home} />
-     <Route path="/map" component={AutoMaps} />
   </Route>
   );
 

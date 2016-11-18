@@ -2,7 +2,7 @@ import React, { PropTypes as T } from 'react';
 import AuthService from '../../utils/AuthService';
 import FlatButton from 'material-ui/FlatButton';
 import { grey800, grey400 } from 'material-ui/styles/colors';
-import auth0cred from '../../assets/authcred';
+import auth0cred from '../../assets/cred/authcred';
 
 export class Login extends React.Component {
    constructor(props) {

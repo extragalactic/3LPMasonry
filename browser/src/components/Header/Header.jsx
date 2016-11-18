@@ -12,7 +12,7 @@ import AuthService  from '../../utils/AuthService';
 import { browserHistory } from 'react-router'
 
 
-import auth0id from '../../assets/authcred.js'
+import auth0id from '../../assets/cred/authcred.js'
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
 import Login from '../Login/Login'
