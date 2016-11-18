@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import CustomersModel from '../lib/models';
+import axios from 'axios';
 
 class Customers {
   constructor() {
@@ -11,6 +12,35 @@ class Customers {
     };
   }
 }
+
+class Customer {
+  constructor() {
+    this.findCustomer = ({id}) => {
+      const customer = CustomersModel.findOne({_id: id},(error, data) => {
+        return data;
+      });
+      return customer;
+    };
+  }
+}
+
+class Address {
+  constructor() {
+    this.findAddress = ({searchTerm}) => {
+      console.log(searchTerm)
+      const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&types=geocode&components=country:ca&language=en&key=AIzaSyAV9bOV85DqbVHdoesaHmUPK1jINZJW8lo`
+      const address =  axios.get(url).then((data) => {
+        return data.data.predictions.map((prediction) => {
+          return { description :prediction.description }
+         })
+       })
+      return address;
+    };
+  }
+}
+
+
+
 class NewCustomer {
   constructor() {
     this.submitCustomer = ({
@@ -92,4 +122,4 @@ class UpdateCustomer {
   }
 }
 
-module.exports = { Customers, NewCustomer, UpdateCustomer };
+module.exports = { Customers, Customer, NewCustomer, UpdateCustomer, Address };

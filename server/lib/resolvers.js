@@ -4,7 +4,18 @@ const resolveFunctions = {
       const customers = new ctx.constructor.Customers();
       return customers.findCustomers();
     },
-  },
+    customer(_, args, ctx) {
+      const customer = new ctx.constructor.Customer();
+      return customer.findCustomer(args);
+    },
+  
+    address(_, args, ctx) {
+      const address = new ctx.constructor.Address();
+      console.log(address.findAddress(args))
+      return address.findAddress(args);
+    },
+
+},
   Mutation: {
     newCustomer(_, {
       firstName,

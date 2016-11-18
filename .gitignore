@@ -13,3 +13,4 @@ bundle.js.map
 browser/dist/*
 *.env
 creds.env
+authcred.js

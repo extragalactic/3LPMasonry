@@ -10,8 +10,8 @@ import Toggle from 'material-ui/Toggle';
 import Geosuggest from 'react-geosuggest';
 import SubmitCustForm from './reduxFormPage';
 import Infinite from 'react-infinite';
-import AddressAutocomplete from '../Forms/googleAutocomplete';
-
+import GooglePlaceAutocomplete from 'googlePlaceAutocomplete';
+import AutoMap from '../Forms/googleAutocomplete';
 import {
   Step,
   Stepper,
@@ -48,6 +48,9 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
   this.handlePrev = this.handlePrev.bind(this);  
   this.getStepContent = this.getStepContent.bind(this);
   this.renderContent = this.renderContent.bind(this);
+  this.onAutoCompleteInputChangeFct = this.onAutoCompleteInputChangeFct.bind(this);
+  this.onClickLocationFct = this.onClickLocationFct.bind(this);
+
 }
   
   dummyAsync(cb) {
@@ -79,6 +82,18 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
     }
   };
 
+
+onAutoCompleteInputChangeFct(event){
+  console.log(event.target.value)
+  console.log(this.state)
+
+}
+
+onClickLocationFct(selectedData, searchedText, selectedDataIndex){
+console.log(selectedData, searchedText, selectedDataIndex)
+
+}
+
 getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -97,9 +112,9 @@ getStepContent(stepIndex) {
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
             <h3>Dispatch Surveyor</h3>
-            <AddressAutocomplete hintText= {"Address"}/>
-           
-     
+                        
+                  <Geosuggest />
+             
             </Paper>
             </div>
         );

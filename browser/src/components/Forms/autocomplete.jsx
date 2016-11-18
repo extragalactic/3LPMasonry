@@ -1,7 +1,46 @@
-import React, { Component } from 'react';
-import { AutoComplete } from 'material-ui';
+import React from 'react';
+import Paper from 'material-ui/Paper';
+import AutoComplete from 'material-ui/AutoComplete';
 
-export class GooglePlaceAutocomplete extends Component {
+const colors = [
+  'Red',
+  'Orange',
+  'Yellow',
+  'Green',
+  'Blue',
+  'Purple',
+  'Black',
+  'White',
+];
+
+const fruit = [
+  'Apple', 'Apricot', 'Avocado',
+  'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',
+  'Boysenberry', 'Blood Orange',
+  'Cantaloupe', 'Currant', 'Cherry', 'Cherimoya', 'Cloudberry',
+  'Coconut', 'Cranberry', 'Clementine',
+  'Damson', 'Date', 'Dragonfruit', 'Durian',
+  'Elderberry',
+  'Feijoa', 'Fig',
+  'Goji berry', 'Gooseberry', 'Grape', 'Grapefruit', 'Guava',
+  'Honeydew', 'Huckleberry',
+  'Jabouticaba', 'Jackfruit', 'Jambul', 'Jujube', 'Juniper berry',
+  'Kiwi fruit', 'Kumquat',
+  'Lemon', 'Lime', 'Loquat', 'Lychee',
+  'Nectarine',
+  'Mango', 'Marion berry', 'Melon', 'Miracle fruit', 'Mulberry', 'Mandarine',
+  'Olive', 'Orange',
+  'Papaya', 'Passionfruit', 'Peach', 'Pear', 'Persimmon', 'Physalis', 'Plum', 'Pineapple',
+  'Pumpkin', 'Pomegranate', 'Pomelo', 'Purple Mangosteen',
+  'Quince',
+  'Raspberry', 'Raisin', 'Rambutan', 'Redcurrant',
+  'Salal berry', 'Satsuma', 'Star fruit', 'Strawberry', 'Squash', 'Salmonberry',
+  'Tamarillo', 'Tamarind', 'Tomato', 'Tangerine',
+  'Ugli fruit',
+  'Watermelon',
+];
+
+export default class AutoMaps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +54,6 @@ export class GooglePlaceAutocomplete extends Component {
       autocompleteService: new google.maps.places.AutocompleteService()
     });
   }
-
   componentWillReceiveProps(nextProps) {
     if(this.props.searchText !== nextProps.searchText) {
       this.onUpdateInput(nextProps.searchText, this.state.dataSource);
@@ -38,7 +76,7 @@ export class GooglePlaceAutocomplete extends Component {
     if (!searchText.length || !this.state.autocompleteService) {
       return false;
     }
-
+console.log(searchText)
     this.state.autocompleteService.getPlacePredictions({
       input: searchText,
       location: this.props.location || new google.maps.LatLng(0, 0),
@@ -56,25 +94,34 @@ export class GooglePlaceAutocomplete extends Component {
   }
 
   onInputChange(searchText) {
-    this.props.onChange({target: {value: searchText}});
+      console.log(searchText)
+    //this.props.onChange({target: {value: searchText}});
   }
 
-  render() {
+
+   render(){
     return (
-      <AutoComplete {...this.props}
+          <div>
+          <Paper>
+          <AutoComplete {...this.props}
                     ref={this.props.getRef}
                     filter={AutoComplete.noFilter}
                     onUpdateInput={this.onInputChange.bind(this)}
                     dataSource={this.state.dataSource}
                     onNewRequest={this.onNewRequest.bind(this)}/>
-    );
+          </Paper>
+          </div>
+    )
   }
 }
 
-GooglePlaceAutocomplete.propTypes = {
+AutoMaps.propTypes = {
   location: React.PropTypes.object,
   radius: React.PropTypes.number,
   onNewRequest: React.PropTypes.func,
   getRef: React.PropTypes.func
 };
+
+
+
 
