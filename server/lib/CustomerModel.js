@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const CustomerSchema = new mongoose.Schema({
@@ -18,5 +17,4 @@ const CustomerSchema = new mongoose.Schema({
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);
-
-module.exports = CustomersModel;
+module.exports = CustomersModel

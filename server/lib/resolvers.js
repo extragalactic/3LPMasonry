@@ -11,10 +11,13 @@ const resolveFunctions = {
   
     address(_, args, ctx) {
       const address = new ctx.constructor.Address();
-      console.log(address.findAddress(args))
       return address.findAddress(args);
     },
-
+   
+     users(_, __, ctx) {
+      const users = new ctx.constructor.Users();
+      return users.findUsers();
+    },
 },
   Mutation: {
     newCustomer(_, {
@@ -75,6 +78,11 @@ const resolveFunctions = {
         estimator,
         status });
     },
-  },
+    updateUser(_, args, ctx) {
+      const users = new ctx.constructor.UpdateUser();
+      return users.updateUser(args);
+    },
+
+   },
 };
 module.exports = resolveFunctions;

@@ -3,8 +3,6 @@ import { Field, reduxForm } from 'redux-form';
 import { TextField,  Toggle} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import { grey800, grey500, grey50 } from 'material-ui/styles/colors';
-import AddressAutocomplete from '../Forms/googleAutocomplete';
-
 
 const toggleStyles = {
   block: {
@@ -53,7 +51,7 @@ const validate = values => {
   return errors
 }
 
-class CustomerForm extends Component {
+class CustomerDetailsForm extends Component {
 
   componentDidMount() {
     this.refs.name            // the Field
@@ -109,14 +107,12 @@ class CustomerForm extends Component {
 }
 
 // Decorate the form component
-CustomerForm = reduxForm({
-  form: 'contact',
+CustomerDetailsForm = reduxForm({
+  form: 'customerdetails',
   validate 
-})(CustomerForm);
+})(CustomerDetailsForm);
 
-export default CustomerForm;
-
-
+export default CustomerDetailsForm;
 
 
 /*

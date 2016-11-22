@@ -7,16 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { grey800, grey500, grey50 } from 'material-ui/styles/colors';
 import Snackbar from 'material-ui/Snackbar';
 import Toggle from 'material-ui/Toggle';
-import Geosuggest from 'react-geosuggest';
-import SubmitCustForm from './reduxFormPage';
-import Infinite from 'react-infinite';
-import GooglePlaceAutocomplete from 'googlePlaceAutocomplete';
-import AutoMap from '../Forms/googleAutocomplete';
-import {
-  Step,
-  Stepper,
-  StepLabel,
-} from 'material-ui/Stepper';
+import CustomerDetailsFormRoot from './CustomerDetailsFormRoot';
+import {Step,Stepper,StepLabel } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
 
@@ -48,8 +40,6 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
   this.handlePrev = this.handlePrev.bind(this);  
   this.getStepContent = this.getStepContent.bind(this);
   this.renderContent = this.renderContent.bind(this);
-  this.onAutoCompleteInputChangeFct = this.onAutoCompleteInputChangeFct.bind(this);
-  this.onClickLocationFct = this.onClickLocationFct.bind(this);
 
 }
   
@@ -69,7 +59,6 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
       }));
     }
 
-
   };
 
   handlePrev () {
@@ -82,29 +71,13 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
     }
   };
 
-
-onAutoCompleteInputChangeFct(event){
-  console.log(event.target.value)
-  console.log(this.state)
-
-}
-
-onClickLocationFct(selectedData, searchedText, selectedDataIndex){
-console.log(selectedData, searchedText, selectedDataIndex)
-
-}
-
 getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
         return (
-            <div>
-            <Paper style={styles.paperStyle} zDepth={1} >
-            <br/>
-            <h3>Enter Customer Details</h3>
-            <SubmitCustForm next={this.handleNext}/>
-            </Paper>
-            </div>
+         
+            <CustomerDetailsFormRoot next={this.handleNext}/>
+       
         );
       case 1:
         return (
@@ -112,9 +85,7 @@ getStepContent(stepIndex) {
             <Paper style={styles.paperStyle} zDepth={1} >
             <br/>
             <h3>Dispatch Surveyor</h3>
-                        
-                  <Geosuggest />
-             
+   
             </Paper>
             </div>
         );

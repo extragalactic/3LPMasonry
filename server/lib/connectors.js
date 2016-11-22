@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import CustomersModel from '../lib/models';
+import CustomersModel from '../lib/CustomerModel';
+import UsersModel from '../lib/UserModel';
 import axios from 'axios';
 
 class Customers {
@@ -24,22 +25,33 @@ class Customer {
   }
 }
 
+
+class Users {
+  constructor() {
+    this.findUsers = () => {
+       const users = UsersModel.find((error, data) => {
+        return data;
+      });
+      return users;
+    };
+  }
+}
+
 class Address {
   constructor() {
     this.findAddress = ({searchTerm}) => {
-      console.log(searchTerm)
-      const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&types=geocode&components=country:ca&language=en&key=AIzaSyAV9bOV85DqbVHdoesaHmUPK1jINZJW8lo`
+      const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&types=geocode&components=country:ca&language=en&key=AIzaSyCRy96pXXmdiU4coVd23pxdBWeLmC8oIn0`
       const address =  axios.get(url).then((data) => {
         return data.data.predictions.map((prediction) => {
           return { description :prediction.description }
          })
+       }).catch((error) => {
+         console.log(error)
        })
       return address;
     };
   }
 }
-
-
 
 class NewCustomer {
   constructor() {
@@ -122,4 +134,21 @@ class UpdateCustomer {
   }
 }
 
-module.exports = { Customers, Customer, NewCustomer, UpdateCustomer, Address };
+class UpdateUser {
+  constructor() {
+    this.updateUser = (args) => {
+      const id = args.id
+      delete args.id
+   const User = UsersModel.findOneAndUpdate({_id: id}, args)
+      .then((user) => {
+       return user
+    })
+    return User
+    };
+  }
+}
+
+
+
+
+module.exports = { Customers, Customer, NewCustomer, UpdateCustomer, Address, Users, UpdateUser };
