@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, browserHistory, IndexRedirect} from 'react-router';
+import { Route, IndexRoute, browserHistory, IndexRedirect } from 'react-router';
 import Auth0Lock from 'auth0-lock';
 
 import App from './components/App/App';
@@ -17,10 +17,10 @@ const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
 
 const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
-    replace({ pathname: '/home' })
-  }
-}
+    if (!auth.loggedIn()) {
+        replace({ pathname: '/home' });
+    }
+};
 
 export default (
   <Route path="/" component={App} auth={auth}>
@@ -34,5 +34,5 @@ export default (
   );
 
 if (module.hot) {
-  module.hot.accept();
+    module.hot.accept();
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn }
 from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { graphql } from 'react-apollo';
@@ -10,86 +10,81 @@ import ActionCheckCircle from 'material-ui/svg-icons/action/check-circle';
 import ContentBlock from 'material-ui/svg-icons/content/block';
 import UserDetailsForm from '../Forms/reduxUserDetailsForm';
 
-const styles = {
-  propToggleHeader: {
-    margin: '20px auto 10px',
-  },
-};
-
 class userAdminPanelComp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      selection: {}
+    constructor (props) {
+        super(props);
+        this.state = {
+            open: false,
+            selection: {}
+        };
+    }
+
+    handleOpen = () => {
+        this.setState({ open: true });
     };
- }
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
 
-  handleClose = () => {
-    this.setState({open: false});
-  };
+    editUser = (id) => {
+        let selection = {};
+        this.props.data.users.map((user) => {
+            if (user._id === id) {
+                selection = user;
+            }
+        });
 
-  editUser = (id) => {
-    let selection = {}
-    this.props.data.users.map( (user) => {
-      if(user._id == id) {
-        selection = user
-      }
-    })
-    
-    this.setState({
-      open: true,
-      selection: selection
-    }) 
-  };
+        this.setState({
+            open: true,
+            selection: selection
+        });
+    };
 
-  onFormSubmit = (values) => {
-    this.props.mutate({ variables: {
-     id: this.state.selection._id, 
-     firstName: values.firstName,
-     lastName: values.lastName,
-     mobile: values.mobile,
-     surveyor: values.surveyor,
-     estimator: values.estimator,
-     office: values.office
-     }});
-     this.forceUpdate();
-   };
+    onFormSubmit = (values) => {
+        this.props.mutate({ variables: {
+            id: this.state.selection._id,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            mobile: values.mobile,
+            surveyor: values.surveyor,
+            estimator: values.estimator,
+            office: values.office
+        } });
+        this.forceUpdate();
+    };
 
-  render() {
-    const actions = [
-      <FlatButton
+    render () {
+        const actions = [
+            <FlatButton
         label="Close"
-        primary={true}
+        primary
         onTouchTap={this.handleClose}
-      />,
-   ];
+      />
+        ];
 
-   if(this.props.data.loading){
-      return  <LinearProgress mode="indeterminate" />
-    } else {
-           return (
+        if (this.props.data.loading) {
+            return <LinearProgress mode="indeterminate" />;
+        } else {
+            return (
         <div>
         <Dialog
           title={"Update User Info"}
           actions={actions}
-          modal={true}
+          modal
           open={this.state.open}
-        > 
-        <UserDetailsForm 
-        firstName={this.state.selection.firstName}
-        lastName={this.state.selection.lastName} 
-        mobile={this.state.selection.mobile}
-        onSubmit={this.onFormSubmit} 
-        surveyor={this.state.selection.surveyor}
-        estimator={this.state.selection.estimator}
-        office={this.state.selection.office}
-        />                 
-      </Dialog>     
+        >
+        <UserDetailsForm
+          firstName={this.state.selection.firstName}
+          lastName={this.state.selection.lastName}
+          mobile={this.state.selection.mobile}
+          onSubmit={this.onFormSubmit}
+          surveyor={this.state.selection.surveyor}
+          estimator={this.state.selection.estimator}
+          office={this.state.selection.office}
+          />
+
+      </Dialog>
      <Table>
     <TableHeader
       enableSelectAll={false}
@@ -110,7 +105,7 @@ class userAdminPanelComp extends React.Component {
     displayRowCheckbox={false}
     >
       {this.props.data.users.map((user, idx) => {
-        return (
+          return (
                 <TableRow key={idx}>
                 <TableRowColumn>{user.email}</TableRowColumn>
                 <TableRowColumn>{user.firstName}</TableRowColumn>
@@ -120,29 +115,28 @@ class userAdminPanelComp extends React.Component {
                   {user.surveyor ? <ActionCheckCircle/> : <ContentBlock /> }
                 </TableRowColumn>
                 <TableRowColumn>
-                  {user.estimator ? <ActionCheckCircle/> :  <ContentBlock /> }
+                  {user.estimator ? <ActionCheckCircle/> : <ContentBlock /> }
                 </TableRowColumn>
                 <TableRowColumn>
-                  {user.office ? <ActionCheckCircle/> :  <ContentBlock /> }
+                  {user.office ? <ActionCheckCircle/> : <ContentBlock /> }
                 </TableRowColumn>
                 <TableRowColumn>
                 <FlatButton
-                  onTouchTap={ () => { this.editUser(user._id) }}
+                  onTouchTap={() => { this.editUser(user._id); }}
                  >
                  Edit
                 </FlatButton>
-                
+
                 </TableRowColumn>
                 </TableRow>
-                )
-          })}
+          );
+      })}
       </TableBody>
   </Table>
   </div>
-          );
-
-    } 
-  }
+            );
+        }
+    }
 }
 
 
@@ -162,7 +156,6 @@ const getAllUsers = gql`
 `;
 
 
-
 const updateUser = gql `mutation updateCustomer($id:String, $firstName:String, $lastName:String, $mobile:String, $estimator: Boolean, $surveyor: Boolean, $office:Boolean){
   updateUser(id:$id, firstName:$firstName, lastName: $lastName, mobile: $mobile, estimator:$estimator, surveyor: $surveyor, office: $office){
     email
@@ -171,7 +164,7 @@ const updateUser = gql `mutation updateCustomer($id:String, $firstName:String, $
 
 
 const userAdminPanelQuery = graphql(getAllUsers, {
-    options: { pollInterval: 1000},
+    options: { pollInterval: 1000 }
 })(userAdminPanelComp);
 
 const userAdminPanel = graphql(updateUser)(userAdminPanelQuery);

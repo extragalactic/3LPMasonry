@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router,browserHistory,applyRouterMiddleware} from 'react-router'
-import routes  from './routes'
+import routes from './routes'
 import ApolloClient, {createNetworkInterface} from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
@@ -40,7 +40,7 @@ const store = createStore(
 );
 ReactDOM.render(
   <ApolloProvider client={client} store={store} >
-  <Router history={browserHistory} routes={routes}/>
+  <Router history={browserHistory} routes={routes} store={store}/>
   </ApolloProvider>
   ,document.getElementById('app'))
 

@@ -27,6 +27,14 @@ type User {
   region: String
 }
 
+type Surveyor {
+  firstName: String
+  lastName: String
+  mobile: String
+  id: String
+}
+
+
 type Address {
    description: String
 }
@@ -40,11 +48,16 @@ type Query {
 
   address(searchTerm:String!):[Address]
 
-  users(filter: String):[User]   
-
+  users(filter: String):[User]
+   
+  surveyors(filter: String): [Surveyor]
+  
   }
 
 type Mutation {
+
+ getCustomer(id: String): Customers
+
   newCustomer(
     firstName: String
     lastName: String

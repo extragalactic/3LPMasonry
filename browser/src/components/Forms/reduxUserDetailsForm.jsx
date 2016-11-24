@@ -1,10 +1,7 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
-import Checkbox from 'material-ui/Checkbox'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -14,17 +11,17 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
     {...input}
     {...custom}
   />
-)
+);
 
 const renderCheckbox = ({ input, label, status }) => (
   <Checkbox label={label}
     defaultChecked={status}
     onCheck={input.onChange}/>
-)
+);
 
 const UserDetailsForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  return (
+    const { handleSubmit } = props;
+    return (
     <form onSubmit={handleSubmit}>
       <div>
         <Field name="firstName" component={renderTextField} label={props.firstName}/>
@@ -35,28 +32,28 @@ const UserDetailsForm = props => {
       <div>
         <Field name="mobile" component={renderTextField} label={props.mobile}/>
       </div>
-      
+
       <div>
-        <Field 
-          name="surveyor" 
-          component={renderCheckbox} 
+        <Field
+          name="surveyor"
+          component={renderCheckbox}
           label="Surveyor"
           status={props.surveyor}
       />
       </div>
         <div>
-        <Field 
-          name="estimator" 
-          component={renderCheckbox} 
+        <Field
+          name="estimator"
+          component={renderCheckbox}
           label="Estimator"
           status={props.estimator}
       />
       </div>
 
        <div>
-        <Field 
-          name="office" 
-          component={renderCheckbox} 
+        <Field
+          name="office"
+          component={renderCheckbox}
           label="Office"
           status={props.office}
       />
@@ -67,13 +64,13 @@ const UserDetailsForm = props => {
        <RaisedButton
          type={"submit"}
          label={"Save"}
-         primary={true} 
+         primary
        />
       </div>
     </form>
-  )
-}
+    );
+};
 
 export default reduxForm({
-  form: 'userDetailsForm',  // a unique identifier for this form
-})(UserDetailsForm)
+    form: 'userDetailsForm'  // a unique identifier for this form
+})(UserDetailsForm);
