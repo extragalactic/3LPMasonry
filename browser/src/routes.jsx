@@ -7,14 +7,13 @@ import newCustomerForm from './components/Forms/newCustomer';
 import AuthService from './utils/AuthService';
 import Home from './components/Home/Home';
 import auth0id from './assets/cred/authcred.js';
-
+import MyEditor from './components/TextEditor/Notes';
 
 import userAdminPanel from './components/Admin/userAdminPanel';
 import CustomerDetailsFormRootComp from './components/Forms/CustomerDetailsFormRoot';
 import CustomerDispatchFormRoot from './components/Forms/CustomerDispatchFormRoot';
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
-
 
 const requireAuth = (nextState, replace) => {
     if (!auth.loggedIn()) {
@@ -30,6 +29,7 @@ export default (
   <Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth}/>
   <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth}/>
   <Route path="/home" component={Home} />
+  <Route path="/notes" component={MyEditor} />
   </Route>
   );
 

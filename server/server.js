@@ -12,6 +12,9 @@ import config from '../webpack.dev';
 import webpack from 'webpack';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotLoading from 'webpack-hot-middleware';
+
+import CustomersModel from './lib/CustomerModel';
+
 const app = express();
 dotenv.config();
 
@@ -40,7 +43,6 @@ const executableSchema = makeExecutableSchema({
     resolvers: Resolvers
 });
 
-
 app.use('/graphql', bodyParser.json(), graphqlExpress({
     schema: executableSchema,
     context: {
@@ -51,6 +53,10 @@ app.use('/graphql', bodyParser.json(), graphqlExpress({
 app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql'
 }));
+
+app.post('/updatenotes', bodyParser.json(), (req, res) => {
+    CustomersModel.findOneAndUpdate({ _id: req.body.customer }, { notes: req.body.rawdata });
+});
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));

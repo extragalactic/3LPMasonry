@@ -34,6 +34,14 @@ type Surveyor {
   id: String
 }
 
+type SurveyorObj {
+  Address: String
+  cphone: String
+  hphone: String
+  wphone: String
+  email: String
+  surveyor: Surveyor
+}
 
 type Address {
    description: String
@@ -49,14 +57,13 @@ type Query {
   address(searchTerm:String!):[Address]
 
   users(filter: String):[User]
-   
-  surveyors(filter: String): [Surveyor]
   
-  }
+  surveyors(filter: String): [Surveyor]
+ }
 
 type Mutation {
 
- getCustomer(id: String): Customers
+  getCustomer(id: String): Customers
 
   newCustomer(
     firstName: String

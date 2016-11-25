@@ -67,6 +67,7 @@ const resolveFunctions = {
         estimator,
         status }, ctx) {
             const updateCustomer = new ctx.constructor.UpdateCustomer();
+            console.log(notes)
             return updateCustomer.updateCustomer({
                 id,
                 firstName,

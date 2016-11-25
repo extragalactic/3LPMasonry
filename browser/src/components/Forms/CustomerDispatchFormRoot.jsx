@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Paper from 'material-ui/Paper';
 import CustomerDispatchForm from './reduxCustomerDispatchForm';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
     paperStyle: {

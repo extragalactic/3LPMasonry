@@ -9,7 +9,10 @@ const CustomerSchema = new mongoose.Schema({
     cphone: String,
     wphone: String,
     address: String,
-    notes: String,
+    notes: {
+        entityMap: {},
+        blocks: []
+    },
     surveyor: String,
     estimator: String,
     status: String

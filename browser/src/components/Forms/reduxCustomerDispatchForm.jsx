@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { AutoComplete, SelectField, Checkbox } from 'redux-form-material-ui';
+import { Toggle as toggle } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
-import { grey500 } from 'material-ui/styles/colors';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
+import { Editor, EditorState, contentState, convertToRaw } from 'draft-js';
+import { grey500, grey50 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Toggle from 'material-ui/Toggle';
+import axios from 'axios';
 
 const toggleStyles = {
     block: {
@@ -35,34 +41,65 @@ const toggleStyles = {
         color: 'red'
     }
 };
+const paperStyle = {
+    height: 400,
+    width: 720,
+    display: 'inline-block',
+    backgroundColor: grey50
+};
 
-const renderToggle = ({ onToggle, label, status, style, labelPosition }) => (
-  <Toggle label={label}
-    defaultToggled={status}
-    onToggle={onToggle}
-    style={style}
-    labelPosition={labelPosition}
-    />
-);
+const buttonStyle = {
+    marginLeft: 90
+};
+
+const dialogStyle = {
+    width: 600,
+    position: 'absolute',
+    marginRight: 500
+
+};
+
+const editorStyle = {
+    color: 'black',
+    fontFamily: '\'Helvetica\', sans-serif',
+    padding: 20
+};
 
 class CustomerDispatchFormComp extends Component {
     constructor (props) {
         super(props);
         this.state = {
             data: [],
+            dialog: false,
             surveyortoggle: false,
             smstoggle: false,
             emailtoggle: false,
-            currentcustomer: {}
+            notesopen: false,
+            currentcustomer: {},
+            editorState: EditorState.createEmpty()
         };
+        this.onChange = (editorState) => this.setState({ editorState });
+        this.focus = () => this.refs.editor.focus();
     }
 
     componentDidMount () {
         this.refs.name            // the Field
-      .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-      .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-      .focus();                // on TextField
+          .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
+          .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
+          .focus();                // on TextField
     }
+
+    openNotesDialog = () => {
+        this.setState({
+            dialog: true
+        });
+    };
+
+    closeNotesDialog = () => {
+        this.setState({
+            dialog: false
+        });
+    };
 
     toggleDispatch = (event, value) => {
         this.setState({
@@ -75,7 +112,7 @@ class CustomerDispatchFormComp extends Component {
             emailtoggle: value
         });
 
-        this.props.mutate({ variables: {
+        this.props.getCustomer({ variables: {
             id: localStorage.current_customer
         } }).then((data) => {
             this.setState({
@@ -84,13 +121,12 @@ class CustomerDispatchFormComp extends Component {
         });
     };
 
-
     toggleSms = (event, value) => {
         this.setState({
             smstoggle: value
         });
 
-        this.props.mutate({ variables: {
+        this.props.getCustomer({ variables: {
             id: localStorage.current_customer
         } }).then((data) => {
             this.setState({
@@ -110,12 +146,33 @@ class CustomerDispatchFormComp extends Component {
         this.setState({
             data: data
         });
-    }
+    };
 
+    submitNotes = () => {
+        const ContentState = this.state.editorState.getCurrentContent();
+        const raw = convertToRaw(ContentState);
+        console.log(raw);
+        axios.post('/updatenotes', { rawdata: raw, customer: localStorage.current_customer });
+    };
     render () {
+        const actions = [
+            <FlatButton
+             label="Save"
+             primary={true}
+             onTouchTap={this.submitNotes}
+           />,
+            <FlatButton
+             label="Close"
+             secondary={true}
+             keyboardFocused={true}
+             onTouchTap={this.closeNotesDialog}
+            />,
+        ];
+
         const { handleSubmit } = this.props;
         return (
-         <form onSubmit={handleSubmit}>
+            <div>
+           <form onSubmit={handleSubmit}>
           <div>
           <Field
             name="Address"
@@ -152,6 +209,7 @@ class CustomerDispatchFormComp extends Component {
                    id: surveyor.id
                }}
                primaryText={`${surveyor.firstName} ${surveyor.lastName}`}
+               key={idx}
             />);
            })}
 
@@ -177,7 +235,7 @@ class CustomerDispatchFormComp extends Component {
                  label={`${this.state.currentcustomer.email2}`}
               />
                 : null}
-               </div>
+                </div>
                 : null }
           <Toggle
               label="SMS Notification"
@@ -213,23 +271,55 @@ class CustomerDispatchFormComp extends Component {
                 : null }
           <Field
             name="survey"
-            component={renderToggle}
+            component={toggle}
             label="Send Survey Form"
             labelPosition="right"
             style={toggleStyles.toggle}
             />
 
           </div>
-
-          <br/>
+         <FlatButton
+           label={"notes"}
+           primary={true}
+           onTouchTap={this.openNotesDialog}
+         />
+        <br/>
+        <br/>
           <RaisedButton
             type={"submit"}
             backgroundColor={grey500}
           > Save </RaisedButton>
           </form>
+          <Dialog
+            open={this.state.dialog}
+            actions={actions}
+          >
+          
+          <Paper
+          style={paperStyle}
+          onClick={this.focus}
+          >
+          <div
+            style={editorStyle}
+            onClick={this.focus}
+          >
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            placeholder="Add some notes..."
+            ref="editor"
+            />
+          </div>
+          </Paper>
+          </Dialog>
+          </div>
         );
     }
 }
+
+CustomerDispatchFormComp.propTypes = {
+    getCustomer: PropTypes.func.isRequired
+};
 
 // Decorate the form component
 CustomerDispatchFormComp = reduxForm({
@@ -263,6 +353,8 @@ const CustomerDispatchQuery = graphql(searchAddress, {
     options: { variables: { searchTerm: '' } }
 })(CustomerDispatchFormComp);
 
-const CustomerDispatchForm = graphql(getCustomer)(CustomerDispatchQuery);
+const CustomerDispatchForm = graphql(getCustomer, { name: 'getCustomer' })(CustomerDispatchQuery);
 
 export default CustomerDispatchForm;
+
+

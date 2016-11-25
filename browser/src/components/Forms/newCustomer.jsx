@@ -106,14 +106,7 @@ class newCustomerForm extends React.Component {
             onTouchTap={this.handlePrev}
             style={{ marginRight: 12 }}
           />
-          <RaisedButton
-            style={stepIndex === 0 ? hide : contentStyle}
-            label={stepIndex === 2 ? 'Finish' : 'Next'}
-            primary
-            type="submit"
-            onTouchTap={this.handleNext}
-          />
-        </div>
+       </div>
       </div>
         );
     }
