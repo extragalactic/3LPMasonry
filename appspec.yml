@@ -7,3 +7,4 @@ hooks:
   ApplicationStart:
     - location: ./npm-start.sh
       timeout: 60
+      user: ubuntu
