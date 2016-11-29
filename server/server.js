@@ -43,6 +43,8 @@ const executableSchema = makeExecutableSchema({
     resolvers: Resolvers
 });
 
+app.use(bodyParser.json());
+
 app.use('/graphql', bodyParser.json(), graphqlExpress({
     schema: executableSchema,
     context: {
@@ -55,7 +57,18 @@ app.use('/graphiql', graphiqlExpress({
 }));
 
 app.post('/updatenotes', bodyParser.json(), (req, res) => {
-    CustomersModel.findOneAndUpdate({ _id: req.body.customer }, { notes: req.body.rawdata });
+    CustomersModel.findOneAndUpdate({ _id: req.body.customer }, { notes: req.body.rawdata })
+        .then((data) => {
+            res.send(data);
+        });
+});
+
+app.get('/getnotes/:id', (req, res) => {
+    CustomersModel.findOne({ _id: req.params.id })
+       .then((customer) => {
+           console.log(customer)
+           res.send(customer.notes);
+       });
 });
 
 app.set('port', (process.env.PORT || 8080));

@@ -9,16 +9,27 @@ const CustomerSchema = new mongoose.Schema({
     cphone: String,
     wphone: String,
     address: String,
+    coordinance: String,
     notes: {
         entityMap: {},
         blocks: []
     },
-    surveyor: String,
+    surveyor: {
+        firstName: String,
+        lastName: String,
+        mobile: String,
+        id: String
+    },
     estimator: String,
-    status: String
+    status: String,
+    email1Notification: Boolean,
+    email2Notification: Boolean,
+    cellNotification: Boolean,
+    homeNotification: Boolean,
+    workNotification: Boolean,
+    sendSurvey: Boolean
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);
 
 module.exports = CustomersModel;
-

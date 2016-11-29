@@ -10,9 +10,16 @@ type Customers {
  wphone: String
  address: String
  notes: String
- surveyor: String
+ surveyor: Surveyor
  estimator: String
  status: String
+ email1Notification: Boolean
+ email2Notification: Boolean
+ cellNotification: Boolean
+ homeNotification: Boolean
+ workNotificaiton: Boolean
+ sendSurvey: Boolean
+
 }
 
 type User {
@@ -34,17 +41,26 @@ type Surveyor {
   id: String
 }
 
-type SurveyorObj {
-  Address: String
-  cphone: String
-  hphone: String
-  wphone: String
-  email: String
-  surveyor: Surveyor
-}
-
 type Address {
    description: String
+}
+
+input SurveyorInput {
+  firstName: String
+  lastName: String
+  mobile: String
+  id: String
+}
+
+input updateDispatch {
+  address: String
+  cphone: Boolean
+  hphone: Boolean
+  wphone: Boolean
+  email1: Boolean
+  email2: Boolean
+  survey: Boolean
+  surveyor: SurveyorInput
 }
 
 type Query {
@@ -62,6 +78,10 @@ type Query {
  }
 
 type Mutation {
+
+  submitCustomer(id: String): Customers
+
+  updateDispatchInfo(dispatch: updateDispatch, id: String): Customers
 
   getCustomer(id: String): Customers
 

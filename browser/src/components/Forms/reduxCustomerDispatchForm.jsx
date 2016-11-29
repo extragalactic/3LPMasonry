@@ -139,13 +139,14 @@ class CustomerDispatchFormComp extends Component {
         this.props.data.refetch({
             searchTerm: input
         });
-
-        const data = this.props.data.address.map((element) => {
-            return element.description;
-        });
-        this.setState({
-            data: data
-        });
+        if (this.props.data.address) {
+            const data = this.props.data.address.map((element) => {
+                return element.description;
+            });
+            this.setState({
+                data: data
+            });
+        }
     };
 
     submitNotes = () => {
@@ -175,7 +176,7 @@ class CustomerDispatchFormComp extends Component {
            <form onSubmit={handleSubmit}>
           <div>
           <Field
-            name="Address"
+            name="address"
             component={AutoComplete}
             hintText="Address"
             ref="name" withRef
@@ -194,13 +195,11 @@ class CustomerDispatchFormComp extends Component {
             />
 
            {this.state.surveyortoggle ?
-
           <Field
             name="surveyor"
             component={SelectField}
             hintText={"Select a Surveyor"}
             >
-
            {this.props.surveyors.map((surveyor, idx) => {
                return (<MenuItem value={{
                    firstName: surveyor.firstName,
@@ -212,7 +211,6 @@ class CustomerDispatchFormComp extends Component {
                key={idx}
             />);
            })}
-
            </Field> : null }
           <br/>
           <Toggle
@@ -228,7 +226,6 @@ class CustomerDispatchFormComp extends Component {
               component={Checkbox}
               label={`${this.state.currentcustomer.email1}`}
               />
-
               {this.state.currentcustomer.email2 ?
                <Field name="email2"
                  component={Checkbox}
@@ -246,21 +243,18 @@ class CustomerDispatchFormComp extends Component {
 
             {this.state.smstoggle ?
              <div>
-
             {this.state.currentcustomer.cphone ?
                <Field name="cphone"
                  component={Checkbox}
                  label={`M: ${this.state.currentcustomer.cphone}`}
               />
                 : null}
-
               {this.state.currentcustomer.hphone ?
                <Field name="hphone"
                  component={Checkbox}
                  label={`H: ${this.state.currentcustomer.hphone}`}
               />
                 : null}
-
               {this.state.currentcustomer.wphone ?
                <Field name="wphone"
                  component={Checkbox}
@@ -294,8 +288,7 @@ class CustomerDispatchFormComp extends Component {
             open={this.state.dialog}
             actions={actions}
           >
-          
-          <Paper
+         <Paper
           style={paperStyle}
           onClick={this.focus}
           >
@@ -356,5 +349,3 @@ const CustomerDispatchQuery = graphql(searchAddress, {
 const CustomerDispatchForm = graphql(getCustomer, { name: 'getCustomer' })(CustomerDispatchQuery);
 
 export default CustomerDispatchForm;
-
-

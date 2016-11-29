@@ -7,11 +7,16 @@ import newCustomerForm from './components/Forms/newCustomer';
 import AuthService from './utils/AuthService';
 import Home from './components/Home/Home';
 import auth0id from './assets/cred/authcred.js';
-import MyEditor from './components/TextEditor/Notes';
+
+
 
 import userAdminPanel from './components/Admin/userAdminPanel';
 import CustomerDetailsFormRootComp from './components/Forms/CustomerDetailsFormRoot';
 import CustomerDispatchFormRoot from './components/Forms/CustomerDispatchFormRoot';
+import CustomerConfirmation from './components/Forms/CustomerConfirmation';
+
+
+
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -26,10 +31,12 @@ export default (
   <IndexRedirect to="/home" />
   <Route path="/newroot" component={CustomerDetailsFormRootComp} />
   <Route path="/dispatch" component={CustomerDispatchFormRoot} />
+   <Route path="/confirm" component={CustomerConfirmation} />
+
   <Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth}/>
   <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth}/>
   <Route path="/home" component={Home} />
-  <Route path="/notes" component={MyEditor} />
+
   </Route>
   );
 

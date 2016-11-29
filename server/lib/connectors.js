@@ -2,6 +2,7 @@ import _ from 'lodash';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import axios from 'axios';
+import SendSMS from '../methods/twilio';
 
 class Customers {
     constructor () {
@@ -172,5 +173,50 @@ class UpdateUser {
     }
 }
 
+class UpdateDispatchInfo {
+    constructor () {
+        this.updateDispatchInfo = (args) => {
+            const Customer = CustomersModel.findOne({ _id: args.id })
+               .then((customer) => {
+                   customer.email1Notification = args.dispatch.email1;
+                   customer.email2Notification = args.dispatch.email2;
+                   customer.cellNotification = args.dispatch.cphone;
+                   customer.homeNotification = args.dispatch.hphone;
+                   customer.workNotification = args.dispatch.wphone;
+                   customer.address = args.dispatch.address;
+                   customer.sendSurvey = args.dispatch.survey;
+                   customer.surveyor = args.dispatch.surveyor;
+                   customer.save();
+                   return customer;
+               });
+            return Customer;
+        };
+    }
+}
 
-module.exports = { Customers, Customer, NewCustomer, UpdateCustomer, Address, Users, UpdateUser, Surveyors, GetCustomer };
+
+class SubmitCustomer {
+    constructor () {
+        this.submitCustomer = (args) => {
+          CustomersModel.findOne({ _id: args.id })
+             .then((data) => {
+               SendSMS(data);
+           });
+        };
+    }
+}
+
+
+module.exports = {
+    Customers,
+    Customer,
+    NewCustomer,
+    UpdateCustomer,
+    Address,
+    Users,
+    UpdateUser,
+    Surveyors,
+    GetCustomer,
+    UpdateDispatchInfo,
+    SubmitCustomer
+};

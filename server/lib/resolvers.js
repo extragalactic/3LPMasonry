@@ -91,8 +91,16 @@ const resolveFunctions = {
         getCustomer (_, args, ctx) {
             const customer = new ctx.constructor.GetCustomer();
             return customer.getCustomer(args);
+        },
+        updateDispatchInfo (_, args, ctx) {
+            const customer = new ctx.constructor.UpdateDispatchInfo();
+            return customer.updateDispatchInfo(args);
+        },
+        submitCustomer (_, args, ctx) {
+            const customer = new ctx.constructor.SubmitCustomer();
+            return customer.submitCustomer(args);
         }
-
     }
 };
 module.exports = resolveFunctions;
+

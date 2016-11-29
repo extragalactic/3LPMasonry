@@ -6,6 +6,7 @@ import ExpandTransition from 'material-ui/internal/ExpandTransition';
 
 import CustomerDetailsFormRoot from './CustomerDetailsFormRoot';
 import CustomerDispatchFormRoot from './CustomerDispatchFormRoot';
+import CustomerConfirmation from './CustomerConfirmation';
 
 class newCustomerForm extends React.Component {
     constructor () {
@@ -62,11 +63,7 @@ class newCustomerForm extends React.Component {
                 );
             case 2:
                 return (
-          <p>
-            Try out different ad text to see what brings in the most customers, and learn how to
-            enhance your ads using features like ad extensions. If you run into any problems with your
-            ads, find out how to tell if they're running and how to resolve approval issues.
-          </p>
+                      <CustomerConfirmation next={this.handleNext} prev={this.handlePrev}/>
                 );
             default:
                 return 'You\'re a long way from home sonny jim!';

@@ -70,6 +70,7 @@
     "redux-form-material-ui": "^4.1.0",
     "request": "^2.78.0",
     "tape": "^4.6.2",
+    "twilio": "^2.11.1",
     "ui": "^0.2.4",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",

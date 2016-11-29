@@ -4,7 +4,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Paper from 'material-ui/Paper';
 import CustomerDispatchForm from './reduxCustomerDispatchForm';
-import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
     paperStyle: {
@@ -19,17 +18,18 @@ const styles = {
     }
 };
 
-
 class CustomerDispatchFormRootComp extends React.Component {
     constructor () {
         super();
     }
 
     handleSubmit = (values) => {
-        console.log(values);
-        console.log(this);
+        this.props.updateDispatch({ variables: {
+            dispatch: values,
+            id: localStorage.current_customer
+        } });
+        this.props.next();
     }
-
     render () {
         return (
             <div>
@@ -58,8 +58,19 @@ const getSurveyorsCustomers = gql`
      }
   }`;
 
-const CustomerDispatchFormRoot = graphql(getSurveyorsCustomers, {
+const CustomerDispatchFormQuery = graphql(getSurveyorsCustomers, {
     options: { pollInterval: 100 }
 })(CustomerDispatchFormRootComp);
+
+const updateDispatchInfo = gql`
+  mutation updateDispatchInfo($dispatch:updateDispatch, $id:String) {
+  updateDispatchInfo(dispatch:$dispatch, id: $id){
+    firstName
+    lastName
+    id
+  }
+}`;
+
+const CustomerDispatchFormRoot = graphql(updateDispatchInfo, { name: 'updateDispatch' })(CustomerDispatchFormQuery);
 
 export default CustomerDispatchFormRoot;
