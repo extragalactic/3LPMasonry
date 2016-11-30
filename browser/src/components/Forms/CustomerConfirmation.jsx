@@ -22,7 +22,7 @@ const styles = {
     }
 };
 
-export class CustomerConfirmationComp extends React.Component {
+class CustomerConfirmationComp extends React.Component {
     constructor () {
         super();
         this.state = {
