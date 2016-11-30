@@ -18,19 +18,20 @@ import CustomersModel from './lib/CustomerModel';
 const app = express();
 dotenv.config();
 
-const compiler = webpack(config);
-
-app.use(webpackMiddleWare(compiler, {
-    publicPath: '/dist/',
-    hot: true
-}));
-
-app.use(webpackHotLoading(compiler));
+if (process.env.PROD) {
+    const compiler = webpack(config);
+    app.use(webpackMiddleWare(compiler, {
+        publicPath: '/dist/',
+        hot: true
+    }));
+    app.use(webpackHotLoading(compiler));
+}
 
 const cred = {
     user: process.env.DB_USER,
     pass: process.env.DB_PASS
 };
+
 
 Mongoose.Promise = global.Promise;
 Mongoose.connect(process.env.DB_HOST, cred);

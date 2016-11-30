@@ -16,8 +16,6 @@ import CustomerDispatchFormRoot from './components/Forms/CustomerDispatchFormRoo
 import CustomerConfirmation from './components/Forms/CustomerConfirmation';
 
 
-
-
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
 const requireAuth = (nextState, replace) => {
