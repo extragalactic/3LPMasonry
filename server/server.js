@@ -18,7 +18,8 @@ import CustomersModel from './lib/CustomerModel';
 const app = express();
 dotenv.config();
 
-if (process.env.PROD) {
+if (process.env.PROD === 'false') {
+    console.log("prod")
     const compiler = webpack(config);
     app.use(webpackMiddleWare(compiler, {
         publicPath: '/dist/',
@@ -43,8 +44,6 @@ const executableSchema = makeExecutableSchema({
     typeDefs: Schema,
     resolvers: Resolvers
 });
-
-app.use(bodyParser.json());
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({
     schema: executableSchema,
