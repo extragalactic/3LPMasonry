@@ -23,7 +23,8 @@ if (process.env.PROD === 'false') {
     const compiler = webpack(config);
     app.use(webpackMiddleWare(compiler, {
         publicPath: '/dist/',
-        hot: true
+        hot: true,
+        host: '174.6.231.143'
     }));
     app.use(webpackHotLoading(compiler));
 }
@@ -32,7 +33,6 @@ const cred = {
     user: process.env.DB_USER,
     pass: process.env.DB_PASS
 };
-
 
 Mongoose.Promise = global.Promise;
 Mongoose.connect(process.env.DB_HOST, cred);
@@ -66,16 +66,44 @@ app.post('/updatenotes', bodyParser.json(), (req, res) => {
 app.get('/getnotes/:id', (req, res) => {
     CustomersModel.findOne({ _id: req.params.id })
        .then((customer) => {
-           console.log(customer)
            res.send(customer.notes);
        });
 });
 
+app.get('/getcustomer/:id', (req, res) => {
+    CustomersModel.findOne({ _id: req.params.id })
+          .then((data) => {
+              res.send(data);
+          });
+});
+
+app.post('/saveimage', bodyParser.json(), (req, res) => {
+    CustomersModel.findOne({ _id: req.body.id })
+        .then((data) => {
+            data.customerUpload.push(req.body.payload);
+            data.save();
+            res.send(data);
+        });
+});
+
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
+app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
+
+
+app.use(express.static(path.join(__dirname, './ssr/')));
+app.get('/upload/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
+});
+
+app.get('/estimate', (req, res) => {
+    res.sendFile(path.join(__dirname, './ssr/pesdk/survey.html'));
+});
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
+
+
 
 app.listen(app.get('port'));

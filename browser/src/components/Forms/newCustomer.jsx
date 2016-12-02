@@ -59,11 +59,11 @@ class newCustomerForm extends React.Component {
                 );
             case 1:
                 return (
-            <CustomerDispatchFormRoot next={this.handleNext}/>
+                <CustomerDispatchFormRoot next={this.handleNext}/>
                 );
             case 2:
                 return (
-                      <CustomerConfirmation next={this.handleNext} prev={this.handlePrev}/>
+                <CustomerConfirmation next={this.handleNext}/>
                 );
             default:
                 return 'You\'re a long way from home sonny jim!';

@@ -14,7 +14,7 @@ import userAdminPanel from './components/Admin/userAdminPanel';
 import CustomerDetailsFormRootComp from './components/Forms/CustomerDetailsFormRoot';
 import CustomerDispatchFormRoot from './components/Forms/CustomerDispatchFormRoot';
 import CustomerConfirmation from './components/Forms/CustomerConfirmation';
-
+import CustomerSurvey from './components/Survey/CustomerSurvey';
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -34,6 +34,7 @@ export default (
   <Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth}/>
   <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth}/>
   <Route path="/home" component={Home} />
+    <Route path="/custsurvey" component={CustomerSurvey} />
 
   </Route>
   );

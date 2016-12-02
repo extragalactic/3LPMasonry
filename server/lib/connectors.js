@@ -2,7 +2,7 @@ import _ from 'lodash';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import axios from 'axios';
-import SendSMS from '../methods/twilio';
+import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 
 class Customers {
     constructor () {
@@ -49,7 +49,6 @@ class Users {
     }
 }
 
-
 class Surveyors {
     constructor () {
         this.findSurveyors = () => {
@@ -60,7 +59,6 @@ class Surveyors {
         };
     }
 }
-
 
 class Address {
     constructor () {
@@ -194,18 +192,29 @@ class UpdateDispatchInfo {
     }
 }
 
-
 class SubmitCustomer {
     constructor () {
         this.submitCustomer = (args) => {
-          CustomersModel.findOne({ _id: args.id })
+            const Customer = CustomersModel.findOne({ _id: args.id })
              .then((data) => {
-               SendSMS(data);
-           });
+                 if (data.cellNotification) {
+                     sendSMStoCustomer({ number: data.cphone, data: data });
+                 }
+                 if (data.homeNotification) {
+                     sendSMStoCustomer({ number: data.hphone, data: data });
+                 }
+                 if (data.workNotification) {
+                     sendSMStoCustomer({ number: data.wphone, data: data });
+                 }
+                 if (data.sendSurvey) {
+                     sendSMStoSurveyor(data);
+                 }
+                 return data;
+             });
+            return Customer;
         };
     }
 }
-
 
 module.exports = {
     Customers,

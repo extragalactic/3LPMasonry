@@ -27,7 +27,8 @@ const CustomerSchema = new mongoose.Schema({
     cellNotification: Boolean,
     homeNotification: Boolean,
     workNotification: Boolean,
-    sendSurvey: Boolean
+    sendSurvey: Boolean,
+    customerUpload: []
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);

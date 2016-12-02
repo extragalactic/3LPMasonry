@@ -1,10 +1,10 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import axios from 'axios';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import RaisedButton from 'material-ui/RaisedButton';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 
 const styles = {
     paperStyle: {
@@ -40,7 +40,13 @@ class CustomerConfirmationComp extends React.Component {
     }
     onChange = (event) => {
     };
-
+    submitCustomer = () => {
+        this.props.mutate({ variables: {
+            id: this.props.data.customer.id
+        } }).then((data) => {
+            console.log(data);
+        });
+    }
     render () {
         if (this.props.data.loading) {
             return <h7>Loading</h7>;
@@ -77,7 +83,6 @@ class CustomerConfirmationComp extends React.Component {
                   <br/>
                   {customer.email2Notification ? customer.email2 : null }
                   </div> : null }
-
                   <br/>
                  {customer.cellNotificatoin || customer.homeNotification || customer.workNotification ?
                   <div>
@@ -105,11 +110,11 @@ class CustomerConfirmationComp extends React.Component {
                         primary={true}
                         label={"submit"}
                         style={styles.buttonStyle}
+                        onTouchTap={this.submitCustomer}
                       />
                   </div>
                  </Paper>
-              
-        </div>
+               </div>
             );
         }
     }
@@ -143,8 +148,17 @@ const getFinalCustomerInfo = gql`
   }
 }`;
 
-const CustomerConfirmation = graphql(getFinalCustomerInfo, {
+const submitCustomer = gql `
+  mutation submitCustomer($id: String){
+  submitCustomer(id: $id){
+    id
+  }
+}`;
+
+const CustomerConfirmationQuery = graphql(getFinalCustomerInfo, {
     options: { pollInterval: 100 }
 })(CustomerConfirmationComp);
+
+const CustomerConfirmation = graphql(submitCustomer)(CustomerConfirmationQuery);
 
 export default CustomerConfirmation;
