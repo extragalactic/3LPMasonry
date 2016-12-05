@@ -19,7 +19,7 @@ const app = express();
 dotenv.config();
 
 if (process.env.PROD === 'false') {
-    console.log("prod")
+    console.log("dev")
     const compiler = webpack(config);
     app.use(webpackMiddleWare(compiler, {
         publicPath: '/dist/',
@@ -95,6 +95,12 @@ app.use(express.static(path.join(__dirname, './ssr/')));
 app.get('/upload/:id', (req, res) => {
     res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
 });
+app.use(express.static(path.join(__dirname, '../customerfacing/')));
+app.get('/email', (req, res) => {
+    res.sendFile(path.join(__dirname, '../customerfacing/index.html'));
+});
+
+
 
 app.get('/estimate', (req, res) => {
     res.sendFile(path.join(__dirname, './ssr/pesdk/survey.html'));
@@ -103,7 +109,5 @@ app.get('/estimate', (req, res) => {
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
-
-
 
 app.listen(app.get('port'));

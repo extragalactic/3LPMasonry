@@ -9,7 +9,6 @@ import Footer from '../Footer/Footer';
 injectTapEventPlugin();
 
 export default class App extends React.Component {
-
     render () {
         let children = null;
         if (this.props.children) {

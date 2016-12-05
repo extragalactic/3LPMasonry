@@ -3,6 +3,7 @@ import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import axios from 'axios';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
+import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 
 class Customers {
     constructor () {
@@ -36,7 +37,6 @@ class GetCustomer {
         };
     }
 }
-
 
 class Users {
     constructor () {
@@ -197,16 +197,25 @@ class SubmitCustomer {
         this.submitCustomer = (args) => {
             const Customer = CustomersModel.findOne({ _id: args.id })
              .then((data) => {
-                 if (data.cellNotification) {
-                     sendSMStoCustomer({ number: data.cphone, data: data });
-                 }
-                 if (data.homeNotification) {
-                     sendSMStoCustomer({ number: data.hphone, data: data });
-                 }
-                 if (data.workNotification) {
-                     sendSMStoCustomer({ number: data.wphone, data: data });
-                 }
                  if (data.sendSurvey) {
+                     sendSMStoSurveyor(data);
+                     if (data.cellNotification) {
+                         sendSMStoCustomer({ number: data.cphone, data: data });
+                     }
+                     if (data.homeNotification) {
+                         sendSMStoCustomer({ number: data.hphone, data: data });
+                     }
+                     if (data.workNotification) {
+                         sendSMStoCustomer({ number: data.wphone, data: data });
+                     }
+                     if (data.email1Notification) {
+                         sendEmailSurveytoCustomer({ email: data.email1, data: data });
+                     }
+                     if (data.email2Notification) {
+                         sendEmailSurveytoCustomer({ email: data.email2, data: data });
+                     }
+                 }
+                 if (data.surveyor) {
                      sendSMStoSurveyor(data);
                  }
                  return data;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <meta name="viewport" content="width=device-width">
+
+  <head>
+    <title>Three Little Pigs Estimate</title>
+    <script>UPLOADCARE_PUBLIC_KEY = "256f02178b83ce8dc2de";</script>
+    <script src="https://ucarecdn.com/widget/2.10.2/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.30.7/react-bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+   
+     <script type="text/babel">
+       class Greeting extends React.Component {
+         constructor(){
+           super()
+           this.state = {
+             customer: {}
+           }
+         }
+         componentDidMount() {
+             const that = this
+             const id = location.pathname.split('/')[2]
+             const path = `/getcustomer/${id}`
+             axios.get(path).then((data) => {
+                that.setState({
+                 customer: data.data
+               })
+             })
+        
+
+         }
+
+         render () {
+            return (
+                    <div>
+                     Hello {this.state.customer.firstName} {this.state.customer.lastName} please upload photos of your property.
+                     <br/>
+                    <input type="hidden" role="uploadcare-uploader" data-public-key="256f02178b83ce8dc2de" data-images-only data-multiple 
+                    data-tabs="file"
+                    />
+                     </div>
+                    );
+    }
+}
+
+
+     ReactDOM.render(
+        <Greeting/>,
+        document.getElementById('app')
+      );
+    
+       </script>
+  </body>
+
+</html>
+
+

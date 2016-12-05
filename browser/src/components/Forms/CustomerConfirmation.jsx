@@ -37,21 +37,25 @@ class CustomerConfirmationComp extends React.Component {
                 editorState: EditorState.createWithContent(ContentState)
             });
         });
+        axios.get(`/getcustomer/${localStorage.current_customer}`)
+            .then((data) => {
+                this.setState({
+                    currentCustomer: data.data
+                });
+            });
     }
     onChange = (event) => {
     };
     submitCustomer = () => {
         this.props.mutate({ variables: {
-            id: this.props.data.customer.id
-        } }).then((data) => {
-            console.log(data);
-        });
+            id: localStorage.current_customer
+        } });
     }
     render () {
-        if (this.props.data.loading) {
+        const customer = this.state.currentCustomer;
+        if (!customer) {
             return <h7>Loading</h7>;
         } else {
-            const customer = this.props.data.customer;
             return (
       <div>
          <Paper zDepth={5} style={styles.paperStyle}>
@@ -122,7 +126,7 @@ class CustomerConfirmationComp extends React.Component {
 
 const getFinalCustomerInfo = gql`
   query getFinalCustomerInfo {
-    customer(id: "${localStorage.current_customer}" ) {
+    customer(id: "${localStorage.current_customer}") {
     id    
     firstName
     lastName
@@ -156,7 +160,7 @@ const submitCustomer = gql `
 }`;
 
 const CustomerConfirmationQuery = graphql(getFinalCustomerInfo, {
-    options: { pollInterval: 100 }
+    options: { pollInterval: 1000 }
 })(CustomerConfirmationComp);
 
 const CustomerConfirmation = graphql(submitCustomer)(CustomerConfirmationQuery);
