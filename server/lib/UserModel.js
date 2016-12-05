@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const UsersSchema = new mongoose.Schema({
-    _id: ObjectId,
     firstName: String,
     lastName: String,
     name: String,
@@ -12,7 +10,8 @@ const UsersSchema = new mongoose.Schema({
     office: Boolean,
     mobile: String,
     region: String,
-    appointments: []
+    appointments: [],
+    customers: []
 });
 
 const UsersModel = mongoose.model('users', UsersSchema);

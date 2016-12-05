@@ -5,6 +5,7 @@ import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import RaisedButton from 'material-ui/RaisedButton';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { browserHistory } from 'react-router';
 
 const styles = {
     paperStyle: {
@@ -49,7 +50,11 @@ class CustomerConfirmationComp extends React.Component {
     submitCustomer = () => {
         this.props.mutate({ variables: {
             id: localStorage.current_customer
-        } });
+        } }).then((data) => {
+            if (data.data.submitCustomer.id) {
+               browserHistory.push('/app');
+            }
+        });
     }
     render () {
         const customer = this.state.currentCustomer;

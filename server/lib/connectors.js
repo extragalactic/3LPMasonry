@@ -5,6 +5,14 @@ import axios from 'axios';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 
+//0: New Customer, Inquiry no survery
+//1: New Customer, Online Survey sent
+//2: Customer, Online Survey Received
+//3: Customer, Sent to Surveyor
+//4: Surveyor made contact, followup required
+//5: Onsite visit Scheduled
+//6: Onsite Survey Complete
+
 class Customers {
     constructor () {
         this.findCustomers = () => {
@@ -197,8 +205,11 @@ class SubmitCustomer {
         this.submitCustomer = (args) => {
             const Customer = CustomersModel.findOne({ _id: args.id })
              .then((data) => {
-                 if (data.sendSurvey) {
-                     sendSMStoSurveyor(data);
+                 const surveyor = !data.surveyor.id ? true : false;
+                 const survey = !data.sendSurvey;
+                 const inquriy = survey && surveyor;
+                 
+                 if (data.sendSurvey === true) {
                      if (data.cellNotification) {
                          sendSMStoCustomer({ number: data.cphone, data: data });
                      }
@@ -214,9 +225,17 @@ class SubmitCustomer {
                      if (data.email2Notification) {
                          sendEmailSurveytoCustomer({ email: data.email2, data: data });
                      }
+                     data.status = 1;
+                     data.save();
                  }
-                 if (data.surveyor) {
+                 if (!surveyor) {
                      sendSMStoSurveyor(data);
+                     data.status = 3;
+                     data.save();
+                 }
+                 if (inquriy) {
+                     data.status = 0;
+                     data.save();
                  }
                  return data;
              });
