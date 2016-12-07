@@ -6,7 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
-import { Editor, EditorState, contentState, convertToRaw } from 'draft-js';
+import Snackbar from 'material-ui/Snackbar';
+import { Editor, EditorState, convertToRaw } from 'draft-js';
 import { grey500, grey50 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { graphql } from 'react-apollo';
@@ -76,7 +77,8 @@ class CustomerDispatchFormComp extends Component {
             emailtoggle: false,
             notesopen: false,
             currentcustomer: {},
-            editorState: EditorState.createEmpty()
+            editorState: EditorState.createEmpty(),
+            snackBar: false
         };
         this.onChange = (editorState) => this.setState({ editorState });
         this.focus = () => this.refs.editor.focus();
@@ -88,6 +90,12 @@ class CustomerDispatchFormComp extends Component {
           .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
           .focus();                // on TextField
     }
+
+    handleRequestClose = () => {
+        this.setState({
+            snackBar: false
+        });
+    };
 
     openNotesDialog = () => {
         this.setState({
@@ -150,10 +158,17 @@ class CustomerDispatchFormComp extends Component {
     };
 
     submitNotes = () => {
+        const that = this
         const ContentState = this.state.editorState.getCurrentContent();
         const raw = convertToRaw(ContentState);
-        console.log(raw);
-        axios.post('/updatenotes', { rawdata: raw, customer: localStorage.current_customer });
+        axios.post('/updatenotes', { rawdata: raw, customer: localStorage.current_customer })
+               .then((data) => {
+               console.log('data', data);
+               that.setState({
+                   snackBar: true
+               });
+               console.log(this.state)
+               });
     };
     render () {
         const actions = [
@@ -272,12 +287,11 @@ class CustomerDispatchFormComp extends Component {
             />
 
           </div>
-         <FlatButton
+                   <FlatButton
            label={"notes"}
            primary={true}
            onTouchTap={this.openNotesDialog}
          />
-        <br/>
         <br/>
           <RaisedButton
             type={"submit"}
@@ -304,8 +318,15 @@ class CustomerDispatchFormComp extends Component {
             />
           </div>
           </Paper>
-          </Dialog>
-          </div>
+         <Snackbar
+          open={this.state.snackBar}
+          message="Notes Saved"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+          contentStyle={{ textAlign: 'center' }}
+        />
+         </Dialog>
+         </div>
         );
     }
 }

@@ -1,0 +1,8 @@
+./server/ssr
+/server/ssr/
+server/ssr
+server/ssr/
+*ssr*
+./native
+native
+/native

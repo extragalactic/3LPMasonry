@@ -1,4 +1,4 @@
 {
-  "extends": "react"
-
+  "extends": "airbnb",
+  "parser": "babel-eslint"
 }

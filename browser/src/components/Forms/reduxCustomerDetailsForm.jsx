@@ -4,18 +4,17 @@ import { TextField } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import { grey500 } from 'material-ui/styles/colors';
 
-
 const validate = values => {
-    const errors = {};
-    const requiredFields = ['firstName', 'lastName', 'email1'];
-    requiredFields.forEach(field => {
-        if (!values[field]) {
-            errors[field] = 'Required';
-        }
-    });
-    if (values.email1 && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email1)) {
-        errors.email1 = 'Invalid email address';
+  const errors = {};
+  const requiredFields = ['firstName', 'lastName', 'email1'];
+  requiredFields.forEach(field => {
+    if (!values[field]) {
+      errors[field] = 'Required';
     }
+  });
+  if (values.email1 && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email1)) {
+    errors.email1 = 'Invalid email address';
+  }
     if (values.email2 && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email2)) {
         errors.email2 = 'Invalid email address';
     }

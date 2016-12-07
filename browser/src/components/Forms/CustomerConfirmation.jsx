@@ -2,131 +2,174 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import axios from 'axios';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { browserHistory } from 'react-router';
+import SocialPerson from 'material-ui/svg-icons/social/person';
+import ComunicationEmail from 'material-ui/svg-icons/communication/email';
+import ComunicationMailOutline from 'material-ui/svg-icons/communication/mail-outline';
+import ComunicationContactMail from 'material-ui/svg-icons/communication/contact-mail';
+
+import HardwareSmartPhone from 'material-ui/svg-icons/hardware/smartphone';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import ActionWork from 'material-ui/svg-icons/action/work';
+import ComunicationLocation from 'material-ui/svg-icons/communication/location-on';
+import ComunicationTextSms from 'material-ui/svg-icons/communication/textsms';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import ActionSpeakerNotes from 'material-ui/svg-icons/action/speaker-notes';
+
+import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
+
+
+import Infinite from 'react-infinite';
 
 const styles = {
-    paperStyle: {
-        width: 600,
-        position: 'relative',
-        margin: 'auto',
-        marginTop: 20
-    },
-    textStyle: {
-        padding: 25
-    },
-    buttonStyle: {
-        marginLeft: 'auto',
-        marginRight: 'auto'
-    }
+  paperStyle: {
+    width: 600,
+    position: 'relative',
+    margin: 'auto',
+    marginTop: 20,
+  },
+  textStyle: {
+    padding: 25,
+  },
+  buttonStyle: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
 };
 
 class CustomerConfirmationComp extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            editorState: EditorState.createEmpty()
-        };
-    }
-
-    componentDidMount () {
-        axios.get(`/getnotes/${localStorage.current_customer}`).then((data) => {
-            const ContentState = convertFromRaw(data.data);
-            this.setState({
-                editorState: EditorState.createWithContent(ContentState)
-            });
-        });
-        axios.get(`/getcustomer/${localStorage.current_customer}`)
-            .then((data) => {
-                this.setState({
-                    currentCustomer: data.data
-                });
-            });
-    }
-    onChange = (event) => {
+  constructor() {
+    super();
+    this.state = {
+      editorState: EditorState.createEmpty(),
     };
-    submitCustomer = () => {
-        this.props.mutate({ variables: {
-            id: localStorage.current_customer
-        } }).then((data) => {
-            if (data.data.submitCustomer.id) {
-               browserHistory.push('/app');
-            }
-        });
-    }
-    render () {
-        const customer = this.state.currentCustomer;
-        if (!customer) {
-            return <h7>Loading</h7>;
-        } else {
-            return (
-      <div>
-         <Paper zDepth={5} style={styles.paperStyle}>
-         <div style={styles.textStyle}>
-             First Name : {customer.firstName}
-             <br/>
-             Last Name : {customer.lastName}
-             <br/>
-             {customer.email1 ? `Email 1: ${customer.email1}` : null }
-             <br/>
-             {customer.email2 ? `Email 2: ${customer.email2}` : null }
-             <br/>
-             {customer.cphone ? `Mobile: ${customer.cphone}` : null }
-             <br/>
-             {customer.hphone ? `Home: ${customer.hphone}` : null }
-             <br/>
-             {customer.wphone ? `Work: ${customer.wphone}` : null }
-             <br/>
-             {customer.address ? `Address: ${customer.address}` : null }
-             <br/>
-             {customer.surveyor ? `Surveyor:  ${customer.surveyor.firstName}  ${customer.surveyor.lastName}` : null }
-            <br/>
-            <br/>
-            {customer.email1Notificatoin || customer.email2Notification ?
-                <div>
-                  <h7> Email Corepondence </h7>
-                  <br/>
-                  {customer.email1Notification ? customer.email1 : null }
-                  <br/>
-                  {customer.email2Notification ? customer.email2 : null }
-                  </div> : null }
-                  <br/>
-                 {customer.cellNotificatoin || customer.homeNotification || customer.workNotification ?
+  }
+
+  componentDidMount() {
+    axios.get(`/getnotes/${localStorage.current_customer}`).then((data) => {
+      const ContentState = convertFromRaw(data.data);
+      this.setState({
+        editorState: EditorState.createWithContent(ContentState),
+      });
+    });
+    axios.get(`/getcustomer/${localStorage.current_customer}`)
+            .then((data) => {
+              this.setState({
+                currentCustomer: data.data,
+              });
+            });
+  }
+
+  onChange = () => {
+  };
+
+  submitCustomer = () => {
+    this.props.mutate({ variables: {
+      id: localStorage.current_customer,
+    } }).then((data) => {
+      if (data.data.submitCustomer.id) {
+        browserHistory.push('/app');
+      }
+    });
+  }
+  render() {
+    const customer = this.state.currentCustomer;
+    if (!customer) {
+      return <h7>Loading</h7>;
+    } else {
+      return (
+        <div>
+          <Paper zDepth={5} style={styles.paperStyle}>
+            <div style={styles.textStyle}>
+              <SocialPerson /> {customer.firstName} {customer.lastName}
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                {customer.email1 ?
                   <div>
-                  <h7> SMS Corepondence </h7>
-                  <br/>
-                  {customer.email1Notification ? customer.email1 : null }
-                  <br/>
-                  {customer.email2Notification ? customer.email2 : null }
-                  </div> : null }
-                  <br/>
-                  {customer.sendSurvey ? <h7>Send Online Survey</h7> : null}
-                  <br/>
-                  <br/>
-                  <h7> Notes</h7>
-                    <Editor editorState={this.state.editorState} onChange={this.onChange} />
-                    <br/>
-                     <br/>
-                      <RaisedButton
-                        secondary={true}
-                        label={"back"}
-                        style={styles.buttonStyle}
-                        onTouchTap={this.props.prev}
-                      />
-                      <RaisedButton
-                        primary={true}
-                        label={"submit"}
-                        style={styles.buttonStyle}
-                        onTouchTap={this.submitCustomer}
-                      />
+                    <ComunicationEmail /> {customer.email1}
                   </div>
-                 </Paper>
-               </div>
-            );
-        }
+                 : null }
+                {customer.email2 ?
+                  <div>
+                    <ComunicationMailOutline /> {customer.email2}
+                  </div>
+                : null }
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                {customer.cphone ?
+                  <div>
+                    <HardwareSmartPhone /> {customer.cphone}
+                  </div>
+                : null }
+                {customer.hphone ?
+                  <div>
+                    <ActionHome /> {customer.hphone}
+                  </div>
+                : null }
+                {customer.wphone ?
+                  <div>
+                    <ActionWork /> {customer.wphone}
+                  </div>
+                 : null }
+              </div>
+              {customer.address ?
+                <div>
+                  <ComunicationLocation /> {customer.address}
+                </div>
+                 : null }
+              {customer.surveyor ?
+                <div>
+                  <ActionAssignmentInd /> {customer.surveyor.firstName} {customer.surveyor.lastName}
+                </div>
+                    : null }
+              {customer.email1Notificatoin || customer.email2Notification ?
+                <div>
+                  <ComunicationContactMail /> {customer.email1Notification ?
+                   customer.email1 : null }, {customer.email2Notification ?
+                   customer.email2
+                 : null }
+                </div> : null }
+              {customer.cellNotificatoin || customer.homeNotification || customer.workNotification ?
+                <div>
+                  <ComunicationTextSms /> {customer.cellNotification ?
+                    customer.cphone : null }, {customer.homeNotification ? customer.hphone : null }
+                </div> : null }
+              {customer.sendSurvey ?
+                <div>
+                  <ContentSend /> Photo Upload
+                  </div>
+                  : null}
+              <br />
+              <FlatButton
+                label={'Street View'}
+                primary
+              />
+              <br />
+              <br />
+              <ActionSpeakerNotes />
+              <Infinite containerHeight={100} elementHeight={100}>
+                <Editor editorState={this.state.editorState} onChange={this.onChange} />
+              </Infinite>
+              <FlatButton
+                secondary
+                label={'back'}
+                style={styles.buttonStyle}
+                onTouchTap={this.props.prev}
+              />
+              <FlatButton
+                primary
+                label={'submit'}
+                style={styles.buttonStyle}
+                onTouchTap={this.submitCustomer}
+              />
+            </div>
+          </Paper>
+        </div>
+      );
     }
+  }
 }
 
 const getFinalCustomerInfo = gql`
@@ -165,7 +208,7 @@ const submitCustomer = gql `
 }`;
 
 const CustomerConfirmationQuery = graphql(getFinalCustomerInfo, {
-    options: { pollInterval: 1000 }
+  options: { pollInterval: 1000 },
 })(CustomerConfirmationComp);
 
 const CustomerConfirmation = graphql(submitCustomer)(CustomerConfirmationQuery);

@@ -1,120 +1,117 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["PhotoEditorSDK"] = factory();
-	else
-		root["PhotoEditorSDK"] = factory();
-})(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+  if (typeof exports === 'object' && typeof module === 'object')		{
+    module.exports = factory();
+  } else if (typeof define === 'function' && define.amd)		{
+  define([], factory);
+} else if (typeof exports === 'object')		{ exports.PhotoEditorSDK = factory(); } else		{ root.PhotoEditorSDK = factory(); }
+}(this, () =>
+   /** ****/ (function (modules) { // webpackBootstrap
+/** ****/ 	// The module cache
+     /** ****/ 	const installedModules = {};
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+/** ****/ 	// The require function
+     /** ****/ 	function __webpack_require__(moduleId) {
+/** ****/ 		// Check if module is in cache
+    /** ****/ 		if (installedModules[moduleId])
+  /** ****/ 			{
+return installedModules[moduleId].exports;
+}
 
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+/** ****/ 		// Create a new module (and put it into the cache)
+    /** ****/ 		const module = installedModules[moduleId] = {
+    /** ****/ 			i: moduleId,
+    /** ****/ 			l: false,
+    /** ****/ 			exports: {},
+  /** ****/ 		};
 
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
+/** ****/ 		// Execute the module function
+    /** ****/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/** ****/ 		// Flag the module as loaded
+    /** ****/ 		module.l = true;
 
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/** ****/ 		// Return the exports of the module
+    /** ****/ 		return module.exports;
+  /** ****/ 	}
 
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
+/** ****/ 	// expose the modules object (__webpack_modules__)
+     /** ****/ 	__webpack_require__.m = modules;
 
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
+/** ****/ 	// expose the module cache
+     /** ****/ 	__webpack_require__.c = installedModules;
 
-/******/ 	// identity function for calling harmory imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
+/** ****/ 	// identity function for calling harmory imports with the correct context
+     /** ****/ 	__webpack_require__.i = function (value) { return value; };
 
-/******/ 	// define getter function for harmory exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		Object.defineProperty(exports, name, {
-/******/ 			configurable: false,
-/******/ 			enumerable: true,
-/******/ 			get: getter
-/******/ 		});
-/******/ 	};
+/** ****/ 	// define getter function for harmory exports
+     /** ****/ 	__webpack_require__.d = function (exports, name, getter) {
+    /** ****/ 		Object.defineProperty(exports, name, {
+    /** ****/ 			configurable: false,
+    /** ****/ 			enumerable: true,
+    /** ****/ 			get: getter,
+  /** ****/ 		});
+  /** ****/ 	};
 
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
+/** ****/ 	// getDefaultExport function for compatibility with non-harmony modules
+     /** ****/ 	__webpack_require__.n = function (module) {
+    /** ****/ 		const getter = module && module.__esModule ?
+/** ****/ 			function getDefault() { return module.default; } :
+/** ****/ 			function getModuleExports() { return module; };
+    /** ****/ 		__webpack_require__.d(getter, 'a', getter);
+    /** ****/ 		return getter;
+  /** ****/ 	};
 
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/** ****/ 	// Object.prototype.hasOwnProperty.call
+     /** ****/ 	__webpack_require__.o = function (object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/** ****/ 	// __webpack_public_path__
+     /** ****/ 	__webpack_require__.p = '';
 
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 240);
-/******/ })
-/************************************************************************/
-/******/ ([
+/** ****/ 	// Load entry module and return exports
+     /** ****/ 	return __webpack_require__(__webpack_require__.s = 240);
+   /** ****/ }([
 /* 0 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-exports.default = function (instance, Constructor) {
+
+  exports.__esModule = true;
+
+  exports.default = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+    throw new TypeError('Cannot call a class as a function');
   }
 };
 
-/***/ },
+/** *
+/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _setPrototypeOf = __webpack_require__(180);
 
-var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+  exports.__esModule = true;
 
-var _create = __webpack_require__(179);
+let _setPrototypeOf = __webpack_require__(180);
 
-var _create2 = _interopRequireDefault(_create);
+let _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _typeof2 = __webpack_require__(26);
+let _create = __webpack_require__(179);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+let _create2 = _interopRequireDefault(_create);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _typeof2 = __webpack_require__(26);
 
-exports.default = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
+let _typeof3 = _interopRequireDefault(_typeof2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(`Super expression must either be null or a function, not ${  typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)}`);
   }
 
   subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
@@ -122,160 +119,163 @@ exports.default = function (subClass, superClass) {
       value: subClass,
       enumerable: false,
       writable: true,
-      configurable: true
-    }
+      configurable: true,
+    },
   });
   if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
 
-/***/ },
+/** *
+/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(26);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _typeof2 = __webpack_require__(26);
 
-exports.default = function (self, call) {
+let _typeof3 = _interopRequireDefault(_typeof2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (self, call) {
   if (!self) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
+  return call && ((typeof call === 'undefined' ? 'undefined' : (0, _typeof3.default)(call)) === 'object' || typeof call === 'function') ? call : self;
 };
 
-/***/ },
+/** *
+/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
-exports.GLUtils = exports.Promise = exports.Log = exports.Constants = exports.Color = exports.Configurable = exports.Utils = exports.EventEmitter = exports.Engine = exports.cancelAnimationFrame = exports.requestAnimationFrame = undefined;
+  exports.GLUtils = exports.Promise = exports.Log = exports.Constants = exports.Color = exports.Configurable = exports.Utils = exports.EventEmitter = exports.Engine = exports.cancelAnimationFrame = exports.requestAnimationFrame = undefined;
 
-var _animationFrame = __webpack_require__(178);
+let _animationFrame = __webpack_require__(178);
 
-Object.defineProperty(exports, 'requestAnimationFrame', {
+  Object.defineProperty(exports, 'requestAnimationFrame', {
   enumerable: true,
   get: function get() {
     return _animationFrame.requestAnimationFrame;
-  }
+  },
 });
-Object.defineProperty(exports, 'cancelAnimationFrame', {
+  Object.defineProperty(exports, 'cancelAnimationFrame', {
   enumerable: true,
   get: function get() {
     return _animationFrame.cancelAnimationFrame;
-  }
+  },
 });
 
-var _math = __webpack_require__(63);
+let _math = __webpack_require__(63);
 
-Object.keys(_math).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
+  Object.keys(_math).forEach((key) => {
+  if (key === 'default' || key === '__esModule') return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
       return _math[key];
-    }
+    },
   });
 });
 
-var _engine = __webpack_require__(12);
+let _engine = __webpack_require__(12);
 
-var _engine2 = _interopRequireDefault(_engine);
+let _engine2 = _interopRequireDefault(_engine);
 
-var _constants = __webpack_require__(9);
+let _constants = __webpack_require__(9);
 
-var Constants = _interopRequireWildcard(_constants);
+let Constants = _interopRequireWildcard(_constants);
 
-var _eventEmitter = __webpack_require__(23);
+let _eventEmitter = __webpack_require__(23);
 
-var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
+let _eventEmitter2 = _interopRequireDefault(_eventEmitter);
 
-var _utils = __webpack_require__(24);
+let _utils = __webpack_require__(24);
 
-var _utils2 = _interopRequireDefault(_utils);
+let _utils2 = _interopRequireDefault(_utils);
 
-var _configurable = __webpack_require__(14);
+let _configurable = __webpack_require__(14);
 
-var _configurable2 = _interopRequireDefault(_configurable);
+let _configurable2 = _interopRequireDefault(_configurable);
 
-var _color = __webpack_require__(11);
+let _color = __webpack_require__(11);
 
-var _color2 = _interopRequireDefault(_color);
+let _color2 = _interopRequireDefault(_color);
 
-var _log = __webpack_require__(25);
+let _log = __webpack_require__(25);
 
-var _log2 = _interopRequireDefault(_log);
+let _log2 = _interopRequireDefault(_log);
 
-var _promise = __webpack_require__(7);
+let _promise = __webpack_require__(7);
 
-var _promise2 = _interopRequireDefault(_promise);
+let _promise2 = _interopRequireDefault(_promise);
 
-var _glUtils = __webpack_require__(73);
+let _glUtils = __webpack_require__(73);
 
-var _glUtils2 = _interopRequireDefault(_glUtils);
+let _glUtils2 = _interopRequireDefault(_glUtils);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { let newObj = {}; if (obj != null) { for (let key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Engine = _engine2.default;
-exports.EventEmitter = _eventEmitter2.default;
-exports.Utils = _utils2.default;
-exports.Configurable = _configurable2.default;
-exports.Color = _color2.default;
-exports.Constants = Constants;
-exports.Log = _log2.default;
-exports.Promise = _promise2.default;
-exports.GLUtils = _glUtils2.default;
+  exports.Engine = _engine2.default;
+  exports.EventEmitter = _eventEmitter2.default;
+  exports.Utils = _utils2.default;
+  exports.Configurable = _configurable2.default;
+  exports.Color = _color2.default;
+  exports.Constants = Constants;
+  exports.Log = _log2.default;
+  exports.Promise = _promise2.default;
+  exports.GLUtils = _glUtils2.default;
 
-/***/ },
+/** *
+/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(2);
+let _possibleConstructorReturn2 = __webpack_require__(2);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(1);
+let _inherits2 = __webpack_require__(1);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(3);
+let _globals = __webpack_require__(3);
 
-var _primitivesStack = __webpack_require__(143);
+let _primitivesStack = __webpack_require__(143);
 
-var _primitivesStack2 = _interopRequireDefault(_primitivesStack);
+let _primitivesStack2 = _interopRequireDefault(_primitivesStack);
 
-var _configurable = __webpack_require__(14);
+let _configurable = __webpack_require__(14);
 
-var _configurable2 = _interopRequireDefault(_configurable);
+let _configurable2 = _interopRequireDefault(_configurable);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var OptionType = _globals.Constants.OptionType; /* jshint unused: false */
+let OptionType = _globals.Constants.OptionType; /* jshint unused: false */
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -295,7 +295,7 @@ var OptionType = _globals.Constants.OptionType; /* jshint unused: false */
  * @class
  * @memberof PhotoEditorSDK
  */
-var Filter = function (_Configurable) {
+let Filter = (function (_Configurable) {
   (0, _inherits3.default)(Filter, _Configurable);
 
   function Filter() {
@@ -369,7 +369,7 @@ var Filter = function (_Configurable) {
   };
 
   return Filter;
-}(_configurable2.default);
+}(_configurable2.default));
 
 /**
  * A unique string that identifies this filter
@@ -377,213 +377,215 @@ var Filter = function (_Configurable) {
  */
 
 
-Filter.identifier = null;
+  Filter.identifier = null;
 
 /**
  * If `isIdentity` is true, this filter does not do anything and can be seen as
  * the default filter.
  * @type {Boolean}
  */
-Filter.isIdentity = false;
+  Filter.isIdentity = false;
 
 /**
  * This string is used by the UI
  * @type {String}
  */
-Filter.displayName = null;
+  Filter.displayName = null;
 
 // Exposed classes
-Filter.PrimitivesStack = _primitivesStack2.default;
+  Filter.PrimitivesStack = _primitivesStack2.default;
 
-exports.default = Filter;
+  exports.default = Filter;
 
-/***/ },
+/** *
+/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _brightness = __webpack_require__(144);
+let _brightness = __webpack_require__(144);
 
-Object.defineProperty(exports, 'Brightness', {
+  Object.defineProperty(exports, 'Brightness', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_brightness).default;
-  }
+  },
 });
 
-var _contrast = __webpack_require__(146);
+let _contrast = __webpack_require__(146);
 
-Object.defineProperty(exports, 'Contrast', {
+  Object.defineProperty(exports, 'Contrast', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_contrast).default;
-  }
+  },
 });
 
-var _colorMatrix = __webpack_require__(145);
+let _colorMatrix = __webpack_require__(145);
 
-Object.defineProperty(exports, 'ColorMatrixPrimitive', {
+  Object.defineProperty(exports, 'ColorMatrixPrimitive', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_colorMatrix).default;
-  }
+  },
 });
 
-var _desaturation = __webpack_require__(147);
+let _desaturation = __webpack_require__(147);
 
-Object.defineProperty(exports, 'Desaturation', {
+  Object.defineProperty(exports, 'Desaturation', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_desaturation).default;
-  }
+  },
 });
 
-var _gamma = __webpack_require__(148);
+let _gamma = __webpack_require__(148);
 
-Object.defineProperty(exports, 'Gamma', {
+  Object.defineProperty(exports, 'Gamma', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_gamma).default;
-  }
+  },
 });
 
-var _glow = __webpack_require__(149);
+let _glow = __webpack_require__(149);
 
-Object.defineProperty(exports, 'Glow', {
+  Object.defineProperty(exports, 'Glow', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_glow).default;
-  }
+  },
 });
 
-var _gobblin = __webpack_require__(150);
+let _gobblin = __webpack_require__(150);
 
-Object.defineProperty(exports, 'Gobblin', {
+  Object.defineProperty(exports, 'Gobblin', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_gobblin).default;
-  }
+  },
 });
 
-var _grayscale = __webpack_require__(151);
+let _grayscale = __webpack_require__(151);
 
-Object.defineProperty(exports, 'Grayscale', {
+  Object.defineProperty(exports, 'Grayscale', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_grayscale).default;
-  }
+  },
 });
 
-var _lookupTable = __webpack_require__(79);
+let _lookupTable = __webpack_require__(79);
 
-Object.defineProperty(exports, 'LookupTable', {
+  Object.defineProperty(exports, 'LookupTable', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_lookupTable).default;
-  }
+  },
 });
 
-var _lookupTableImage = __webpack_require__(152);
+let _lookupTableImage = __webpack_require__(152);
 
-Object.defineProperty(exports, 'LookupTableImage', {
+  Object.defineProperty(exports, 'LookupTableImage', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_lookupTableImage).default;
-  }
+  },
 });
 
-var _saturation = __webpack_require__(153);
+let _saturation = __webpack_require__(153);
 
-Object.defineProperty(exports, 'Saturation', {
+  Object.defineProperty(exports, 'Saturation', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_saturation).default;
-  }
+  },
 });
 
-var _softColorOverlay = __webpack_require__(154);
+let _softColorOverlay = __webpack_require__(154);
 
-Object.defineProperty(exports, 'SoftColorOverlay', {
+  Object.defineProperty(exports, 'SoftColorOverlay', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_softColorOverlay).default;
-  }
+  },
 });
 
-var _toneCurve = __webpack_require__(155);
+let _toneCurve = __webpack_require__(155);
 
-Object.defineProperty(exports, 'ToneCurve', {
+  Object.defineProperty(exports, 'ToneCurve', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_toneCurve).default;
-  }
+  },
 });
 
-var _x = __webpack_require__(156);
+let _x = __webpack_require__(156);
 
-Object.defineProperty(exports, 'X400', {
+  Object.defineProperty(exports, 'X400', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_x).default;
-  }
+  },
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/***/ },
+/** *
+/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-var _log = __webpack_require__(25);
 
-var _log2 = _interopRequireDefault(_log);
 
-var _color = __webpack_require__(11);
+let _log = __webpack_require__(25);
 
-var _color2 = _interopRequireDefault(_color);
+let _log2 = _interopRequireDefault(_log);
 
-var _matrix = __webpack_require__(74);
+let _color = __webpack_require__(11);
 
-var _matrix2 = _interopRequireDefault(_matrix);
+let _color2 = _interopRequireDefault(_color);
 
-var _rectangle = __webpack_require__(75);
+let _matrix = __webpack_require__(74);
 
-var _rectangle2 = _interopRequireDefault(_rectangle);
+let _matrix2 = _interopRequireDefault(_matrix);
 
-var _vector = __webpack_require__(19);
+let _rectangle = __webpack_require__(75);
 
-var _vector2 = _interopRequireDefault(_vector);
+let _rectangle2 = _interopRequireDefault(_rectangle);
 
-var _eventEmitter = __webpack_require__(23);
+let _vector = __webpack_require__(19);
 
-var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
+let _vector2 = _interopRequireDefault(_vector);
 
-var _utils = __webpack_require__(24);
+let _eventEmitter = __webpack_require__(23);
 
-var _utils2 = _interopRequireDefault(_utils);
+let _eventEmitter2 = _interopRequireDefault(_eventEmitter);
 
-var _glUtils = __webpack_require__(73);
+let _utils = __webpack_require__(24);
 
-var _glUtils2 = _interopRequireDefault(_glUtils);
+let _utils2 = _interopRequireDefault(_utils);
 
-var _constants = __webpack_require__(9);
+let _glUtils = __webpack_require__(73);
 
-var Constants = _interopRequireWildcard(_constants);
+let _glUtils2 = _interopRequireDefault(_glUtils);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+let _constants = __webpack_require__(9);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let Constants = _interopRequireWildcard(_constants);
 
-exports.BATCH_SIZE = 2000; /*
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { let newObj = {}; if (obj != null) { for (let key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.BATCH_SIZE = 2000; /*
                             * This file is part of PhotoEditorSDK.
                             *
                             * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -597,31 +599,33 @@ exports.BATCH_SIZE = 2000; /*
                             * https://www.photoeditorsdk.com/LICENSE.txt
                             */
 
-exports.VERTEX_SIZE = 5;
-exports.VERTEX_BYTE_SIZE = exports.VERTEX_SIZE * 4;
+  exports.VERTEX_SIZE = 5;
+  exports.VERTEX_BYTE_SIZE = exports.VERTEX_SIZE * 4;
 
-exports.Color = _color2.default;
-exports.Matrix = _matrix2.default;
-exports.Vector2 = _vector2.default;
-exports.Rectangle = _rectangle2.default;
-exports.EventEmitter = _eventEmitter2.default;
-exports.Log = _log2.default;
-exports.Utils = _utils2.default;
-exports.Constants = Constants;
-exports.GLUtils = _glUtils2.default;
+  exports.Color = _color2.default;
+  exports.Matrix = _matrix2.default;
+  exports.Vector2 = _vector2.default;
+  exports.Rectangle = _rectangle2.default;
+  exports.EventEmitter = _eventEmitter2.default;
+  exports.Log = _log2.default;
+  exports.Utils = _utils2.default;
+  exports.Constants = Constants;
+  exports.GLUtils = _glUtils2.default;
 
-/***/ },
+/** *
+/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, setImmediate) {var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+'use strict';
 
-var _typeof2 = __webpack_require__(26);
+  /* WEBPACK VAR INJECTION */(function (global, setImmediate) {let __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+let _typeof2 = __webpack_require__(26);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _typeof3 = _interopRequireDefault(_typeof2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable */
 /*!
@@ -27969,6 +27973,5 @@ _sdk2.default.Base64 = _base2.default;
 module.exports = _sdk2.default;
 
 /***/ }
-/******/ ])
-});
+/******/ ]))));
 ;

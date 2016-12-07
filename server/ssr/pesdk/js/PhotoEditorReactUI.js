@@ -1,153 +1,148 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("photoeditorsdk"), require("react"), require("react-dom"));
-	else if(typeof define === 'function' && define.amd)
-		define(["photoeditorsdk", "react", "react-dom"], factory);
-	else if(typeof exports === 'object')
-		exports["PhotoEditorReactUI"] = factory(require("photoeditorsdk"), require("react"), require("react-dom"));
-	else
-		root["PhotoEditorReactUI"] = factory(root["PhotoEditorSDK"], root["React"], root["ReactDOM"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_36__, __WEBPACK_EXTERNAL_MODULE_59__, __WEBPACK_EXTERNAL_MODULE_263__) {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
+  if (typeof exports === 'object' && typeof module === 'object')		{
+module.exports = factory(require('photoeditorsdk'), require('react'), require('react-dom')); }  else if (typeof define === 'function' && define.amd)		{
+define(['photoeditorsdk', 'react', 'react-dom'], factory); }  else if (typeof exports === 'object')		{
+exports.PhotoEditorReactUI = factory(require('photoeditorsdk'), require('react'), require('react-dom')); }  else		{
+root.PhotoEditorReactUI = factory(root.PhotoEditorSDK, root.React, root.ReactDOM); }
+}(this, (__WEBPACK_EXTERNAL_MODULE_36__, __WEBPACK_EXTERNAL_MODULE_59__, __WEBPACK_EXTERNAL_MODULE_263__) => {
+  return /** ****/ (function (modules) { // webpackBootstrap
+/** ****/ 	// The module cache
+  /** ****/ 	let installedModules = {};
 
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
+/** ****/ 	// The require function
+  /** ****/ 	function __webpack_require__(moduleId) {
+/** ****/ 		// Check if module is in cache
+  /** ****/ 		if (installedModules[moduleId])
+  /** ****/ 			{return installedModules[moduleId].exports;}
 
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
+/** ****/ 		// Create a new module (and put it into the cache)
+  /** ****/ 		let module = installedModules[moduleId] = {
+  /** ****/ 			i: moduleId,
+  /** ****/ 			l: false,
+  /** ****/ 			exports: {},
+/** ****/ 		};
 
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
+/** ****/ 		// Execute the module function
+  /** ****/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/** ****/ 		// Flag the module as loaded
+  /** ****/ 		module.l = true;
 
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/** ****/ 		// Return the exports of the module
+  /** ****/ 		return module.exports;
+/** ****/ 	}
 
 
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
+/** ****/ 	// expose the modules object (__webpack_modules__)
+  /** ****/ 	__webpack_require__.m = modules;
 
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
+/** ****/ 	// expose the module cache
+  /** ****/ 	__webpack_require__.c = installedModules;
 
-/******/ 	// identity function for calling harmory imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
+/** ****/ 	// identity function for calling harmory imports with the correct context
+  /** ****/ 	__webpack_require__.i = function (value) { return value; };
 
-/******/ 	// define getter function for harmory exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		Object.defineProperty(exports, name, {
-/******/ 			configurable: false,
-/******/ 			enumerable: true,
-/******/ 			get: getter
-/******/ 		});
-/******/ 	};
+/** ****/ 	// define getter function for harmory exports
+  /** ****/ 	__webpack_require__.d = function (exports, name, getter) {
+  /** ****/ 		Object.defineProperty(exports, name, {
+  /** ****/ 			configurable: false,
+  /** ****/ 			enumerable: true,
+  /** ****/ 			get: getter,
+/** ****/ 		});
+/** ****/ 	};
 
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
+/** ****/ 	// getDefaultExport function for compatibility with non-harmony modules
+  /** ****/ 	__webpack_require__.n = function (module) {
+  /** ****/ 		let getter = module && module.__esModule ?
+/** ****/ 			function getDefault() { return module.default; } :
+/** ****/ 			function getModuleExports() { return module; };
+  /** ****/ 		__webpack_require__.d(getter, 'a', getter);
+  /** ****/ 		return getter;
+/** ****/ 	};
 
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/** ****/ 	// Object.prototype.hasOwnProperty.call
+  /** ****/ 	__webpack_require__.o = function (object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/** ****/ 	// __webpack_public_path__
+  /** ****/ 	__webpack_require__.p = '';
 
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 264);
-/******/ })
-/************************************************************************/
-/******/ ([
+/** ****/ 	// Load entry module and return exports
+  /** ****/ 	return __webpack_require__(__webpack_require__.s = 264);
+/** ****/ })([
 /* 0 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-exports.default = function (instance, Constructor) {
+
+  exports.__esModule = true;
+
+  exports.default = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+    throw new TypeError('Cannot call a class as a function');
   }
 };
 
-/***/ },
+/** *
+/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
-exports.ImageFormat = exports.ColorMatrix = exports.now = exports.Log = exports.cancelAnimationFrame = exports.requestAnimationFrame = exports.SDK = exports.EXIF = exports.ReactDOM = exports.UniformType = exports.OptionType = exports.RenderType = exports.Base64 = exports.Color = exports.SharedState = exports.Constants = exports.EventEmitter = exports.SDKUtils = exports.Vector2 = exports.ReactBEM = exports.BaseComponent = exports.Classnames = exports.BEM = exports.React = exports.Utils = exports.Promise = undefined;
+  exports.ImageFormat = exports.ColorMatrix = exports.now = exports.Log = exports.cancelAnimationFrame = exports.requestAnimationFrame = exports.SDK = exports.EXIF = exports.ReactDOM = exports.UniformType = exports.OptionType = exports.RenderType = exports.Base64 = exports.Color = exports.SharedState = exports.Constants = exports.EventEmitter = exports.SDKUtils = exports.Vector2 = exports.ReactBEM = exports.BaseComponent = exports.Classnames = exports.BEM = exports.React = exports.Utils = exports.Promise = undefined;
 
-var _photoeditorsdk = __webpack_require__(36);
+let _photoeditorsdk = __webpack_require__(36);
 
-var _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
+let _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
 
-var _react = __webpack_require__(59);
+let _react = __webpack_require__(59);
 
-var _react2 = _interopRequireDefault(_react);
+let _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(263);
+let _reactDom = __webpack_require__(263);
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
+let _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _classnames = __webpack_require__(77);
+let _classnames = __webpack_require__(77);
 
-var _classnames2 = _interopRequireDefault(_classnames);
+let _classnames2 = _interopRequireDefault(_classnames);
 
-var _bem = __webpack_require__(67);
+let _bem = __webpack_require__(67);
 
-var _bem2 = _interopRequireDefault(_bem);
+let _bem2 = _interopRequireDefault(_bem);
 
-var _reactBem = __webpack_require__(71);
+let _reactBem = __webpack_require__(71);
 
-var _reactBem2 = _interopRequireDefault(_reactBem);
+let _reactBem2 = _interopRequireDefault(_reactBem);
 
-var _baseComponent = __webpack_require__(97);
+let _baseComponent = __webpack_require__(97);
 
-var _baseComponent2 = _interopRequireDefault(_baseComponent);
+let _baseComponent2 = _interopRequireDefault(_baseComponent);
 
-var _utils = __webpack_require__(201);
+let _utils = __webpack_require__(201);
 
-var _utils2 = _interopRequireDefault(_utils);
+let _utils2 = _interopRequireDefault(_utils);
 
-var _constants = __webpack_require__(176);
+let _constants = __webpack_require__(176);
 
-var _constants2 = _interopRequireDefault(_constants);
+let _constants2 = _interopRequireDefault(_constants);
 
-var _sharedState = __webpack_require__(200);
+let _sharedState = __webpack_require__(200);
 
-var _sharedState2 = _interopRequireDefault(_sharedState);
+let _sharedState2 = _interopRequireDefault(_sharedState);
 
-var _animationFrame = __webpack_require__(203);
+let _animationFrame = __webpack_require__(203);
 
-var _log = __webpack_require__(74);
+let _log = __webpack_require__(74);
 
-var _log2 = _interopRequireDefault(_log);
+let _log2 = _interopRequireDefault(_log);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -163,75 +158,76 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Base64 = _photoeditorsdk2.default.Base64;
-var Color = _photoeditorsdk2.default.Color;
-var ColorMatrix = _photoeditorsdk2.default.Math.ColorMatrix;
-var EventEmitter = _photoeditorsdk2.default.EventEmitter;
-var EXIF = _photoeditorsdk2.default.EXIF;
-var OptionType = _photoeditorsdk2.default.OptionType;
-var Promise = _photoeditorsdk2.default.Promise;
-var SDKUtils = _photoeditorsdk2.default.Utils;
-var RenderType = _photoeditorsdk2.default.RenderType;
-var ImageFormat = _photoeditorsdk2.default.ImageFormat;
-var SDK = _photoeditorsdk2.default;
-var UniformType = _photoeditorsdk2.default.UniformType;
-var Vector2 = _photoeditorsdk2.default.Math.Vector2;
+let Base64 = _photoeditorsdk2.default.Base64;
+let Color = _photoeditorsdk2.default.Color;
+let ColorMatrix = _photoeditorsdk2.default.Math.ColorMatrix;
+let EventEmitter = _photoeditorsdk2.default.EventEmitter;
+let EXIF = _photoeditorsdk2.default.EXIF;
+let OptionType = _photoeditorsdk2.default.OptionType;
+let Promise = _photoeditorsdk2.default.Promise;
+let SDKUtils = _photoeditorsdk2.default.Utils;
+let RenderType = _photoeditorsdk2.default.RenderType;
+let ImageFormat = _photoeditorsdk2.default.ImageFormat;
+let SDK = _photoeditorsdk2.default;
+let UniformType = _photoeditorsdk2.default.UniformType;
+let Vector2 = _photoeditorsdk2.default.Math.Vector2;
 
-var now = typeof window !== 'undefined' && window.performance && window.performance.now ? window.performance.now.bind(window.performance) : __webpack_require__(89);
+let now = typeof window !== 'undefined' && window.performance && window.performance.now ? window.performance.now.bind(window.performance) : __webpack_require__(89);
 
-exports.Promise = Promise;
-exports.Utils = _utils2.default;
-exports.React = _react2.default;
-exports.BEM = _bem2.default;
-exports.Classnames = _classnames2.default;
-exports.BaseComponent = _baseComponent2.default;
-exports.ReactBEM = _reactBem2.default;
-exports.Vector2 = Vector2;
-exports.SDKUtils = SDKUtils;
-exports.EventEmitter = EventEmitter;
-exports.Constants = _constants2.default;
-exports.SharedState = _sharedState2.default;
-exports.Color = Color;
-exports.Base64 = Base64;
-exports.RenderType = RenderType;
-exports.OptionType = OptionType;
-exports.UniformType = UniformType;
-exports.ReactDOM = _reactDom2.default;
-exports.EXIF = EXIF;
-exports.SDK = SDK;
-exports.requestAnimationFrame = _animationFrame.requestAnimationFrame;
-exports.cancelAnimationFrame = _animationFrame.cancelAnimationFrame;
-exports.Log = _log2.default;
-exports.now = now;
-exports.ColorMatrix = ColorMatrix;
-exports.ImageFormat = ImageFormat;
+  exports.Promise = Promise;
+  exports.Utils = _utils2.default;
+  exports.React = _react2.default;
+  exports.BEM = _bem2.default;
+  exports.Classnames = _classnames2.default;
+  exports.BaseComponent = _baseComponent2.default;
+  exports.ReactBEM = _reactBem2.default;
+  exports.Vector2 = Vector2;
+  exports.SDKUtils = SDKUtils;
+  exports.EventEmitter = EventEmitter;
+  exports.Constants = _constants2.default;
+  exports.SharedState = _sharedState2.default;
+  exports.Color = Color;
+  exports.Base64 = Base64;
+  exports.RenderType = RenderType;
+  exports.OptionType = OptionType;
+  exports.UniformType = UniformType;
+  exports.ReactDOM = _reactDom2.default;
+  exports.EXIF = EXIF;
+  exports.SDK = SDK;
+  exports.requestAnimationFrame = _animationFrame.requestAnimationFrame;
+  exports.cancelAnimationFrame = _animationFrame.cancelAnimationFrame;
+  exports.Log = _log2.default;
+  exports.now = now;
+  exports.ColorMatrix = ColorMatrix;
+  exports.ImageFormat = ImageFormat;
 
-/***/ },
+/** *
+/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _setPrototypeOf = __webpack_require__(209);
 
-var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+  exports.__esModule = true;
 
-var _create = __webpack_require__(208);
+let _setPrototypeOf = __webpack_require__(209);
 
-var _create2 = _interopRequireDefault(_create);
+let _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 
-var _typeof2 = __webpack_require__(32);
+let _create = __webpack_require__(208);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+let _create2 = _interopRequireDefault(_create);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _typeof2 = __webpack_require__(32);
 
-exports.default = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
+let _typeof3 = _interopRequireDefault(_typeof2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(`Super expression must either be null or a function, not ${  typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)}`);
   }
 
   subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
@@ -239,57 +235,59 @@ exports.default = function (subClass, superClass) {
       value: subClass,
       enumerable: false,
       writable: true,
-      configurable: true
-    }
+      configurable: true,
+    },
   });
   if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 };
 
-/***/ },
+/** *
+/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(32);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _typeof2 = __webpack_require__(32);
 
-exports.default = function (self, call) {
+let _typeof3 = _interopRequireDefault(_typeof2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (self, call) {
   if (!self) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
+  return call && ((typeof call === 'undefined' ? 'undefined' : (0, _typeof3.default)(call)) === 'object' || typeof call === 'function') ? call : self;
 };
 
-/***/ },
+/** *
+/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(75);
 
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _defineProperty = __webpack_require__(75);
 
-exports.default = function (obj, key, value) {
+let _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (obj, key, value) {
   if (key in obj) {
     (0, _defineProperty2.default)(obj, key, {
-      value: value,
+      value,
       enumerable: true,
       configurable: true,
-      writable: true
+      writable: true,
     });
   } else {
     obj[key] = value;
@@ -298,42 +296,43 @@ exports.default = function (obj, key, value) {
   return obj;
 };
 
-/***/ },
+/** *
+/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _backButtonComponent = __webpack_require__(96);
+let _backButtonComponent = __webpack_require__(96);
 
-var _backButtonComponent2 = _interopRequireDefault(_backButtonComponent);
+let _backButtonComponent2 = _interopRequireDefault(_backButtonComponent);
 
-var _doneButtonComponent = __webpack_require__(150);
+let _doneButtonComponent = __webpack_require__(150);
 
-var _doneButtonComponent2 = _interopRequireDefault(_doneButtonComponent);
+let _doneButtonComponent2 = _interopRequireDefault(_doneButtonComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ControlsComponent = function (_BaseComponent) {
+let ControlsComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ControlsComponent, _BaseComponent);
 
   function ControlsComponent() {
@@ -427,7 +426,7 @@ var ControlsComponent = function (_BaseComponent) {
   };
 
   return ControlsComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -442,27 +441,28 @@ var ControlsComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ControlsComponent;
+  exports.default = ControlsComponent;
 
 
-ControlsComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ControlsComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -483,7 +483,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @class
  * @memberof PhotoEditorSDK.UI.ReactUI
  */
-var Control = function () {
+let Control = (function () {
   function Control() {
     (0, _classCallCheck3.default)(this, Control);
   }
@@ -523,7 +523,7 @@ var Control = function () {
   };
 
   return Control;
-}();
+}());
 
 /**
  * This control's top bar component. Used for the upper part of the editor.
@@ -531,80 +531,81 @@ var Control = function () {
  */
 
 
-Control.topBarControlsComponent = null;
+  Control.topBarControlsComponent = null;
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  */
-Control.controlsComponent = null;
+  Control.controlsComponent = null;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
  * top of the canvas)
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  */
-Control.canvasControlsComponent = null;
+  Control.canvasControlsComponent = null;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-Control.identifier = null;
+  Control.identifier = null;
 
 /**
  * This control's icon path
  * @type {String}
  */
-Control.iconPath = null;
+  Control.iconPath = null;
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  */
-Control.languageKey = null;
+  Control.languageKey = null;
 
 /**
  * The default options for this control
  * @type {Object}
  */
-Control.defaultOptions = {};
+  Control.defaultOptions = {};
 
-exports.default = Control;
+  exports.default = Control;
 
-/***/ },
+/** *
+/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _createClass2 = __webpack_require__(76);
+let _createClass2 = __webpack_require__(76);
 
-var _createClass3 = _interopRequireDefault(_createClass2);
+let _createClass3 = _interopRequireDefault(_createClass2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Modal = function (_EventEmitter) {
+let Modal = (function (_EventEmitter) {
   (0, _inherits3.default)(Modal, _EventEmitter);
 
   function Modal(type, title, text) {
@@ -642,7 +643,7 @@ var Modal = function (_EventEmitter) {
   };
 
   return Modal;
-}(_globals.EventEmitter); /*
+}(_globals.EventEmitter)); /*
                            * This file is part of PhotoEditorSDK.
                            *
                            * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -656,7 +657,7 @@ var Modal = function (_EventEmitter) {
                            * https://www.photoeditorsdk.com/LICENSE.txt
                            */
 
-var ModalManager = function (_EventEmitter2) {
+let ModalManager = (function (_EventEmitter2) {
   (0, _inherits3.default)(ModalManager, _EventEmitter2);
 
   function ModalManager() {
@@ -785,63 +786,66 @@ var ModalManager = function (_EventEmitter2) {
     }
   }]);
   return ModalManager;
-}(_globals.EventEmitter);
+}(_globals.EventEmitter));
 
-exports.default = ModalManager;
+  exports.default = ModalManager;
 
-/***/ },
+/** *
+/ },
 /* 8 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+let core = module.exports = { version: '2.4.0' };
+  if (typeof __e === 'number')__e = core; // eslint-disable-line no-undef
 
-/***/ },
+/** *
+/ },
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var store      = __webpack_require__(52)('wks')
-  , uid        = __webpack_require__(34)
-  , Symbol     = __webpack_require__(12).Symbol
-  , USE_SYMBOL = typeof Symbol == 'function';
+let store = __webpack_require__(52)('wks'),
+   uid = __webpack_require__(34),
+   Symbol = __webpack_require__(12).Symbol,
+   USE_SYMBOL = typeof Symbol === 'function';
 
-var $exports = module.exports = function(name){
+let $exports = module.exports = function (name) {
   return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)(`Symbol.${  name}`));
 };
 
-$exports.store = store;
+  $exports.store = store;
 
-/***/ },
+/** *
+/ },
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -858,10 +862,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var NATIVE_SCROLLBAR_WIDTH = 25;
-var SCROLLBAR_WIDTH = 12;
+let NATIVE_SCROLLBAR_WIDTH = 25;
+let SCROLLBAR_WIDTH = 12;
 
-var ScrollbarComponent = function (_BaseComponent) {
+let ScrollbarComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ScrollbarComponent, _BaseComponent);
 
   function ScrollbarComponent() {
@@ -1278,44 +1282,45 @@ var ScrollbarComponent = function (_BaseComponent) {
   };
 
   return ScrollbarComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = ScrollbarComponent;
+  exports.default = ScrollbarComponent;
 
 
-ScrollbarComponent.HORIZONTAL = 'horizontal';
-ScrollbarComponent.VERTICAL = 'vertical';
+  ScrollbarComponent.HORIZONTAL = 'horizontal';
+  ScrollbarComponent.VERTICAL = 'vertical';
 
-ScrollbarComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ScrollbarComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DraggableComponent = function (_BaseComponent) {
+let DraggableComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(DraggableComponent, _BaseComponent);
 
   function DraggableComponent() {
@@ -1423,7 +1428,7 @@ var DraggableComponent = function (_BaseComponent) {
   };
 
   return DraggableComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -1439,75 +1444,77 @@ var DraggableComponent = function (_BaseComponent) {
  */
 
 
-exports.default = DraggableComponent;
+  exports.default = DraggableComponent;
 
 
-DraggableComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  DraggableComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 12 */
-/***/ function(module, exports) {
-
+  /** */ function (module, exports) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+let global = module.exports = typeof window !== 'undefined' && window.Math == Math
+  ? window : typeof self !== 'undefined' && self.Math == Math ? self : Function('return this')();
+  if (typeof __g === 'number')__g = global; // eslint-disable-line no-undef
 
-/***/ },
+/** *
+/ },
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var anObject       = __webpack_require__(15)
-  , IE8_DOM_DEFINE = __webpack_require__(80)
-  , toPrimitive    = __webpack_require__(55)
-  , dP             = Object.defineProperty;
+let anObject = __webpack_require__(15),
+   IE8_DOM_DEFINE = __webpack_require__(80),
+   toPrimitive = __webpack_require__(55),
+   dP = Object.defineProperty;
 
-exports.f = __webpack_require__(16) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+  exports.f = __webpack_require__(16) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
-  if(IE8_DOM_DEFINE)try {
+  if (IE8_DOM_DEFINE){try {
     return dP(O, P, Attributes);
-  } catch(e){ /* empty */ }
-  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-  if('value' in Attributes)O[P] = Attributes.value;
+  } catch(e){ /* empty */ }}
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes)O[P] = Attributes.value;
   return O;
 };
 
-/***/ },
+/** *
+/ },
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _extends2 = __webpack_require__(25);
+let _extends2 = __webpack_require__(25);
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -1523,7 +1530,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
-var SliderComponent = function (_BaseComponent) {
+let SliderComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(SliderComponent, _BaseComponent);
 
   function SliderComponent() {
@@ -1855,70 +1862,74 @@ var SliderComponent = function (_BaseComponent) {
   };
 
   return SliderComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = SliderComponent;
+  exports.default = SliderComponent;
 
 
-SliderComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  SliderComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(27);
-module.exports = function(it){
-  if(!isObject(it))throw TypeError(it + ' is not an object!');
+let isObject = __webpack_require__(27);
+  module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(`${it  } is not an object!`);
   return it;
 };
 
-/***/ },
+/** *
+/ },
 /* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(26)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+  module.exports = !__webpack_require__(26)(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
-/***/ },
+/** *
+/ },
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var global    = __webpack_require__(12)
-  , core      = __webpack_require__(8)
-  , ctx       = __webpack_require__(44)
-  , hide      = __webpack_require__(22)
-  , PROTOTYPE = 'prototype';
+let global = __webpack_require__(12),
+   core = __webpack_require__(8),
+   ctx = __webpack_require__(44),
+   hide = __webpack_require__(22),
+   PROTOTYPE = 'prototype';
 
-var $export = function(type, name, source){
-  var IS_FORCED = type & $export.F
-    , IS_GLOBAL = type & $export.G
-    , IS_STATIC = type & $export.S
-    , IS_PROTO  = type & $export.P
-    , IS_BIND   = type & $export.B
-    , IS_WRAP   = type & $export.W
-    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-    , expProto  = exports[PROTOTYPE]
-    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-    , key, own, out;
-  if(IS_GLOBAL)source = name;
-  for(key in source){
+let $export = function (type, name, source) {
+  let IS_FORCED = type & $export.F,
+     IS_GLOBAL = type & $export.G,
+     IS_STATIC = type & $export.S,
+     IS_PROTO = type & $export.P,
+     IS_BIND = type & $export.B,
+     IS_WRAP = type & $export.W,
+     exports = IS_GLOBAL ? core : core[name] || (core[name] = {}),
+     expProto = exports[PROTOTYPE],
+     target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE],
+     key, 
+own, 
+out;
+  if (IS_GLOBAL)source = name;
+  for (key in source) {
     // contains in native
     own = !IS_FORCED && target && target[key] !== undefined;
-    if(own && key in exports)continue;
+    if (own && key in exports) continue;
     // export native or passed
     out = own ? target[key] : source[key];
     // prevent global pollution for namespaces
-    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+    exports[key] = IS_GLOBAL && typeof target[key] !== 'function' ? source[key]
     // bind timers to global for call from export context
     : IS_BIND && own ? ctx(out, global)
     // wrap global constructors for prevent change them in library
-    : IS_WRAP && target[key] == out ? (function(C){
-      var F = function(a, b, c){
-        if(this instanceof C){
-          switch(arguments.length){
-            case 0: return new C;
+    : IS_WRAP && target[key] == out ? (function (C) {
+      let F = function (a, b, c) {
+        if (this instanceof C) {
+          switch (arguments.length) {
+            case 0: return new C();
             case 1: return new C(a);
             case 2: return new C(a, b);
           } return new C(a, b, c);
@@ -1927,76 +1938,78 @@ var $export = function(type, name, source){
       F[PROTOTYPE] = C[PROTOTYPE];
       return F;
     // make static versions for prototype methods
-    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    }(out)) : IS_PROTO && typeof out === 'function' ? ctx(Function.call, out) : out;
     // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-    if(IS_PROTO){
+    if (IS_PROTO) {
       (exports.virtual || (exports.virtual = {}))[key] = out;
       // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
+      if (type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
     }
   }
 };
 // type bitmap
-$export.F = 1;   // forced
-$export.G = 2;   // global
-$export.S = 4;   // static
-$export.P = 8;   // proto
-$export.B = 16;  // bind
-$export.W = 32;  // wrap
-$export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
-module.exports = $export;
+  $export.F = 1;   // forced
+  $export.G = 2;   // global
+  $export.S = 4;   // static
+  $export.P = 8;   // proto
+  $export.B = 16;  // bind
+  $export.W = 32;  // wrap
+  $export.U = 64;  // safe
+  $export.R = 128; // real proto method for `library`
+  module.exports = $export;
 
-/***/ },
+/** *
+/ },
 /* 18 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function(it, key){
+let hasOwnProperty = {}.hasOwnProperty;
+  module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-/***/ },
+/** *
+/ },
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(81)
-  , defined = __webpack_require__(45);
-module.exports = function(it){
+let IObject = __webpack_require__(81),
+   defined = __webpack_require__(45);
+  module.exports = function (it) {
   return IObject(defined(it));
 };
 
-/***/ },
+/** *
+/ },
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -2013,7 +2026,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var SliderOverlayComponent = function (_BaseComponent) {
+let SliderOverlayComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(SliderOverlayComponent, _BaseComponent);
 
   function SliderOverlayComponent() {
@@ -2096,43 +2109,44 @@ var SliderOverlayComponent = function (_BaseComponent) {
   };
 
   return SliderOverlayComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = SliderOverlayComponent;
+  exports.default = SliderOverlayComponent;
 
 
-SliderOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  SliderOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _headerComponent = __webpack_require__(151);
+let _headerComponent = __webpack_require__(151);
 
-var _headerComponent2 = _interopRequireDefault(_headerComponent);
+let _headerComponent2 = _interopRequireDefault(_headerComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -2149,7 +2163,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var ScreenComponent = function (_BaseComponent) {
+let ScreenComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ScreenComponent, _BaseComponent);
 
   function ScreenComponent() {
@@ -2201,64 +2215,67 @@ var ScreenComponent = function (_BaseComponent) {
   };
 
   return ScreenComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = ScreenComponent;
+  exports.default = ScreenComponent;
 
 
-ScreenComponent.propTypes = {
-  editor: _globals.React.PropTypes.any
+  ScreenComponent.propTypes = {
+  editor: _globals.React.PropTypes.any,
 };
 
-ScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var dP         = __webpack_require__(13)
-  , createDesc = __webpack_require__(29);
-module.exports = __webpack_require__(16) ? function(object, key, value){
+let dP = __webpack_require__(13),
+   createDesc = __webpack_require__(29);
+  module.exports = __webpack_require__(16) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
-} : function(object, key, value){
+} : function (object, key, value) {
   object[key] = value;
   return object;
 };
 
-/***/ },
+/** *
+/ },
 /* 23 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = {};
+  module.exports = {};
 
-/***/ },
+/** *
+/ },
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var CanvasControlsComponent = function (_BaseComponent) {
+let CanvasControlsComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(CanvasControlsComponent, _BaseComponent);
 
   function CanvasControlsComponent() {
@@ -2351,7 +2368,7 @@ var CanvasControlsComponent = function (_BaseComponent) {
   };
 
   return CanvasControlsComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -2366,31 +2383,32 @@ var CanvasControlsComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = CanvasControlsComponent;
+  exports.default = CanvasControlsComponent;
 
 
-CanvasControlsComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  CanvasControlsComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 25 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _assign = __webpack_require__(207);
 
-var _assign2 = _interopRequireDefault(_assign);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _assign = __webpack_require__(207);
 
-exports.default = _assign2.default || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
+let _assign2 = _interopRequireDefault(_assign);
 
-    for (var key in source) {
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = _assign2.default || function (target) {
+  for (let i = 1; i < arguments.length; i++) {
+    let source = arguments[i];
+
+    for (let key in source) {
       if (Object.prototype.hasOwnProperty.call(source, key)) {
         target[key] = source[key];
       }
@@ -2400,106 +2418,110 @@ exports.default = _assign2.default || function (target) {
   return target;
 };
 
-/***/ },
+/** *
+/ },
 /* 26 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(exec){
+  module.exports = function (exec) {
   try {
     return !!exec();
-  } catch(e){
+  } catch (e) {
     return true;
   }
 };
 
-/***/ },
+/** *
+/ },
 /* 27 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(it){
+  module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 
-/***/ },
+/** *
+/ },
 /* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = __webpack_require__(85)
-  , enumBugKeys = __webpack_require__(46);
+let $keys = __webpack_require__(85),
+   enumBugKeys = __webpack_require__(46);
 
-module.exports = Object.keys || function keys(O){
+  module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
 };
 
-/***/ },
+/** *
+/ },
 /* 29 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(bitmap, value){
+  module.exports = function (bitmap, value) {
   return {
-    enumerable  : !(bitmap & 1),
+    enumerable: !(bitmap & 1),
     configurable: !(bitmap & 2),
-    writable    : !(bitmap & 4),
-    value       : value
+    writable: !(bitmap & 4),
+    value: value,
   };
 };
 
-/***/ },
+/** *
+/ },
 /* 30 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _extends2 = __webpack_require__(25);
+let _extends2 = __webpack_require__(25);
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _textItemComponent = __webpack_require__(139);
+let _textItemComponent = __webpack_require__(139);
 
-var _textItemComponent2 = _interopRequireDefault(_textItemComponent);
+let _textItemComponent2 = _interopRequireDefault(_textItemComponent);
 
-var _stickerItemComponent = __webpack_require__(138);
+let _stickerItemComponent = __webpack_require__(138);
 
-var _stickerItemComponent2 = _interopRequireDefault(_stickerItemComponent);
+let _stickerItemComponent2 = _interopRequireDefault(_stickerItemComponent);
 
-var _brushItemComponent = __webpack_require__(137);
+let _brushItemComponent = __webpack_require__(137);
 
-var _brushItemComponent2 = _interopRequireDefault(_brushItemComponent);
+let _brushItemComponent2 = _interopRequireDefault(_brushItemComponent);
 
-var _canvasControlsComponent = __webpack_require__(24);
+let _canvasControlsComponent = __webpack_require__(24);
 
-var _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
+let _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _SDK$Operations$Sprit = _globals.SDK.Operations.SpriteOperation,
-    Sticker = _SDK$Operations$Sprit.Sticker,
-    Text = _SDK$Operations$Sprit.Text,
-    Brush = _SDK$Operations$Sprit.Brush; /** @jsx ReactBEM.createElement **/
+let _SDK$Operations$Sprit = _globals.SDK.Operations.SpriteOperation,
+  Sticker = _SDK$Operations$Sprit.Sticker,
+  Text = _SDK$Operations$Sprit.Text,
+  Brush = _SDK$Operations$Sprit.Brush; /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -2514,7 +2536,7 @@ var _SDK$Operations$Sprit = _globals.SDK.Operations.SpriteOperation,
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var SpritesCanvasControlsComponent = function (_CanvasControlsCompon) {
+let SpritesCanvasControlsComponent = (function (_CanvasControlsCompon) {
   (0, _inherits3.default)(SpritesCanvasControlsComponent, _CanvasControlsCompon);
 
   function SpritesCanvasControlsComponent() {
@@ -2827,41 +2849,42 @@ var SpritesCanvasControlsComponent = function (_CanvasControlsCompon) {
   };
 
   return SpritesCanvasControlsComponent;
-}(_canvasControlsComponent2.default);
+}(_canvasControlsComponent2.default));
 
-exports.default = SpritesCanvasControlsComponent;
+  exports.default = SpritesCanvasControlsComponent;
 
 
-SpritesCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
+  SpritesCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 31 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TopBarComponent = function (_BaseComponent) {
+let TopBarComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TopBarComponent, _BaseComponent);
 
   function TopBarComponent() {
@@ -2896,7 +2919,7 @@ var TopBarComponent = function (_BaseComponent) {
   };
 
   return TopBarComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -2911,117 +2934,124 @@ var TopBarComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TopBarComponent;
+  exports.default = TopBarComponent;
 
 
-TopBarComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TopBarComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 32 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _iterator = __webpack_require__(211);
 
-var _iterator2 = _interopRequireDefault(_iterator);
+  exports.__esModule = true;
 
-var _symbol = __webpack_require__(210);
+let _iterator = __webpack_require__(211);
 
-var _symbol2 = _interopRequireDefault(_symbol);
+let _iterator2 = _interopRequireDefault(_iterator);
 
-var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
+let _symbol = __webpack_require__(210);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _symbol2 = _interopRequireDefault(_symbol);
 
-exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
+let _typeof = typeof _symbol2.default === 'function' && typeof _iterator2.default === 'symbol' ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === 'function' && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? 'symbol' : typeof obj; };
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = typeof _symbol2.default === 'function' && _typeof(_iterator2.default) === 'symbol' ? function (obj) {
+  return typeof obj === 'undefined' ? 'undefined' : _typeof(obj);
 } : function (obj) {
-  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+  return obj && typeof _symbol2.default === 'function' && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? 'symbol' : typeof obj === 'undefined' ? 'undefined' : _typeof(obj);
 };
 
-/***/ },
+/** *
+/ },
 /* 33 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-exports.f = {}.propertyIsEnumerable;
+  exports.f = {}.propertyIsEnumerable;
 
-/***/ },
+/** *
+/ },
 /* 34 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-var id = 0
-  , px = Math.random();
-module.exports = function(key){
+let id = 0,
+   px = Math.random();
+  module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-/***/ },
+/** *
+/ },
 /* 35 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var $at  = __webpack_require__(242)(true);
+
+  'use strict';
+
+let $at = __webpack_require__(242)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(82)(String, 'String', function(iterated){
+  __webpack_require__(82)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , index = this._i
-    , point;
-  if(index >= O.length)return {value: undefined, done: true};
+}, function () {
+  let O = this._t,
+     index = this._i,
+     point;
+  if (index >= O.length) return { value: undefined, done: true };
   point = $at(O, index);
   this._i += point.length;
-  return {value: point, done: false};
+  return { value: point, done: false };
 });
 
-/***/ },
+/** *
+/ },
 /* 36 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_36__;
+  module.exports = __WEBPACK_EXTERNAL_MODULE_36__;
 
-/***/ },
+/** *
+/ },
 /* 37 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _overlayComponent = __webpack_require__(102);
+let _overlayComponent = __webpack_require__(102);
 
-var _overlayComponent2 = _interopRequireDefault(_overlayComponent);
+let _overlayComponent2 = _interopRequireDefault(_overlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -3038,7 +3068,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var ColorPickerComponent = function (_BaseComponent) {
+let ColorPickerComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ColorPickerComponent, _BaseComponent);
 
   function ColorPickerComponent() {
@@ -3202,41 +3232,42 @@ var ColorPickerComponent = function (_BaseComponent) {
   };
 
   return ColorPickerComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = ColorPickerComponent;
+  exports.default = ColorPickerComponent;
 
 
-ColorPickerComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ColorPickerComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 38 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ItemComponent = function (_BaseComponent) {
+let ItemComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ItemComponent, _BaseComponent);
 
   function ItemComponent() {
@@ -3357,7 +3388,7 @@ var ItemComponent = function (_BaseComponent) {
   };
 
   return ItemComponent;
-}(_globals.BaseComponent); /*
+}(_globals.BaseComponent)); /*
                             * This file is part of PhotoEditorSDK.
                             *
                             * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -3371,39 +3402,40 @@ var ItemComponent = function (_BaseComponent) {
                             * https://www.photoeditorsdk.com/LICENSE.txt
                             */
 
-exports.default = ItemComponent;
+  exports.default = ItemComponent;
 
 
-ItemComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ItemComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 39 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var RowComponent = function (_BaseComponent) {
+let RowComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(RowComponent, _BaseComponent);
 
   function RowComponent() {
@@ -3468,7 +3500,7 @@ var RowComponent = function (_BaseComponent) {
   };
 
   return RowComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -3483,45 +3515,46 @@ var RowComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = RowComponent;
+  exports.default = RowComponent;
 
 
-RowComponent.propTypes = {
-  onClick: _globals.React.PropTypes.func
+  RowComponent.propTypes = {
+  onClick: _globals.React.PropTypes.func,
 };
 
-RowComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  RowComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 40 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _fileLoader = __webpack_require__(184);
+let _fileLoader = __webpack_require__(184);
 
-var _fileLoader2 = _interopRequireDefault(_fileLoader);
+let _fileLoader2 = _interopRequireDefault(_fileLoader);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -3538,7 +3571,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var InvisibleUploadComponent = function (_BaseComponent) {
+let InvisibleUploadComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(InvisibleUploadComponent, _BaseComponent);
 
   function InvisibleUploadComponent() {
@@ -3614,41 +3647,42 @@ var InvisibleUploadComponent = function (_BaseComponent) {
   };
 
   return InvisibleUploadComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = InvisibleUploadComponent;
+  exports.default = InvisibleUploadComponent;
 
 
-InvisibleUploadComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  InvisibleUploadComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 41 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TopBarButtonComponent = function (_BaseComponent) {
+let TopBarButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TopBarButtonComponent, _BaseComponent);
 
   function TopBarButtonComponent() {
@@ -3697,7 +3731,7 @@ var TopBarButtonComponent = function (_BaseComponent) {
   };
 
   return TopBarButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -3712,31 +3746,32 @@ var TopBarButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TopBarButtonComponent;
+  exports.default = TopBarButtonComponent;
 
 
-TopBarButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TopBarButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 42 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FilterManager = function () {
+let FilterManager = (function () {
   function FilterManager(options) {
     (0, _classCallCheck3.default)(this, FilterManager);
 
@@ -3838,7 +3873,7 @@ var FilterManager = function () {
   };
 
   return FilterManager;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -3852,88 +3887,90 @@ var FilterManager = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = FilterManager;
+  exports.default = FilterManager;
 
-/***/ },
+/** *
+/ },
 /* 43 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-var toString = {}.toString;
+let toString = {}.toString;
 
-module.exports = function(it){
+  module.exports = function (it) {
   return toString.call(it).slice(8, -1);
 };
 
-/***/ },
+/** *
+/ },
 /* 44 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // optional / simple context binding
-var aFunction = __webpack_require__(223);
-module.exports = function(fn, that, length){
+let aFunction = __webpack_require__(223);
+  module.exports = function (fn, that, length) {
   aFunction(fn);
-  if(that === undefined)return fn;
-  switch(length){
-    case 1: return function(a){
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
       return fn.call(that, a);
     };
-    case 2: return function(a, b){
+    case 2: return function (a, b) {
       return fn.call(that, a, b);
     };
-    case 3: return function(a, b, c){
+    case 3: return function (a, b, c) {
       return fn.call(that, a, b, c);
     };
   }
-  return function(/* ...args */){
+  return function (/* ...args */) {
     return fn.apply(that, arguments);
   };
 };
 
-/***/ },
+/** *
+/ },
 /* 45 */
-/***/ function(module, exports) {
-
+  /** */ function (module, exports) {
 // 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  module.exports = function (it) {
+  if (it == undefined) throw TypeError(`Can't call method on  ${  it}`);
   return it;
 };
 
-/***/ },
+/** *
+/ },
 /* 46 */
-/***/ function(module, exports) {
-
+  /** */ function (module, exports) {
 // IE 8- don't enum bug keys
-module.exports = (
+  module.exports = (
   'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 ).split(',');
 
-/***/ },
+/** *
+/ },
 /* 47 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = true;
+  module.exports = true;
 
-/***/ },
+/** *
+/ },
 /* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject    = __webpack_require__(15)
-  , dPs         = __webpack_require__(238)
-  , enumBugKeys = __webpack_require__(46)
-  , IE_PROTO    = __webpack_require__(51)('IE_PROTO')
-  , Empty       = function(){ /* empty */ }
-  , PROTOTYPE   = 'prototype';
+let anObject = __webpack_require__(15),
+   dPs = __webpack_require__(238),
+   enumBugKeys = __webpack_require__(46),
+   IE_PROTO = __webpack_require__(51)('IE_PROTO'),
+   Empty = function () { /* empty */ },
+   PROTOTYPE = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function(){
+let createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(79)('iframe')
-    , i      = enumBugKeys.length
-    , lt     = '<'
-    , gt     = '>'
-    , iframeDocument;
+  let iframe = __webpack_require__(79)('iframe'),
+     i = enumBugKeys.length,
+     lt = '<',
+     gt = '>',
+     iframeDocument;
   iframe.style.display = 'none';
   __webpack_require__(228).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
@@ -3941,18 +3978,18 @@ var createDict = function(){
   // html.removeChild(iframe);
   iframeDocument = iframe.contentWindow.document;
   iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.write(`${lt  }script${  gt  }document.F=Object${  lt  }/script${  gt}`);
   iframeDocument.close();
   createDict = iframeDocument.F;
-  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
   return createDict();
 };
 
-module.exports = Object.create || function create(O, Properties){
-  var result;
-  if(O !== null){
+  module.exports = Object.create || function create(O, Properties) {
+  let result;
+  if (O !== null) {
     Empty[PROTOTYPE] = anObject(O);
-    result = new Empty;
+    result = new Empty();
     Empty[PROTOTYPE] = null;
     // add "__proto__" for Object.getPrototypeOf polyfill
     result[IE_PROTO] = O;
@@ -3961,245 +3998,256 @@ module.exports = Object.create || function create(O, Properties){
 };
 
 
-/***/ },
+/** *
+/ },
 /* 49 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-exports.f = Object.getOwnPropertySymbols;
+  exports.f = Object.getOwnPropertySymbols;
 
-/***/ },
+/** *
+/ },
 /* 50 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var def = __webpack_require__(13).f
-  , has = __webpack_require__(18)
-  , TAG = __webpack_require__(9)('toStringTag');
+let def = __webpack_require__(13).f,
+   has = __webpack_require__(18),
+   TAG = __webpack_require__(9)('toStringTag');
 
-module.exports = function(it, tag, stat){
-  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+  module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, { configurable: true, value: tag });
 };
 
-/***/ },
+/** *
+/ },
 /* 51 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(52)('keys')
-  , uid    = __webpack_require__(34);
-module.exports = function(key){
+let shared = __webpack_require__(52)('keys'),
+   uid = __webpack_require__(34);
+  module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
-/***/ },
+/** *
+/ },
 /* 52 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var global = __webpack_require__(12)
-  , SHARED = '__core-js_shared__'
-  , store  = global[SHARED] || (global[SHARED] = {});
-module.exports = function(key){
+let global = __webpack_require__(12),
+   SHARED = '__core-js_shared__',
+   store = global[SHARED] || (global[SHARED] = {});
+  module.exports = function (key) {
   return store[key] || (store[key] = {});
 };
 
-/***/ },
+/** *
+/ },
 /* 53 */
-/***/ function(module, exports) {
-
+  /** */ function (module, exports) {
 // 7.1.4 ToInteger
-var ceil  = Math.ceil
-  , floor = Math.floor;
-module.exports = function(it){
+let ceil = Math.ceil,
+   floor = Math.floor;
+  module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
-/***/ },
+/** *
+/ },
 /* 54 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(45);
-module.exports = function(it){
+let defined = __webpack_require__(45);
+  module.exports = function (it) {
   return Object(defined(it));
 };
 
-/***/ },
+/** *
+/ },
 /* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(27);
+let isObject = __webpack_require__(27);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
-module.exports = function(it, S){
-  if(!isObject(it))return it;
-  var fn, val;
-  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+  module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  let fn, 
+val;
+  if (S && typeof (fn = it.toString) === 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) === 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) === 'function' && !isObject(val = fn.call(it))) return val;
   throw TypeError("Can't convert object to primitive value");
 };
 
-/***/ },
+/** *
+/ },
 /* 56 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var global         = __webpack_require__(12)
-  , core           = __webpack_require__(8)
-  , LIBRARY        = __webpack_require__(47)
-  , wksExt         = __webpack_require__(57)
-  , defineProperty = __webpack_require__(13).f;
-module.exports = function(name){
-  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
-  if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
+let global = __webpack_require__(12),
+   core = __webpack_require__(8),
+   LIBRARY = __webpack_require__(47),
+   wksExt = __webpack_require__(57),
+   defineProperty = __webpack_require__(13).f;
+  module.exports = function (name) {
+  let $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
+  if (name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, { value: wksExt.f(name) });
 };
 
-/***/ },
+/** *
+/ },
 /* 57 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-exports.f = __webpack_require__(9);
+  exports.f = __webpack_require__(9);
 
-/***/ },
+/** *
+/ },
 /* 58 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(247);
-var global        = __webpack_require__(12)
-  , hide          = __webpack_require__(22)
-  , Iterators     = __webpack_require__(23)
-  , TO_STRING_TAG = __webpack_require__(9)('toStringTag');
+  __webpack_require__(247);
+let global = __webpack_require__(12),
+   hide = __webpack_require__(22),
+   Iterators = __webpack_require__(23),
+   TO_STRING_TAG = __webpack_require__(9)('toStringTag');
 
-for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
-  var NAME       = collections[i]
-    , Collection = global[NAME]
-    , proto      = Collection && Collection.prototype;
-  if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
+  for (let collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++) {
+  let NAME = collections[i],
+     Collection = global[NAME],
+     proto = Collection && Collection.prototype;
+  if (proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
   Iterators[NAME] = Iterators.Array;
 }
 
-/***/ },
+/** *
+/ },
 /* 59 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_59__;
+  module.exports = __WEBPACK_EXTERNAL_MODULE_59__;
 
-/***/ },
+/** *
+/ },
 /* 60 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _adjustments = __webpack_require__(105);
+let _adjustments = __webpack_require__(105);
 
-Object.defineProperty(exports, 'adjustments', {
+  Object.defineProperty(exports, 'adjustments', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_adjustments).default;
-  }
+  },
 });
 
-var _crop = __webpack_require__(115);
+let _crop = __webpack_require__(115);
 
-Object.defineProperty(exports, 'crop', {
+  Object.defineProperty(exports, 'crop', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_crop).default;
-  }
+  },
 });
 
-var _filter = __webpack_require__(117);
+let _filter = __webpack_require__(117);
 
-Object.defineProperty(exports, 'filter', {
+  Object.defineProperty(exports, 'filter', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_filter).default;
-  }
+  },
 });
 
-var _focus = __webpack_require__(119);
+let _focus = __webpack_require__(119);
 
-Object.defineProperty(exports, 'focus', {
+  Object.defineProperty(exports, 'focus', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_focus).default;
-  }
+  },
 });
 
-var _border = __webpack_require__(107);
+let _border = __webpack_require__(107);
 
-Object.defineProperty(exports, 'border', {
+  Object.defineProperty(exports, 'border', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_border).default;
-  }
+  },
 });
 
-var _sticker = __webpack_require__(140);
+let _sticker = __webpack_require__(140);
 
-Object.defineProperty(exports, 'sticker', {
+  Object.defineProperty(exports, 'sticker', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_sticker).default;
-  }
+  },
 });
 
-var _text = __webpack_require__(146);
+let _text = __webpack_require__(146);
 
-Object.defineProperty(exports, 'text', {
+  Object.defineProperty(exports, 'text', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_text).default;
-  }
+  },
 });
 
-var _brush = __webpack_require__(110);
+let _brush = __webpack_require__(110);
 
-Object.defineProperty(exports, 'brush', {
+  Object.defineProperty(exports, 'brush', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_brush).default;
-  }
+  },
 });
 
-var _selectiveBlur = __webpack_require__(134);
+let _selectiveBlur = __webpack_require__(134);
 
-Object.defineProperty(exports, 'selectiveBlur', {
+  Object.defineProperty(exports, 'selectiveBlur', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_selectiveBlur).default;
-  }
+  },
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/***/ },
+/** *
+/ },
 /* 61 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _photoeditorsdk = __webpack_require__(36);
+let _photoeditorsdk = __webpack_require__(36);
 
-var _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
+let _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
 
-var _url = __webpack_require__(260);
+let _url = __webpack_require__(260);
 
-var _url2 = _interopRequireDefault(_url);
+let _url2 = _interopRequireDefault(_url);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global XMLHttpRequest */
 /*
@@ -4216,10 +4264,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var TIMEOUT = 5000;
-var Promise = _photoeditorsdk2.default.Promise;
+let TIMEOUT = 5000;
+let Promise = _photoeditorsdk2.default.Promise;
 
-var JSONLoader = function () {
+let JSONLoader = (function () {
   function JSONLoader(url) {
     (0, _classCallCheck3.default)(this, JSONLoader);
 
@@ -4387,40 +4435,41 @@ var JSONLoader = function () {
   };
 
   return JSONLoader;
-}();
+}());
 
-exports.default = JSONLoader;
+  exports.default = JSONLoader;
 
-/***/ },
+/** *
+/ },
 /* 62 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _overlayComponent = __webpack_require__(99);
+let _overlayComponent = __webpack_require__(99);
 
-var _overlayComponent2 = _interopRequireDefault(_overlayComponent);
+let _overlayComponent2 = _interopRequireDefault(_overlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -4437,7 +4486,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var CategoryDropdownComponent = function (_BaseComponent) {
+let CategoryDropdownComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(CategoryDropdownComponent, _BaseComponent);
 
   function CategoryDropdownComponent() {
@@ -4507,49 +4556,50 @@ var CategoryDropdownComponent = function (_BaseComponent) {
   };
 
   return CategoryDropdownComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = CategoryDropdownComponent;
+  exports.default = CategoryDropdownComponent;
 
 
-CategoryDropdownComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  CategoryDropdownComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 63 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var OverviewControlsComponent = function (_ControlsComponent) {
+let OverviewControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(OverviewControlsComponent, _ControlsComponent);
 
   function OverviewControlsComponent() {
@@ -4680,7 +4730,7 @@ var OverviewControlsComponent = function (_ControlsComponent) {
   };
 
   return OverviewControlsComponent;
-}(_controlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_controlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -4695,39 +4745,40 @@ var OverviewControlsComponent = function (_ControlsComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = OverviewControlsComponent;
+  exports.default = OverviewControlsComponent;
 
 
-OverviewControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  OverviewControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 64 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FontPreviewComponent = function (_BaseComponent) {
+let FontPreviewComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(FontPreviewComponent, _BaseComponent);
 
   function FontPreviewComponent() {
@@ -4801,7 +4852,7 @@ var FontPreviewComponent = function (_BaseComponent) {
   };
 
   return FontPreviewComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -4816,39 +4867,40 @@ var FontPreviewComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = FontPreviewComponent;
+  exports.default = FontPreviewComponent;
 
 
-FontPreviewComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  FontPreviewComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 65 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SearchSuggestionComponent = function (_BaseComponent) {
+let SearchSuggestionComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(SearchSuggestionComponent, _BaseComponent);
 
   function SearchSuggestionComponent() {
@@ -4908,7 +4960,7 @@ var SearchSuggestionComponent = function (_BaseComponent) {
   };
 
   return SearchSuggestionComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -4923,49 +4975,50 @@ var SearchSuggestionComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = SearchSuggestionComponent;
+  exports.default = SearchSuggestionComponent;
 
 
-SearchSuggestionComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  SearchSuggestionComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 66 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _photoComponent = __webpack_require__(161);
+let _photoComponent = __webpack_require__(161);
 
-var _photoComponent2 = _interopRequireDefault(_photoComponent);
+let _photoComponent2 = _interopRequireDefault(_photoComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -4981,9 +5034,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
-var COLUMN_WIDTH = 240;
+let COLUMN_WIDTH = 240;
 
-var PhotoListComponent = function (_BaseComponent) {
+let PhotoListComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(PhotoListComponent, _BaseComponent);
 
   function PhotoListComponent() {
@@ -5260,33 +5313,34 @@ var PhotoListComponent = function (_BaseComponent) {
   };
 
   return PhotoListComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = PhotoListComponent;
+  exports.default = PhotoListComponent;
 
 
-PhotoListComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  PhotoListComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 67 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _createClass2 = __webpack_require__(76);
+let _createClass2 = __webpack_require__(76);
 
-var _createClass3 = _interopRequireDefault(_createClass2);
+let _createClass3 = _interopRequireDefault(_createClass2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -5302,11 +5356,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var elementSeparator = '__';
-var modifierSeparator = '--';
-var blockPrefix = 'pesdk-react-';
+let elementSeparator = '__';
+let modifierSeparator = '--';
+let blockPrefix = 'pesdk-react-';
 
-var BEMObject = function () {
+let BEMObject = (function () {
   function BEMObject(parent, type, name) {
     (0, _classCallCheck3.default)(this, BEMObject);
 
@@ -5362,9 +5416,9 @@ var BEMObject = function () {
     }
   }]);
   return BEMObject;
-}();
+}());
 
-exports.default = {
+  exports.default = {
   /**
    * Creates a BEMObject of type "block" that has this element as parent
    * @param  {String} name
@@ -5372,63 +5426,64 @@ exports.default = {
    */
   block: function block(name) {
     return new BEMObject(null, 'block', name);
-  }
+  },
 };
 
-/***/ },
+/** *
+/ },
 /* 68 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _exporter = __webpack_require__(182);
+let _exporter = __webpack_require__(182);
 
-var _exporter2 = _interopRequireDefault(_exporter);
+let _exporter2 = _interopRequireDefault(_exporter);
 
-var _imageResizer = __webpack_require__(189);
+let _imageResizer = __webpack_require__(189);
 
-var _imageResizer2 = _interopRequireDefault(_imageResizer);
+let _imageResizer2 = _interopRequireDefault(_imageResizer);
 
-var _operations = __webpack_require__(180);
+let _operations = __webpack_require__(180);
 
-var _operations2 = _interopRequireDefault(_operations);
+let _operations2 = _interopRequireDefault(_operations);
 
-var _controls = __webpack_require__(177);
+let _controls = __webpack_require__(177);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _features = __webpack_require__(178);
+let _features = __webpack_require__(178);
 
-var _features2 = _interopRequireDefault(_features);
+let _features2 = _interopRequireDefault(_features);
 
-var _zoom = __webpack_require__(181);
+let _zoom = __webpack_require__(181);
 
-var _zoom2 = _interopRequireDefault(_zoom);
+let _zoom2 = _interopRequireDefault(_zoom);
 
-var _history = __webpack_require__(179);
+let _history = __webpack_require__(179);
 
-var _history2 = _interopRequireDefault(_history);
+let _history2 = _interopRequireDefault(_history);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The Editor class is an interface to the SDK, managing operations, rendering,
@@ -5450,7 +5505,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Editor = function (_EventEmitter) {
+let Editor = (function (_EventEmitter) {
   (0, _inherits3.default)(Editor, _EventEmitter);
 
   function Editor(ui, options, mediator) {
@@ -6204,38 +6259,39 @@ var Editor = function (_EventEmitter) {
   };
 
   return Editor;
-}(_globals.EventEmitter);
+}(_globals.EventEmitter));
 
-exports.default = Editor;
+  exports.default = Editor;
 
-/***/ },
+/** *
+/ },
 /* 69 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var OptionType = _globals.SDK.OptionType; /*
+let OptionType = _globals.SDK.OptionType; /*
                                            * This file is part of PhotoEditorSDK.
                                            *
                                            * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -6249,7 +6305,7 @@ var OptionType = _globals.SDK.OptionType; /*
                                            * https://www.photoeditorsdk.com/LICENSE.txt
                                            */
 
-var Font = function (_SDK$Configurable) {
+let Font = (function (_SDK$Configurable) {
   (0, _inherits3.default)(Font, _SDK$Configurable);
 
   function Font() {
@@ -6258,7 +6314,7 @@ var Font = function (_SDK$Configurable) {
   }
 
   return Font;
-}(_globals.SDK.Configurable);
+}(_globals.SDK.Configurable));
 
 /**
  * Specifies the available options for the Font class
@@ -6267,36 +6323,37 @@ var Font = function (_SDK$Configurable) {
  */
 
 
-exports.default = Font;
-Font.prototype.availableOptions = {
+  exports.default = Font;
+  Font.prototype.availableOptions = {
   name: { type: OptionType.STRING, required: true },
   fontWeight: { type: OptionType.ALL, default: 400 },
   fontFamily: { type: OptionType.STRING, required: true },
   fontStyle: { type: OptionType.STRING, default: 'normal' },
   provider: { type: OptionType.STRING, available: ['google'] },
-  default: { type: OptionType.BOOLEAN, default: false }
+  default: { type: OptionType.BOOLEAN, default: false },
 };
 
-/***/ },
+/** *
+/ },
 /* 70 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerManager = function () {
+let StickerManager = (function () {
   function StickerManager(options) {
     (0, _classCallCheck3.default)(this, StickerManager);
 
@@ -6374,7 +6431,7 @@ var StickerManager = function () {
   };
 
   return StickerManager;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -6388,44 +6445,45 @@ var StickerManager = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = StickerManager;
+  exports.default = StickerManager;
 
-/***/ },
+/** *
+/ },
 /* 71 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _toConsumableArray2 = __webpack_require__(213);
+let _toConsumableArray2 = __webpack_require__(213);
 
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+let _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-var _typeof2 = __webpack_require__(32);
+let _typeof2 = __webpack_require__(32);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+let _typeof3 = _interopRequireDefault(_typeof2);
 
-var _react = __webpack_require__(59);
+let _react = __webpack_require__(59);
 
-var _react2 = _interopRequireDefault(_react);
+let _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(77);
+let _classnames = __webpack_require__(77);
 
-var _classnames2 = _interopRequireDefault(_classnames);
+let _classnames2 = _interopRequireDefault(_classnames);
 
-var _bem = __webpack_require__(67);
+let _bem = __webpack_require__(67);
 
-var _bem2 = _interopRequireDefault(_bem);
+let _bem2 = _interopRequireDefault(_bem);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function flatten(arr) {
-  var result = [];
-  for (var i = 0; i < arr.length; i++) {
+  function flatten(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] instanceof Array) {
       result = result.concat(flatten(arr[i]));
     } else {
@@ -6447,12 +6505,12 @@ function flatten(arr) {
    * https://www.photoeditorsdk.com/LICENSE.txt
    */
 
-var BEM_TYPES = {
+let BEM_TYPES = {
   b: 'block',
   e: 'element',
-  m: 'modifier'
+  m: 'modifier',
 };
-var ReactBEM = {
+let ReactBEM = {
   /**
    * Parses the given ReactBEM specifier and returns an array of
    * BEM information (type, name, pass)
@@ -6463,17 +6521,17 @@ var ReactBEM = {
   _parseBemSpecifier: function _parseBemSpecifier(specifier) {
     if (!specifier) return [];
 
-    var parts = specifier.split(' ');
-    var data = parts.map(function (part) {
-      var match = part.match(/^(\$)?([bem]):(.*)$/i);
+    let parts = specifier.split(' ');
+    let data = parts.map((part) => {
+      let match = part.match(/^(\$)?([bem]):(.*)$/i);
       if (!match) {
-        throw new Error('Invalid BEM specifier: ' + part);
+        throw new Error(`Invalid BEM specifier: ${  part}`);
       }
 
-      var pass = typeof match[1] !== 'undefined';
-      var type = BEM_TYPES[match[2]];
-      var name = match[3];
-      return { type: type, name: name, pass: pass };
+      let pass = typeof match[1] !== 'undefined';
+      let type = BEM_TYPES[match[2]];
+      let name = match[3];
+      return { type, name, pass };
     });
     return data;
   },
@@ -6486,23 +6544,23 @@ var ReactBEM = {
    * @private
    */
   _getBemInfoForNode: function _getBemInfoForNode(node) {
-    var isBemNode = node.type === 'bem';
-    var specifier = isBemNode ? node.props.specifier : node.props.bem;
+    let isBemNode = node.type === 'bem';
+    let specifier = isBemNode ? node.props.specifier : node.props.bem;
 
     if (isBemNode && !specifier) {
       throw new Error('<bem> elements should always have a `specifier` property');
     }
 
-    var data = this._parseBemSpecifier(specifier);
+    let data = this._parseBemSpecifier(specifier);
 
     // <bem> nodes pass all bem information to the children
     if (isBemNode) {
-      data.forEach(function (obj) {
+      data.forEach((obj) => {
         obj.pass = true;
       });
     }
 
-    return { data: data, isBemNode: isBemNode };
+    return { data, isBemNode };
   },
 
 
@@ -6520,10 +6578,10 @@ var ReactBEM = {
     }
 
     props = props || {};
-    children = children.filter(function (child) {
+    children = children.filter((child) => {
       return child !== null && typeof child !== 'undefined';
     });
-    return { type: type, props: props, children: children };
+    return { type, props, children };
   },
 
 
@@ -6546,17 +6604,17 @@ var ReactBEM = {
    * @private
    */
   _applyBEMClasses: function _applyBEMClasses(node) {
-    var _this = this;
+    let _this = this;
 
     if (!this._isNodeBEMable(node)) return node;
 
-    var classNames = node.props.className ? [node.props.className] : [];
+    let classNames = node.props.className ? [node.props.className] : [];
 
     // Prepare BEM objects
-    var bemInfo = this._getBemInfoForNode(node);
-    var ownBemObject = node.props.__bemObject;
-    var childrenBemObject = node.props.__bemObject;
-    bemInfo.data.forEach(function (obj) {
+    let bemInfo = this._getBemInfoForNode(node);
+    let ownBemObject = node.props.__bemObject;
+    let childrenBemObject = node.props.__bemObject;
+    bemInfo.data.forEach((obj) => {
       if (obj.type === 'block') {
         ownBemObject = _bem2.default.block(obj.name);
         if (obj.pass) {
@@ -6586,7 +6644,7 @@ var ReactBEM = {
     });
 
     // Apply classname (if necessary)
-    var className = (0, _classnames2.default)(classNames);
+    let className = (0, _classnames2.default)(classNames);
     if (className) {
       node.props.className = className;
     }
@@ -6594,13 +6652,13 @@ var ReactBEM = {
     node.children = flatten(node.children);
 
     // Pass `childrenBemObject` to child nodes
-    node.children.forEach(function (child) {
+    node.children.forEach((child) => {
       if (!_this._isNodeBEMable(child)) return;
       child.props.__bemObject = childrenBemObject;
     });
 
     // Apply BEM objects to children
-    node.children = node.children.map(function (child) {
+    node.children = node.children.map((child) => {
       return _this._applyBEMClasses(child);
     });
 
@@ -6629,11 +6687,11 @@ var ReactBEM = {
    * @return {React.Element}
    */
   _transformToReact: function _transformToReact(node) {
-    var _this2 = this;
+    let _this2 = this;
 
     if (!this._isNodeBEMable(node)) return node;
 
-    node.children = node.children.map(function (child) {
+    node.children = node.children.map((child) => {
       return _this2._transformToReact(child);
     });
 
@@ -6658,39 +6716,40 @@ var ReactBEM = {
 
     root = this._transformToReact(root);
     return root;
-  }
+  },
 };
 
-exports.default = ReactBEM;
+  exports.default = ReactBEM;
 
-/***/ },
+/** *
+/ },
 /* 72 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _filterManager = __webpack_require__(42);
+let _filterManager = __webpack_require__(42);
 
-var _filterManager2 = _interopRequireDefault(_filterManager);
+let _filterManager2 = _interopRequireDefault(_filterManager);
 
-var _stickerManager = __webpack_require__(70);
+let _stickerManager = __webpack_require__(70);
 
-var _stickerManager2 = _interopRequireDefault(_stickerManager);
+let _stickerManager2 = _interopRequireDefault(_stickerManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Deserializer = function () {
+let Deserializer = (function () {
   function Deserializer(editor, data) {
     (0, _classCallCheck3.default)(this, Deserializer);
 
@@ -7128,7 +7187,7 @@ var Deserializer = function () {
   };
 
   return Deserializer;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -7142,28 +7201,29 @@ var Deserializer = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = Deserializer;
+  exports.default = Deserializer;
 
-/***/ },
+/** *
+/ },
 /* 73 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TWICE_PI = Math.PI * 2; /*
+let TWICE_PI = Math.PI * 2; /*
                              * This file is part of PhotoEditorSDK.
                              *
                              * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -7177,7 +7237,7 @@ var TWICE_PI = Math.PI * 2; /*
                              * https://www.photoeditorsdk.com/LICENSE.txt
                              */
 
-var Serializer = function () {
+let Serializer = (function () {
   function Serializer(editor) {
     (0, _classCallCheck3.default)(this, Serializer);
 
@@ -7566,19 +7626,21 @@ var Serializer = function () {
   };
 
   return Serializer;
-}();
+}());
 
-exports.default = Serializer;
+  exports.default = Serializer;
 
-/***/ },
+/** *
+/ },
 /* 74 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+  /* WEBPACK VAR INJECTION */(function (process) {
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 /*
  * This file is part of PhotoEditorSDK.
@@ -7594,40 +7656,40 @@ Object.defineProperty(exports, "__esModule", {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var maxLogLevel = 'warn';
+let maxLogLevel = 'warn';
 
-var LEVELS = [{ type: 'trace', background: '#EEEEEE', color: '#AAAAAA' }, { type: 'info', background: '#BDE5F8', color: '#00529B' }, { type: 'warn', background: '#FEEFB3', color: '#9F6000' }, { type: 'error', background: '#FFBABA', color: '#D8000C' }, { type: 'log', background: '#EEEEEE', color: '#1f4f6b' }];
-var LEVEL_TYPES = LEVELS.map(function (l) {
+let LEVELS = [{ type: 'trace', background: '#EEEEEE', color: '#AAAAAA' }, { type: 'info', background: '#BDE5F8', color: '#00529B' }, { type: 'warn', background: '#FEEFB3', color: '#9F6000' }, { type: 'error', background: '#FFBABA', color: '#D8000C' }, { type: 'log', background: '#EEEEEE', color: '#1f4f6b' }];
+let LEVEL_TYPES = LEVELS.map((l) => {
   return l.type;
 });
 
-var Log = {};
+let Log = {};
 
-Log.setLevel = function (_level) {
+  Log.setLevel = function (_level) {
   maxLogLevel = _level;
 };
-Log.canLog = function (type) {
+  Log.canLog = function (type) {
   if (maxLogLevel === null) return false;
-  var currentLevelIndex = LEVEL_TYPES.indexOf(type);
-  var maxLevelIndex = LEVEL_TYPES.indexOf(maxLogLevel);
+  let currentLevelIndex = LEVEL_TYPES.indexOf(type);
+  let maxLevelIndex = LEVEL_TYPES.indexOf(maxLogLevel);
   if (currentLevelIndex < maxLevelIndex) return false;
   return true;
 };
-Log.hasColorfulOutput = function () {
+  Log.hasColorfulOutput = function () {
   return (!process || process && process.browser) && typeof navigator !== 'undefined' && navigator.userAgent.match(/Gecko|WebKit/i) && !navigator.userAgent.match(/Trident/);
 };
 
-Log.printError = function (e) {
-  var lines = e.stack.split('\n');
-  lines.forEach(function (line) {
+  Log.printError = function (e) {
+  let lines = e.stack.split('\n');
+  lines.forEach((line) => {
     Log.error('Error', line);
   });
 };
 
-LEVELS.forEach(function (level) {
-  var type = level.type,
-      background = level.background,
-      color = level.color;
+  LEVELS.forEach((level) => {
+  let type = level.type,
+    background = level.background,
+    color = level.color;
 
   Log[type] = function (tag) {
     if (!Log.canLog(type)) return;
@@ -7636,41 +7698,43 @@ LEVELS.forEach(function (level) {
       args[_key - 1] = arguments[_key];
     }
 
-    var output = args.map(function (a) {
+    let output = args.map((a) => {
       return typeof a === 'string' ? a : a.toString();
     }).join(' ');
     if (!Log.hasColorfulOutput()) {
-      return console.log('PhotoEditorSDK | ' + tag + ' | ' + output);
+      return console.log(`PhotoEditorSDK | ${  tag  } | ${  output}`);
     }
-    console.log('%c  %c PhotoEditorSDK %c  %c ' + tag + ' %c  ' + output + '  %c  ', 'background: #43ADEB; padding: 5px 0', 'background: #2B2B2B; color: white; padding: 5px 0', 'background: #43ADEB; padding: 5px 0', 'background: ' + background + '; color: ' + color + '; padding: 5px 0; font-weight: bold', 'background: #2B2B2B; color: white; padding: 5px 0', 'background: #43ADEB; padding: 5px 0');
+    console.log(`%c  %c PhotoEditorSDK %c  %c ${  tag  } %c  ${  output  }  %c  `, 'background: #43ADEB; padding: 5px 0', 'background: #2B2B2B; color: white; padding: 5px 0', 'background: #43ADEB; padding: 5px 0', `background: ${  background  }; color: ${  color  }; padding: 5px 0; font-weight: bold`, 'background: #2B2B2B; color: white; padding: 5px 0', 'background: #43ADEB; padding: 5px 0');
   };
 });
 
-exports.default = Log;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(90)))
+  exports.default = Log;
+/* WEBPACK VAR INJECTION */ }.call(exports, __webpack_require__(90)));
 
-/***/ },
+/** *
+/ },
 /* 75 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(219), __esModule: true };
+  module.exports = { default: __webpack_require__(219), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 76 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _defineProperty = __webpack_require__(75);
 
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _defineProperty = __webpack_require__(75);
 
-exports.default = function () {
+let _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = (function () {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -7686,595 +7750,609 @@ exports.default = function () {
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
   };
-}();
+}());
 
-/***/ },
+/** *
+/ },
 /* 77 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+let __WEBPACK_AMD_DEFINE_ARRAY__, 
+__WEBPACK_AMD_DEFINE_RESULT__;/*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
 /* global define */
 
-(function () {
-	'use strict';
+  (function () {
+	
 
-	var hasOwn = {}.hasOwnProperty;
+	let hasOwn = {}.hasOwnProperty;
 
-	function classNames () {
-		var classes = [];
+  function classNames() {
+		let classes = [];
 
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
+  for (let i = 0; i < arguments.length; i++) {
+			let arg = arguments[i];
+  if (!arg) continue;
 
-			var argType = typeof arg;
+			let argType = typeof arg;
 
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
+  if (argType === 'string' || argType === 'number') {
+  classes.push(arg);
+} else if (Array.isArray(arg)) {
+  classes.push(classNames(...arg));
+} else if (argType === 'object') {
+  for (let key in arg) {
+  if (hasOwn.call(arg, key) && arg[key]) {
+  classes.push(key);
+}
+}
+}
+}
 
-		return classes.join(' ');
-	}
+  return classes.join(' ');
+}
 
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
+  if (typeof module !== 'undefined' && module.exports) {
+  module.exports = classNames;
+} else if (true) {
 		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
+  !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+  return classNames;
+}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+} else {
+  window.classNames = classNames;
+}
 }());
 
 
-/***/ },
+/** *
+/ },
 /* 78 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(43)
-  , TAG = __webpack_require__(9)('toStringTag')
+let cof = __webpack_require__(43),
+   TAG = __webpack_require__(9)('toStringTag'),
   // ES3 wrong here
-  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+   ARG = cof(function () { return arguments; }()) == 'Arguments';
 
 // fallback for IE11 Script Access Denied error
-var tryGet = function(it, key){
+let tryGet = function (it, key) {
   try {
     return it[key];
-  } catch(e){ /* empty */ }
+  } catch (e) { /* empty */ }
 };
 
-module.exports = function(it){
-  var O, T, B;
+  module.exports = function (it) {
+  let O, 
+T, 
+B;
   return it === undefined ? 'Undefined' : it === null ? 'Null'
     // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    : typeof (T = tryGet(O = Object(it), TAG)) === 'string' ? T
     // builtinTag case
     : ARG ? cof(O)
     // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+    : (B = cof(O)) == 'Object' && typeof O.callee === 'function' ? 'Arguments' : B;
 };
 
-/***/ },
+/** *
+/ },
 /* 79 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(27)
-  , document = __webpack_require__(12).document
+let isObject = __webpack_require__(27),
+   document = __webpack_require__(12).document,
   // in old IE typeof document.createElement is 'object'
-  , is = isObject(document) && isObject(document.createElement);
-module.exports = function(it){
+   is = isObject(document) && isObject(document.createElement);
+  module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
 
-/***/ },
+/** *
+/ },
 /* 80 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(16) && !__webpack_require__(26)(function(){
-  return Object.defineProperty(__webpack_require__(79)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+  module.exports = !__webpack_require__(16) && !__webpack_require__(26)(function () {
+  return Object.defineProperty(__webpack_require__(79)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
-/***/ },
+/** *
+/ },
 /* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(43);
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+let cof = __webpack_require__(43);
+  module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
-/***/ },
+/** *
+/ },
 /* 82 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var LIBRARY        = __webpack_require__(47)
-  , $export        = __webpack_require__(17)
-  , redefine       = __webpack_require__(86)
-  , hide           = __webpack_require__(22)
-  , has            = __webpack_require__(18)
-  , Iterators      = __webpack_require__(23)
-  , $iterCreate    = __webpack_require__(232)
-  , setToStringTag = __webpack_require__(50)
-  , getPrototypeOf = __webpack_require__(240)
-  , ITERATOR       = __webpack_require__(9)('iterator')
-  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
-  , FF_ITERATOR    = '@@iterator'
-  , KEYS           = 'keys'
-  , VALUES         = 'values';
 
-var returnThis = function(){ return this; };
+  'use strict';
 
-module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+let LIBRARY = __webpack_require__(47),
+   $export = __webpack_require__(17),
+   redefine = __webpack_require__(86),
+   hide = __webpack_require__(22),
+   has = __webpack_require__(18),
+   Iterators = __webpack_require__(23),
+   $iterCreate = __webpack_require__(232),
+   setToStringTag = __webpack_require__(50),
+   getPrototypeOf = __webpack_require__(240),
+   ITERATOR = __webpack_require__(9)('iterator'),
+   BUGGY = !([].keys && 'next' in [].keys()), // Safari has buggy iterators w/o `next`
+   FF_ITERATOR = '@@iterator',
+   KEYS = 'keys',
+   VALUES = 'values';
+
+let returnThis = function () { return this; };
+
+  module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   $iterCreate(Constructor, NAME, next);
-  var getMethod = function(kind){
-    if(!BUGGY && kind in proto)return proto[kind];
-    switch(kind){
-      case KEYS: return function keys(){ return new Constructor(this, kind); };
-      case VALUES: return function values(){ return new Constructor(this, kind); };
-    } return function entries(){ return new Constructor(this, kind); };
+  let getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
   };
-  var TAG        = NAME + ' Iterator'
-    , DEF_VALUES = DEFAULT == VALUES
-    , VALUES_BUG = false
-    , proto      = Base.prototype
-    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-    , $default   = $native || getMethod(DEFAULT)
-    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
-    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
-    , methods, key, IteratorPrototype;
+  let TAG = NAME + ' Iterator',
+     DEF_VALUES = DEFAULT == VALUES,
+     VALUES_BUG = false,
+     proto = Base.prototype,
+     $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT],
+     $default = $native || getMethod(DEFAULT),
+     $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined,
+     $anyNative = NAME == 'Array' ? proto.entries || $native : $native,
+     methods, 
+key, 
+IteratorPrototype;
   // Fix native
-  if($anyNative){
-    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
-    if(IteratorPrototype !== Object.prototype){
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype) {
       // Set @@toStringTag to native iterators
       setToStringTag(IteratorPrototype, TAG, true);
       // fix for some old engines
-      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+      if (!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
-  if(DEF_VALUES && $native && $native.name !== VALUES){
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
     VALUES_BUG = true;
-    $default = function values(){ return $native.call(this); };
+    $default = function values() { return $native.call(this); };
   }
   // Define iterator
-  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
     hide(proto, ITERATOR, $default);
   }
   // Plug for library
   Iterators[NAME] = $default;
-  Iterators[TAG]  = returnThis;
-  if(DEFAULT){
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
     methods = {
-      values:  DEF_VALUES ? $default : getMethod(VALUES),
-      keys:    IS_SET     ? $default : getMethod(KEYS),
-      entries: $entries
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries,
     };
-    if(FORCED)for(key in methods){
+    if (FORCED){for(key in methods){
       if(!(key in proto))redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+    }} else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
   }
   return methods;
 };
 
-/***/ },
+/** *
+/ },
 /* 83 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var pIE            = __webpack_require__(33)
-  , createDesc     = __webpack_require__(29)
-  , toIObject      = __webpack_require__(19)
-  , toPrimitive    = __webpack_require__(55)
-  , has            = __webpack_require__(18)
-  , IE8_DOM_DEFINE = __webpack_require__(80)
-  , gOPD           = Object.getOwnPropertyDescriptor;
+let pIE = __webpack_require__(33),
+   createDesc = __webpack_require__(29),
+   toIObject = __webpack_require__(19),
+   toPrimitive = __webpack_require__(55),
+   has = __webpack_require__(18),
+   IE8_DOM_DEFINE = __webpack_require__(80),
+   gOPD = Object.getOwnPropertyDescriptor;
 
-exports.f = __webpack_require__(16) ? gOPD : function getOwnPropertyDescriptor(O, P){
+  exports.f = __webpack_require__(16) ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = toIObject(O);
   P = toPrimitive(P, true);
-  if(IE8_DOM_DEFINE)try {
+  if (IE8_DOM_DEFINE){try {
     return gOPD(O, P);
-  } catch(e){ /* empty */ }
-  if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
+  } catch(e){ /* empty */ }}
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
 };
 
-/***/ },
+/** *
+/ },
 /* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys      = __webpack_require__(85)
-  , hiddenKeys = __webpack_require__(46).concat('length', 'prototype');
+let $keys = __webpack_require__(85),
+   hiddenKeys = __webpack_require__(46).concat('length', 'prototype');
 
-exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
+  exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
-/***/ },
+/** *
+/ },
 /* 85 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var has          = __webpack_require__(18)
-  , toIObject    = __webpack_require__(19)
-  , arrayIndexOf = __webpack_require__(225)(false)
-  , IE_PROTO     = __webpack_require__(51)('IE_PROTO');
+let has = __webpack_require__(18),
+   toIObject = __webpack_require__(19),
+   arrayIndexOf = __webpack_require__(225)(false),
+   IE_PROTO = __webpack_require__(51)('IE_PROTO');
 
-module.exports = function(object, names){
-  var O      = toIObject(object)
-    , i      = 0
-    , result = []
-    , key;
-  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+  module.exports = function (object, names) {
+  let O = toIObject(object),
+     i = 0,
+     result = [],
+     key;
+  for (key in O) if (key != IE_PROTO)has(O, key) && result.push(key);
   // Don't enum bug & hidden keys
-  while(names.length > i)if(has(O, key = names[i++])){
+  while (names.length > i){if(has(O, key = names[i++])){
     ~arrayIndexOf(result, key) || result.push(key);
-  }
+  }}
   return result;
 };
 
-/***/ },
+/** *
+/ },
 /* 86 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22);
+  module.exports = __webpack_require__(22);
 
-/***/ },
+/** *
+/ },
 /* 87 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(53)
-  , min       = Math.min;
-module.exports = function(it){
+let toInteger = __webpack_require__(53),
+   min = Math.min;
+  module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
-/***/ },
+/** *
+/ },
 /* 88 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(78)
-  , ITERATOR  = __webpack_require__(9)('iterator')
-  , Iterators = __webpack_require__(23);
-module.exports = __webpack_require__(8).getIteratorMethod = function(it){
-  if(it != undefined)return it[ITERATOR]
+let classof = __webpack_require__(78),
+   ITERATOR = __webpack_require__(9)('iterator'),
+   Iterators = __webpack_require__(23);
+  module.exports = __webpack_require__(8).getIteratorMethod = function (it) {
+  if (it != undefined){return it[ITERATOR]
     || it['@@iterator']
-    || Iterators[classof(it)];
+    || Iterators[classof(it)];}
 };
 
-/***/ },
+/** *
+/ },
 /* 89 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.7.1
-(function() {
-  var getNanoSeconds, hrtime, loadTime;
+  /* WEBPACK VAR INJECTION */(function (process) { // Generated by CoffeeScript 1.7.1
+  (function () {
+  let getNanoSeconds, 
+hrtime, 
+loadTime;
 
-  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
-    module.exports = function() {
+  if ((typeof performance !== 'undefined' && performance !== null) && performance.now) {
+    module.exports = function () {
       return performance.now();
     };
-  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
-    module.exports = function() {
+  } else if ((typeof process !== 'undefined' && process !== null) && process.hrtime) {
+    module.exports = function () {
       return (getNanoSeconds() - loadTime) / 1e6;
     };
     hrtime = process.hrtime;
-    getNanoSeconds = function() {
-      var hr;
+    getNanoSeconds = function () {
+      let hr;
       hr = hrtime();
       return hr[0] * 1e9 + hr[1];
     };
     loadTime = getNanoSeconds();
   } else if (Date.now) {
-    module.exports = function() {
+    module.exports = function () {
       return Date.now() - loadTime;
     };
     loadTime = Date.now();
   } else {
-    module.exports = function() {
+    module.exports = function () {
       return new Date().getTime() - loadTime;
     };
     loadTime = new Date().getTime();
   }
-
 }).call(this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(90)))
+/* WEBPACK VAR INJECTION */
+ }.call(exports, __webpack_require__(90)));
 
-/***/ },
+/** *
+/ },
 /* 90 */
-/***/ function(module, exports) {
-
+  /** */ function (module, exports) {
 // shim for using process in browser
-var process = module.exports = {};
+let process = module.exports = {};
 
 // cached from whatever global is present so that test runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
 // wrapped in strict mode code which doesn't define any globals.  It's inside a
 // function because try/catches deoptimize in certain engines.
 
-var cachedSetTimeout;
-var cachedClearTimeout;
+let cachedSetTimeout;
+let cachedClearTimeout;
 
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
+  function defaultSetTimout() {
+  throw new Error('setTimeout has not been defined');
 }
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
+  function defaultClearTimeout() {
+  throw new Error('clearTimeout has not been defined');
 }
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
+  (function () {
+  try {
+      if (typeof setTimeout === 'function') {
+          cachedSetTimeout = setTimeout;
         } else {
-            cachedSetTimeout = defaultSetTimout;
+          cachedSetTimeout = defaultSetTimout;
         }
     } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
+      cachedSetTimeout = defaultSetTimout;
     }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
+  try {
+      if (typeof clearTimeout === 'function') {
+          cachedClearTimeout = clearTimeout;
         } else {
-            cachedClearTimeout = defaultClearTimeout;
+          cachedClearTimeout = defaultClearTimeout;
         }
     } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
+      cachedClearTimeout = defaultClearTimeout;
     }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
+}());
+  function runTimeout(fun) {
+  if (cachedSetTimeout === setTimeout) {
+        // normal enviroments in sane situations
+      return setTimeout(fun, 0);
     }
     // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
+  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+      cachedSetTimeout = setTimeout;
+      return setTimeout(fun, 0);
     }
-    try {
+  try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
+      return cachedSetTimeout(fun, 0);
+    } catch (e) {
+      try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
+          return cachedSetTimeout.call(null, fun, 0);
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
+          return cachedSetTimeout.call(this, fun, 0);
         }
     }
-
-
 }
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
+  function runClearTimeout(marker) {
+  if (cachedClearTimeout === clearTimeout) {
+        // normal enviroments in sane situations
+      return clearTimeout(marker);
     }
     // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
+  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+      cachedClearTimeout = clearTimeout;
+      return clearTimeout(marker);
     }
-    try {
+  try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
+      return cachedClearTimeout(marker);
+    } catch (e) {
+      try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
+          return cachedClearTimeout.call(null, marker);
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
             // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
+          return cachedClearTimeout.call(this, marker);
         }
     }
-
-
-
 }
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
+let queue = [];
+let draining = false;
+let currentQueue;
+let queueIndex = -1;
 
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
+  function cleanUpNextTick() {
+  if (!draining || !currentQueue) {
+      return;
     }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
+  draining = false;
+  if (currentQueue.length) {
+      queue = currentQueue.concat(queue);
     } else {
-        queueIndex = -1;
+      queueIndex = -1;
     }
-    if (queue.length) {
-        drainQueue();
+  if (queue.length) {
+      drainQueue();
     }
 }
 
-function drainQueue() {
-    if (draining) {
-        return;
+  function drainQueue() {
+  if (draining) {
+      return;
     }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
+    let timeout = runTimeout(cleanUpNextTick);
+  draining = true;
 
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
+    let len = queue.length;
+  while (len) {
+      currentQueue = queue;
+      queue = [];
+      while (++queueIndex < len) {
+          if (currentQueue) {
+              currentQueue[queueIndex].run();
             }
         }
-        queueIndex = -1;
-        len = queue.length;
+      queueIndex = -1;
+      len = queue.length;
     }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
+  currentQueue = null;
+  draining = false;
+  runClearTimeout(timeout);
 }
 
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
+  process.nextTick = function (fun) {
+    let args = new Array(arguments.length - 1);
+  if (arguments.length > 1) {
+      for (let i = 1; i < arguments.length; i++) {
+          args[i - 1] = arguments[i];
         }
     }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
+  queue.push(new Item(fun, args));
+  if (queue.length === 1 && !draining) {
+      runTimeout(drainQueue);
     }
 };
 
 // v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
+  function Item(fun, array) {
+  this.fun = fun;
+  this.array = array;
 }
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
+  Item.prototype.run = function () {
+  this.fun.apply(null, this.array);
 };
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
+  process.title = 'browser';
+  process.browser = true;
+  process.env = {};
+  process.argv = [];
+  process.version = ''; // empty string to avoid regexp issues
+  process.versions = {};
 
-function noop() {}
+  function noop() {}
 
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
+  process.on = noop;
+  process.addListener = noop;
+  process.once = noop;
+  process.off = noop;
+  process.removeListener = noop;
+  process.removeAllListeners = noop;
+  process.emit = noop;
 
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
+  process.binding = function (name) {
+  throw new Error('process.binding is not supported');
 };
 
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
+  process.cwd = function () { return '/'; };
+  process.chdir = function (dir) {
+  throw new Error('process.chdir is not supported');
 };
-process.umask = function() { return 0; };
+  process.umask = function () { return 0; };
 
 
-/***/ },
+/** *
+/ },
 /* 91 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-var g;
+let g;
 
 // This works in non-strict mode
-g = (function() { return this; })();
+  g = (function () { return this; }());
 
-try {
+  try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
+  g = g || Function('return this')() || (1, eval)('this');
+} catch (e) {
 	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+  if (typeof window === 'object')
+		{g = window;}
 }
 
 // g can still be undefined, but nothing to do about it...
 // We return undefined, instead of nothing here, so it's
 // easier to handle this case. if(!global) { ...}
 
-module.exports = g;
+  module.exports = g;
 
 
-/***/ },
+/** *
+/ },
 /* 92 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _loadingScreenComponent = __webpack_require__(159);
+let _loadingScreenComponent = __webpack_require__(159);
 
-var _loadingScreenComponent2 = _interopRequireDefault(_loadingScreenComponent);
+let _loadingScreenComponent2 = _interopRequireDefault(_loadingScreenComponent);
 
-var _splashScreenComponent = __webpack_require__(170);
+let _splashScreenComponent = __webpack_require__(170);
 
-var _splashScreenComponent2 = _interopRequireDefault(_splashScreenComponent);
+let _splashScreenComponent2 = _interopRequireDefault(_splashScreenComponent);
 
-var _photoRollScreenComponent = __webpack_require__(164);
+let _photoRollScreenComponent = __webpack_require__(164);
 
-var _photoRollScreenComponent2 = _interopRequireDefault(_photoRollScreenComponent);
+let _photoRollScreenComponent2 = _interopRequireDefault(_photoRollScreenComponent);
 
-var _webcamScreenComponent = __webpack_require__(174);
+let _webcamScreenComponent = __webpack_require__(174);
 
-var _webcamScreenComponent2 = _interopRequireDefault(_webcamScreenComponent);
+let _webcamScreenComponent2 = _interopRequireDefault(_webcamScreenComponent);
 
-var _editorScreenComponent = __webpack_require__(158);
+let _editorScreenComponent = __webpack_require__(158);
 
-var _editorScreenComponent2 = _interopRequireDefault(_editorScreenComponent);
+let _editorScreenComponent2 = _interopRequireDefault(_editorScreenComponent);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-var _modalContainerComponent = __webpack_require__(152);
+let _modalContainerComponent = __webpack_require__(152);
 
-var _modalContainerComponent2 = _interopRequireDefault(_modalContainerComponent);
+let _modalContainerComponent2 = _interopRequireDefault(_modalContainerComponent);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var AppComponent = function (_React$Component) {
+let AppComponent = (function (_React$Component) {
   (0, _inherits3.default)(AppComponent, _React$Component);
 
   function AppComponent() {
@@ -8521,7 +8599,7 @@ var AppComponent = function (_React$Component) {
   };
 
   return AppComponent;
-}(_globals.React.Component); /** @jsx ReactBEM.createElement **/
+}(_globals.React.Component)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -8536,450 +8614,454 @@ var AppComponent = function (_React$Component) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = AppComponent;
+  exports.default = AppComponent;
 
 
-AppComponent.childContextTypes = {
+  AppComponent.childContextTypes = {
   ui: _globals.React.PropTypes.object.isRequired,
   mediator: _globals.React.PropTypes.object.isRequired,
-  options: _globals.React.PropTypes.object.isRequired
+  options: _globals.React.PropTypes.object.isRequired,
 };
 
-AppComponent.propTypes = {
+  AppComponent.propTypes = {
   ui: _globals.React.PropTypes.object.isRequired,
   mediator: _globals.React.PropTypes.object.isRequired,
-  options: _globals.React.PropTypes.object.isRequired
+  options: _globals.React.PropTypes.object.isRequired,
 };
 
-/***/ },
+/** *
+/ },
 /* 93 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _provider = __webpack_require__(193);
+let _provider = __webpack_require__(193);
 
-Object.defineProperty(exports, 'Provider', {
+  Object.defineProperty(exports, 'Provider', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_provider).default;
-  }
+  },
 });
 
-var _library = __webpack_require__(191);
+let _library = __webpack_require__(191);
 
-Object.defineProperty(exports, 'Library', {
+  Object.defineProperty(exports, 'Library', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_library).default;
-  }
+  },
 });
 
-var _searchSuggestion = __webpack_require__(194);
+let _searchSuggestion = __webpack_require__(194);
 
-Object.defineProperty(exports, 'SearchSuggestion', {
+  Object.defineProperty(exports, 'SearchSuggestion', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_searchSuggestion).default;
-  }
+  },
 });
 
-var _photo = __webpack_require__(192);
+let _photo = __webpack_require__(192);
 
-Object.defineProperty(exports, 'Photo', {
+  Object.defineProperty(exports, 'Photo', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_photo).default;
-  }
+  },
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/***/ },
+/** *
+/ },
 /* 94 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = {
-	"controls": {
-		"overview": {
-			"filters": "Filter",
-			"adjustments": "Korrekturen",
-			"crop": "Zuschneiden",
-			"blur": "Weichzeichnen",
-			"border": "Rahmen",
-			"sticker": "Sticker",
-			"text": "Text",
-			"brush": "Malen",
-			"selective-blur": "Sel. Unschärfe"
-		},
-		"border": {
-			"color": "Farbe",
-			"thickness": "Dicke"
-		},
-		"text": {
-			"foreground": "Vordergrund",
-			"background": "Hintergrund",
-			"size": "Größe",
-			"font": "Schriftart",
-			"alignment": "Ausrichtung",
-			"takeToFront": "Nach oben"
-		},
-		"adjustments": {
-			"brightness": "Helligkeit",
-			"contrast": "Kontrast",
-			"saturation": "Sättigung",
-			"gamma": "Gamma",
-			"exposure": "Belichtung",
-			"shadows": "Schatten",
-			"highlights": "Lichter",
-			"clarity": "Klarheit"
-		},
-		"crop": {
-			"custom": "Manuell",
-			"square": "Quadratisch",
-			"4-3": "4:3",
-			"16-9": "16:9",
-			"rotation": "Drehung"
-		},
-		"focus": {
-			"radial": "Kreisförmig",
-			"linear": "Linear",
-			"blurRadius": "Radius"
-		},
-		"selectiveBlur": {
-			"blurRadius": "Radius",
-			"thickness": "Dicke"
-		},
-		"filters": {
-			"intensity": "Intensität",
-			"categories": {
-				"all": "Alle",
-				"retro": "Retro",
-				"bw": "Schwarz & Weiß",
-				"summer": "Sommer",
-				"winter": "Winter",
-				"special": "Spezial"
-			}
-		},
-		"sticker": {
-			"brightness": "Helligkeit",
-			"contrast": "Kontrast",
-			"saturation": "Sättigung",
-			"blur": "Weichzeichnen",
-			"flip": "Spiegeln",
-			"flip-v": "Spiegeln (V)",
-			"flip-h": "Spiegeln (H)",
-			"takeToFront": "Nach oben",
-			"categories": {
-				"all": "Alle",
-				"glasses": "Brillen",
-				"hats": "Hüte",
-				"beards": "Bärte",
-				"misc": "Gemischt"
-			}
-		},
-		"brush": {
-			"thickness": "Dicke",
-			"color": "Farbe"
-		}
-	},
-	"webcam": {
-		"headline": "Mache ein Foto!"
-	},
-	"editor": {
-		"headline": "Foto editieren",
-		"new": "Neu",
-		"backgroundImage": "Hintergrundbild",
-		"undo": "Rückgängig",
-		"export": "Speichern"
-	},
-	"splash": {
-		"upload": {
-			"button": "Lade ein Foto hoch",
-			"description": "Klicke hier, um ein Foto von deinem Rechner hochzuladen oder lade es per Drag-and-Drop hoch"
-		},
-		"webcam": {
-			"headline": "Webcam",
-			"description": "Klicke hier, um ein Foto mit deiner Webcam zu machen"
-		},
-		"photoRoll": {
-			"headline": "Kostenloses Bildmaterial",
-			"description": "Suche dir eines von tausenden Stock Photos aus."
-		}
-	},
-	"photoRoll": {
-		"search": {
-			"placeholder": "Nach Fotos suchen",
-			"noSearchResults": "Entschuldigung, aber wir konnten für <strong>\"${query}\"</strong> leider keine Ergebnisse finden.",
-			"results": {
-				"headline": "Suchergebnisse für \"${query}\""
-			}
-		}
-	},
-	"generic": {
-		"back": "Zurück",
-		"cancel": "Abbrechen",
-		"color": "Farbe"
-	},
-	"loading": {
-		"resizing": "Bild wird bearbeitet...",
-		"exporting": "Exportiere...",
-		"loading": "Lade..."
-	},
-	"warnings": {
-		"imageResized_maxMegaPixels": {
-			"title": "Bild verkleinert",
-			"text": "Da dein Bild die maximale Größe von ${maxMegaPixels} Megapixeln überschreitet, wurde es auf ${width}x${height} Pixel verkleinert."
-		},
-		"imageResized_maxDimensions": {
-			"title": "Bild verkleinert",
-			"text": "Aufgrund von Hardware-Beschränkungen wurde das Bild auf ${width}x${height} Pixel verkleinert."
-		}
-	},
-	"errors": {
-		"imageLoadFail": {
-			"title": "Bild konnte nicht geladen werden",
-			"text": "Beim Laden des Bildes unter ${path} ist ein Fehler aufgetreten."
-		},
-		"webcamUnavailable": {
-			"title": "Webcam nicht verfügbar",
-			"text": "Webcam-Bild kann nicht dargestellt werden. (Fehler: ${error})"
-		},
-		"webcamNotSupported": {
-			"title": "Webcam nicht unterstützt",
-			"text": "Dein Browser unterstützt das Webcam-Feature leider noch nicht."
-		},
-		"renderingError": {
-			"title": "Rendering-Fehler",
-			"text": "Beim Rendern des Bildes ist ein Fehler aufgetreten."
-		},
-		"context_lost": {
-			"title": "Es ist ein Fehler aufgetreten",
-			"text": "Dein Browser hat zu lange gebraucht, um das Bild zu generieren. Bitte versuche es noch einmal."
-		},
-		"context_lost_limit": {
-			"title": "Es ist ein Fehler aufgetreten",
-			"text": "Bild-Generierung ist mehrmals fehlgeschlagen."
-		},
-		"loadingStickersFailed": {
-			"title": "Laden der Sticker fehlgeschlagen"
-		},
-		"photoRollLoadFail": {
-			"title": "Laden der Photo Roll fehlgeschlagen",
-			"text": "Die Photo Roll konnte nicht geladen werden: ${error}"
-		}
-	}
+  module.exports = {
+	controls: {
+		'overview': {
+			'filters': 'Filter',
+			adjustments: 'Korrekturen',
+			'crop': 'Zuschneiden',
+			blur: 'Weichzeichnen',
+			'border': 'Rahmen',
+			sticker: 'Sticker',
+			text: 'Text',
+			'brush': 'Malen',
+			'selective-blur': "Sel. Unschärfe",
+},
+		'border': {
+			'color': 'Farbe',
+			'thickness': "Dicke",
+},
+		'text': {
+			'foreground': 'Vordergrund',
+			background: 'Hintergrund',
+			size: 'Größe',
+			'font': 'Schriftart',
+			alignment: 'Ausrichtung',
+			'takeToFront': "Nach oben",
+},
+		'adjustments': {
+			'brightness': 'Helligkeit',
+			contrast: 'Kontrast',
+			'saturation': 'Sättigung',
+			'gamma': 'Gamma',
+			'exposure': 'Belichtung',
+			'shadows': 'Schatten',
+			'highlights': 'Lichter',
+			'clarity': "Klarheit",
+},
+		'crop': {
+			'custom': 'Manuell',
+			square: 'Quadratisch',
+			'4-3': '4:3',
+			'16-9': '16:9',
+			'rotation': "Drehung",
+},
+		focus: {
+			'radial': 'Kreisförmig',
+			'linear': 'Linear',
+			blurRadius: "Radius",
+},
+		selectiveBlur: {
+			'blurRadius': 'Radius',
+			thickness: "Dicke",
+},
+		'filters': {
+			'intensity': 'Intensität',
+			categories: {
+				all: 'Alle',
+				retro: 'Retro',
+				bw: 'Schwarz & Weiß',
+				'summer': 'Sommer',
+				winter: 'Winter',
+				'special': "Spezial",
+},
+},
+		sticker: {
+			'brightness': 'Helligkeit',
+			contrast: 'Kontrast',
+			saturation: 'Sättigung',
+			'blur': 'Weichzeichnen',
+			flip: 'Spiegeln',
+			'flip-v': 'Spiegeln (V)',
+			'flip-h': 'Spiegeln (H)',
+			'takeToFront': 'Nach oben',
+			categories: {
+				all: 'Alle',
+				'glasses': 'Brillen',
+				'hats': 'Hüte',
+				beards: 'Bärte',
+				'misc': "Gemischt",
+},
+},
+		brush: {
+			'thickness': 'Dicke',
+			'color': "Farbe",
+},
+},
+	webcam: {
+		headline: "Mache ein Foto!",
+},
+	editor: {
+		headline: 'Foto editieren',
+		new: 'Neu',
+		backgroundImage: 'Hintergrundbild',
+		undo: 'Rückgängig',
+		export: "Speichern",
+},
+	'splash': {
+		'upload': {
+			button: 'Lade ein Foto hoch',
+			'description': "Klicke hier, um ein Foto von deinem Rechner hochzuladen oder lade es per Drag-and-Drop hoch",
+},
+		'webcam': {
+			'headline': 'Webcam',
+			'description': "Klicke hier, um ein Foto mit deiner Webcam zu machen",
+},
+		'photoRoll': {
+			headline: 'Kostenloses Bildmaterial',
+			'description': "Suche dir eines von tausenden Stock Photos aus.",
+},
+},
+	photoRoll: {
+		search: {
+			'placeholder': 'Nach Fotos suchen',
+			'noSearchResults': 'Entschuldigung, aber wir konnten für <strong>"${query}"</strong> leider keine Ergebnisse finden.',
+			results: {
+				headline: "Suchergebnisse für \"${query}\"",
+},
+},
+},
+	'generic': {
+		'back': 'Zurück',
+		cancel: 'Abbrechen',
+		'color': "Farbe",
+},
+	'loading': {
+		'resizing': 'Bild wird bearbeitet...',
+		exporting: 'Exportiere...',
+		'loading': "Lade...",
+},
+	'warnings': {
+		imageResized_maxMegaPixels: {
+			'title': 'Bild verkleinert',
+			'text': "Da dein Bild die maximale Größe von ${maxMegaPixels} Megapixeln überschreitet, wurde es auf ${width}x${height} Pixel verkleinert.",
+},
+		imageResized_maxDimensions: {
+			title: 'Bild verkleinert',
+			'text': "Aufgrund von Hardware-Beschränkungen wurde das Bild auf ${width}x${height} Pixel verkleinert.",
+},
+},
+	'errors': {
+		'imageLoadFail': {
+			'title': 'Bild konnte nicht geladen werden',
+			'text': "Beim Laden des Bildes unter ${path} ist ein Fehler aufgetreten.",
+},
+		'webcamUnavailable': {
+			title: 'Webcam nicht verfügbar',
+			text: "Webcam-Bild kann nicht dargestellt werden. (Fehler: ${error})",
+},
+		'webcamNotSupported': {
+			'title': 'Webcam nicht unterstützt',
+			text: "Dein Browser unterstützt das Webcam-Feature leider noch nicht.",
+},
+		renderingError: {
+			'title': 'Rendering-Fehler',
+			'text': "Beim Rendern des Bildes ist ein Fehler aufgetreten.",
+},
+		context_lost: {
+			'title': 'Es ist ein Fehler aufgetreten',
+			'text': "Dein Browser hat zu lange gebraucht, um das Bild zu generieren. Bitte versuche es noch einmal.",
+},
+		'context_lost_limit': {
+			'title': 'Es ist ein Fehler aufgetreten',
+			text: "Bild-Generierung ist mehrmals fehlgeschlagen.",
+},
+		'loadingStickersFailed': {
+			title: "Laden der Sticker fehlgeschlagen",
+},
+		'photoRollLoadFail': {
+			'title': 'Laden der Photo Roll fehlgeschlagen',
+			text: "Die Photo Roll konnte nicht geladen werden: ${error}",
+},
+},
 };
 
-/***/ },
+/** *
+/ },
 /* 95 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = {
-	"controls": {
-		"overview": {
-			"filters": "Filters",
-			"adjustments": "Adjust",
-			"crop": "Crop",
-			"focus": "Focus",
-			"border": "Border",
-			"sticker": "Sticker",
-			"text": "Text",
-			"brush": "Brush",
-			"selective-blur": "Selective Blur"
-		},
-		"border": {
-			"color": "Color",
-			"thickness": "Thickness"
-		},
-		"text": {
-			"foreground": "Foreground",
-			"background": "Background",
-			"size": "Size",
-			"font": "Font",
-			"alignment": "Alignment",
-			"takeToFront": "To Front"
-		},
-		"adjustments": {
-			"brightness": "Brightness",
-			"contrast": "Contrast",
-			"saturation": "Saturation",
-			"exposure": "Exposure",
-			"gamma": "Gamma",
-			"shadows": "Shadows",
-			"highlights": "Highlights",
-			"clarity": "Clarity"
-		},
-		"crop": {
-			"custom": "Custom",
-			"square": "Square",
-			"4-3": "4:3",
-			"16-9": "16:9",
-			"rotation": "Rotation"
-		},
-		"focus": {
-			"radial": "Radial",
-			"linear": "Linear",
-			"blurRadius": "Blur radius"
-		},
-		"selectiveBlur": {
-			"blurRadius": "Blur radius",
-			"thickness": "Thickness"
-		},
-		"filters": {
-			"intensity": "Intensity",
-			"categories": {
-				"all": "All",
-				"retro": "Retro",
-				"bw": "Black & White",
-				"summer": "Summer",
-				"winter": "Winter",
-				"special": "Special"
-			}
-		},
-		"sticker": {
-			"brightness": "Brightness",
-			"contrast": "Contrast",
-			"saturation": "Saturation",
-			"blur": "Blur",
-			"flip": "Flip",
-			"flip-v": "Flip (V)",
-			"flip-h": "Flip (H)",
-			"takeToFront": "To Front",
-			"categories": {
-				"all": "All",
-				"glasses": "Glasses",
-				"hats": "Hats",
-				"beards": "Beards",
-				"misc": "Misc"
-			}
-		},
-		"brush": {
-			"thickness": "Thickness",
-			"color": "Color"
-		}
-	},
-	"webcam": {
-		"headline": "Take a photo!"
-	},
-	"editor": {
-		"headline": "Edit Photo",
-		"new": "New",
-		"backgroundImage": "Background Image",
-		"undo": "Undo",
-		"export": "Export"
-	},
-	"splash": {
-		"upload": {
-			"button": "Upload your image",
-			"description": "Upload a picture from your library or just drag and drop"
-		},
-		"webcam": {
-			"headline": "Webcam",
-			"description": "Take a picture with your webcam or phone"
-		},
-		"photoRoll": {
-			"headline": "Free stock footage",
-			"description": "Select from thousands of Free Stock Photos"
-		}
-	},
-	"photoRoll": {
-		"search": {
-			"placeholder": "Search for photos",
-			"noSearchResults": "Sorry, but we couldn't find any photos for <strong>\"${query}\"</strong>.",
-			"results": {
-				"headline": "Search results for \"${query}\""
-			}
-		}
-	},
-	"generic": {
-		"back": "Back",
-		"cancel": "Cancel",
-		"color": "Color"
-	},
-	"loading": {
-		"resizing": "Resizing...",
-		"exporting": "Exporting...",
-		"loading": "Loading..."
-	},
-	"warnings": {
-		"imageResized_maxMegaPixels": {
-			"title": "Image resized",
-			"text": "Your image exceeds the maximum size of ${maxMegaPixels} megapixels and has therefore been resized to ${width}x${height} pixels."
-		},
-		"imageResized_maxDimensions": {
-			"title": "Image resized",
-			"text": "Due to hardware limitations your image has been resized to ${width}x${height} pixels."
-		}
-	},
-	"errors": {
-		"imageLoadFail": {
-			"title": "Failed to load image",
-			"text": "Failed to load the image at ${path}"
-		},
-		"webcamUnavailable": {
-			"title": "Webcam unavailable",
-			"text": "Unable to display webcam image (Error: ${error})"
-		},
-		"webcamNotSupported": {
-			"title": "Webcam not supported",
-			"text": "The webcam feature is not supported by your browser."
-		},
-		"renderingError": {
-			"title": "Error while rendering",
-			"text": "An error has occurred while rendering the image."
-		},
-		"context_lost": {
-			"title": "An error has occurred",
-			"text": "Your browser took too long to render the image. Please try applying less operations."
-		},
-		"context_lost_limit": {
-			"title": "An error has occurred",
-			"text": "Your browser failed multiple times while rendering the image."
-		},
-		"loadingStickersFailed": {
-			"title": "Failed to load stickers"
-		},
-		"photoRollLoadFail": {
-			"title": "Failed to load Photo Roll",
-			"text": "Failed to load photos for the photo roll: ${error}"
-		}
-	}
+  module.exports = {
+	controls: {
+		overview: {
+			'filters': 'Filters',
+			'adjustments': 'Adjust',
+			'crop': 'Crop',
+			focus: 'Focus',
+			border: 'Border',
+			'sticker': 'Sticker',
+			'text': 'Text',
+			'brush': 'Brush',
+			'selective-blur': "Selective Blur",
+},
+		'border': {
+			'color': 'Color',
+			'thickness': "Thickness",
+},
+		text: {
+			'foreground': 'Foreground',
+			background: 'Background',
+			size: 'Size',
+			font: 'Font',
+			'alignment': 'Alignment',
+			takeToFront: "To Front",
+},
+		adjustments: {
+			brightness: 'Brightness',
+			contrast: 'Contrast',
+			'saturation': 'Saturation',
+			'exposure': 'Exposure',
+			'gamma': 'Gamma',
+			'shadows': 'Shadows',
+			highlights: 'Highlights',
+			clarity: "Clarity",
+},
+		crop: {
+			'custom': 'Custom',
+			'square': 'Square',
+			'4-3': '4:3',
+			'16-9': '16:9',
+			rotation: "Rotation",
+},
+		'focus': {
+			radial: 'Radial',
+			'linear': 'Linear',
+			'blurRadius': "Blur radius",
+},
+		'selectiveBlur': {
+			blurRadius: 'Blur radius',
+			thickness: "Thickness",
+},
+		'filters': {
+			'intensity': 'Intensity',
+			'categories': {
+				'all': 'All',
+				retro: 'Retro',
+				'bw': 'Black & White',
+				'summer': 'Summer',
+				winter: 'Winter',
+				'special': "Special",
+},
+},
+		sticker: {
+			brightness: 'Brightness',
+			contrast: 'Contrast',
+			saturation: 'Saturation',
+			blur: 'Blur',
+			flip: 'Flip',
+			'flip-v': 'Flip (V)',
+			'flip-h': 'Flip (H)',
+			'takeToFront': 'To Front',
+			categories: {
+				'all': 'All',
+				'glasses': 'Glasses',
+				'hats': 'Hats',
+				beards: 'Beards',
+				'misc': "Misc",
+},
+},
+		brush: {
+			thickness: 'Thickness',
+			color: "Color",
+},
+},
+	'webcam': {
+		headline: "Take a photo!",
+},
+	editor: {
+		headline: 'Edit Photo',
+		'new': 'New',
+		'backgroundImage': 'Background Image',
+		'undo': 'Undo',
+		export: "Export",
+},
+	'splash': {
+		'upload': {
+			button: 'Upload your image',
+			'description': "Upload a picture from your library or just drag and drop",
+},
+		'webcam': {
+			'headline': 'Webcam',
+			'description': "Take a picture with your webcam or phone",
+},
+		photoRoll: {
+			'headline': 'Free stock footage',
+			description: "Select from thousands of Free Stock Photos",
+},
+},
+	'photoRoll': {
+		'search': {
+			'placeholder': 'Search for photos',
+			noSearchResults: "Sorry, but we couldn't find any photos for <strong>\"${query}\"</strong>.",
+			'results': {
+				headline: "Search results for \"${query}\"",
+},
+},
+},
+	generic: {
+		'back': 'Back',
+		'cancel': 'Cancel',
+		color: "Color",
+},
+	'loading': {
+		resizing: 'Resizing...',
+		'exporting': 'Exporting...',
+		loading: "Loading...",
+},
+	'warnings': {
+		imageResized_maxMegaPixels: {
+			title: 'Image resized',
+			'text': "Your image exceeds the maximum size of ${maxMegaPixels} megapixels and has therefore been resized to ${width}x${height} pixels.",
+},
+		'imageResized_maxDimensions': {
+			title: 'Image resized',
+			'text': "Due to hardware limitations your image has been resized to ${width}x${height} pixels.",
+},
+},
+	'errors': {
+		imageLoadFail: {
+			'title': 'Failed to load image',
+			'text': "Failed to load the image at ${path}",
+},
+		'webcamUnavailable': {
+			title: 'Webcam unavailable',
+			text: "Unable to display webcam image (Error: ${error})",
+},
+		'webcamNotSupported': {
+			title: 'Webcam not supported',
+			text: "The webcam feature is not supported by your browser.",
+},
+		renderingError: {
+			'title': 'Error while rendering',
+			'text': "An error has occurred while rendering the image.",
+},
+		'context_lost': {
+			title: 'An error has occurred',
+			text: "Your browser took too long to render the image. Please try applying less operations.",
+},
+		'context_lost_limit': {
+			'title': 'An error has occurred',
+			'text': "Your browser failed multiple times while rendering the image.",
+},
+		loadingStickersFailed: {
+			'title': "Failed to load stickers",
+},
+		photoRollLoadFail: {
+			title: 'Failed to load Photo Roll',
+			text: "Failed to load photos for the photo roll: ${error}",
+},
+},
 };
 
-/***/ },
+/** *
+/ },
 /* 96 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var BackButtonComponent = function (_BaseComponent) {
+let BackButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(BackButtonComponent, _BaseComponent);
 
   function BackButtonComponent() {
@@ -9008,7 +9090,7 @@ var BackButtonComponent = function (_BaseComponent) {
   };
 
   return BackButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -9023,43 +9105,44 @@ var BackButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = BackButtonComponent;
+  exports.default = BackButtonComponent;
 
 
-BackButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  BackButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 97 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _react = __webpack_require__(59);
+let _react = __webpack_require__(59);
 
-var _react2 = _interopRequireDefault(_react);
+let _react2 = _interopRequireDefault(_react);
 
-var _reactBem = __webpack_require__(71);
+let _reactBem = __webpack_require__(71);
 
-var _reactBem2 = _interopRequireDefault(_reactBem);
+let _reactBem2 = _interopRequireDefault(_reactBem);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -9075,7 +9158,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BaseComponent = function (_React$Component) {
+let BaseComponent = (function (_React$Component) {
   (0, _inherits3.default)(BaseComponent, _React$Component);
 
   function BaseComponent() {
@@ -9348,51 +9431,52 @@ var BaseComponent = function (_React$Component) {
   };
 
   return BaseComponent;
-}(_react2.default.Component);
+}(_react2.default.Component));
 
-exports.default = BaseComponent;
+  exports.default = BaseComponent;
 
 
-BaseComponent.contextTypes = {
+  BaseComponent.contextTypes = {
   editor: _react2.default.PropTypes.object,
   ui: _react2.default.PropTypes.object,
   options: _react2.default.PropTypes.object,
   mediator: _react2.default.PropTypes.object,
-  editorScreen: _react2.default.PropTypes.object
+  editorScreen: _react2.default.PropTypes.object,
 };
 
-BaseComponent.propTypes = {
-  sharedState: _react2.default.PropTypes.any
+  BaseComponent.propTypes = {
+  sharedState: _react2.default.PropTypes.any,
 };
 
-/***/ },
+/** *
+/ },
 /* 98 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ButtonComponent = function (_BaseComponent) {
+let ButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ButtonComponent, _BaseComponent);
 
   function ButtonComponent() {
@@ -9418,7 +9502,7 @@ var ButtonComponent = function (_BaseComponent) {
   };
 
   return ButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -9433,45 +9517,46 @@ var ButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ButtonComponent;
+  exports.default = ButtonComponent;
 
 
-ButtonComponent.propTypes = {
+  ButtonComponent.propTypes = {
   onClick: _globals.React.PropTypes.func,
   children: _globals.React.PropTypes.any.isRequired,
-  className: _globals.React.PropTypes.string
+  className: _globals.React.PropTypes.string,
 };
 
-ButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 99 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var CategoryDropdownOverlayComponent = function (_BaseComponent) {
+let CategoryDropdownOverlayComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(CategoryDropdownOverlayComponent, _BaseComponent);
 
   function CategoryDropdownOverlayComponent() {
@@ -9539,7 +9624,7 @@ var CategoryDropdownOverlayComponent = function (_BaseComponent) {
   };
 
   return CategoryDropdownOverlayComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -9554,41 +9639,42 @@ var CategoryDropdownOverlayComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = CategoryDropdownOverlayComponent;
+  exports.default = CategoryDropdownOverlayComponent;
 
 
-CategoryDropdownOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  CategoryDropdownOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 100 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -9605,7 +9691,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var AlphaComponent = function (_BaseComponent) {
+let AlphaComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(AlphaComponent, _BaseComponent);
 
   function AlphaComponent() {
@@ -9794,43 +9880,44 @@ var AlphaComponent = function (_BaseComponent) {
   };
 
   return AlphaComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = AlphaComponent;
+  exports.default = AlphaComponent;
 
 
-AlphaComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  AlphaComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 101 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -9847,7 +9934,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var HueComponent = function (_BaseComponent) {
+let HueComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(HueComponent, _BaseComponent);
 
   function HueComponent() {
@@ -10051,51 +10138,52 @@ var HueComponent = function (_BaseComponent) {
   };
 
   return HueComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = HueComponent;
+  exports.default = HueComponent;
 
 
-HueComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  HueComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 102 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _alphaComponent = __webpack_require__(100);
+let _alphaComponent = __webpack_require__(100);
 
-var _alphaComponent2 = _interopRequireDefault(_alphaComponent);
+let _alphaComponent2 = _interopRequireDefault(_alphaComponent);
 
-var _saturationComponent = __webpack_require__(103);
+let _saturationComponent = __webpack_require__(103);
 
-var _saturationComponent2 = _interopRequireDefault(_saturationComponent);
+let _saturationComponent2 = _interopRequireDefault(_saturationComponent);
 
-var _hueComponent = __webpack_require__(101);
+let _hueComponent = __webpack_require__(101);
 
-var _hueComponent2 = _interopRequireDefault(_hueComponent);
+let _hueComponent2 = _interopRequireDefault(_hueComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -10112,7 +10200,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var ColorPickerOverlayComponent = function (_BaseComponent) {
+let ColorPickerOverlayComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ColorPickerOverlayComponent, _BaseComponent);
 
   function ColorPickerOverlayComponent() {
@@ -10239,43 +10327,44 @@ var ColorPickerOverlayComponent = function (_BaseComponent) {
   };
 
   return ColorPickerOverlayComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = ColorPickerOverlayComponent;
+  exports.default = ColorPickerOverlayComponent;
 
 
-ColorPickerOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ColorPickerOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 103 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -10292,7 +10381,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var SaturationComponent = function (_BaseComponent) {
+let SaturationComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(SaturationComponent, _BaseComponent);
 
   function SaturationComponent() {
@@ -10521,64 +10610,65 @@ var SaturationComponent = function (_BaseComponent) {
   };
 
   return SaturationComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = SaturationComponent;
+  exports.default = SaturationComponent;
 
 
-SaturationComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  SaturationComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 104 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderOverlayComponent = __webpack_require__(20);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
 
-var _miniSliderComponent = __webpack_require__(126);
+let _miniSliderComponent = __webpack_require__(126);
 
-var _miniSliderComponent2 = _interopRequireDefault(_miniSliderComponent);
+let _miniSliderComponent2 = _interopRequireDefault(_miniSliderComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ITEMS = [{
+let ITEMS = [{
   identifier: 'brightness',
   isAvailable: function isAvailable(editor) {
     return editor.isToolEnabled('brightness');
   },
   defaultValue: 0,
   valueMultiplier: 100,
-  valueOffset: 0
+  valueOffset: 0,
 }, {
   identifier: 'saturation',
   isAvailable: function isAvailable(editor) {
@@ -10586,7 +10676,7 @@ var ITEMS = [{
   },
   defaultValue: 1,
   valueMultiplier: 100,
-  valueOffset: -100
+  valueOffset: -100,
 }, {
   identifier: 'contrast',
   isAvailable: function isAvailable(editor) {
@@ -10594,7 +10684,7 @@ var ITEMS = [{
   },
   defaultValue: 1,
   valueMultiplier: 100,
-  valueOffset: -100
+  valueOffset: -100,
 }, {
   identifier: 'gamma',
   isAvailable: function isAvailable(editor) {
@@ -10602,7 +10692,7 @@ var ITEMS = [{
   },
   defaultValue: 1,
   valueMultiplier: 100,
-  valueOffset: -100
+  valueOffset: -100,
 }, {
   identifier: 'clarity',
   isAvailable: function isAvailable(editor) {
@@ -10610,7 +10700,7 @@ var ITEMS = [{
   },
   defaultValue: 0,
   valueMultiplier: 100,
-  valueOffset: 0
+  valueOffset: 0,
 }, {
   identifier: 'exposure',
   isAvailable: function isAvailable(editor) {
@@ -10618,7 +10708,7 @@ var ITEMS = [{
   },
   defaultValue: 0,
   valueMultiplier: 100,
-  valueOffset: 0
+  valueOffset: 0,
 }, {
   identifier: 'shadows',
   isAvailable: function isAvailable(editor) {
@@ -10626,7 +10716,7 @@ var ITEMS = [{
   },
   defaultValue: 1,
   valueMultiplier: 100,
-  valueOffset: -100
+  valueOffset: -100,
 }, {
   identifier: 'highlights',
   isAvailable: function isAvailable(editor) {
@@ -10634,7 +10724,7 @@ var ITEMS = [{
   },
   defaultValue: 1,
   valueMultiplier: 100,
-  valueOffset: 0
+  valueOffset: 0,
 }]; /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
@@ -10650,7 +10740,7 @@ var ITEMS = [{
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var AdjustmentsControlsComponent = function (_ControlsComponent) {
+let AdjustmentsControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(AdjustmentsControlsComponent, _ControlsComponent);
 
   function AdjustmentsControlsComponent() {
@@ -10860,45 +10950,46 @@ var AdjustmentsControlsComponent = function (_ControlsComponent) {
   };
 
   return AdjustmentsControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = AdjustmentsControlsComponent;
+  exports.default = AdjustmentsControlsComponent;
 
 
-AdjustmentsControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  AdjustmentsControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 105 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _adjustmentsControlsComponent = __webpack_require__(104);
+let _adjustmentsControlsComponent = __webpack_require__(104);
 
-var _adjustmentsControlsComponent2 = _interopRequireDefault(_adjustmentsControlsComponent);
+let _adjustmentsControlsComponent2 = _interopRequireDefault(_adjustmentsControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -10914,7 +11005,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var TOOLS = ['brightness', 'clarity', 'contrast', 'exposure', 'highlights', 'saturation', 'shadows', 'gamma'];
+let TOOLS = ['brightness', 'clarity', 'contrast', 'exposure', 'highlights', 'saturation', 'shadows', 'gamma'];
 
 /**
  * The adjustments controls
@@ -10923,7 +11014,7 @@ var TOOLS = ['brightness', 'clarity', 'contrast', 'exposure', 'highlights', 'sat
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
 
-var AdjustmentsControls = function (_Controls) {
+let AdjustmentsControls = (function (_Controls) {
   (0, _inherits3.default)(AdjustmentsControls, _Controls);
 
   function AdjustmentsControls() {
@@ -10979,7 +11070,7 @@ var AdjustmentsControls = function (_Controls) {
   };
 
   return AdjustmentsControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -10988,75 +11079,76 @@ var AdjustmentsControls = function (_Controls) {
  */
 
 
-AdjustmentsControls.controlsComponent = _adjustmentsControlsComponent2.default;
+  AdjustmentsControls.controlsComponent = _adjustmentsControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-AdjustmentsControls.identifier = 'adjustments';
+  AdjustmentsControls.identifier = 'adjustments';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-AdjustmentsControls.iconPath = 'controls/overview/adjustments.png';
+  AdjustmentsControls.iconPath = 'controls/overview/adjustments.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-AdjustmentsControls.languageKey = 'controls.overview.adjustments';
+  AdjustmentsControls.languageKey = 'controls.overview.adjustments';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-AdjustmentsControls.defaultOptions = {};
+  AdjustmentsControls.defaultOptions = {};
 
-exports.default = AdjustmentsControls;
+  exports.default = AdjustmentsControls;
 
-/***/ },
+/** *
+/ },
 /* 106 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-var _colorPickerComponent = __webpack_require__(37);
+let _colorPickerComponent = __webpack_require__(37);
 
-var _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
+let _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -11073,7 +11165,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BorderControlsComponent = function (_ControlsComponent) {
+let BorderControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(BorderControlsComponent, _ControlsComponent);
 
   function BorderControlsComponent() {
@@ -11185,45 +11277,46 @@ var BorderControlsComponent = function (_ControlsComponent) {
   };
 
   return BorderControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = BorderControlsComponent;
+  exports.default = BorderControlsComponent;
 
 
-BorderControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  BorderControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 107 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _borderControlsComponent = __webpack_require__(106);
+let _borderControlsComponent = __webpack_require__(106);
 
-var _borderControlsComponent2 = _interopRequireDefault(_borderControlsComponent);
+let _borderControlsComponent2 = _interopRequireDefault(_borderControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The border controls
@@ -11245,7 +11338,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BorderControls = function (_Controls) {
+let BorderControls = (function (_Controls) {
   (0, _inherits3.default)(BorderControls, _Controls);
 
   function BorderControls() {
@@ -11317,7 +11410,7 @@ var BorderControls = function (_Controls) {
   };
 
   return BorderControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -11326,71 +11419,72 @@ var BorderControls = function (_Controls) {
  */
 
 
-BorderControls.controlsComponent = _borderControlsComponent2.default;
+  BorderControls.controlsComponent = _borderControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-BorderControls.identifier = 'border';
+  BorderControls.identifier = 'border';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-BorderControls.iconPath = 'controls/overview/border.png';
+  BorderControls.iconPath = 'controls/overview/border.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-BorderControls.languageKey = 'controls.overview.border';
+  BorderControls.languageKey = 'controls.overview.border';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-BorderControls.defaultOptions = {};
+  BorderControls.defaultOptions = {};
 
-exports.default = BorderControls;
+  exports.default = BorderControls;
 
-/***/ },
+/** *
+/ },
 /* 108 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _spritesCanvasControlsComponent = __webpack_require__(30);
+let _spritesCanvasControlsComponent = __webpack_require__(30);
 
-var _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
+let _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -11407,7 +11501,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushCanvasControlsComponent = function (_SpritesCanvasControl) {
+let BrushCanvasControlsComponent = (function (_SpritesCanvasControl) {
   (0, _inherits3.default)(BrushCanvasControlsComponent, _SpritesCanvasControl);
 
   function BrushCanvasControlsComponent() {
@@ -11731,63 +11825,64 @@ var BrushCanvasControlsComponent = function (_SpritesCanvasControl) {
   };
 
   return BrushCanvasControlsComponent;
-}(_spritesCanvasControlsComponent2.default);
+}(_spritesCanvasControlsComponent2.default));
 
-exports.default = BrushCanvasControlsComponent;
+  exports.default = BrushCanvasControlsComponent;
 
 
-BrushCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
+  BrushCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 109 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _colorPickerComponent = __webpack_require__(37);
+let _colorPickerComponent = __webpack_require__(37);
 
-var _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
+let _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
 
-var _presetPreviewItemComponent = __webpack_require__(111);
+let _presetPreviewItemComponent = __webpack_require__(111);
 
-var _presetPreviewItemComponent2 = _interopRequireDefault(_presetPreviewItemComponent);
+let _presetPreviewItemComponent2 = _interopRequireDefault(_presetPreviewItemComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -11804,7 +11899,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushControlsComponent = function (_ControlsComponent) {
+let BrushControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(BrushControlsComponent, _ControlsComponent);
 
   function BrushControlsComponent() {
@@ -12039,51 +12134,52 @@ var BrushControlsComponent = function (_ControlsComponent) {
   };
 
   return BrushControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = BrushControlsComponent;
+  exports.default = BrushControlsComponent;
 
 
-BrushControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  BrushControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 110 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _brushControlsComponent = __webpack_require__(109);
+let _brushControlsComponent = __webpack_require__(109);
 
-var _brushControlsComponent2 = _interopRequireDefault(_brushControlsComponent);
+let _brushControlsComponent2 = _interopRequireDefault(_brushControlsComponent);
 
-var _brushCanvasControlsComponent = __webpack_require__(108);
+let _brushCanvasControlsComponent = __webpack_require__(108);
 
-var _brushCanvasControlsComponent2 = _interopRequireDefault(_brushCanvasControlsComponent);
+let _brushCanvasControlsComponent2 = _interopRequireDefault(_brushCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The brush controls
@@ -12105,7 +12201,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushControls = function (_Controls) {
+let BrushControls = (function (_Controls) {
   (0, _inherits3.default)(BrushControls, _Controls);
 
   function BrushControls() {
@@ -12195,7 +12291,7 @@ var BrushControls = function (_Controls) {
   };
 
   return BrushControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -12204,7 +12300,7 @@ var BrushControls = function (_Controls) {
  */
 
 
-BrushControls.controlsComponent = _brushControlsComponent2.default;
+  BrushControls.controlsComponent = _brushControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -12212,67 +12308,68 @@ BrushControls.controlsComponent = _brushControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-BrushControls.canvasControlsComponent = _brushCanvasControlsComponent2.default;
+  BrushControls.canvasControlsComponent = _brushCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-BrushControls.identifier = 'brush';
+  BrushControls.identifier = 'brush';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-BrushControls.iconPath = 'controls/overview/brush.png';
+  BrushControls.iconPath = 'controls/overview/brush.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-BrushControls.languageKey = 'controls.overview.brush';
+  BrushControls.languageKey = 'controls.overview.brush';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-BrushControls.defaultOptions = {
-  thicknessPresets: []
+  BrushControls.defaultOptions = {
+  thicknessPresets: [],
 };
 
-exports.default = BrushControls;
+  exports.default = BrushControls;
 
-/***/ },
+/** *
+/ },
 /* 111 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PresetPreviewItemComponent = function (_BaseComponent) {
+let PresetPreviewItemComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(PresetPreviewItemComponent, _BaseComponent);
 
   function PresetPreviewItemComponent() {
@@ -12364,7 +12461,7 @@ var PresetPreviewItemComponent = function (_BaseComponent) {
   };
 
   return PresetPreviewItemComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -12379,47 +12476,48 @@ var PresetPreviewItemComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = PresetPreviewItemComponent;
+  exports.default = PresetPreviewItemComponent;
 
 
-PresetPreviewItemComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  PresetPreviewItemComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 112 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-var _canvasControlsComponent = __webpack_require__(24);
+let _canvasControlsComponent = __webpack_require__(24);
 
-var _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
+let _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MIN_DIMENSIONS = new _globals.Vector2(50, 50); /** @jsx ReactBEM.createElement **/
+let MIN_DIMENSIONS = new _globals.Vector2(50, 50); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -12434,7 +12532,7 @@ var MIN_DIMENSIONS = new _globals.Vector2(50, 50); /** @jsx ReactBEM.createEleme
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var StraightenCanvasControlsComponent = function (_CanvasControlsCompon) {
+let StraightenCanvasControlsComponent = (function (_CanvasControlsCompon) {
   (0, _inherits3.default)(StraightenCanvasControlsComponent, _CanvasControlsCompon);
 
   function StraightenCanvasControlsComponent() {
@@ -12791,51 +12889,52 @@ var StraightenCanvasControlsComponent = function (_CanvasControlsCompon) {
   };
 
   return StraightenCanvasControlsComponent;
-}(_canvasControlsComponent2.default);
+}(_canvasControlsComponent2.default));
 
-exports.default = StraightenCanvasControlsComponent;
+  exports.default = StraightenCanvasControlsComponent;
 
 
-StraightenCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
+  StraightenCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 113 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderOverlayComponent = __webpack_require__(20);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -12852,7 +12951,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var StraightenControlsComponent = function (_ControlsComponent) {
+let StraightenControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(StraightenControlsComponent, _ControlsComponent);
 
   function StraightenControlsComponent() {
@@ -13274,47 +13373,48 @@ var StraightenControlsComponent = function (_ControlsComponent) {
   };
 
   return StraightenControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = StraightenControlsComponent;
+  exports.default = StraightenControlsComponent;
 
 
-StraightenControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  StraightenControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 114 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _topBarComponent = __webpack_require__(31);
+let _topBarComponent = __webpack_require__(31);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -13331,7 +13431,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var CropTopBarComponent = function (_TopBarComponent) {
+let CropTopBarComponent = (function (_TopBarComponent) {
   (0, _inherits3.default)(CropTopBarComponent, _TopBarComponent);
 
   function CropTopBarComponent() {
@@ -13462,55 +13562,56 @@ var CropTopBarComponent = function (_TopBarComponent) {
   };
 
   return CropTopBarComponent;
-}(_topBarComponent2.default);
+}(_topBarComponent2.default));
 
-exports.default = CropTopBarComponent;
+  exports.default = CropTopBarComponent;
 
 
-CropTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
+  CropTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 115 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _cropControlsComponent = __webpack_require__(113);
+let _cropControlsComponent = __webpack_require__(113);
 
-var _cropControlsComponent2 = _interopRequireDefault(_cropControlsComponent);
+let _cropControlsComponent2 = _interopRequireDefault(_cropControlsComponent);
 
-var _cropCanvasControlsComponent = __webpack_require__(112);
+let _cropCanvasControlsComponent = __webpack_require__(112);
 
-var _cropCanvasControlsComponent2 = _interopRequireDefault(_cropCanvasControlsComponent);
+let _cropCanvasControlsComponent2 = _interopRequireDefault(_cropCanvasControlsComponent);
 
-var _cropTopBarComponent = __webpack_require__(114);
+let _cropTopBarComponent = __webpack_require__(114);
 
-var _cropTopBarComponent2 = _interopRequireDefault(_cropTopBarComponent);
+let _cropTopBarComponent2 = _interopRequireDefault(_cropTopBarComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The crop controls
@@ -13518,7 +13619,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @extends PhotoEditorSDK.UI.ReactUI.Control
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
-var CropControls = function (_Controls) {
+let CropControls = (function (_Controls) {
   (0, _inherits3.default)(CropControls, _Controls);
 
   function CropControls() {
@@ -13631,7 +13732,7 @@ var CropControls = function (_Controls) {
   };
 
   return CropControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's top bar component. Used for the upper part of the editor.
@@ -13651,14 +13752,14 @@ var CropControls = function (_Controls) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-CropControls.topBarControlsComponent = _cropTopBarComponent2.default;
+  CropControls.topBarControlsComponent = _cropTopBarComponent2.default;
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-CropControls.controlsComponent = _cropControlsComponent2.default;
+  CropControls.controlsComponent = _cropControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -13666,28 +13767,28 @@ CropControls.controlsComponent = _cropControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-CropControls.canvasControlsComponent = _cropCanvasControlsComponent2.default;
+  CropControls.canvasControlsComponent = _cropCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-CropControls.identifier = 'crop';
+  CropControls.identifier = 'crop';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-CropControls.iconPath = 'controls/overview/crop.png';
+  CropControls.iconPath = 'controls/overview/crop.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-CropControls.languageKey = 'controls.overview.crop';
+  CropControls.languageKey = 'controls.overview.crop';
 
 /**
  * The default options for this control
@@ -13696,60 +13797,61 @@ CropControls.languageKey = 'controls.overview.crop';
  * @property {Boolean} [replaceRatios = false]
  * @property {String[]} [availableRatios = null]
  */
-CropControls.defaultOptions = {};
+  CropControls.defaultOptions = {};
 
-exports.default = CropControls;
+  exports.default = CropControls;
 
-/***/ },
+/** *
+/ },
 /* 116 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _categoryDropdownComponent = __webpack_require__(62);
+let _categoryDropdownComponent = __webpack_require__(62);
 
-var _categoryDropdownComponent2 = _interopRequireDefault(_categoryDropdownComponent);
+let _categoryDropdownComponent2 = _interopRequireDefault(_categoryDropdownComponent);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderOverlayComponent = __webpack_require__(20);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
 
-var _filterManager = __webpack_require__(42);
+let _filterManager = __webpack_require__(42);
 
-var _filterManager2 = _interopRequireDefault(_filterManager);
+let _filterManager2 = _interopRequireDefault(_filterManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -13766,7 +13868,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FilterControlsComponent = function (_ControlsComponent) {
+let FilterControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(FilterControlsComponent, _ControlsComponent);
 
   function FilterControlsComponent() {
@@ -14028,51 +14130,52 @@ var FilterControlsComponent = function (_ControlsComponent) {
   };
 
   return FilterControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = FilterControlsComponent;
+  exports.default = FilterControlsComponent;
 
 
-FilterControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  FilterControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 117 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _filterControlsComponent = __webpack_require__(116);
+let _filterControlsComponent = __webpack_require__(116);
 
-var _filterControlsComponent2 = _interopRequireDefault(_filterControlsComponent);
+let _filterControlsComponent2 = _interopRequireDefault(_filterControlsComponent);
 
-var _filterManager = __webpack_require__(42);
+let _filterManager = __webpack_require__(42);
 
-var _filterManager2 = _interopRequireDefault(_filterManager);
+let _filterManager2 = _interopRequireDefault(_filterManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The filters controls
@@ -14094,7 +14197,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FiltersControls = function (_Controls) {
+let FiltersControls = (function (_Controls) {
   (0, _inherits3.default)(FiltersControls, _Controls);
 
   function FiltersControls() {
@@ -14157,7 +14260,7 @@ var FiltersControls = function (_Controls) {
   };
 
   return FiltersControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -14166,28 +14269,28 @@ var FiltersControls = function (_Controls) {
  */
 
 
-FiltersControls.controlsComponent = _filterControlsComponent2.default;
+  FiltersControls.controlsComponent = _filterControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-FiltersControls.identifier = 'filter';
+  FiltersControls.identifier = 'filter';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-FiltersControls.iconPath = 'controls/overview/filters.png';
+  FiltersControls.iconPath = 'controls/overview/filters.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-FiltersControls.languageKey = 'controls.overview.filters';
+  FiltersControls.languageKey = 'controls.overview.filters';
 
 /**
  * The default options for this control
@@ -14196,59 +14299,60 @@ FiltersControls.languageKey = 'controls.overview.filters';
  * @property {Boolean} [replaceCategories = false]
  * @property {String[]} [selectableFilters = null]
  */
-FiltersControls.defaultOptions = {
+  FiltersControls.defaultOptions = {
   categories: [],
   replaceCategories: false,
   selectableFilters: null,
-  hideCategories: false
+  hideCategories: false,
 };
 
-exports.default = FiltersControls;
+  exports.default = FiltersControls;
 
-/***/ },
+/** *
+/ },
 /* 118 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _radialFocus = __webpack_require__(123);
+let _radialFocus = __webpack_require__(123);
 
-var _radialFocus2 = _interopRequireDefault(_radialFocus);
+let _radialFocus2 = _interopRequireDefault(_radialFocus);
 
-var _linearFocus = __webpack_require__(120);
+let _linearFocus = __webpack_require__(120);
 
-var _linearFocus2 = _interopRequireDefault(_linearFocus);
+let _linearFocus2 = _interopRequireDefault(_linearFocus);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ITEMS = [_radialFocus2.default, _linearFocus2.default]; /** @jsx ReactBEM.createElement **/
+let ITEMS = [_radialFocus2.default, _linearFocus2.default]; /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -14263,7 +14367,7 @@ var ITEMS = [_radialFocus2.default, _linearFocus2.default]; /** @jsx ReactBEM.cr
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FocusControlsComponent = function (_ControlsComponent) {
+let FocusControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(FocusControlsComponent, _ControlsComponent);
 
   function FocusControlsComponent() {
@@ -14346,45 +14450,46 @@ var FocusControlsComponent = function (_ControlsComponent) {
   };
 
   return FocusControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = FocusControlsComponent;
+  exports.default = FocusControlsComponent;
 
 
-FocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  FocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 119 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _focusControlsComponent = __webpack_require__(118);
+let _focusControlsComponent = __webpack_require__(118);
 
-var _focusControlsComponent2 = _interopRequireDefault(_focusControlsComponent);
+let _focusControlsComponent2 = _interopRequireDefault(_focusControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The focus controls
@@ -14406,7 +14511,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FocusControls = function (_Controls) {
+let FocusControls = (function (_Controls) {
   (0, _inherits3.default)(FocusControls, _Controls);
 
   function FocusControls() {
@@ -14458,7 +14563,7 @@ var FocusControls = function (_Controls) {
   };
 
   return FocusControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -14467,75 +14572,76 @@ var FocusControls = function (_Controls) {
  */
 
 
-FocusControls.controlsComponent = _focusControlsComponent2.default;
+  FocusControls.controlsComponent = _focusControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-FocusControls.identifier = 'focus';
+  FocusControls.identifier = 'focus';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-FocusControls.iconPath = 'controls/overview/focus.png';
+  FocusControls.iconPath = 'controls/overview/focus.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-FocusControls.languageKey = 'controls.overview.focus';
+  FocusControls.languageKey = 'controls.overview.focus';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-FocusControls.defaultOptions = {};
+  FocusControls.defaultOptions = {};
 
-exports.default = FocusControls;
+  exports.default = FocusControls;
 
-/***/ },
+/** *
+/ },
 /* 120 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _linearFocusControlsComponent = __webpack_require__(122);
+let _linearFocusControlsComponent = __webpack_require__(122);
 
-var _linearFocusControlsComponent2 = _interopRequireDefault(_linearFocusControlsComponent);
+let _linearFocusControlsComponent2 = _interopRequireDefault(_linearFocusControlsComponent);
 
-var _linearFocusCanvasControlsComponent = __webpack_require__(121);
+let _linearFocusCanvasControlsComponent = __webpack_require__(121);
 
-var _linearFocusCanvasControlsComponent2 = _interopRequireDefault(_linearFocusCanvasControlsComponent);
+let _linearFocusCanvasControlsComponent2 = _interopRequireDefault(_linearFocusCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The radial blur controls
@@ -14557,7 +14663,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var LinearFocusControls = function (_Controls) {
+let LinearFocusControls = (function (_Controls) {
   (0, _inherits3.default)(LinearFocusControls, _Controls);
 
   function LinearFocusControls() {
@@ -14609,7 +14715,7 @@ var LinearFocusControls = function (_Controls) {
   };
 
   return LinearFocusControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -14618,7 +14724,7 @@ var LinearFocusControls = function (_Controls) {
  */
 
 
-LinearFocusControls.controlsComponent = _linearFocusControlsComponent2.default;
+  LinearFocusControls.controlsComponent = _linearFocusControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -14626,73 +14732,74 @@ LinearFocusControls.controlsComponent = _linearFocusControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-LinearFocusControls.canvasControlsComponent = _linearFocusCanvasControlsComponent2.default;
+  LinearFocusControls.canvasControlsComponent = _linearFocusCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-LinearFocusControls.identifier = 'linear-focus';
+  LinearFocusControls.identifier = 'linear-focus';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-LinearFocusControls.iconPath = 'controls/focus/linear.png';
+  LinearFocusControls.iconPath = 'controls/focus/linear.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-LinearFocusControls.languageKey = 'controls.focus.linear';
+  LinearFocusControls.languageKey = 'controls.focus.linear';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-LinearFocusControls.defaultOptions = {};
+  LinearFocusControls.defaultOptions = {};
 
-exports.default = LinearFocusControls;
+  exports.default = LinearFocusControls;
 
-/***/ },
+/** *
+/ },
 /* 121 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-var _canvasControlsComponent = __webpack_require__(24);
+let _canvasControlsComponent = __webpack_require__(24);
 
-var _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
+let _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LinearFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
+let LinearFocusCanvasControlsComponent = (function (_CanvasControlsCompon) {
   (0, _inherits3.default)(LinearFocusCanvasControlsComponent, _CanvasControlsCompon);
 
   function LinearFocusCanvasControlsComponent() {
@@ -14974,7 +15081,7 @@ var LinearFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
   };
 
   return LinearFocusCanvasControlsComponent;
-}(_canvasControlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_canvasControlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -14989,51 +15096,52 @@ var LinearFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = LinearFocusCanvasControlsComponent;
+  exports.default = LinearFocusCanvasControlsComponent;
 
 
-LinearFocusCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
+  LinearFocusCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 122 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LinearFocusControlsComponent = function (_ControlsComponent) {
+let LinearFocusControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(LinearFocusControlsComponent, _ControlsComponent);
 
   function LinearFocusControlsComponent() {
@@ -15173,7 +15281,7 @@ var LinearFocusControlsComponent = function (_ControlsComponent) {
   };
 
   return LinearFocusControlsComponent;
-}(_controlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_controlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -15188,47 +15296,48 @@ var LinearFocusControlsComponent = function (_ControlsComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = LinearFocusControlsComponent;
+  exports.default = LinearFocusControlsComponent;
 
 
-LinearFocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  LinearFocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 123 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _radialFocusControlsComponent = __webpack_require__(125);
+let _radialFocusControlsComponent = __webpack_require__(125);
 
-var _radialFocusControlsComponent2 = _interopRequireDefault(_radialFocusControlsComponent);
+let _radialFocusControlsComponent2 = _interopRequireDefault(_radialFocusControlsComponent);
 
-var _radialFocusCanvasControlsComponent = __webpack_require__(124);
+let _radialFocusCanvasControlsComponent = __webpack_require__(124);
 
-var _radialFocusCanvasControlsComponent2 = _interopRequireDefault(_radialFocusCanvasControlsComponent);
+let _radialFocusCanvasControlsComponent2 = _interopRequireDefault(_radialFocusCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The radial focus controls
@@ -15236,7 +15345,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @extends PhotoEditorSDK.UI.ReactUI.Control
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
-var RadialFocusControls = function (_Controls) {
+let RadialFocusControls = (function (_Controls) {
   (0, _inherits3.default)(RadialFocusControls, _Controls);
 
   function RadialFocusControls() {
@@ -15281,7 +15390,7 @@ var RadialFocusControls = function (_Controls) {
   };
 
   return RadialFocusControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -15302,7 +15411,7 @@ var RadialFocusControls = function (_Controls) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-RadialFocusControls.controlsComponent = _radialFocusControlsComponent2.default;
+  RadialFocusControls.controlsComponent = _radialFocusControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -15310,73 +15419,74 @@ RadialFocusControls.controlsComponent = _radialFocusControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-RadialFocusControls.canvasControlsComponent = _radialFocusCanvasControlsComponent2.default;
+  RadialFocusControls.canvasControlsComponent = _radialFocusCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-RadialFocusControls.identifier = 'radial-focus';
+  RadialFocusControls.identifier = 'radial-focus';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-RadialFocusControls.iconPath = 'controls/focus/radial.png';
+  RadialFocusControls.iconPath = 'controls/focus/radial.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-RadialFocusControls.languageKey = 'controls.focus.radial';
+  RadialFocusControls.languageKey = 'controls.focus.radial';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-RadialFocusControls.defaultOptions = {};
+  RadialFocusControls.defaultOptions = {};
 
-exports.default = RadialFocusControls;
+  exports.default = RadialFocusControls;
 
-/***/ },
+/** *
+/ },
 /* 124 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-var _canvasControlsComponent = __webpack_require__(24);
+let _canvasControlsComponent = __webpack_require__(24);
 
-var _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
+let _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var RadialFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
+let RadialFocusCanvasControlsComponent = (function (_CanvasControlsCompon) {
   (0, _inherits3.default)(RadialFocusCanvasControlsComponent, _CanvasControlsCompon);
 
   function RadialFocusCanvasControlsComponent() {
@@ -15649,7 +15759,7 @@ var RadialFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
   };
 
   return RadialFocusCanvasControlsComponent;
-}(_canvasControlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_canvasControlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -15664,51 +15774,52 @@ var RadialFocusCanvasControlsComponent = function (_CanvasControlsCompon) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = RadialFocusCanvasControlsComponent;
+  exports.default = RadialFocusCanvasControlsComponent;
 
 
-RadialFocusCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
+  RadialFocusCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 125 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var RadialFocusControlsComponent = function (_ControlsComponent) {
+let RadialFocusControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(RadialFocusControlsComponent, _ControlsComponent);
 
   function RadialFocusControlsComponent() {
@@ -15849,7 +15960,7 @@ var RadialFocusControlsComponent = function (_ControlsComponent) {
   };
 
   return RadialFocusControlsComponent;
-}(_controlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_controlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -15864,43 +15975,44 @@ var RadialFocusControlsComponent = function (_ControlsComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = RadialFocusControlsComponent;
+  exports.default = RadialFocusControlsComponent;
 
 
-RadialFocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  RadialFocusControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 126 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _extends2 = __webpack_require__(25);
+let _extends2 = __webpack_require__(25);
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MiniSliderComponent = function (_BaseComponent) {
+let MiniSliderComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(MiniSliderComponent, _BaseComponent);
 
   function MiniSliderComponent() {
@@ -16044,7 +16156,7 @@ var MiniSliderComponent = function (_BaseComponent) {
   };
 
   return MiniSliderComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -16060,51 +16172,52 @@ var MiniSliderComponent = function (_BaseComponent) {
  */
 
 
-exports.default = MiniSliderComponent;
+  exports.default = MiniSliderComponent;
 
 
-MiniSliderComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  MiniSliderComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 127 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _topBarComponent = __webpack_require__(131);
+let _topBarComponent = __webpack_require__(131);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-var _overviewControlsComponent = __webpack_require__(63);
+let _overviewControlsComponent = __webpack_require__(63);
 
-var _overviewControlsComponent2 = _interopRequireDefault(_overviewControlsComponent);
+let _overviewControlsComponent2 = _interopRequireDefault(_overviewControlsComponent);
 
-var _overviewCanvasControlsComponent = __webpack_require__(128);
+let _overviewCanvasControlsComponent = __webpack_require__(128);
 
-var _overviewCanvasControlsComponent2 = _interopRequireDefault(_overviewCanvasControlsComponent);
+let _overviewCanvasControlsComponent2 = _interopRequireDefault(_overviewCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -16120,7 +16233,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var OverviewControls = function (_Controls) {
+let OverviewControls = (function (_Controls) {
   (0, _inherits3.default)(OverviewControls, _Controls);
 
   function OverviewControls() {
@@ -16129,7 +16242,7 @@ var OverviewControls = function (_Controls) {
   }
 
   return OverviewControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's top bar controls component. Used for the sub-header part of the editor.
@@ -16138,14 +16251,14 @@ var OverviewControls = function (_Controls) {
  */
 
 
-OverviewControls.topBarControlsComponent = _topBarComponent2.default;
+  OverviewControls.topBarControlsComponent = _topBarComponent2.default;
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-OverviewControls.controlsComponent = _overviewControlsComponent2.default;
+  OverviewControls.controlsComponent = _overviewControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -16153,40 +16266,41 @@ OverviewControls.controlsComponent = _overviewControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-OverviewControls.canvasControlsComponent = _overviewCanvasControlsComponent2.default;
+  OverviewControls.canvasControlsComponent = _overviewCanvasControlsComponent2.default;
 
-exports.default = OverviewControls;
+  exports.default = OverviewControls;
 
-/***/ },
+/** *
+/ },
 /* 128 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _canvasControlsComponent = __webpack_require__(24);
+let _canvasControlsComponent = __webpack_require__(24);
 
-var _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
+let _canvasControlsComponent2 = _interopRequireDefault(_canvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -16203,7 +16317,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var OverviewCanvasControlsComponent = function (_CanvasControlsCompon) {
+let OverviewCanvasControlsComponent = (function (_CanvasControlsCompon) {
   (0, _inherits3.default)(OverviewCanvasControlsComponent, _CanvasControlsCompon);
 
   function OverviewCanvasControlsComponent() {
@@ -16284,49 +16398,50 @@ var OverviewCanvasControlsComponent = function (_CanvasControlsCompon) {
   };
 
   return OverviewCanvasControlsComponent;
-}(_canvasControlsComponent2.default);
+}(_canvasControlsComponent2.default));
 
-exports.default = OverviewCanvasControlsComponent;
+  exports.default = OverviewCanvasControlsComponent;
 
 
-OverviewCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
+  OverviewCanvasControlsComponent.contextTypes = _canvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 129 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _buttonComponent = __webpack_require__(41);
+let _buttonComponent = __webpack_require__(41);
 
-var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
+let _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ExportButtonComponent = function (_BaseComponent) {
+let ExportButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ExportButtonComponent, _BaseComponent);
 
   function ExportButtonComponent() {
@@ -16393,7 +16508,7 @@ var ExportButtonComponent = function (_BaseComponent) {
   };
 
   return ExportButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -16408,47 +16523,48 @@ var ExportButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ExportButtonComponent;
+  exports.default = ExportButtonComponent;
 
 
-ExportButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ExportButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 130 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _buttonComponent = __webpack_require__(41);
+let _buttonComponent = __webpack_require__(41);
 
-var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
+let _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-var _invisibleUploadComponent = __webpack_require__(40);
+let _invisibleUploadComponent = __webpack_require__(40);
 
-var _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
+let _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NewFileButtonComponent = function (_BaseComponent) {
+let NewFileButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(NewFileButtonComponent, _BaseComponent);
 
   function NewFileButtonComponent() {
@@ -16531,7 +16647,7 @@ var NewFileButtonComponent = function (_BaseComponent) {
   };
 
   return NewFileButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -16546,57 +16662,58 @@ var NewFileButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = NewFileButtonComponent;
+  exports.default = NewFileButtonComponent;
 
 
-NewFileButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  NewFileButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 131 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _topBarComponent = __webpack_require__(31);
+let _topBarComponent = __webpack_require__(31);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-var _newFileButtonComponent = __webpack_require__(130);
+let _newFileButtonComponent = __webpack_require__(130);
 
-var _newFileButtonComponent2 = _interopRequireDefault(_newFileButtonComponent);
+let _newFileButtonComponent2 = _interopRequireDefault(_newFileButtonComponent);
 
-var _exportButtonComponent = __webpack_require__(129);
+let _exportButtonComponent = __webpack_require__(129);
 
-var _exportButtonComponent2 = _interopRequireDefault(_exportButtonComponent);
+let _exportButtonComponent2 = _interopRequireDefault(_exportButtonComponent);
 
-var _undoButtonComponent = __webpack_require__(132);
+let _undoButtonComponent = __webpack_require__(132);
 
-var _undoButtonComponent2 = _interopRequireDefault(_undoButtonComponent);
+let _undoButtonComponent2 = _interopRequireDefault(_undoButtonComponent);
 
-var _zoomComponent = __webpack_require__(133);
+let _zoomComponent = __webpack_require__(133);
 
-var _zoomComponent2 = _interopRequireDefault(_zoomComponent);
+let _zoomComponent2 = _interopRequireDefault(_zoomComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -16613,7 +16730,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var OverviewTopBarComponent = function (_TopBarComponent) {
+let OverviewTopBarComponent = (function (_TopBarComponent) {
   (0, _inherits3.default)(OverviewTopBarComponent, _TopBarComponent);
 
   function OverviewTopBarComponent() {
@@ -16655,47 +16772,48 @@ var OverviewTopBarComponent = function (_TopBarComponent) {
   };
 
   return OverviewTopBarComponent;
-}(_topBarComponent2.default);
+}(_topBarComponent2.default));
 
-exports.default = OverviewTopBarComponent;
+  exports.default = OverviewTopBarComponent;
 
 
-OverviewTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
+  OverviewTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 132 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _buttonComponent = __webpack_require__(41);
+let _buttonComponent = __webpack_require__(41);
 
-var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
+let _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -16712,7 +16830,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var UndoButtonComponent = function (_BaseComponent) {
+let UndoButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(UndoButtonComponent, _BaseComponent);
 
   function UndoButtonComponent() {
@@ -16786,45 +16904,46 @@ var UndoButtonComponent = function (_BaseComponent) {
   };
 
   return UndoButtonComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = UndoButtonComponent;
+  exports.default = UndoButtonComponent;
 
 
-UndoButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  UndoButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 133 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ZoomComponent = function (_BaseComponent) {
+let ZoomComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ZoomComponent, _BaseComponent);
 
   function ZoomComponent() {
@@ -16944,7 +17063,7 @@ var ZoomComponent = function (_BaseComponent) {
   };
 
   return ZoomComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -16959,47 +17078,48 @@ var ZoomComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ZoomComponent;
+  exports.default = ZoomComponent;
 
 
-ZoomComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ZoomComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 134 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _selectiveBlurControlsComponent = __webpack_require__(136);
+let _selectiveBlurControlsComponent = __webpack_require__(136);
 
-var _selectiveBlurControlsComponent2 = _interopRequireDefault(_selectiveBlurControlsComponent);
+let _selectiveBlurControlsComponent2 = _interopRequireDefault(_selectiveBlurControlsComponent);
 
-var _selectiveBlurCanvasControlsComponent = __webpack_require__(135);
+let _selectiveBlurCanvasControlsComponent = __webpack_require__(135);
 
-var _selectiveBlurCanvasControlsComponent2 = _interopRequireDefault(_selectiveBlurCanvasControlsComponent);
+let _selectiveBlurCanvasControlsComponent2 = _interopRequireDefault(_selectiveBlurCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The selective blur controls
@@ -17007,7 +17127,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @extends PhotoEditorSDK.UI.ReactUI.Control
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
-var SelectiveBlurControls = function (_Controls) {
+let SelectiveBlurControls = (function (_Controls) {
   (0, _inherits3.default)(SelectiveBlurControls, _Controls);
 
   function SelectiveBlurControls() {
@@ -17083,7 +17203,7 @@ var SelectiveBlurControls = function (_Controls) {
   };
 
   return SelectiveBlurControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -17104,7 +17224,7 @@ var SelectiveBlurControls = function (_Controls) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-SelectiveBlurControls.controlsComponent = _selectiveBlurControlsComponent2.default;
+  SelectiveBlurControls.controlsComponent = _selectiveBlurControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -17112,71 +17232,72 @@ SelectiveBlurControls.controlsComponent = _selectiveBlurControlsComponent2.defau
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-SelectiveBlurControls.canvasControlsComponent = _selectiveBlurCanvasControlsComponent2.default;
+  SelectiveBlurControls.canvasControlsComponent = _selectiveBlurCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-SelectiveBlurControls.identifier = 'selective-blur';
+  SelectiveBlurControls.identifier = 'selective-blur';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-SelectiveBlurControls.iconPath = 'controls/overview/selective-blur.png';
+  SelectiveBlurControls.iconPath = 'controls/overview/selective-blur.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-SelectiveBlurControls.languageKey = 'controls.overview.selective-blur';
+  SelectiveBlurControls.languageKey = 'controls.overview.selective-blur';
 
 /**
  * The default options for this control
  * @type {Object}
  */
-SelectiveBlurControls.defaultOptions = {};
+  SelectiveBlurControls.defaultOptions = {};
 
-exports.default = SelectiveBlurControls;
+  exports.default = SelectiveBlurControls;
 
-/***/ },
+/** *
+/ },
 /* 135 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _spritesCanvasControlsComponent = __webpack_require__(30);
+let _spritesCanvasControlsComponent = __webpack_require__(30);
 
-var _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
+let _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -17193,7 +17314,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushCanvasControlsComponent = function (_SpritesCanvasControl) {
+let BrushCanvasControlsComponent = (function (_SpritesCanvasControl) {
   (0, _inherits3.default)(BrushCanvasControlsComponent, _SpritesCanvasControl);
 
   function BrushCanvasControlsComponent() {
@@ -17520,55 +17641,56 @@ var BrushCanvasControlsComponent = function (_SpritesCanvasControl) {
   };
 
   return BrushCanvasControlsComponent;
-}(_spritesCanvasControlsComponent2.default);
+}(_spritesCanvasControlsComponent2.default));
 
-exports.default = BrushCanvasControlsComponent;
+  exports.default = BrushCanvasControlsComponent;
 
 
-BrushCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
+  BrushCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 136 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _sliderComponent = __webpack_require__(14);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderOverlayComponent = __webpack_require__(20);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -17585,7 +17707,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushControlsComponent = function (_ControlsComponent) {
+let BrushControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(BrushControlsComponent, _ControlsComponent);
 
   function BrushControlsComponent() {
@@ -17768,43 +17890,44 @@ var BrushControlsComponent = function (_ControlsComponent) {
   };
 
   return BrushControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = BrushControlsComponent;
+  exports.default = BrushControlsComponent;
 
 
-BrushControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  BrushControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 137 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _itemComponent = __webpack_require__(38);
+let _itemComponent = __webpack_require__(38);
 
-var _itemComponent2 = _interopRequireDefault(_itemComponent);
+let _itemComponent2 = _interopRequireDefault(_itemComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -17821,7 +17944,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var BrushItemComponent = function (_ItemComponent) {
+let BrushItemComponent = (function (_ItemComponent) {
   (0, _inherits3.default)(BrushItemComponent, _ItemComponent);
 
   function BrushItemComponent() {
@@ -17909,49 +18032,50 @@ var BrushItemComponent = function (_ItemComponent) {
   };
 
   return BrushItemComponent;
-}(_itemComponent2.default);
+}(_itemComponent2.default));
 
-exports.default = BrushItemComponent;
+  exports.default = BrushItemComponent;
 
 
-BrushItemComponent.contextTypes = _itemComponent2.default.contextTypes;
+  BrushItemComponent.contextTypes = _itemComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 138 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-var _itemComponent = __webpack_require__(38);
+let _itemComponent = __webpack_require__(38);
 
-var _itemComponent2 = _interopRequireDefault(_itemComponent);
+let _itemComponent2 = _interopRequireDefault(_itemComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerItemComponent = function (_ItemComponent) {
+let StickerItemComponent = (function (_ItemComponent) {
   (0, _inherits3.default)(StickerItemComponent, _ItemComponent);
 
   function StickerItemComponent() {
@@ -18458,7 +18582,7 @@ var StickerItemComponent = function (_ItemComponent) {
   };
 
   return StickerItemComponent;
-}(_itemComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_itemComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -18473,47 +18597,48 @@ var StickerItemComponent = function (_ItemComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = StickerItemComponent;
+  exports.default = StickerItemComponent;
 
 
-StickerItemComponent.contextTypes = _itemComponent2.default.contextTypes;
+  StickerItemComponent.contextTypes = _itemComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 139 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _draggableComponent = __webpack_require__(11);
+let _draggableComponent = __webpack_require__(11);
 
-var _draggableComponent2 = _interopRequireDefault(_draggableComponent);
+let _draggableComponent2 = _interopRequireDefault(_draggableComponent);
 
-var _itemComponent = __webpack_require__(38);
+let _itemComponent = __webpack_require__(38);
 
-var _itemComponent2 = _interopRequireDefault(_itemComponent);
+let _itemComponent2 = _interopRequireDefault(_itemComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextItemComponent = function (_ItemComponent) {
+let TextItemComponent = (function (_ItemComponent) {
   (0, _inherits3.default)(TextItemComponent, _ItemComponent);
 
   function TextItemComponent() {
@@ -18961,7 +19086,7 @@ var TextItemComponent = function (_ItemComponent) {
   };
 
   return TextItemComponent;
-}(_itemComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_itemComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -18976,51 +19101,52 @@ var TextItemComponent = function (_ItemComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TextItemComponent;
+  exports.default = TextItemComponent;
 
 
-TextItemComponent.contextTypes = _itemComponent2.default.contextTypes;
+  TextItemComponent.contextTypes = _itemComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 140 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _stickerControlsComponent = __webpack_require__(142);
+let _stickerControlsComponent = __webpack_require__(142);
 
-var _stickerControlsComponent2 = _interopRequireDefault(_stickerControlsComponent);
+let _stickerControlsComponent2 = _interopRequireDefault(_stickerControlsComponent);
 
-var _stickerCanvasControlsComponent = __webpack_require__(141);
+let _stickerCanvasControlsComponent = __webpack_require__(141);
 
-var _stickerCanvasControlsComponent2 = _interopRequireDefault(_stickerCanvasControlsComponent);
+let _stickerCanvasControlsComponent2 = _interopRequireDefault(_stickerCanvasControlsComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Sticker = _globals.SDK.Operations.SpriteOperation.Sticker; /*
+let Sticker = _globals.SDK.Operations.SpriteOperation.Sticker; /*
                                                                 * This file is part of PhotoEditorSDK.
                                                                 *
                                                                 * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -19040,7 +19166,7 @@ var Sticker = _globals.SDK.Operations.SpriteOperation.Sticker; /*
  * @extends PhotoEditorSDK.UI.ReactUI.Control
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
-var StickerControls = function (_Controls) {
+let StickerControls = (function (_Controls) {
   (0, _inherits3.default)(StickerControls, _Controls);
 
   function StickerControls() {
@@ -19134,7 +19260,7 @@ var StickerControls = function (_Controls) {
   };
 
   return StickerControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -19143,7 +19269,7 @@ var StickerControls = function (_Controls) {
  */
 
 
-StickerControls.controlsComponent = _stickerControlsComponent2.default;
+  StickerControls.controlsComponent = _stickerControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -19151,28 +19277,28 @@ StickerControls.controlsComponent = _stickerControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-StickerControls.canvasControlsComponent = _stickerCanvasControlsComponent2.default;
+  StickerControls.canvasControlsComponent = _stickerCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-StickerControls.identifier = 'sticker';
+  StickerControls.identifier = 'sticker';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-StickerControls.iconPath = 'controls/overview/sticker.png';
+  StickerControls.iconPath = 'controls/overview/sticker.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-StickerControls.languageKey = 'controls.overview.sticker';
+  StickerControls.languageKey = 'controls.overview.sticker';
 
 /**
  * The default options for this control
@@ -19182,54 +19308,55 @@ StickerControls.languageKey = 'controls.overview.sticker';
  * @property {String[]} [selectableStickers = null]
  * @property {Boolean} [tooltips = false]
  */
-StickerControls.defaultOptions = {
+  StickerControls.defaultOptions = {
   categories: [],
   replaceCategories: false,
   selectableStickers: null,
   tooltips: false,
   hideCategories: false,
   fixedRatio: true,
-  smoothDownscaling: false
+  smoothDownscaling: false,
 };
 
-exports.default = StickerControls;
+  exports.default = StickerControls;
 
-/***/ },
+/** *
+/ },
 /* 141 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _spritesCanvasControlsComponent = __webpack_require__(30);
+let _spritesCanvasControlsComponent = __webpack_require__(30);
 
-var _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
+let _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
 
-var _stickerControlsOverlayComponent = __webpack_require__(143);
+let _stickerControlsOverlayComponent = __webpack_require__(143);
 
-var _stickerControlsOverlayComponent2 = _interopRequireDefault(_stickerControlsOverlayComponent);
+let _stickerControlsOverlayComponent2 = _interopRequireDefault(_stickerControlsOverlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerCanvasControlsComponent = function (_SpritesCanvasControl) {
+let StickerCanvasControlsComponent = (function (_SpritesCanvasControl) {
   (0, _inherits3.default)(StickerCanvasControlsComponent, _SpritesCanvasControl);
 
   function StickerCanvasControlsComponent() {
@@ -19252,7 +19379,7 @@ var StickerCanvasControlsComponent = function (_SpritesCanvasControl) {
   };
 
   return StickerCanvasControlsComponent;
-}(_spritesCanvasControlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_spritesCanvasControlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -19268,67 +19395,68 @@ var StickerCanvasControlsComponent = function (_SpritesCanvasControl) {
  */
 
 
-exports.default = StickerCanvasControlsComponent;
+  exports.default = StickerCanvasControlsComponent;
 
 
-StickerCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
+  StickerCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 142 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _extends2 = __webpack_require__(25);
+let _extends2 = __webpack_require__(25);
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _categoryDropdownComponent = __webpack_require__(62);
+let _categoryDropdownComponent = __webpack_require__(62);
 
-var _categoryDropdownComponent2 = _interopRequireDefault(_categoryDropdownComponent);
+let _categoryDropdownComponent2 = _interopRequireDefault(_categoryDropdownComponent);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _stickerManager = __webpack_require__(70);
+let _stickerManager = __webpack_require__(70);
 
-var _stickerManager2 = _interopRequireDefault(_stickerManager);
+let _stickerManager2 = _interopRequireDefault(_stickerManager);
 
-var _stickerItemComponent = __webpack_require__(144);
+let _stickerItemComponent = __webpack_require__(144);
 
-var _stickerItemComponent2 = _interopRequireDefault(_stickerItemComponent);
+let _stickerItemComponent2 = _interopRequireDefault(_stickerItemComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerOverviewControlsComponent = function (_ControlsComponent) {
+let StickerOverviewControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(StickerOverviewControlsComponent, _ControlsComponent);
 
   function StickerOverviewControlsComponent() {
@@ -19774,7 +19902,7 @@ var StickerOverviewControlsComponent = function (_ControlsComponent) {
   };
 
   return StickerOverviewControlsComponent;
-}(_controlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_controlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -19789,39 +19917,40 @@ var StickerOverviewControlsComponent = function (_ControlsComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = StickerOverviewControlsComponent;
+  exports.default = StickerOverviewControlsComponent;
 
 
-StickerOverviewControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  StickerOverviewControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 143 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerControlsOverlayComponent = function (_BaseComponent) {
+let StickerControlsOverlayComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(StickerControlsOverlayComponent, _BaseComponent);
 
   function StickerControlsOverlayComponent() {
@@ -19916,7 +20045,7 @@ var StickerControlsOverlayComponent = function (_BaseComponent) {
   };
 
   return StickerControlsOverlayComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -19931,39 +20060,40 @@ var StickerControlsOverlayComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = StickerControlsOverlayComponent;
+  exports.default = StickerControlsOverlayComponent;
 
 
-StickerControlsOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  StickerControlsOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 144 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var StickerOverviewControlsComponent = function (_BaseComponent) {
+let StickerOverviewControlsComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(StickerOverviewControlsComponent, _BaseComponent);
 
   function StickerOverviewControlsComponent() {
@@ -20063,7 +20193,7 @@ var StickerOverviewControlsComponent = function (_BaseComponent) {
   };
 
   return StickerOverviewControlsComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -20078,38 +20208,39 @@ var StickerOverviewControlsComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = StickerOverviewControlsComponent;
+  exports.default = StickerOverviewControlsComponent;
 
-/***/ },
+/** *
+/ },
 /* 145 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _fontPreviewComponent = __webpack_require__(64);
+let _fontPreviewComponent = __webpack_require__(64);
 
-var _fontPreviewComponent2 = _interopRequireDefault(_fontPreviewComponent);
+let _fontPreviewComponent2 = _interopRequireDefault(_fontPreviewComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -20126,7 +20257,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FontComponent = function (_BaseComponent) {
+let FontComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(FontComponent, _BaseComponent);
 
   function FontComponent() {
@@ -20213,57 +20344,58 @@ var FontComponent = function (_BaseComponent) {
   };
 
   return FontComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = FontComponent;
+  exports.default = FontComponent;
 
 
-FontComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  FontComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 146 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controls = __webpack_require__(6);
+let _controls = __webpack_require__(6);
 
-var _controls2 = _interopRequireDefault(_controls);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _textCanvasControlsComponent = __webpack_require__(147);
+let _textCanvasControlsComponent = __webpack_require__(147);
 
-var _textCanvasControlsComponent2 = _interopRequireDefault(_textCanvasControlsComponent);
+let _textCanvasControlsComponent2 = _interopRequireDefault(_textCanvasControlsComponent);
 
-var _textControlsComponent = __webpack_require__(148);
+let _textControlsComponent = __webpack_require__(148);
 
-var _textControlsComponent2 = _interopRequireDefault(_textControlsComponent);
+let _textControlsComponent2 = _interopRequireDefault(_textControlsComponent);
 
-var _fontManager = __webpack_require__(190);
+let _fontManager = __webpack_require__(190);
 
-var _fontManager2 = _interopRequireDefault(_fontManager);
+let _fontManager2 = _interopRequireDefault(_fontManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Text = _globals.SDK.Operations.SpriteOperation.Text; /*
+let Text = _globals.SDK.Operations.SpriteOperation.Text; /*
                                                           * This file is part of PhotoEditorSDK.
                                                           *
                                                           * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -20283,7 +20415,7 @@ var Text = _globals.SDK.Operations.SpriteOperation.Text; /*
  * @extends PhotoEditorSDK.UI.ReactUI.Control
  * @memberof PhotoEditorSDK.UI.ReactUI.Controls
  */
-var TextControls = function (_Controls) {
+let TextControls = (function (_Controls) {
   (0, _inherits3.default)(TextControls, _Controls);
 
   function TextControls() {
@@ -20393,7 +20525,7 @@ var TextControls = function (_Controls) {
   };
 
   return TextControls;
-}(_controls2.default);
+}(_controls2.default));
 
 /**
  * This control's controls component. Used for the lower controls part of the editor.
@@ -20402,7 +20534,7 @@ var TextControls = function (_Controls) {
  */
 
 
-TextControls.controlsComponent = _textControlsComponent2.default;
+  TextControls.controlsComponent = _textControlsComponent2.default;
 
 /**
  * This control's canvas component. Used for the upper controls part of the editor (on
@@ -20410,28 +20542,28 @@ TextControls.controlsComponent = _textControlsComponent2.default;
  * @type {PhotoEditorSDK.UI.ReactUI.ControlsComponent}
  * @ignore
  */
-TextControls.canvasControlsComponent = _textCanvasControlsComponent2.default;
+  TextControls.canvasControlsComponent = _textCanvasControlsComponent2.default;
 
 /**
  * This control's identifier
  * @type {String}
  * @default
  */
-TextControls.identifier = 'text';
+  TextControls.identifier = 'text';
 
 /**
  * This control's icon path
  * @type {String}
  * @ignore
  */
-TextControls.iconPath = 'controls/overview/text.png';
+  TextControls.iconPath = 'controls/overview/text.png';
 
 /**
  * The language key that should be used when displaying this filter
  * @type {String}
  * @ignore
  */
-TextControls.languageKey = 'controls.overview.text';
+  TextControls.languageKey = 'controls.overview.text';
 
 /**
  * The default options for this control
@@ -20440,51 +20572,52 @@ TextControls.languageKey = 'controls.overview.text';
  * @property {Boolean} [replaceFonts = false]
  * @property {String[]} [selectableFonts = null]
  */
-TextControls.defaultOptions = {
+  TextControls.defaultOptions = {
   additionalFonts: [],
   replaceFonts: false,
   selectableFonts: null,
-  defaultText: null
+  defaultText: null,
 };
 
-exports.default = TextControls;
+  exports.default = TextControls;
 
-/***/ },
+/** *
+/ },
 /* 147 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _spritesCanvasControlsComponent = __webpack_require__(30);
+let _spritesCanvasControlsComponent = __webpack_require__(30);
 
-var _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
+let _spritesCanvasControlsComponent2 = _interopRequireDefault(_spritesCanvasControlsComponent);
 
-var _textControlsOverlayComponent = __webpack_require__(149);
+let _textControlsOverlayComponent = __webpack_require__(149);
 
-var _textControlsOverlayComponent2 = _interopRequireDefault(_textControlsOverlayComponent);
+let _textControlsOverlayComponent2 = _interopRequireDefault(_textControlsOverlayComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextCanvasControlsComponent = function (_SpritesCanvasControl) {
+let TextCanvasControlsComponent = (function (_SpritesCanvasControl) {
   (0, _inherits3.default)(TextCanvasControlsComponent, _SpritesCanvasControl);
 
   function TextCanvasControlsComponent() {
@@ -20555,7 +20688,7 @@ var TextCanvasControlsComponent = function (_SpritesCanvasControl) {
   };
 
   return TextCanvasControlsComponent;
-}(_spritesCanvasControlsComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_spritesCanvasControlsComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -20571,69 +20704,70 @@ var TextCanvasControlsComponent = function (_SpritesCanvasControl) {
  */
 
 
-exports.default = TextCanvasControlsComponent;
+  exports.default = TextCanvasControlsComponent;
 
 
-TextCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
+  TextCanvasControlsComponent.contextTypes = _spritesCanvasControlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 148 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _controlsComponent = __webpack_require__(5);
+let _controlsComponent = __webpack_require__(5);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _colorPickerComponent = __webpack_require__(37);
+let _colorPickerComponent = __webpack_require__(37);
 
-var _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
+let _colorPickerComponent2 = _interopRequireDefault(_colorPickerComponent);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderOverlayComponent = __webpack_require__(20);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
 
-var _fontPreviewComponent = __webpack_require__(64);
+let _fontPreviewComponent = __webpack_require__(64);
 
-var _fontPreviewComponent2 = _interopRequireDefault(_fontPreviewComponent);
+let _fontPreviewComponent2 = _interopRequireDefault(_fontPreviewComponent);
 
-var _fontComponent = __webpack_require__(145);
+let _fontComponent = __webpack_require__(145);
 
-var _fontComponent2 = _interopRequireDefault(_fontComponent);
+let _fontComponent2 = _interopRequireDefault(_fontComponent);
 
-var _fontLoader = __webpack_require__(185);
+let _fontLoader = __webpack_require__(185);
 
-var _fontLoader2 = _interopRequireDefault(_fontLoader);
+let _fontLoader2 = _interopRequireDefault(_fontLoader);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -20650,9 +20784,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var ALIGNMENTS = ['left', 'center', 'right'];
+let ALIGNMENTS = ['left', 'center', 'right'];
 
-var TextControlsComponent = function (_ControlsComponent) {
+let TextControlsComponent = (function (_ControlsComponent) {
   (0, _inherits3.default)(TextControlsComponent, _ControlsComponent);
 
   function TextControlsComponent() {
@@ -21159,41 +21293,42 @@ var TextControlsComponent = function (_ControlsComponent) {
   };
 
   return TextControlsComponent;
-}(_controlsComponent2.default);
+}(_controlsComponent2.default));
 
-exports.default = TextControlsComponent;
+  exports.default = TextControlsComponent;
 
 
-TextControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
+  TextControlsComponent.contextTypes = _controlsComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 149 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextControlsOverlayComponent = function (_BaseComponent) {
+let TextControlsOverlayComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TextControlsOverlayComponent, _BaseComponent);
 
   function TextControlsOverlayComponent() {
@@ -21291,7 +21426,7 @@ var TextControlsOverlayComponent = function (_BaseComponent) {
   };
 
   return TextControlsOverlayComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21306,39 +21441,40 @@ var TextControlsOverlayComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TextControlsOverlayComponent;
+  exports.default = TextControlsOverlayComponent;
 
 
-TextControlsOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TextControlsOverlayComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 150 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DoneButtonComponent = function (_BaseComponent) {
+let DoneButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(DoneButtonComponent, _BaseComponent);
 
   function DoneButtonComponent() {
@@ -21367,7 +21503,7 @@ var DoneButtonComponent = function (_BaseComponent) {
   };
 
   return DoneButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21382,39 +21518,40 @@ var DoneButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = DoneButtonComponent;
+  exports.default = DoneButtonComponent;
 
 
-DoneButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  DoneButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 151 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var HeaderComponent = function (_BaseComponent) {
+let HeaderComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(HeaderComponent, _BaseComponent);
 
   function HeaderComponent() {
@@ -21469,7 +21606,7 @@ var HeaderComponent = function (_BaseComponent) {
   };
 
   return HeaderComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21485,55 +21622,56 @@ var HeaderComponent = function (_BaseComponent) {
  */
 
 
-exports.default = HeaderComponent;
+  exports.default = HeaderComponent;
 
 
-HeaderComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  HeaderComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 152 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _loadingModalComponent = __webpack_require__(154);
+let _loadingModalComponent = __webpack_require__(154);
 
-var _loadingModalComponent2 = _interopRequireDefault(_loadingModalComponent);
+let _loadingModalComponent2 = _interopRequireDefault(_loadingModalComponent);
 
-var _warningModalComponent = __webpack_require__(156);
+let _warningModalComponent = __webpack_require__(156);
 
-var _warningModalComponent2 = _interopRequireDefault(_warningModalComponent);
+let _warningModalComponent2 = _interopRequireDefault(_warningModalComponent);
 
-var _errorModalComponent = __webpack_require__(153);
+let _errorModalComponent = __webpack_require__(153);
 
-var _errorModalComponent2 = _interopRequireDefault(_errorModalComponent);
+let _errorModalComponent2 = _interopRequireDefault(_errorModalComponent);
 
-var _progressModalComponent = __webpack_require__(155);
+let _progressModalComponent = __webpack_require__(155);
 
-var _progressModalComponent2 = _interopRequireDefault(_progressModalComponent);
+let _progressModalComponent2 = _interopRequireDefault(_progressModalComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ModalContainerComponent = function (_BaseComponent) {
+let ModalContainerComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ModalContainerComponent, _BaseComponent);
 
   function ModalContainerComponent() {
@@ -21648,7 +21786,7 @@ var ModalContainerComponent = function (_BaseComponent) {
   };
 
   return ModalContainerComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21663,39 +21801,40 @@ var ModalContainerComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ModalContainerComponent;
+  exports.default = ModalContainerComponent;
 
 
-ModalContainerComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ModalContainerComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 153 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ErrorModalComponent = function (_BaseComponent) {
+let ErrorModalComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ErrorModalComponent, _BaseComponent);
 
   function ErrorModalComponent() {
@@ -21764,7 +21903,7 @@ var ErrorModalComponent = function (_BaseComponent) {
   };
 
   return ErrorModalComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21779,43 +21918,44 @@ var ErrorModalComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ErrorModalComponent;
+  exports.default = ErrorModalComponent;
 
 
-ErrorModalComponent.propTypes = {
-  modal: _globals.React.PropTypes.object
+  ErrorModalComponent.propTypes = {
+  modal: _globals.React.PropTypes.object,
 };
 
-ErrorModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ErrorModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 154 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LoadingModalComponent = function (_BaseComponent) {
+let LoadingModalComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(LoadingModalComponent, _BaseComponent);
 
   function LoadingModalComponent() {
@@ -21849,7 +21989,7 @@ var LoadingModalComponent = function (_BaseComponent) {
   };
 
   return LoadingModalComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21864,43 +22004,44 @@ var LoadingModalComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = LoadingModalComponent;
+  exports.default = LoadingModalComponent;
 
 
-LoadingModalComponent.propTypes = {
-  modal: _globals.React.PropTypes.object
+  LoadingModalComponent.propTypes = {
+  modal: _globals.React.PropTypes.object,
 };
 
-LoadingModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  LoadingModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 155 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ProgressModalComponent = function (_BaseComponent) {
+let ProgressModalComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(ProgressModalComponent, _BaseComponent);
 
   function ProgressModalComponent() {
@@ -21948,7 +22089,7 @@ var ProgressModalComponent = function (_BaseComponent) {
   };
 
   return ProgressModalComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -21963,43 +22104,44 @@ var ProgressModalComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = ProgressModalComponent;
+  exports.default = ProgressModalComponent;
 
 
-ProgressModalComponent.propTypes = {
-  modal: _globals.React.PropTypes.object
+  ProgressModalComponent.propTypes = {
+  modal: _globals.React.PropTypes.object,
 };
 
-ProgressModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  ProgressModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 156 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var WarningModalComponent = function (_BaseComponent) {
+let WarningModalComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(WarningModalComponent, _BaseComponent);
 
   function WarningModalComponent() {
@@ -22039,7 +22181,7 @@ var WarningModalComponent = function (_BaseComponent) {
   };
 
   return WarningModalComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -22054,47 +22196,48 @@ var WarningModalComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = WarningModalComponent;
+  exports.default = WarningModalComponent;
 
 
-WarningModalComponent.propTypes = {
-  modal: _globals.React.PropTypes.object
+  WarningModalComponent.propTypes = {
+  modal: _globals.React.PropTypes.object,
 };
 
-WarningModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  WarningModalComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 157 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _defineProperty2 = __webpack_require__(4);
+let _defineProperty2 = __webpack_require__(4);
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+let _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var CanvasComponent = function (_BaseComponent) {
+let CanvasComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(CanvasComponent, _BaseComponent);
 
   function CanvasComponent() {
@@ -22334,7 +22477,7 @@ var CanvasComponent = function (_BaseComponent) {
   };
 
   return CanvasComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -22349,61 +22492,62 @@ var CanvasComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = CanvasComponent;
+  exports.default = CanvasComponent;
 
 
-CanvasComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  CanvasComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 158 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _overviewControlsComponent = __webpack_require__(63);
+let _overviewControlsComponent = __webpack_require__(63);
 
-var _overviewControlsComponent2 = _interopRequireDefault(_overviewControlsComponent);
+let _overviewControlsComponent2 = _interopRequireDefault(_overviewControlsComponent);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-var _canvasComponent = __webpack_require__(157);
+let _canvasComponent = __webpack_require__(157);
 
-var _canvasComponent2 = _interopRequireDefault(_canvasComponent);
+let _canvasComponent2 = _interopRequireDefault(_canvasComponent);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _overview = __webpack_require__(127);
+let _overview = __webpack_require__(127);
 
-var _overview2 = _interopRequireDefault(_overview);
+let _overview2 = _interopRequireDefault(_overview);
 
-var _editor3 = __webpack_require__(68);
+let _editor3 = __webpack_require__(68);
 
-var _editor4 = _interopRequireDefault(_editor3);
+let _editor4 = _interopRequireDefault(_editor3);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -22419,9 +22563,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
-var WINDOW_RESIZE_DELAY = 500;
+let WINDOW_RESIZE_DELAY = 500;
 
-var EditorScreenComponent = function (_ScreenComponent) {
+let EditorScreenComponent = (function (_ScreenComponent) {
   (0, _inherits3.default)(EditorScreenComponent, _ScreenComponent);
 
   function EditorScreenComponent() {
@@ -22858,57 +23002,58 @@ var EditorScreenComponent = function (_ScreenComponent) {
   };
 
   return EditorScreenComponent;
-}(_screenComponent2.default);
+}(_screenComponent2.default));
 
-exports.default = EditorScreenComponent;
+  exports.default = EditorScreenComponent;
 
 
-EditorScreenComponent.childContextTypes = {
+  EditorScreenComponent.childContextTypes = {
   ui: _globals.React.PropTypes.object.isRequired,
   editor: _globals.React.PropTypes.object.isRequired,
   mediator: _globals.React.PropTypes.object.isRequired,
   options: _globals.React.PropTypes.object.isRequired,
-  editorScreen: _globals.React.PropTypes.object.isRequired
+  editorScreen: _globals.React.PropTypes.object.isRequired,
 };
 
-EditorScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
+  EditorScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 159 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _preloader = __webpack_require__(195);
+let _preloader = __webpack_require__(195);
 
-var _preloader2 = _interopRequireDefault(_preloader);
+let _preloader2 = _interopRequireDefault(_preloader);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LoadingScreenComponent = function (_ScreenComponent) {
+let LoadingScreenComponent = (function (_ScreenComponent) {
   (0, _inherits3.default)(LoadingScreenComponent, _ScreenComponent);
 
   function LoadingScreenComponent() {
@@ -23033,7 +23178,7 @@ var LoadingScreenComponent = function (_ScreenComponent) {
   };
 
   return LoadingScreenComponent;
-}(_screenComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_screenComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -23049,39 +23194,40 @@ var LoadingScreenComponent = function (_ScreenComponent) {
  */
 
 
-exports.default = LoadingScreenComponent;
+  exports.default = LoadingScreenComponent;
 
 
-LoadingScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  LoadingScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 160 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var LibraryComponent = function (_BaseComponent) {
+let LibraryComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(LibraryComponent, _BaseComponent);
 
   function LibraryComponent() {
@@ -23141,7 +23287,7 @@ var LibraryComponent = function (_BaseComponent) {
   };
 
   return LibraryComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -23156,39 +23302,40 @@ var LibraryComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = LibraryComponent;
+  exports.default = LibraryComponent;
 
 
-LibraryComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  LibraryComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 161 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PhotoComponent = function (_BaseComponent) {
+let PhotoComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(PhotoComponent, _BaseComponent);
 
   function PhotoComponent() {
@@ -23223,7 +23370,7 @@ var PhotoComponent = function (_BaseComponent) {
   };
 
   return PhotoComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -23238,41 +23385,42 @@ var PhotoComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = PhotoComponent;
+  exports.default = PhotoComponent;
 
 
-PhotoComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  PhotoComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 162 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _searchSuggestionComponent = __webpack_require__(65);
+let _searchSuggestionComponent = __webpack_require__(65);
 
-var _searchSuggestionComponent2 = _interopRequireDefault(_searchSuggestionComponent);
+let _searchSuggestionComponent2 = _interopRequireDefault(_searchSuggestionComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -23289,7 +23437,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var NoSearchResultsComponent = function (_BaseComponent) {
+let NoSearchResultsComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(NoSearchResultsComponent, _BaseComponent);
 
   function NoSearchResultsComponent() {
@@ -23421,55 +23569,56 @@ var NoSearchResultsComponent = function (_BaseComponent) {
   };
 
   return NoSearchResultsComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = NoSearchResultsComponent;
+  exports.default = NoSearchResultsComponent;
 
 
-NoSearchResultsComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  NoSearchResultsComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 163 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _slicedToArray2 = __webpack_require__(212);
+let _slicedToArray2 = __webpack_require__(212);
 
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+let _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _libraryComponent = __webpack_require__(160);
+let _libraryComponent = __webpack_require__(160);
 
-var _libraryComponent2 = _interopRequireDefault(_libraryComponent);
+let _libraryComponent2 = _interopRequireDefault(_libraryComponent);
 
-var _searchSuggestionComponent = __webpack_require__(65);
+let _searchSuggestionComponent = __webpack_require__(65);
 
-var _searchSuggestionComponent2 = _interopRequireDefault(_searchSuggestionComponent);
+let _searchSuggestionComponent2 = _interopRequireDefault(_searchSuggestionComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -23486,7 +23635,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var OverviewComponent = function (_BaseComponent) {
+let OverviewComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(OverviewComponent, _BaseComponent);
 
   function OverviewComponent() {
@@ -23727,65 +23876,66 @@ var OverviewComponent = function (_BaseComponent) {
   };
 
   return OverviewComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = OverviewComponent;
+  exports.default = OverviewComponent;
 
 
-OverviewComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  OverviewComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 164 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-var _topBarComponent = __webpack_require__(167);
+let _topBarComponent = __webpack_require__(167);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-var _overviewComponent = __webpack_require__(163);
+let _overviewComponent = __webpack_require__(163);
 
-var _overviewComponent2 = _interopRequireDefault(_overviewComponent);
+let _overviewComponent2 = _interopRequireDefault(_overviewComponent);
 
-var _photoListComponent = __webpack_require__(66);
+let _photoListComponent = __webpack_require__(66);
 
-var _photoListComponent2 = _interopRequireDefault(_photoListComponent);
+let _photoListComponent2 = _interopRequireDefault(_photoListComponent);
 
-var _searchResultsComponent = __webpack_require__(165);
+let _searchResultsComponent = __webpack_require__(165);
 
-var _searchResultsComponent2 = _interopRequireDefault(_searchResultsComponent);
+let _searchResultsComponent2 = _interopRequireDefault(_searchResultsComponent);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PhotoRollScreenComponent = function (_ScreenComponent) {
+let PhotoRollScreenComponent = (function (_ScreenComponent) {
   (0, _inherits3.default)(PhotoRollScreenComponent, _ScreenComponent);
 
   function PhotoRollScreenComponent() {
@@ -24018,7 +24168,7 @@ var PhotoRollScreenComponent = function (_ScreenComponent) {
   };
 
   return PhotoRollScreenComponent;
-}(_screenComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_screenComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -24033,57 +24183,58 @@ var PhotoRollScreenComponent = function (_ScreenComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = PhotoRollScreenComponent;
+  exports.default = PhotoRollScreenComponent;
 
 
-PhotoRollScreenComponent.childContextTypes = {
+  PhotoRollScreenComponent.childContextTypes = {
   ui: _globals.React.PropTypes.object.isRequired,
   editor: _globals.React.PropTypes.object.isRequired,
   mediator: _globals.React.PropTypes.object.isRequired,
   options: _globals.React.PropTypes.object.isRequired,
-  editorScreen: _globals.React.PropTypes.object.isRequired
+  editorScreen: _globals.React.PropTypes.object.isRequired,
 };
 
-PhotoRollScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
+  PhotoRollScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 165 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _photoListComponent = __webpack_require__(66);
+let _photoListComponent = __webpack_require__(66);
 
-var _photoListComponent2 = _interopRequireDefault(_photoListComponent);
+let _photoListComponent2 = _interopRequireDefault(_photoListComponent);
 
-var _noSearchResultsComponent = __webpack_require__(162);
+let _noSearchResultsComponent = __webpack_require__(162);
 
-var _noSearchResultsComponent2 = _interopRequireDefault(_noSearchResultsComponent);
+let _noSearchResultsComponent2 = _interopRequireDefault(_noSearchResultsComponent);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -24100,7 +24251,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var SearchResultsComponent = function (_PhotoListComponent) {
+let SearchResultsComponent = (function (_PhotoListComponent) {
   (0, _inherits3.default)(SearchResultsComponent, _PhotoListComponent);
 
   function SearchResultsComponent() {
@@ -24194,41 +24345,42 @@ var SearchResultsComponent = function (_PhotoListComponent) {
   };
 
   return SearchResultsComponent;
-}(_photoListComponent2.default);
+}(_photoListComponent2.default));
 
-exports.default = SearchResultsComponent;
+  exports.default = SearchResultsComponent;
 
 
-SearchResultsComponent.contextTypes = _photoListComponent2.default.contextTypes;
+  SearchResultsComponent.contextTypes = _photoListComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 166 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TopBarButtonComponent = function (_BaseComponent) {
+let TopBarButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TopBarButtonComponent, _BaseComponent);
 
   function TopBarButtonComponent() {
@@ -24253,7 +24405,7 @@ var TopBarButtonComponent = function (_BaseComponent) {
   };
 
   return TopBarButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -24268,57 +24420,58 @@ var TopBarButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TopBarButtonComponent;
+  exports.default = TopBarButtonComponent;
 
 
-TopBarButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TopBarButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 167 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _topBarComponent = __webpack_require__(31);
+let _topBarComponent = __webpack_require__(31);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-var _topBarButtonComponent = __webpack_require__(166);
+let _topBarButtonComponent = __webpack_require__(166);
 
-var _topBarButtonComponent2 = _interopRequireDefault(_topBarButtonComponent);
+let _topBarButtonComponent2 = _interopRequireDefault(_topBarButtonComponent);
 
-var _invisibleUploadComponent = __webpack_require__(40);
+let _invisibleUploadComponent = __webpack_require__(40);
 
-var _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
+let _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
 
-var _topBarSearchComponent = __webpack_require__(168);
+let _topBarSearchComponent = __webpack_require__(168);
 
-var _topBarSearchComponent2 = _interopRequireDefault(_topBarSearchComponent);
+let _topBarSearchComponent2 = _interopRequireDefault(_topBarSearchComponent);
 
-var _backButtonComponent = __webpack_require__(175);
+let _backButtonComponent = __webpack_require__(175);
 
-var _backButtonComponent2 = _interopRequireDefault(_backButtonComponent);
+let _backButtonComponent2 = _interopRequireDefault(_backButtonComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -24335,7 +24488,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var PhotoRollTopBarComponent = function (_TopBarComponent) {
+let PhotoRollTopBarComponent = (function (_TopBarComponent) {
   (0, _inherits3.default)(PhotoRollTopBarComponent, _TopBarComponent);
 
   function PhotoRollTopBarComponent() {
@@ -24495,41 +24648,42 @@ var PhotoRollTopBarComponent = function (_TopBarComponent) {
   };
 
   return PhotoRollTopBarComponent;
-}(_topBarComponent2.default);
+}(_topBarComponent2.default));
 
-exports.default = PhotoRollTopBarComponent;
+  exports.default = PhotoRollTopBarComponent;
 
 
-PhotoRollTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
+  PhotoRollTopBarComponent.contextTypes = _topBarComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 168 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TopBarSearchComponent = function (_BaseComponent) {
+let TopBarSearchComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TopBarSearchComponent, _BaseComponent);
 
   function TopBarSearchComponent() {
@@ -24722,7 +24876,7 @@ var TopBarSearchComponent = function (_BaseComponent) {
   };
 
   return TopBarSearchComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -24737,41 +24891,42 @@ var TopBarSearchComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TopBarSearchComponent;
+  exports.default = TopBarSearchComponent;
 
 
-TopBarSearchComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TopBarSearchComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 169 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _rowComponent = __webpack_require__(39);
+let _rowComponent = __webpack_require__(39);
 
-var _rowComponent2 = _interopRequireDefault(_rowComponent);
+let _rowComponent2 = _interopRequireDefault(_rowComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -24788,7 +24943,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var PhotoRollComponent = function (_RowComponent) {
+let PhotoRollComponent = (function (_RowComponent) {
   (0, _inherits3.default)(PhotoRollComponent, _RowComponent);
 
   function PhotoRollComponent() {
@@ -24861,57 +25016,58 @@ var PhotoRollComponent = function (_RowComponent) {
   };
 
   return PhotoRollComponent;
-}(_rowComponent2.default);
+}(_rowComponent2.default));
 
-exports.default = PhotoRollComponent;
+  exports.default = PhotoRollComponent;
 
 
-PhotoRollComponent.contextTypes = _rowComponent2.default.contextTypes;
+  PhotoRollComponent.contextTypes = _rowComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 170 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-var _uploadComponent = __webpack_require__(171);
+let _uploadComponent = __webpack_require__(171);
 
-var _uploadComponent2 = _interopRequireDefault(_uploadComponent);
+let _uploadComponent2 = _interopRequireDefault(_uploadComponent);
 
-var _webcamComponent = __webpack_require__(172);
+let _webcamComponent = __webpack_require__(172);
 
-var _webcamComponent2 = _interopRequireDefault(_webcamComponent);
+let _webcamComponent2 = _interopRequireDefault(_webcamComponent);
 
-var _photoRollComponent = __webpack_require__(169);
+let _photoRollComponent = __webpack_require__(169);
 
-var _photoRollComponent2 = _interopRequireDefault(_photoRollComponent);
+let _photoRollComponent2 = _interopRequireDefault(_photoRollComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SplashScreenComponent = function (_ScreenComponent) {
+let SplashScreenComponent = (function (_ScreenComponent) {
   (0, _inherits3.default)(SplashScreenComponent, _ScreenComponent);
 
   function SplashScreenComponent() {
@@ -25032,7 +25188,7 @@ var SplashScreenComponent = function (_ScreenComponent) {
   };
 
   return SplashScreenComponent;
-}(_screenComponent2.default); /** @jsx ReactBEM.createElement **/
+}(_screenComponent2.default)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -25048,53 +25204,54 @@ var SplashScreenComponent = function (_ScreenComponent) {
  */
 
 
-exports.default = SplashScreenComponent;
+  exports.default = SplashScreenComponent;
 
 
-SplashScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  SplashScreenComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 171 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _extends2 = __webpack_require__(25);
+let _extends2 = __webpack_require__(25);
 
-var _extends3 = _interopRequireDefault(_extends2);
+let _extends3 = _interopRequireDefault(_extends2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _rowComponent = __webpack_require__(39);
+let _rowComponent = __webpack_require__(39);
 
-var _rowComponent2 = _interopRequireDefault(_rowComponent);
+let _rowComponent2 = _interopRequireDefault(_rowComponent);
 
-var _buttonComponent = __webpack_require__(98);
+let _buttonComponent = __webpack_require__(98);
 
-var _buttonComponent2 = _interopRequireDefault(_buttonComponent);
+let _buttonComponent2 = _interopRequireDefault(_buttonComponent);
 
-var _invisibleUploadComponent = __webpack_require__(40);
+let _invisibleUploadComponent = __webpack_require__(40);
 
-var _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
+let _invisibleUploadComponent2 = _interopRequireDefault(_invisibleUploadComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -25111,7 +25268,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var UploadComponent = function (_RowComponent) {
+let UploadComponent = (function (_RowComponent) {
   (0, _inherits3.default)(UploadComponent, _RowComponent);
 
   function UploadComponent() {
@@ -25296,47 +25453,48 @@ var UploadComponent = function (_RowComponent) {
   };
 
   return UploadComponent;
-}(_rowComponent2.default);
+}(_rowComponent2.default));
 
-exports.default = UploadComponent;
+  exports.default = UploadComponent;
 
 
-UploadComponent.propTypes = {
-  onImage: _globals.React.PropTypes.func.isRequired
+  UploadComponent.propTypes = {
+  onImage: _globals.React.PropTypes.func.isRequired,
 };
 
-UploadComponent.contextTypes = _rowComponent2.default.contextTypes;
+  UploadComponent.contextTypes = _rowComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 172 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _rowComponent = __webpack_require__(39);
+let _rowComponent = __webpack_require__(39);
 
-var _rowComponent2 = _interopRequireDefault(_rowComponent);
+let _rowComponent2 = _interopRequireDefault(_rowComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -25353,7 +25511,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var WebcamComponent = function (_RowComponent) {
+let WebcamComponent = (function (_RowComponent) {
   (0, _inherits3.default)(WebcamComponent, _RowComponent);
 
   function WebcamComponent() {
@@ -25428,43 +25586,44 @@ var WebcamComponent = function (_RowComponent) {
   };
 
   return WebcamComponent;
-}(_rowComponent2.default);
+}(_rowComponent2.default));
 
-exports.default = WebcamComponent;
+  exports.default = WebcamComponent;
 
 
-WebcamComponent.contextTypes = _rowComponent2.default.contextTypes;
+  WebcamComponent.contextTypes = _rowComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 173 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _modalManager = __webpack_require__(7);
+let _modalManager = __webpack_require__(7);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -25481,7 +25640,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var WebcamComponent = function (_BaseComponent) {
+let WebcamComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(WebcamComponent, _BaseComponent);
 
   function WebcamComponent() {
@@ -25651,55 +25810,56 @@ var WebcamComponent = function (_BaseComponent) {
   };
 
   return WebcamComponent;
-}(_globals.BaseComponent);
+}(_globals.BaseComponent));
 
-exports.default = WebcamComponent;
+  exports.default = WebcamComponent;
 
 
-WebcamComponent.propTypes = {
-  onReady: _globals.React.PropTypes.func
+  WebcamComponent.propTypes = {
+  onReady: _globals.React.PropTypes.func,
 };
 
-WebcamComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  WebcamComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 174 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _screenComponent = __webpack_require__(21);
+let _screenComponent = __webpack_require__(21);
 
-var _screenComponent2 = _interopRequireDefault(_screenComponent);
+let _screenComponent2 = _interopRequireDefault(_screenComponent);
 
-var _topBarComponent = __webpack_require__(31);
+let _topBarComponent = __webpack_require__(31);
 
-var _topBarComponent2 = _interopRequireDefault(_topBarComponent);
+let _topBarComponent2 = _interopRequireDefault(_topBarComponent);
 
-var _webcamComponent = __webpack_require__(173);
+let _webcamComponent = __webpack_require__(173);
 
-var _webcamComponent2 = _interopRequireDefault(_webcamComponent);
+let _webcamComponent2 = _interopRequireDefault(_webcamComponent);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** @jsx ReactBEM.createElement **/
 /*
@@ -25715,7 +25875,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
-var WebcamScreenComponent = function (_ScreenComponent) {
+let WebcamScreenComponent = (function (_ScreenComponent) {
   (0, _inherits3.default)(WebcamScreenComponent, _ScreenComponent);
 
   function WebcamScreenComponent() {
@@ -25835,41 +25995,42 @@ var WebcamScreenComponent = function (_ScreenComponent) {
   };
 
   return WebcamScreenComponent;
-}(_screenComponent2.default);
+}(_screenComponent2.default));
 
-exports.default = WebcamScreenComponent;
+  exports.default = WebcamScreenComponent;
 
 
-WebcamScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
+  WebcamScreenComponent.contextTypes = _screenComponent2.default.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 175 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TopBarBackButtonComponent = function (_BaseComponent) {
+let TopBarBackButtonComponent = (function (_BaseComponent) {
   (0, _inherits3.default)(TopBarBackButtonComponent, _BaseComponent);
 
   function TopBarBackButtonComponent() {
@@ -25901,7 +26062,7 @@ var TopBarBackButtonComponent = function (_BaseComponent) {
   };
 
   return TopBarBackButtonComponent;
-}(_globals.BaseComponent); /** @jsx ReactBEM.createElement **/
+}(_globals.BaseComponent)); /** @jsx ReactBEM.createElement **/
 /*
  * This file is part of PhotoEditorSDK.
  *
@@ -25916,20 +26077,21 @@ var TopBarBackButtonComponent = function (_BaseComponent) {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = TopBarBackButtonComponent;
+  exports.default = TopBarBackButtonComponent;
 
 
-TopBarBackButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
+  TopBarBackButtonComponent.contextTypes = _globals.BaseComponent.contextTypes;
 
-/***/ },
+/** *
+/ },
 /* 176 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 /*
  * This file is part of PhotoEditorSDK.
@@ -25945,7 +26107,7 @@ Object.defineProperty(exports, "__esModule", {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = {
+  exports.default = {
   EVENTS: {
     RENDER: 'render',
     EXPORT: 'export',
@@ -25961,311 +26123,312 @@ exports.default = {
     HISTORY_UPDATED: 'history:update',
     HISTORY_UNDO: 'history:undo',
     WINDOW_RESIZE: 'window:resize',
-    CONTROLS_SWITCHED: 'controls:switched'
+    CONTROLS_SWITCHED: 'controls:switched',
   },
   DEFAULTS: {
     TEXT: 'Double-click to edit',
     CROP_RATIOS: [{ name: 'custom', ratio: '*', selected: true }, { name: 'square', ratio: 1 }, { name: '4-3', ratio: 1.33 }, { name: '16-9', ratio: 1.77 }],
     FONTS: [{ name: 'helvetica', fontFamily: 'Helvetica', fontWeight: 'normal' }, { name: 'verdana', fontFamily: 'Verdana', fontWeight: 'normal' }, { name: 'timesnewroman', fontFamily: 'Times New Roman', fontWeight: 'normal' }, { name: 'impact', fontFamily: 'Impact', fontWeight: 'normal', default: true }],
     STICKER_CATEGORIES: [{
-      'name': 'glasses',
-      'label': 'Glasses',
-      'stickers': [{
-        'name': 'glasses-nerd',
-        'label': 'Nerd glasses',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/glasses-nerd.png',
-            'width': 100,
-            'height': 100
+      name: 'glasses',
+      label: 'Glasses',
+      stickers: [{
+        name: 'glasses-nerd',
+        label: 'Nerd glasses',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/glasses-nerd.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/glasses-nerd.png',
-            'width': 221,
-            'height': 91
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/glasses-nerd.png',
+            width: 221,
+            height: 91,
+          },
+        },
       }, {
-        'name': 'glasses-normal',
-        'label': 'Normal glasses',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/glasses-normal.png',
-            'width': 100,
-            'height': 100
+        name: 'glasses-normal',
+        label: 'Normal glasses',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/glasses-normal.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/glasses-normal.png',
-            'width': 249,
-            'height': 87
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/glasses-normal.png',
+            width: 249,
+            height: 87,
+          },
+        },
       }, {
-        'name': 'glasses-shutter-green',
-        'label': 'Green shutter glasses',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/glasses-shutter-green.png',
-            'width': 100,
-            'height': 100
+        name: 'glasses-shutter-green',
+        label: 'Green shutter glasses',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/glasses-shutter-green.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/glasses-shutter-green.png',
-            'width': 235,
-            'height': 89
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/glasses-shutter-green.png',
+            width: 235,
+            height: 89,
+          },
+        },
       }, {
-        'name': 'glasses-shutter-yellow',
-        'label': 'Yellow shutter glasses',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/glasses-shutter-yellow.png',
-            'width': 100,
-            'height': 100
+        name: 'glasses-shutter-yellow',
+        label: 'Yellow shutter glasses',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/glasses-shutter-yellow.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/glasses-shutter-yellow.png',
-            'width': 236,
-            'height': 89
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/glasses-shutter-yellow.png',
+            width: 236,
+            height: 89,
+          },
+        },
       }, {
-        'name': 'glasses-sun',
-        'label': 'Sun glasses',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/glasses-sun.png',
-            'width': 100,
-            'height': 100
+        name: 'glasses-sun',
+        label: 'Sun glasses',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/glasses-sun.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/glasses-sun.png',
-            'width': 250,
-            'height': 87
-          }
-        }
-      }]
+          mediaBase: {
+            uri: 'stickers/base/glasses-sun.png',
+            width: 250,
+            height: 87,
+          },
+        },
+      }],
     }, {
-      'name': 'hats',
-      'label': 'Hats',
-      'stickers': [{
-        'name': 'hat-cap',
-        'label': 'Cap',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/hat-cap.png',
-            'width': 100,
-            'height': 100
+      name: 'hats',
+      label: 'Hats',
+      stickers: [{
+        name: 'hat-cap',
+        label: 'Cap',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/hat-cap.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/hat-cap.png',
-            'width': 237,
-            'height': 189
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/hat-cap.png',
+            width: 237,
+            height: 189,
+          },
+        },
       }, {
-        'name': 'hat-cylinder',
-        'label': 'Cylinder',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/hat-cylinder.png',
-            'width': 100,
-            'height': 100
+        name: 'hat-cylinder',
+        label: 'Cylinder',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/hat-cylinder.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/hat-cylinder.png',
-            'width': 225,
-            'height': 176
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/hat-cylinder.png',
+            width: 225,
+            height: 176,
+          },
+        },
       }, {
-        'name': 'hat-party',
-        'label': 'Party hat',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/hat-party.png',
-            'width': 100,
-            'height': 100
+        name: 'hat-party',
+        label: 'Party hat',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/hat-party.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/hat-party.png',
-            'width': 140,
-            'height': 226
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/hat-party.png',
+            width: 140,
+            height: 226,
+          },
+        },
       }, {
-        'name': 'hat-sheriff',
-        'label': 'Sheriff hat',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/hat-sheriff.png',
-            'width': 100,
-            'height': 100
+        name: 'hat-sheriff',
+        label: 'Sheriff hat',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/hat-sheriff.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/hat-sheriff.png',
-            'width': 251,
-            'height': 129
-          }
-        }
-      }]
+          mediaBase: {
+            uri: 'stickers/base/hat-sheriff.png',
+            width: 251,
+            height: 129,
+          },
+        },
+      }],
     }, {
-      'name': 'beards',
-      'label': 'Beards',
-      'stickers': [{
-        'name': 'mustache-long',
-        'label': 'Long mustache',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/mustache-long.png',
-            'width': 100,
-            'height': 100
+      name: 'beards',
+      label: 'Beards',
+      stickers: [{
+        name: 'mustache-long',
+        label: 'Long mustache',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/mustache-long.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/mustache-long.png',
-            'width': 199,
-            'height': 182
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/mustache-long.png',
+            width: 199,
+            height: 182,
+          },
+        },
       }, {
-        'name': 'mustache1',
-        'label': 'Brown mustache',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/mustache1.png',
-            'width': 100,
-            'height': 100
+        name: 'mustache1',
+        label: 'Brown mustache',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/mustache1.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/mustache1.png',
-            'width': 238,
-            'height': 106
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/mustache1.png',
+            width: 238,
+            height: 106,
+          },
+        },
       }, {
-        'name': 'mustache2',
-        'label': 'Black mustache',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/mustache2.png',
-            'width': 100,
-            'height': 100
+        name: 'mustache2',
+        label: 'Black mustache',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/mustache2.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/mustache2.png',
-            'width': 250,
-            'height': 82
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/mustache2.png',
+            width: 250,
+            height: 82,
+          },
+        },
       }, {
-        'name': 'mustache3',
-        'label': 'Brown mustache',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/mustache3.png',
-            'width': 100,
-            'height': 100
+        name: 'mustache3',
+        label: 'Brown mustache',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/mustache3.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/mustache3.png',
-            'width': 250,
-            'height': 94
-          }
-        }
-      }]
+          mediaBase: {
+            uri: 'stickers/base/mustache3.png',
+            width: 250,
+            height: 94,
+          },
+        },
+      }],
     }, {
-      'name': 'misc',
-      'label': 'Misc',
-      'stickers': [{
-        'name': 'heart',
-        'label': 'Heart',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/heart.png',
-            'width': 100,
-            'height': 100
+      name: 'misc',
+      label: 'Misc',
+      stickers: [{
+        name: 'heart',
+        label: 'Heart',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/heart.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/heart.png',
-            'width': 185,
-            'height': 174
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/heart.png',
+            width: 185,
+            height: 174,
+          },
+        },
       }, {
-        'name': 'pipe',
-        'label': 'Pipe',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/pipe.png',
-            'width': 100,
-            'height': 100
+        name: 'pipe',
+        label: 'Pipe',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/pipe.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/pipe.png',
-            'width': 240,
-            'height': 112
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/pipe.png',
+            width: 240,
+            height: 112,
+          },
+        },
       }, {
-        'name': 'snowflake',
-        'label': 'Snow flake',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/snowflake.png',
-            'width': 100,
-            'height': 100
+        name: 'snowflake',
+        label: 'Snow flake',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/snowflake.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/snowflake.png',
-            'width': 204,
-            'height': 171
-          }
-        }
+          mediaBase: {
+            uri: 'stickers/base/snowflake.png',
+            width: 204,
+            height: 171,
+          },
+        },
       }, {
-        'name': 'star',
-        'label': 'Star',
-        'images': {
-          'mediaThumb': {
-            'uri': 'stickers/thumb/star.png',
-            'width': 100,
-            'height': 100
+        name: 'star',
+        label: 'Star',
+        images: {
+          mediaThumb: {
+            uri: 'stickers/thumb/star.png',
+            width: 100,
+            height: 100,
           },
-          'mediaBase': {
-            'uri': 'stickers/base/star.png',
-            'width': 201,
-            'height': 191
-          }
-        }
-      }]
-    }]
-  }
+          mediaBase: {
+            uri: 'stickers/base/star.png',
+            width: 201,
+            height: 191,
+          },
+        },
+      }],
+    }],
+  },
 };
 
-/***/ },
+/** *
+/ },
 /* 177 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _controls = __webpack_require__(60);
+let _controls = __webpack_require__(60);
 
-var Controls = _interopRequireWildcard(_controls);
+let Controls = _interopRequireWildcard(_controls);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { let newObj = {}; if (obj != null) { for (let key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -26281,7 +26444,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var EditorControls = function () {
+let EditorControls = (function () {
   function EditorControls(editor, sdk, mediator) {
     (0, _classCallCheck3.default)(this, EditorControls);
 
@@ -26333,30 +26496,31 @@ var EditorControls = function () {
   };
 
   return EditorControls;
-}();
+}());
 
-exports.default = EditorControls;
+  exports.default = EditorControls;
 
-/***/ },
+/** *
+/ },
 /* 178 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EditorFeatures = function () {
+let EditorFeatures = (function () {
   function EditorFeatures(editor, sdk, mediator) {
     (0, _classCallCheck3.default)(this, EditorFeatures);
 
@@ -26426,7 +26590,7 @@ var EditorFeatures = function () {
   };
 
   return EditorFeatures;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -26440,36 +26604,37 @@ var EditorFeatures = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = EditorFeatures;
+  exports.default = EditorFeatures;
 
-/***/ },
+/** *
+/ },
 /* 179 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EditorHistory = function (_EventEmitter) {
+let EditorHistory = (function (_EventEmitter) {
   (0, _inherits3.default)(EditorHistory, _EventEmitter);
 
   function EditorHistory(editor, sdk, mediator) {
@@ -26579,7 +26744,7 @@ var EditorHistory = function (_EventEmitter) {
   };
 
   return EditorHistory;
-}(_globals.EventEmitter); /*
+}(_globals.EventEmitter)); /*
                            * This file is part of PhotoEditorSDK.
                            *
                            * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -26593,28 +26758,29 @@ var EditorHistory = function (_EventEmitter) {
                            * https://www.photoeditorsdk.com/LICENSE.txt
                            */
 
-exports.default = EditorHistory;
+  exports.default = EditorHistory;
 
-/***/ },
+/** *
+/ },
 /* 180 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EditorOperations = function () {
+let EditorOperations = (function () {
   function EditorOperations(editor, sdk, mediator) {
     (0, _classCallCheck3.default)(this, EditorOperations);
 
@@ -26769,7 +26935,7 @@ var EditorOperations = function () {
   };
 
   return EditorOperations;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -26783,36 +26949,37 @@ var EditorOperations = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = EditorOperations;
+  exports.default = EditorOperations;
 
-/***/ },
+/** *
+/ },
 /* 181 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MIN_ZOOM_DIMENSIONS = 300; /*
+let MIN_ZOOM_DIMENSIONS = 300; /*
                                 * This file is part of PhotoEditorSDK.
                                 *
                                 * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -26826,7 +26993,7 @@ var MIN_ZOOM_DIMENSIONS = 300; /*
                                 * https://www.photoeditorsdk.com/LICENSE.txt
                                 */
 
-var EditorZoom = function (_EventEmitter) {
+let EditorZoom = (function (_EventEmitter) {
   (0, _inherits3.default)(EditorZoom, _EventEmitter);
 
   function EditorZoom(editor, sdk, mediator) {
@@ -26987,32 +27154,33 @@ var EditorZoom = function (_EventEmitter) {
   };
 
   return EditorZoom;
-}(_globals.EventEmitter);
+}(_globals.EventEmitter));
 
-exports.default = EditorZoom;
+  exports.default = EditorZoom;
 
-/***/ },
+/** *
+/ },
 /* 182 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _fileDownloader = __webpack_require__(183);
+let _fileDownloader = __webpack_require__(183);
 
-var _fileDownloader2 = _interopRequireDefault(_fileDownloader);
+let _fileDownloader2 = _interopRequireDefault(_fileDownloader);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -27028,7 +27196,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Exporter = function () {
+let Exporter = (function () {
   function Exporter(sdk, options, download) {
     (0, _classCallCheck3.default)(this, Exporter);
 
@@ -27096,30 +27264,31 @@ var Exporter = function () {
   };
 
   return Exporter;
-}();
+}());
 
-exports.default = Exporter;
+  exports.default = Exporter;
 
-/***/ },
+/** *
+/ },
 /* 183 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FileDownloader = function () {
+let FileDownloader = (function () {
   function FileDownloader() {
     (0, _classCallCheck3.default)(this, FileDownloader);
   }
@@ -27197,7 +27366,7 @@ var FileDownloader = function () {
   };
 
   return FileDownloader;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -27211,36 +27380,37 @@ var FileDownloader = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = FileDownloader;
+  exports.default = FileDownloader;
 
-/***/ },
+/** *
+/ },
 /* 184 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FileLoader = function (_EventEmitter) {
+let FileLoader = (function (_EventEmitter) {
   (0, _inherits3.default)(FileLoader, _EventEmitter);
 
   function FileLoader(input) {
@@ -27314,7 +27484,7 @@ var FileLoader = function (_EventEmitter) {
   };
 
   return FileLoader;
-}(_globals.EventEmitter); /*
+}(_globals.EventEmitter)); /*
                            * This file is part of PhotoEditorSDK.
                            *
                            * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -27328,30 +27498,31 @@ var FileLoader = function (_EventEmitter) {
                            * https://www.photoeditorsdk.com/LICENSE.txt
                            */
 
-exports.default = FileLoader;
+  exports.default = FileLoader;
 
-/***/ },
+/** *
+/ },
 /* 185 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _google = __webpack_require__(187);
+let _google = __webpack_require__(187);
 
-var _google2 = _interopRequireDefault(_google);
+let _google2 = _interopRequireDefault(_google);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FontLoader = function () {
+let FontLoader = (function () {
   function FontLoader(fonts) {
     (0, _classCallCheck3.default)(this, FontLoader);
 
@@ -27399,7 +27570,7 @@ var FontLoader = function () {
   };
 
   return FontLoader;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -27414,24 +27585,25 @@ var FontLoader = function () {
       */
 
 
-exports.default = FontLoader;
+  exports.default = FontLoader;
 
-/***/ },
+/** *
+/ },
 /* 186 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -27447,7 +27619,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FontsLoader = function () {
+let FontsLoader = (function () {
   function FontsLoader() {
     (0, _classCallCheck3.default)(this, FontsLoader);
 
@@ -27472,42 +27644,43 @@ var FontsLoader = function () {
   FontsLoader.prototype.load = function load() {};
 
   return FontsLoader;
-}();
+}());
 
-exports.default = FontsLoader;
+  exports.default = FontsLoader;
 
-/***/ },
+/** *
+/ },
 /* 187 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _fontsLoader = __webpack_require__(186);
+let _fontsLoader = __webpack_require__(186);
 
-var _fontsLoader2 = _interopRequireDefault(_fontsLoader);
+let _fontsLoader2 = _interopRequireDefault(_fontsLoader);
 
-var _fontRuler = __webpack_require__(188);
+let _fontRuler = __webpack_require__(188);
 
-var _fontRuler2 = _interopRequireDefault(_fontRuler);
+let _fontRuler2 = _interopRequireDefault(_fontRuler);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -27523,13 +27696,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var now = typeof window !== 'undefined' && window.performance && window.performance.now ? window.performance.now.bind(window.performance) : __webpack_require__(89);
+let now = typeof window !== 'undefined' && window.performance && window.performance.now ? window.performance.now.bind(window.performance) : __webpack_require__(89);
 
-var FONT_STYLES = {
-  italic: 'i'
+let FONT_STYLES = {
+  italic: 'i',
 };
 
-var GoogleFontsLoader = function (_FontsLoader) {
+let GoogleFontsLoader = (function (_FontsLoader) {
   (0, _inherits3.default)(GoogleFontsLoader, _FontsLoader);
 
   function GoogleFontsLoader() {
@@ -27672,32 +27845,33 @@ var GoogleFontsLoader = function (_FontsLoader) {
   };
 
   return GoogleFontsLoader;
-}(_fontsLoader2.default);
+}(_fontsLoader2.default));
 
-exports.default = GoogleFontsLoader;
+  exports.default = GoogleFontsLoader;
 
-/***/ },
+/** *
+/ },
 /* 188 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _font = __webpack_require__(69);
+let _font = __webpack_require__(69);
 
-var _font2 = _interopRequireDefault(_font);
+let _font2 = _interopRequireDefault(_font);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FONT_SIZE = 30; /*
+let FONT_SIZE = 30; /*
                      * This file is part of PhotoEditorSDK.
                      *
                      * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -27711,9 +27885,9 @@ var FONT_SIZE = 30; /*
                      * https://www.photoeditorsdk.com/LICENSE.txt
                      */
 
-var CHARACTERS = 'abcdefghijklmnopqrstuvwxzy';
+let CHARACTERS = 'abcdefghijklmnopqrstuvwxzy';
 
-var FontRuler = function () {
+let FontRuler = (function () {
   function FontRuler() {
     (0, _classCallCheck3.default)(this, FontRuler);
 
@@ -27780,30 +27954,31 @@ var FontRuler = function () {
   };
 
   return FontRuler;
-}();
+}());
 
-exports.default = FontRuler;
+  exports.default = FontRuler;
 
-/***/ },
+/** *
+/ },
 /* 189 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ImageResizer = function () {
+let ImageResizer = (function () {
   function ImageResizer(image, maxPixels, maxDimensions) {
     (0, _classCallCheck3.default)(this, ImageResizer);
 
@@ -27911,7 +28086,7 @@ var ImageResizer = function () {
   };
 
   return ImageResizer;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -27925,30 +28100,31 @@ var ImageResizer = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = ImageResizer;
+  exports.default = ImageResizer;
 
-/***/ },
+/** *
+/ },
 /* 190 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _font = __webpack_require__(69);
+let _font = __webpack_require__(69);
 
-var _font2 = _interopRequireDefault(_font);
+let _font2 = _interopRequireDefault(_font);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -27964,7 +28140,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var FontsManager = function () {
+let FontsManager = (function () {
   function FontsManager(options) {
     (0, _classCallCheck3.default)(this, FontsManager);
 
@@ -28045,26 +28221,27 @@ var FontsManager = function () {
   };
 
   return FontsManager;
-}();
+}());
 
-exports.default = FontsManager;
+  exports.default = FontsManager;
 
-/***/ },
+/** *
+/ },
 /* 191 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28080,31 +28257,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Library = function Library(data) {
+let Library = function Library(data) {
   (0, _classCallCheck3.default)(this, Library);
 
   this.name = data.name;
   this.coverImage = data.coverImage;
 };
 
-exports.default = Library;
+  exports.default = Library;
 
-/***/ },
+/** *
+/ },
 /* 192 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28120,7 +28298,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Photo = function Photo(library, data) {
+let Photo = function Photo(library, data) {
   (0, _classCallCheck3.default)(this, Photo);
 
   this.library = library;
@@ -28128,28 +28306,29 @@ var Photo = function Photo(library, data) {
   this.urls = data.urls;
 };
 
-exports.default = Photo;
+  exports.default = Photo;
 
-/***/ },
+/** *
+/ },
 /* 193 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Provider = function () {
+let Provider = (function () {
   function Provider() {
     (0, _classCallCheck3.default)(this, Provider);
   }
@@ -28202,7 +28381,7 @@ var Provider = function () {
   };
 
   return Provider;
-}(); /*
+}()); /*
       * This file is part of PhotoEditorSDK.
       *
       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -28216,24 +28395,25 @@ var Provider = function () {
       * https://www.photoeditorsdk.com/LICENSE.txt
       */
 
-exports.default = Provider;
+  exports.default = Provider;
 
-/***/ },
+/** *
+/ },
 /* 194 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28249,7 +28429,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var SearchSuggestion = function SearchSuggestion(data) {
+let SearchSuggestion = function SearchSuggestion(data) {
   (0, _classCallCheck3.default)(this, SearchSuggestion);
 
   this.query = data.query;
@@ -28257,38 +28437,39 @@ var SearchSuggestion = function SearchSuggestion(data) {
   this.coverImage = data.coverImage;
 };
 
-exports.default = SearchSuggestion;
+  exports.default = SearchSuggestion;
 
-/***/ },
+/** *
+/ },
 /* 195 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _editor = __webpack_require__(68);
+let _editor = __webpack_require__(68);
 
-var _editor2 = _interopRequireDefault(_editor);
+let _editor2 = _interopRequireDefault(_editor);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28304,9 +28485,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var LOAD_TIMEOUT = 5000;
+let LOAD_TIMEOUT = 5000;
 
-var Preloader = function (_EventEmitter) {
+let Preloader = (function (_EventEmitter) {
   (0, _inherits3.default)(Preloader, _EventEmitter);
 
   function Preloader(ui, options, mediator) {
@@ -28409,34 +28590,35 @@ var Preloader = function (_EventEmitter) {
   };
 
   return Preloader;
-}(_globals.EventEmitter);
+}(_globals.EventEmitter));
 
-exports.default = Preloader;
+  exports.default = Preloader;
 
-/***/ },
+/** *
+/ },
 /* 196 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _serializer = __webpack_require__(73);
+let _serializer = __webpack_require__(73);
 
-var _serializer2 = _interopRequireDefault(_serializer);
+let _serializer2 = _interopRequireDefault(_serializer);
 
-var _deserializer = __webpack_require__(72);
+let _deserializer = __webpack_require__(72);
 
-var _deserializer2 = _interopRequireDefault(_deserializer);
+let _deserializer2 = _interopRequireDefault(_deserializer);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28452,7 +28634,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Serialization = function () {
+let Serialization = (function () {
   function Serialization(editor) {
     (0, _classCallCheck3.default)(this, Serialization);
 
@@ -28483,43 +28665,44 @@ var Serialization = function () {
   };
 
   return Serialization;
-}();
+}());
 
-exports.default = Serialization;
+  exports.default = Serialization;
 
 
-Serialization.version = '1.0.0';
+  Serialization.version = '1.0.0';
 
-/***/ },
+/** *
+/ },
 /* 197 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _deserializer = __webpack_require__(72);
+let _deserializer = __webpack_require__(72);
 
-var _deserializer2 = _interopRequireDefault(_deserializer);
+let _deserializer2 = _interopRequireDefault(_deserializer);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28535,7 +28718,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Deserializer = function (_BaseDeserializer) {
+let Deserializer = (function (_BaseDeserializer) {
   (0, _inherits3.default)(Deserializer, _BaseDeserializer);
 
   function Deserializer() {
@@ -28647,34 +28830,35 @@ var Deserializer = function (_BaseDeserializer) {
   };
 
   return Deserializer;
-}(_deserializer2.default);
+}(_deserializer2.default));
 
-exports.default = Deserializer;
+  exports.default = Deserializer;
 
-/***/ },
+/** *
+/ },
 /* 198 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _serializer = __webpack_require__(199);
+let _serializer = __webpack_require__(199);
 
-var _serializer2 = _interopRequireDefault(_serializer);
+let _serializer2 = _interopRequireDefault(_serializer);
 
-var _deserializer = __webpack_require__(197);
+let _deserializer = __webpack_require__(197);
 
-var _deserializer2 = _interopRequireDefault(_deserializer);
+let _deserializer2 = _interopRequireDefault(_deserializer);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28690,7 +28874,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var Serialization = function () {
+let Serialization = (function () {
   function Serialization(editor) {
     (0, _classCallCheck3.default)(this, Serialization);
 
@@ -28721,43 +28905,44 @@ var Serialization = function () {
   };
 
   return Serialization;
-}();
+}());
 
-exports.default = Serialization;
+  exports.default = Serialization;
 
 
-Serialization.version = '1.0.1';
+  Serialization.version = '1.0.1';
 
-/***/ },
+/** *
+/ },
 /* 199 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _globals = __webpack_require__(1);
+let _globals = __webpack_require__(1);
 
-var _serializer = __webpack_require__(73);
+let _serializer = __webpack_require__(73);
 
-var _serializer2 = _interopRequireDefault(_serializer);
+let _serializer2 = _interopRequireDefault(_serializer);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
  * This file is part of PhotoEditorSDK.
@@ -28773,9 +28958,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-var TWICE_PI = Math.PI * 2;
+let TWICE_PI = Math.PI * 2;
 
-var Serializer = function (_BaseSerializer) {
+let Serializer = (function (_BaseSerializer) {
   (0, _inherits3.default)(Serializer, _BaseSerializer);
 
   function Serializer() {
@@ -28883,45 +29068,46 @@ var Serializer = function (_BaseSerializer) {
   };
 
   return Serializer;
-}(_serializer2.default);
+}(_serializer2.default));
 
-exports.default = Serializer;
+  exports.default = Serializer;
 
-/***/ },
+/** *
+/ },
 /* 200 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _typeof2 = __webpack_require__(32);
+let _typeof2 = __webpack_require__(32);
 
-var _typeof3 = _interopRequireDefault(_typeof2);
+let _typeof3 = _interopRequireDefault(_typeof2);
 
-var _classCallCheck2 = __webpack_require__(0);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _inherits2 = __webpack_require__(2);
+let _inherits2 = __webpack_require__(2);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _photoeditorsdk = __webpack_require__(36);
+let _photoeditorsdk = __webpack_require__(36);
 
-var _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
+let _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var EventEmitter = _photoeditorsdk2.default.EventEmitter,
-    Utils = _photoeditorsdk2.default.Utils; /*
+let EventEmitter = _photoeditorsdk2.default.EventEmitter,
+  Utils = _photoeditorsdk2.default.Utils; /*
                                              * This file is part of PhotoEditorSDK.
                                              *
                                              * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -28935,7 +29121,7 @@ var EventEmitter = _photoeditorsdk2.default.EventEmitter,
                                              * https://www.photoeditorsdk.com/LICENSE.txt
                                              */
 
-var SharedState = function (_EventEmitter) {
+let SharedState = (function (_EventEmitter) {
   (0, _inherits3.default)(SharedState, _EventEmitter);
 
   function SharedState() {
@@ -29004,40 +29190,41 @@ var SharedState = function (_EventEmitter) {
   };
 
   return SharedState;
-}(EventEmitter);
+}(EventEmitter));
 
-exports.default = SharedState;
+  exports.default = SharedState;
 
-/***/ },
+/** *
+/ },
 /* 201 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 
-var _photoeditorsdk = __webpack_require__(36);
+let _photoeditorsdk = __webpack_require__(36);
 
-var _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
+let _photoeditorsdk2 = _interopRequireDefault(_photoeditorsdk);
 
-var _log = __webpack_require__(74);
+let _log = __webpack_require__(74);
 
-var _log2 = _interopRequireDefault(_log);
+let _log2 = _interopRequireDefault(_log);
 
-var _browser = __webpack_require__(202);
+let _browser = __webpack_require__(202);
 
-var _browser2 = _interopRequireDefault(_browser);
+let _browser2 = _interopRequireDefault(_browser);
 
-var _jsonLoader = __webpack_require__(61);
+let _jsonLoader = __webpack_require__(61);
 
-var _jsonLoader2 = _interopRequireDefault(_jsonLoader);
+let _jsonLoader2 = _interopRequireDefault(_jsonLoader);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Vector2 = _photoeditorsdk2.default.Math.Vector2; /*
+let Vector2 = _photoeditorsdk2.default.Math.Vector2; /*
                                                       * This file is part of PhotoEditorSDK.
                                                       *
                                                       * Copyright (C) 2016 9elements GmbH <contact@9elements.com>
@@ -29051,7 +29238,7 @@ var Vector2 = _photoeditorsdk2.default.Math.Vector2; /*
                                                       * https://www.photoeditorsdk.com/LICENSE.txt
                                                       */
 
-var UIUtils = {
+let UIUtils = {
   /**
    * Returns the inner dimensions (size - padding) of the given
    * DOM element
@@ -29059,8 +29246,8 @@ var UIUtils = {
    * @return {Vector2}
    */
   getInnerDimensionsForElement: function getInnerDimensionsForElement(element) {
-    var size = new Vector2(element.offsetWidth, element.offsetHeight);
-    var computedStyle = window.getComputedStyle(element, null);
+    let size = new Vector2(element.offsetWidth, element.offsetHeight);
+    let computedStyle = window.getComputedStyle(element, null);
     size.x -= parseInt(computedStyle.getPropertyValue('padding-left'), 10);
     size.x -= parseInt(computedStyle.getPropertyValue('padding-right'), 10);
     size.y -= parseInt(computedStyle.getPropertyValue('padding-top'), 10);
@@ -29075,8 +29262,8 @@ var UIUtils = {
    * @return {Vector2}
    */
   getEventPosition: function getEventPosition(e) {
-    var x = e.clientX;
-    var y = e.clientY;
+    let x = e.clientX;
+    let y = e.clientY;
     if (e.type.indexOf('touch') !== -1) {
       if (!e.touches.length) return;
 
@@ -29092,8 +29279,8 @@ var UIUtils = {
    * @return {Canvas}
    */
   createTransparentPatternCanvas: function createTransparentPatternCanvas() {
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
+    let canvas = document.createElement('canvas');
+    let context = canvas.getContext('2d');
 
     canvas.width = 10;
     canvas.height = 10;
@@ -29113,7 +29300,7 @@ var UIUtils = {
    * @return {Boolean}
    */
   supportsMSBlob: function supportsMSBlob() {
-    var canvas = document.createElement('canvas');
+    let canvas = document.createElement('canvas');
     return typeof canvas.msToBlob !== 'undefined';
   },
 
@@ -29126,15 +29313,15 @@ var UIUtils = {
    * @return {String}
    */
   translate: function translate(phrases, key) {
-    var interpolationOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    let interpolationOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-    var response = this.fetch(phrases, key);
+    let response = this.fetch(phrases, key);
     if (!response) {
-      _log2.default.warn('Utils#translate', 'Unable to translate `' + key + '`');
+      _log2.default.warn('Utils#translate', `Unable to translate \`${  key  }\``);
       return key;
     }
-    for (var _key in interpolationOptions) {
-      response = response.replace('${' + _key + '}', interpolationOptions[_key]);
+    for (let _key in interpolationOptions) {
+      response = response.replace(`\${${  _key  }}`, interpolationOptions[_key]);
     }
     return response;
   },
@@ -29153,9 +29340,9 @@ var UIUtils = {
     // Strip leading dot (when path begins with [0] for example)
     path = path.replace(/^\./, '');
 
-    var pathSegments = path.split('.');
-    for (var i = 0; i < pathSegments.length; i++) {
-      var segment = pathSegments[i];
+    let pathSegments = path.split('.');
+    for (let i = 0; i < pathSegments.length; i++) {
+      let segment = pathSegments[i];
       object = object[segment];
       if (!object) {
         break;
@@ -29175,7 +29362,7 @@ var UIUtils = {
    * @return {Boolean}
    */
   isMobile: function isMobile() {
-    var a = navigator.userAgent || navigator.vendor || window.opera;
+    let a = navigator.userAgent || navigator.vendor || window.opera;
     /* eslint-disable */
     return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))
     );
@@ -29192,16 +29379,16 @@ var UIUtils = {
    * @return {Array}
    */
   select: function select(items, selectedItems) {
-    var selector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+    let selector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
-    if (!selector) selector = function selector(i) {
+    if (!selector) {selector = function selector(i) {
       return i;
-    };
+    };}
 
-    var newItems = [];
-    selectedItems.forEach(function (selectedItem) {
-      items.forEach(function (item) {
-        var itemIdentifier = selector(item);
+    let newItems = [];
+    selectedItems.forEach((selectedItem) => {
+      items.forEach((item) => {
+        let itemIdentifier = selector(item);
         if (itemIdentifier === selectedItem) {
           newItems.push(item);
         }
@@ -29217,7 +29404,7 @@ var UIUtils = {
    * @return {Promise}
    */
   getJSONP: function getJSONP(url) {
-    var loader = new _jsonLoader2.default(url);
+    let loader = new _jsonLoader2.default(url);
     return loader.load();
   },
 
@@ -29232,9 +29419,9 @@ var UIUtils = {
   mergeCategories: function mergeCategories(categories, newCategories, itemsProperty) {
     categories = categories.slice(0);
 
-    var existingCategory = null;
-    newCategories.forEach(function (newCategory) {
-      categories.forEach(function (category) {
+    let existingCategory = null;
+    newCategories.forEach((newCategory) => {
+      categories.forEach((category) => {
         if (newCategory.name === category.name) {
           existingCategory = category;
         }
@@ -29257,11 +29444,11 @@ var UIUtils = {
    * @return {Object}
    */
   getStyleObject: function getStyleObject(el) {
-    var styleProperties = window.getComputedStyle(el);
-    var styleObject = {};
-    for (var property in styleProperties) {
-      var value = styleProperties.getPropertyValue(property);
-      var camelizedAttr = property.replace(/\-([a-z])/g, function (a, b) {
+    let styleProperties = window.getComputedStyle(el);
+    let styleObject = {};
+    for (let property in styleProperties) {
+      let value = styleProperties.getPropertyValue(property);
+      let camelizedAttr = property.replace(/\-([a-z])/g, (a, b) => {
         return b.toUpperCase();
       });
       if (value !== '') {
@@ -29280,16 +29467,16 @@ var UIUtils = {
    * @return {Function}
    */
   debounce: function debounce(fn, wait, immediate) {
-    var timeout;
+    let timeout;
     return function () {
-      var _this = this;
+      let _this = this;
 
-      var args = arguments;
-      var later = function later() {
+      let args = arguments;
+      let later = function later() {
         timeout = null;
         if (!immediate) fn.apply(_this, args);
       };
-      var callNow = immediate && !timeout;
+      let callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) fn.apply(this, args);
@@ -29297,20 +29484,21 @@ var UIUtils = {
   },
 
 
-  Browser: _browser2.default
+  Browser: _browser2.default,
 };
 
-exports.default = UIUtils;
+  exports.default = UIUtils;
 
-/***/ },
+/** *
+/ },
 /* 202 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
-'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 /*
  * This file is part of PhotoEditorSDK.
@@ -29326,11 +29514,11 @@ Object.defineProperty(exports, "__esModule", {
  * https://www.photoeditorsdk.com/LICENSE.txt
  */
 
-exports.default = {
+  exports.default = {
   getIEVersion: function getIEVersion() {
-    var _navigator = navigator,
-        userAgent = _navigator.userAgent,
-        appVersion = _navigator.appVersion;
+    let _navigator = navigator,
+      userAgent = _navigator.userAgent,
+      appVersion = _navigator.appVersion;
 
     if (appVersion.indexOf('MSIE') !== -1) {
       return appVersion.match(/MSIE\s+?([0-9]+)/i)[1];
@@ -29341,29 +29529,31 @@ exports.default = {
     }
   },
   isIE10: function isIE10() {
-    var version = this.getIEVersion();
+    let version = this.getIEVersion();
     return version !== false && version === 10;
   },
   isIE11: function isIE11() {
-    var version = this.getIEVersion();
+    let version = this.getIEVersion();
     return version !== false && version === 11;
   },
   isIElte: function isIElte(version) {
-    var browserVersion = this.getIEVersion();
+    let browserVersion = this.getIEVersion();
     if (browserVersion === false) return false;
     return browserVersion <= version;
-  }
+  },
 };
 
-/***/ },
+/** *
+/ },
 /* 203 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+  /* WEBPACK VAR INJECTION */(function (global) {
+
+  Object.defineProperty(exports, '__esModule', {
+  value: true,
 });
 /*!
  * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -29371,23 +29561,23 @@ Object.defineProperty(exports, "__esModule", {
  * requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
  * MIT license
  */
-var root = typeof window === 'undefined' ? global : window;
-var rAF = root.requestAnimationFrame;
-var cAF = root.cancelAnimationFrame;
+let root = typeof window === 'undefined' ? global : window;
+let rAF = root.requestAnimationFrame;
+let cAF = root.cancelAnimationFrame;
 
-var lastTime = 0;
-var vendors = ['ms', 'moz', 'webkit', 'o'];
-for (var x = 0; x < vendors.length && !rAF; ++x) {
-  exports.requestAnimationFrame = rAF = root[vendors[x] + 'RequestAnimationFrame'];
-  exports.cancelAnimationFrame = cAF = root[vendors[x] + 'CancelAnimationFrame'] || root[vendors[x] + 'CancelRequestAnimationFrame'];
+let lastTime = 0;
+let vendors = ['ms', 'moz', 'webkit', 'o'];
+  for (let x = 0; x < vendors.length && !rAF; ++x) {
+  exports.requestAnimationFrame = rAF = root[`${vendors[x]  }RequestAnimationFrame`];
+  exports.cancelAnimationFrame = cAF = root[`${vendors[x]  }CancelAnimationFrame`] || root[`${vendors[x]  }CancelRequestAnimationFrame`];
 }
 
 /* istanbul ignore next */
-if (!rAF) {
+  if (!rAF) {
   exports.requestAnimationFrame = rAF = function rAF(callback, element) {
-    var currTime = new Date().getTime();
-    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-    var id = setTimeout(function () {
+    let currTime = new Date().getTime();
+    let timeToCall = Math.max(0, 16 - (currTime - lastTime));
+    let id = setTimeout(() => {
       callback(currTime + timeToCall);
     }, timeToCall);
     lastTime = currTime + timeToCall;
@@ -29396,84 +29586,93 @@ if (!rAF) {
 }
 
 /* istanbul ignore next */
-if (!cAF) {
+  if (!cAF) {
   exports.cancelAnimationFrame = cAF = function cAF(id) {
     clearTimeout(id);
   };
 }
 
-exports.requestAnimationFrame = rAF;
-exports.cancelAnimationFrame = cAF;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(91)))
+  exports.requestAnimationFrame = rAF;
+  exports.cancelAnimationFrame = cAF;
+/* WEBPACK VAR INJECTION */ }.call(exports, __webpack_require__(91)));
 
-/***/ },
+/** *
+/ },
 /* 204 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(214), __esModule: true };
+  module.exports = { 'default': __webpack_require__(214), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 205 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(215), __esModule: true };
+  module.exports = { 'default': __webpack_require__(215), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 206 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(216), __esModule: true };
+  module.exports = { default: __webpack_require__(216), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 207 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(217), __esModule: true };
+  module.exports = { default: __webpack_require__(217), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 208 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(218), __esModule: true };
+  module.exports = { 'default': __webpack_require__(218), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 209 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(220), __esModule: true };
+  module.exports = { default: __webpack_require__(220), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 210 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(221), __esModule: true };
+  module.exports = { default: __webpack_require__(221), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 211 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(222), __esModule: true };
+  module.exports = { default: __webpack_require__(222), __esModule: true };
 
-/***/ },
+/** *
+/ },
 /* 212 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _isIterable2 = __webpack_require__(206);
 
-var _isIterable3 = _interopRequireDefault(_isIterable2);
+  exports.__esModule = true;
 
-var _getIterator2 = __webpack_require__(205);
+let _isIterable2 = __webpack_require__(206);
 
-var _getIterator3 = _interopRequireDefault(_getIterator2);
+let _isIterable3 = _interopRequireDefault(_isIterable2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _getIterator2 = __webpack_require__(205);
 
-exports.default = function () {
+let _getIterator3 = _interopRequireDefault(_getIterator2);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = (function () {
   function sliceIterator(arr, i) {
     var _arr = [];
     var _n = true;
@@ -29509,24 +29708,25 @@ exports.default = function () {
       throw new TypeError("Invalid attempt to destructure non-iterable instance");
     }
   };
-}();
+}());
 
-/***/ },
+/** *
+/ },
 /* 213 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-"use strict";
 
-exports.__esModule = true;
 
-var _from = __webpack_require__(204);
 
-var _from2 = _interopRequireDefault(_from);
+  exports.__esModule = true;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _from = __webpack_require__(204);
 
-exports.default = function (arr) {
+let _from2 = _interopRequireDefault(_from);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
       arr2[i] = arr[i];
@@ -29538,444 +29738,467 @@ exports.default = function (arr) {
   }
 };
 
-/***/ },
+/** *
+/ },
 /* 214 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(35);
-__webpack_require__(246);
-module.exports = __webpack_require__(8).Array.from;
+  __webpack_require__(35);
+  __webpack_require__(246);
+  module.exports = __webpack_require__(8).Array.from;
 
-/***/ },
+/** *
+/ },
 /* 215 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(58);
-__webpack_require__(35);
-module.exports = __webpack_require__(244);
+  __webpack_require__(58);
+  __webpack_require__(35);
+  module.exports = __webpack_require__(244);
 
-/***/ },
+/** *
+/ },
 /* 216 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(58);
-__webpack_require__(35);
-module.exports = __webpack_require__(245);
+  __webpack_require__(58);
+  __webpack_require__(35);
+  module.exports = __webpack_require__(245);
 
-/***/ },
+/** *
+/ },
 /* 217 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(248);
-module.exports = __webpack_require__(8).Object.assign;
+  __webpack_require__(248);
+  module.exports = __webpack_require__(8).Object.assign;
 
-/***/ },
+/** *
+/ },
 /* 218 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(249);
-var $Object = __webpack_require__(8).Object;
-module.exports = function create(P, D){
+  __webpack_require__(249);
+let $Object = __webpack_require__(8).Object;
+  module.exports = function create(P, D) {
   return $Object.create(P, D);
 };
 
-/***/ },
+/** *
+/ },
 /* 219 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(250);
-var $Object = __webpack_require__(8).Object;
-module.exports = function defineProperty(it, key, desc){
+  __webpack_require__(250);
+let $Object = __webpack_require__(8).Object;
+  module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
 
-/***/ },
+/** *
+/ },
 /* 220 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(251);
-module.exports = __webpack_require__(8).Object.setPrototypeOf;
+  __webpack_require__(251);
+  module.exports = __webpack_require__(8).Object.setPrototypeOf;
 
-/***/ },
+/** *
+/ },
 /* 221 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(253);
-__webpack_require__(252);
-__webpack_require__(254);
-__webpack_require__(255);
-module.exports = __webpack_require__(8).Symbol;
+  __webpack_require__(253);
+  __webpack_require__(252);
+  __webpack_require__(254);
+  __webpack_require__(255);
+  module.exports = __webpack_require__(8).Symbol;
 
-/***/ },
+/** *
+/ },
 /* 222 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(35);
-__webpack_require__(58);
-module.exports = __webpack_require__(57).f('iterator');
+  __webpack_require__(35);
+  __webpack_require__(58);
+  module.exports = __webpack_require__(57).f('iterator');
 
-/***/ },
+/** *
+/ },
 /* 223 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  module.exports = function (it) {
+  if (typeof it !== 'function') throw TypeError(`${it  } is not a function!`);
   return it;
 };
 
-/***/ },
+/** *
+/ },
 /* 224 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(){ /* empty */ };
+  module.exports = function () { /* empty */ };
 
-/***/ },
+/** *
+/ },
 /* 225 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(19)
-  , toLength  = __webpack_require__(87)
-  , toIndex   = __webpack_require__(243);
-module.exports = function(IS_INCLUDES){
-  return function($this, el, fromIndex){
-    var O      = toIObject($this)
-      , length = toLength(O.length)
-      , index  = toIndex(fromIndex, length)
-      , value;
+let toIObject = __webpack_require__(19),
+   toLength = __webpack_require__(87),
+   toIndex = __webpack_require__(243);
+  module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    let O = toIObject($this),
+       length = toLength(O.length),
+       index = toIndex(fromIndex, length),
+       value;
     // Array#includes uses SameValueZero equality algorithm
-    if(IS_INCLUDES && el != el)while(length > index){
+    if (IS_INCLUDES && el != el){while(length > index){
       value = O[index++];
       if(value != value)return true;
     // Array#toIndex ignores holes, Array#includes - not
-    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
+    }} else for (;length > index; index++){if(IS_INCLUDES || index in O){
       if(O[index] === el)return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
+    }} return !IS_INCLUDES && -1;
   };
 };
 
-/***/ },
+/** *
+/ },
 /* 226 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var $defineProperty = __webpack_require__(13)
-  , createDesc      = __webpack_require__(29);
 
-module.exports = function(object, index, value){
-  if(index in object)$defineProperty.f(object, index, createDesc(0, value));
+  'use strict';
+
+let $defineProperty = __webpack_require__(13),
+   createDesc = __webpack_require__(29);
+
+  module.exports = function (object, index, value) {
+  if (index in object)$defineProperty.f(object, index, createDesc(0, value));
   else object[index] = value;
 };
 
-/***/ },
+/** *
+/ },
 /* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(28)
-  , gOPS    = __webpack_require__(49)
-  , pIE     = __webpack_require__(33);
-module.exports = function(it){
-  var result     = getKeys(it)
-    , getSymbols = gOPS.f;
-  if(getSymbols){
-    var symbols = getSymbols(it)
-      , isEnum  = pIE.f
-      , i       = 0
-      , key;
-    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
+let getKeys = __webpack_require__(28),
+   gOPS = __webpack_require__(49),
+   pIE = __webpack_require__(33);
+  module.exports = function (it) {
+  let result = getKeys(it),
+     getSymbols = gOPS.f;
+  if (getSymbols) {
+    let symbols = getSymbols(it),
+       isEnum = pIE.f,
+       i = 0,
+       key;
+    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++]))result.push(key);
   } return result;
 };
 
-/***/ },
+/** *
+/ },
 /* 228 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(12).document && document.documentElement;
+  module.exports = __webpack_require__(12).document && document.documentElement;
 
-/***/ },
+/** *
+/ },
 /* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // check on default Array iterator
-var Iterators  = __webpack_require__(23)
-  , ITERATOR   = __webpack_require__(9)('iterator')
-  , ArrayProto = Array.prototype;
+let Iterators = __webpack_require__(23),
+   ITERATOR = __webpack_require__(9)('iterator'),
+   ArrayProto = Array.prototype;
 
-module.exports = function(it){
+  module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
 
-/***/ },
+/** *
+/ },
 /* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(43);
-module.exports = Array.isArray || function isArray(arg){
+let cof = __webpack_require__(43);
+  module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
-/***/ },
+/** *
+/ },
 /* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(15);
-module.exports = function(iterator, fn, value, entries){
+let anObject = __webpack_require__(15);
+  module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
   // 7.4.6 IteratorClose(iterator, completion)
-  } catch(e){
-    var ret = iterator['return'];
-    if(ret !== undefined)anObject(ret.call(iterator));
+  } catch (e) {
+    let ret = iterator.return;
+    if (ret !== undefined)anObject(ret.call(iterator));
     throw e;
   }
 };
 
-/***/ },
+/** *
+/ },
 /* 232 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var create         = __webpack_require__(48)
-  , descriptor     = __webpack_require__(29)
-  , setToStringTag = __webpack_require__(50)
-  , IteratorPrototype = {};
+
+  'use strict';
+
+let create = __webpack_require__(48),
+   descriptor = __webpack_require__(29),
+   setToStringTag = __webpack_require__(50),
+   IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(22)(IteratorPrototype, __webpack_require__(9)('iterator'), function(){ return this; });
+  __webpack_require__(22)(IteratorPrototype, __webpack_require__(9)('iterator'), function () { return this; });
 
-module.exports = function(Constructor, NAME, next){
-  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
-  setToStringTag(Constructor, NAME + ' Iterator');
+  module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, `${NAME  } Iterator`);
 };
 
-/***/ },
+/** *
+/ },
 /* 233 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var ITERATOR     = __webpack_require__(9)('iterator')
-  , SAFE_CLOSING = false;
+let ITERATOR = __webpack_require__(9)('iterator'),
+   SAFE_CLOSING = false;
 
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function(){ SAFE_CLOSING = true; };
-  Array.from(riter, function(){ throw 2; });
-} catch(e){ /* empty */ }
-
-module.exports = function(exec, skipClosing){
-  if(!skipClosing && !SAFE_CLOSING)return false;
-  var safe = false;
   try {
-    var arr  = [7]
-      , iter = arr[ITERATOR]();
-    iter.next = function(){ return {done: safe = true}; };
-    arr[ITERATOR] = function(){ return iter; };
+  let riter = [7][ITERATOR]();
+  riter.return = function () { SAFE_CLOSING = true; };
+  Array.from(riter, function () { throw 2; });
+} catch (e) { /* empty */ }
+
+  module.exports = function (exec, skipClosing) {
+  if (!skipClosing && !SAFE_CLOSING) return false;
+  let safe = false;
+  try {
+    let arr = [7],
+       iter = arr[ITERATOR]();
+    iter.next = function () { return { done: safe = true }; };
+    arr[ITERATOR] = function () { return iter; };
     exec(arr);
-  } catch(e){ /* empty */ }
+  } catch (e) { /* empty */ }
   return safe;
 };
 
-/***/ },
+/** *
+/ },
 /* 234 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(done, value){
-  return {value: value, done: !!done};
+  module.exports = function (done, value) {
+  return {value, done: !!done };
 };
 
-/***/ },
+/** *
+/ },
 /* 235 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var getKeys   = __webpack_require__(28)
-  , toIObject = __webpack_require__(19);
-module.exports = function(object, el){
-  var O      = toIObject(object)
-    , keys   = getKeys(O)
-    , length = keys.length
-    , index  = 0
-    , key;
-  while(length > index)if(O[key = keys[index++]] === el)return key;
+let getKeys = __webpack_require__(28),
+   toIObject = __webpack_require__(19);
+  module.exports = function (object, el) {
+  let O = toIObject(object),
+     keys = getKeys(O),
+     length = keys.length,
+     index = 0,
+     key;
+  while (length > index) if (O[key = keys[index++]] === el) return key;
 };
 
-/***/ },
+/** *
+/ },
 /* 236 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var META     = __webpack_require__(34)('meta')
-  , isObject = __webpack_require__(27)
-  , has      = __webpack_require__(18)
-  , setDesc  = __webpack_require__(13).f
-  , id       = 0;
-var isExtensible = Object.isExtensible || function(){
+let META = __webpack_require__(34)('meta'),
+   isObject = __webpack_require__(27),
+   has = __webpack_require__(18),
+   setDesc = __webpack_require__(13).f,
+   id = 0;
+let isExtensible = Object.isExtensible || function () {
   return true;
 };
-var FREEZE = !__webpack_require__(26)(function(){
+let FREEZE = !__webpack_require__(26)(function () {
   return isExtensible(Object.preventExtensions({}));
 });
-var setMeta = function(it){
-  setDesc(it, META, {value: {
-    i: 'O' + ++id, // object ID
-    w: {}          // weak collections IDs
-  }});
+let setMeta = function (it) {
+  setDesc(it, META, { value: {
+    i: `O${  ++id}`, // object ID
+    w: {},          // weak collections IDs
+  } });
 };
-var fastKey = function(it, create){
+let fastKey = function (it, create) {
   // return primitive with prefix
-  if(!isObject(it))return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-  if(!has(it, META)){
+  if (!isObject(it)) return typeof it === 'symbol' ? it : (typeof it === 'string' ? 'S' : 'P') + it;
+  if (!has(it, META)) {
     // can't set metadata to uncaught frozen object
-    if(!isExtensible(it))return 'F';
+    if (!isExtensible(it)) return 'F';
     // not necessary to add metadata
-    if(!create)return 'E';
+    if (!create) return 'E';
     // add missing metadata
     setMeta(it);
   // return object ID
   } return it[META].i;
 };
-var getWeak = function(it, create){
-  if(!has(it, META)){
+let getWeak = function (it, create) {
+  if (!has(it, META)) {
     // can't set metadata to uncaught frozen object
-    if(!isExtensible(it))return true;
+    if (!isExtensible(it)) return true;
     // not necessary to add metadata
-    if(!create)return false;
+    if (!create) return false;
     // add missing metadata
     setMeta(it);
   // return hash weak collections IDs
   } return it[META].w;
 };
 // add metadata on freeze-family methods calling
-var onFreeze = function(it){
-  if(FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
+let onFreeze = function (it) {
+  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
   return it;
 };
-var meta = module.exports = {
-  KEY:      META,
-  NEED:     false,
-  fastKey:  fastKey,
-  getWeak:  getWeak,
-  onFreeze: onFreeze
+let meta = module.exports = {
+  KEY: META,
+  NEED: false,
+  fastKey,
+  getWeak,
+  onFreeze: onFreeze,
 };
 
-/***/ },
+/** *
+/ },
 /* 237 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
+
+  'use strict';
+
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(28)
-  , gOPS     = __webpack_require__(49)
-  , pIE      = __webpack_require__(33)
-  , toObject = __webpack_require__(54)
-  , IObject  = __webpack_require__(81)
-  , $assign  = Object.assign;
+let getKeys = __webpack_require__(28),
+   gOPS = __webpack_require__(49),
+   pIE = __webpack_require__(33),
+   toObject = __webpack_require__(54),
+   IObject = __webpack_require__(81),
+   $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(26)(function(){
-  var A = {}
-    , B = {}
-    , S = Symbol()
-    , K = 'abcdefghijklmnopqrst';
+  module.exports = !$assign || __webpack_require__(26)(function () {
+  let A = {},
+     B = {},
+     S = Symbol(),
+     K = 'abcdefghijklmnopqrst';
   A[S] = 7;
-  K.split('').forEach(function(k){ B[k] = k; });
+  K.split('').forEach(function (k) { B[k] = k; });
   return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-  var T     = toObject(target)
-    , aLen  = arguments.length
-    , index = 1
-    , getSymbols = gOPS.f
-    , isEnum     = pIE.f;
-  while(aLen > index){
-    var S      = IObject(arguments[index++])
-      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-      , length = keys.length
-      , j      = 0
-      , key;
-    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  let T = toObject(target),
+     aLen = arguments.length,
+     index = 1,
+     getSymbols = gOPS.f,
+     isEnum = pIE.f;
+  while (aLen > index) {
+    let S = IObject(arguments[index++]),
+       keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S),
+       length = keys.length,
+       j = 0,
+       key;
+    while (length > j) if (isEnum.call(S, key = keys[j++]))T[key] = S[key];
   } return T;
 } : $assign;
 
-/***/ },
+/** *
+/ },
 /* 238 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var dP       = __webpack_require__(13)
-  , anObject = __webpack_require__(15)
-  , getKeys  = __webpack_require__(28);
+let dP = __webpack_require__(13),
+   anObject = __webpack_require__(15),
+   getKeys = __webpack_require__(28);
 
-module.exports = __webpack_require__(16) ? Object.defineProperties : function defineProperties(O, Properties){
+  module.exports = __webpack_require__(16) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
-  var keys   = getKeys(Properties)
-    , length = keys.length
-    , i = 0
-    , P;
-  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
+  let keys = getKeys(Properties),
+     length = keys.length,
+     i = 0,
+     P;
+  while (length > i)dP.f(O, P = keys[i++], Properties[P]);
   return O;
 };
 
-/***/ },
+/** *
+/ },
 /* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(19)
-  , gOPN      = __webpack_require__(84).f
-  , toString  = {}.toString;
+let toIObject = __webpack_require__(19),
+   gOPN = __webpack_require__(84).f,
+   toString = {}.toString;
 
-var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+let windowNames = typeof window === 'object' && window && Object.getOwnPropertyNames
   ? Object.getOwnPropertyNames(window) : [];
 
-var getWindowNames = function(it){
+let getWindowNames = function (it) {
   try {
     return gOPN(it);
-  } catch(e){
+  } catch (e) {
     return windowNames.slice();
   }
 };
 
-module.exports.f = function getOwnPropertyNames(it){
+  module.exports.f = function getOwnPropertyNames(it) {
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 };
 
 
-/***/ },
+/** *
+/ },
 /* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has         = __webpack_require__(18)
-  , toObject    = __webpack_require__(54)
-  , IE_PROTO    = __webpack_require__(51)('IE_PROTO')
-  , ObjectProto = Object.prototype;
+let has = __webpack_require__(18),
+   toObject = __webpack_require__(54),
+   IE_PROTO = __webpack_require__(51)('IE_PROTO'),
+   ObjectProto = Object.prototype;
 
-module.exports = Object.getPrototypeOf || function(O){
+  module.exports = Object.getPrototypeOf || function (O) {
   O = toObject(O);
-  if(has(O, IE_PROTO))return O[IE_PROTO];
-  if(typeof O.constructor == 'function' && O instanceof O.constructor){
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor === 'function' && O instanceof O.constructor) {
     return O.constructor.prototype;
   } return O instanceof Object ? ObjectProto : null;
 };
 
-/***/ },
+/** *
+/ },
 /* 241 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(27)
-  , anObject = __webpack_require__(15);
-var check = function(O, proto){
+let isObject = __webpack_require__(27),
+   anObject = __webpack_require__(15);
+let check = function (O, proto) {
   anObject(O);
-  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
+  if (!isObject(proto) && proto !== null) throw TypeError(`${proto  }: can't set as prototype!`);
 };
-module.exports = {
+  module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
-    function(test, buggy, set){
+    (function(test, buggy, set){
       try {
         set = __webpack_require__(44)(Function.call, __webpack_require__(83).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
@@ -29987,25 +30210,27 @@ module.exports = {
         else set(O, proto);
         return O;
       };
-    }({}, false) : undefined),
-  check: check
+    }({}, false)) : undefined),
+  check: check,
 };
 
-/***/ },
+/** *
+/ },
 /* 242 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(53)
-  , defined   = __webpack_require__(45);
+let toInteger = __webpack_require__(53),
+   defined = __webpack_require__(45);
 // true  -> String#at
 // false -> String#codePointAt
-module.exports = function(TO_STRING){
-  return function(that, pos){
-    var s = String(defined(that))
-      , i = toInteger(pos)
-      , l = s.length
-      , a, b;
-    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+  module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    let s = String(defined(that)),
+       i = toInteger(pos),
+       l = s.length,
+       a, 
+b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
     a = s.charCodeAt(i);
     return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
       ? TO_STRING ? s.charAt(i) : a
@@ -30013,360 +30238,373 @@ module.exports = function(TO_STRING){
   };
 };
 
-/***/ },
+/** *
+/ },
 /* 243 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(53)
-  , max       = Math.max
-  , min       = Math.min;
-module.exports = function(index, length){
+let toInteger = __webpack_require__(53),
+   max = Math.max,
+   min = Math.min;
+  module.exports = function (index, length) {
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
 
-/***/ },
+/** *
+/ },
 /* 244 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(15)
-  , get      = __webpack_require__(88);
-module.exports = __webpack_require__(8).getIterator = function(it){
-  var iterFn = get(it);
-  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
+let anObject = __webpack_require__(15),
+   get = __webpack_require__(88);
+  module.exports = __webpack_require__(8).getIterator = function (it) {
+  let iterFn = get(it);
+  if (typeof iterFn !== 'function') throw TypeError(`${it  } is not iterable!`);
   return anObject(iterFn.call(it));
 };
 
-/***/ },
+/** *
+/ },
 /* 245 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(78)
-  , ITERATOR  = __webpack_require__(9)('iterator')
-  , Iterators = __webpack_require__(23);
-module.exports = __webpack_require__(8).isIterable = function(it){
-  var O = Object(it);
+let classof = __webpack_require__(78),
+   ITERATOR = __webpack_require__(9)('iterator'),
+   Iterators = __webpack_require__(23);
+  module.exports = __webpack_require__(8).isIterable = function (it) {
+  let O = Object(it);
   return O[ITERATOR] !== undefined
     || '@@iterator' in O
     || Iterators.hasOwnProperty(classof(O));
 };
 
-/***/ },
+/** *
+/ },
 /* 246 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var ctx            = __webpack_require__(44)
-  , $export        = __webpack_require__(17)
-  , toObject       = __webpack_require__(54)
-  , call           = __webpack_require__(231)
-  , isArrayIter    = __webpack_require__(229)
-  , toLength       = __webpack_require__(87)
-  , createProperty = __webpack_require__(226)
-  , getIterFn      = __webpack_require__(88);
 
-$export($export.S + $export.F * !__webpack_require__(233)(function(iter){ Array.from(iter); }), 'Array', {
+  'use strict';
+
+let ctx = __webpack_require__(44),
+   $export = __webpack_require__(17),
+   toObject = __webpack_require__(54),
+   call = __webpack_require__(231),
+   isArrayIter = __webpack_require__(229),
+   toLength = __webpack_require__(87),
+   createProperty = __webpack_require__(226),
+   getIterFn = __webpack_require__(88);
+
+  $export($export.S + $export.F * !__webpack_require__(233)(function (iter) { Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
-    var O       = toObject(arrayLike)
-      , C       = typeof this == 'function' ? this : Array
-      , aLen    = arguments.length
-      , mapfn   = aLen > 1 ? arguments[1] : undefined
-      , mapping = mapfn !== undefined
-      , index   = 0
-      , iterFn  = getIterFn(O)
-      , length, result, step, iterator;
-    if(mapping)mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+  from: function from(arrayLike/* , mapfn = undefined, thisArg = undefined*/) {
+    let O = toObject(arrayLike),
+       C = typeof this === 'function' ? this : Array,
+       aLen = arguments.length,
+       mapfn = aLen > 1 ? arguments[1] : undefined,
+       mapping = mapfn !== undefined,
+       index = 0,
+       iterFn = getIterFn(O),
+       length, 
+result, 
+step, 
+iterator;
+    if (mapping)mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
     // if object isn't iterable or it's array with default iterator - use simple case
-    if(iterFn != undefined && !(C == Array && isArrayIter(iterFn))){
-      for(iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++){
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
         createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
       }
     } else {
       length = toLength(O.length);
-      for(result = new C(length); length > index; index++){
+      for (result = new C(length); length > index; index++) {
         createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
       }
     }
     result.length = index;
     return result;
-  }
+  },
 });
 
 
-/***/ },
+/** *
+/ },
 /* 247 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
-var addToUnscopables = __webpack_require__(224)
-  , step             = __webpack_require__(234)
-  , Iterators        = __webpack_require__(23)
-  , toIObject        = __webpack_require__(19);
+
+  'use strict';
+
+let addToUnscopables = __webpack_require__(224),
+   step = __webpack_require__(234),
+   Iterators = __webpack_require__(23),
+   toIObject = __webpack_require__(19);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(82)(Array, 'Array', function(iterated, kind){
+  module.exports = __webpack_require__(82)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
 // 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-}, function(){
-  var O     = this._t
-    , kind  = this._k
-    , index = this._i++;
-  if(!O || index >= O.length){
+}, function () {
+  let O = this._t,
+     kind = this._k,
+     index = this._i++;
+  if (!O || index >= O.length) {
     this._t = undefined;
     return step(1);
   }
-  if(kind == 'keys'  )return step(0, index);
-  if(kind == 'values')return step(0, O[index]);
+  if (kind == 'keys' ) return step(0, index);
+  if (kind == 'values') return step(0, O[index]);
   return step(0, [index, O[index]]);
 }, 'values');
 
 // argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-Iterators.Arguments = Iterators.Array;
+  Iterators.Arguments = Iterators.Array;
 
-addToUnscopables('keys');
-addToUnscopables('values');
-addToUnscopables('entries');
+  addToUnscopables('keys');
+  addToUnscopables('values');
+  addToUnscopables('entries');
 
-/***/ },
+/** *
+/ },
 /* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(17);
+let $export = __webpack_require__(17);
 
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(237)});
+  $export($export.S + $export.F, 'Object', { assign: __webpack_require__(237) });
 
-/***/ },
+/** *
+/ },
 /* 249 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(17)
+let $export = __webpack_require__(17);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', {create: __webpack_require__(48)});
+  $export($export.S, 'Object', { create: __webpack_require__(48) });
 
-/***/ },
+/** *
+/ },
 /* 250 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(17);
+let $export = __webpack_require__(17);
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-$export($export.S + $export.F * !__webpack_require__(16), 'Object', {defineProperty: __webpack_require__(13).f});
+  $export($export.S + $export.F * !__webpack_require__(16), 'Object', { defineProperty: __webpack_require__(13).f });
 
-/***/ },
+/** *
+/ },
 /* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /** */ function (module, exports, __webpack_require__) {
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(17);
-$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(241).set});
+let $export = __webpack_require__(17);
+  $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(241).set });
 
-/***/ },
+/** *
+/ },
 /* 252 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
 
-
-/***/ },
+/** */ },
 /* 253 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
+
+  'use strict';
+
 // ECMAScript 6 symbols shim
-var global         = __webpack_require__(12)
-  , has            = __webpack_require__(18)
-  , DESCRIPTORS    = __webpack_require__(16)
-  , $export        = __webpack_require__(17)
-  , redefine       = __webpack_require__(86)
-  , META           = __webpack_require__(236).KEY
-  , $fails         = __webpack_require__(26)
-  , shared         = __webpack_require__(52)
-  , setToStringTag = __webpack_require__(50)
-  , uid            = __webpack_require__(34)
-  , wks            = __webpack_require__(9)
-  , wksExt         = __webpack_require__(57)
-  , wksDefine      = __webpack_require__(56)
-  , keyOf          = __webpack_require__(235)
-  , enumKeys       = __webpack_require__(227)
-  , isArray        = __webpack_require__(230)
-  , anObject       = __webpack_require__(15)
-  , toIObject      = __webpack_require__(19)
-  , toPrimitive    = __webpack_require__(55)
-  , createDesc     = __webpack_require__(29)
-  , _create        = __webpack_require__(48)
-  , gOPNExt        = __webpack_require__(239)
-  , $GOPD          = __webpack_require__(83)
-  , $DP            = __webpack_require__(13)
-  , $keys          = __webpack_require__(28)
-  , gOPD           = $GOPD.f
-  , dP             = $DP.f
-  , gOPN           = gOPNExt.f
-  , $Symbol        = global.Symbol
-  , $JSON          = global.JSON
-  , _stringify     = $JSON && $JSON.stringify
-  , PROTOTYPE      = 'prototype'
-  , HIDDEN         = wks('_hidden')
-  , TO_PRIMITIVE   = wks('toPrimitive')
-  , isEnum         = {}.propertyIsEnumerable
-  , SymbolRegistry = shared('symbol-registry')
-  , AllSymbols     = shared('symbols')
-  , OPSymbols      = shared('op-symbols')
-  , ObjectProto    = Object[PROTOTYPE]
-  , USE_NATIVE     = typeof $Symbol == 'function'
-  , QObject        = global.QObject;
+let global = __webpack_require__(12),
+   has = __webpack_require__(18),
+   DESCRIPTORS = __webpack_require__(16),
+   $export = __webpack_require__(17),
+   redefine = __webpack_require__(86),
+   META = __webpack_require__(236).KEY,
+   $fails = __webpack_require__(26),
+   shared = __webpack_require__(52),
+   setToStringTag = __webpack_require__(50),
+   uid = __webpack_require__(34),
+   wks = __webpack_require__(9),
+   wksExt = __webpack_require__(57),
+   wksDefine = __webpack_require__(56),
+   keyOf = __webpack_require__(235),
+   enumKeys = __webpack_require__(227),
+   isArray = __webpack_require__(230),
+   anObject = __webpack_require__(15),
+   toIObject = __webpack_require__(19),
+   toPrimitive = __webpack_require__(55),
+   createDesc = __webpack_require__(29),
+   _create = __webpack_require__(48),
+   gOPNExt = __webpack_require__(239),
+   $GOPD = __webpack_require__(83),
+   $DP = __webpack_require__(13),
+   $keys = __webpack_require__(28),
+   gOPD = $GOPD.f,
+   dP = $DP.f,
+   gOPN = gOPNExt.f,
+   $Symbol = global.Symbol,
+   $JSON = global.JSON,
+   _stringify = $JSON && $JSON.stringify,
+   PROTOTYPE = 'prototype',
+   HIDDEN = wks('_hidden'),
+   TO_PRIMITIVE = wks('toPrimitive'),
+   isEnum = {}.propertyIsEnumerable,
+   SymbolRegistry = shared('symbol-registry'),
+   AllSymbols = shared('symbols'),
+   OPSymbols = shared('op-symbols'),
+   ObjectProto = Object[PROTOTYPE],
+   USE_NATIVE = typeof $Symbol === 'function',
+   QObject = global.QObject;
 // Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+let setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
 
 // fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-var setSymbolDesc = DESCRIPTORS && $fails(function(){
+let setSymbolDesc = DESCRIPTORS && $fails(function () {
   return _create(dP({}, 'a', {
-    get: function(){ return dP(this, 'a', {value: 7}).a; }
+    get: function () { return dP(this, 'a', { value: 7 }).a; },
   })).a != 7;
-}) ? function(it, key, D){
-  var protoDesc = gOPD(ObjectProto, key);
-  if(protoDesc)delete ObjectProto[key];
+}) ? function (it, key, D) {
+  let protoDesc = gOPD(ObjectProto, key);
+  if (protoDesc) delete ObjectProto[key];
   dP(it, key, D);
-  if(protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
+  if (protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
 } : dP;
 
-var wrap = function(tag){
-  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+let wrap = function (tag) {
+  let sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
   sym._k = tag;
   return sym;
 };
 
-var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function(it){
-  return typeof it == 'symbol';
-} : function(it){
+let isSymbol = USE_NATIVE && typeof $Symbol.iterator === 'symbol' ? function (it) {
+  return typeof it === 'symbol';
+} : function (it) {
   return it instanceof $Symbol;
 };
 
-var $defineProperty = function defineProperty(it, key, D){
-  if(it === ObjectProto)$defineProperty(OPSymbols, key, D);
+let $defineProperty = function defineProperty(it, key, D) {
+  if (it === ObjectProto)$defineProperty(OPSymbols, key, D);
   anObject(it);
   key = toPrimitive(key, true);
   anObject(D);
-  if(has(AllSymbols, key)){
-    if(!D.enumerable){
-      if(!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
+  if (has(AllSymbols, key)) {
+    if (!D.enumerable) {
+      if (!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
       it[HIDDEN][key] = true;
     } else {
-      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
-      D = _create(D, {enumerable: createDesc(0, false)});
+      if (has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
+      D = _create(D, { enumerable: createDesc(0, false) });
     } return setSymbolDesc(it, key, D);
   } return dP(it, key, D);
 };
-var $defineProperties = function defineProperties(it, P){
+let $defineProperties = function defineProperties(it, P) {
   anObject(it);
-  var keys = enumKeys(P = toIObject(P))
-    , i    = 0
-    , l = keys.length
-    , key;
-  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
+  let keys = enumKeys(P = toIObject(P)),
+     i = 0,
+     l = keys.length,
+     key;
+  while (l > i)$defineProperty(it, key = keys[i++], P[key]);
   return it;
 };
-var $create = function create(it, P){
+let $create = function create(it, P) {
   return P === undefined ? _create(it) : $defineProperties(_create(it), P);
 };
-var $propertyIsEnumerable = function propertyIsEnumerable(key){
-  var E = isEnum.call(this, key = toPrimitive(key, true));
-  if(this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return false;
+let $propertyIsEnumerable = function propertyIsEnumerable(key) {
+  let E = isEnum.call(this, key = toPrimitive(key, true));
+  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
   return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
 };
-var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
-  it  = toIObject(it);
+let $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+  it = toIObject(it);
   key = toPrimitive(key, true);
-  if(it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return;
-  var D = gOPD(it, key);
-  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
+  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
+  let D = gOPD(it, key);
+  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
   return D;
 };
-var $getOwnPropertyNames = function getOwnPropertyNames(it){
-  var names  = gOPN(toIObject(it))
-    , result = []
-    , i      = 0
-    , key;
-  while(names.length > i){
-    if(!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
+let $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  let names = gOPN(toIObject(it)),
+     result = [],
+     i = 0,
+     key;
+  while (names.length > i) {
+    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
   } return result;
 };
-var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
-  var IS_OP  = it === ObjectProto
-    , names  = gOPN(IS_OP ? OPSymbols : toIObject(it))
-    , result = []
-    , i      = 0
-    , key;
-  while(names.length > i){
-    if(has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
+let $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+  let IS_OP = it === ObjectProto,
+     names = gOPN(IS_OP ? OPSymbols : toIObject(it)),
+     result = [],
+     i = 0,
+     key;
+  while (names.length > i) {
+    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
   } return result;
 };
 
 // 19.4.1.1 Symbol([description])
-if(!USE_NATIVE){
-  $Symbol = function Symbol(){
-    if(this instanceof $Symbol)throw TypeError('Symbol is not a constructor!');
-    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-    var $set = function(value){
-      if(this === ObjectProto)$set.call(OPSymbols, value);
-      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
+  if (!USE_NATIVE) {
+  $Symbol = function Symbol() {
+    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
+    let tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+    let $set = function (value) {
+      if (this === ObjectProto)$set.call(OPSymbols, value);
+      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
       setSymbolDesc(this, tag, createDesc(1, value));
     };
-    if(DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, {configurable: true, set: $set});
+    if (DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
     return wrap(tag);
   };
-  redefine($Symbol[PROTOTYPE], 'toString', function toString(){
+  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
     return this._k;
   });
 
   $GOPD.f = $getOwnPropertyDescriptor;
-  $DP.f   = $defineProperty;
+  $DP.f = $defineProperty;
   __webpack_require__(84).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(33).f  = $propertyIsEnumerable;
+  __webpack_require__(33).f = $propertyIsEnumerable;
   __webpack_require__(49).f = $getOwnPropertySymbols;
 
-  if(DESCRIPTORS && !__webpack_require__(47)){
+  if (DESCRIPTORS && !__webpack_require__(47)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
-  wksExt.f = function(name){
+  wksExt.f = function (name) {
     return wrap(wks(name));
-  }
+  };
 }
 
-$export($export.G + $export.W + $export.F * !USE_NATIVE, {Symbol: $Symbol});
+  $export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
 
-for(var symbols = (
+  for (var symbols = (
   // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
   'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
-).split(','), i = 0; symbols.length > i; )wks(symbols[i++]);
+).split(','), i = 0; symbols.length > i;)wks(symbols[i++]);
 
-for(var symbols = $keys(wks.store), i = 0; symbols.length > i; )wksDefine(symbols[i++]);
+  for (var symbols = $keys(wks.store), i = 0; symbols.length > i;)wksDefine(symbols[i++]);
 
-$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
+  $export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.1 Symbol.for(key)
-  'for': function(key){
+  for: function (key) {
     return has(SymbolRegistry, key += '')
       ? SymbolRegistry[key]
       : SymbolRegistry[key] = $Symbol(key);
   },
   // 19.4.2.5 Symbol.keyFor(sym)
-  keyFor: function keyFor(key){
-    if(isSymbol(key))return keyOf(SymbolRegistry, key);
-    throw TypeError(key + ' is not a symbol!');
+  keyFor: function keyFor(key) {
+    if (isSymbol(key)) return keyOf(SymbolRegistry, key);
+    throw TypeError(`${key  } is not a symbol!`);
   },
-  useSetter: function(){ setter = true; },
-  useSimple: function(){ setter = false; }
+  useSetter: function () { setter = true; },
+  useSimple: function () { setter = false; },
 });
 
-$export($export.S + $export.F * !USE_NATIVE, 'Object', {
+  $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   // 19.1.2.2 Object.create(O [, Properties])
   create: $create,
   // 19.1.2.4 Object.defineProperty(O, P, Attributes)
@@ -30378,115 +30616,118 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   // 19.1.2.7 Object.getOwnPropertyNames(O)
   getOwnPropertyNames: $getOwnPropertyNames,
   // 19.1.2.8 Object.getOwnPropertySymbols(O)
-  getOwnPropertySymbols: $getOwnPropertySymbols
+  getOwnPropertySymbols: $getOwnPropertySymbols,
 });
 
 // 24.3.2 JSON.stringify(value [, replacer [, space]])
-$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
-  var S = $Symbol();
+  $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
+  let S = $Symbol();
   // MS Edge converts symbol values to JSON as {}
   // WebKit converts symbol values to JSON as null
   // V8 throws on boxed symbols
-  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
+  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
 })), 'JSON', {
-  stringify: function stringify(it){
-    if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
-    var args = [it]
-      , i    = 1
-      , replacer, $replacer;
-    while(arguments.length > i)args.push(arguments[i++]);
+  stringify: function stringify(it) {
+    if (it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    let args = [it],
+       i = 1,
+       replacer, 
+$replacer;
+    while (arguments.length > i)args.push(arguments[i++]);
     replacer = args[1];
-    if(typeof replacer == 'function')$replacer = replacer;
-    if($replacer || !isArray(replacer))replacer = function(key, value){
+    if (typeof replacer === 'function')$replacer = replacer;
+    if ($replacer || !isArray(replacer)){replacer = function(key, value){
       if($replacer)value = $replacer.call(this, key, value);
       if(!isSymbol(value))return value;
-    };
+    };}
     args[1] = replacer;
     return _stringify.apply($JSON, args);
-  }
+  },
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(22)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+  $Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(22)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
-setToStringTag($Symbol, 'Symbol');
+  setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
-setToStringTag(Math, 'Math', true);
+  setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
-setToStringTag(global.JSON, 'JSON', true);
+  setToStringTag(global.JSON, 'JSON', true);
 
-/***/ },
+/** *
+/ },
 /* 254 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(56)('asyncIterator');
+  __webpack_require__(56)('asyncIterator');
 
-/***/ },
+/** *
+/ },
 /* 255 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-__webpack_require__(56)('observable');
+  __webpack_require__(56)('observable');
 
-/***/ },
+/** *
+/ },
 /* 256 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
-;(function(root) {
-
+  /* WEBPACK VAR INJECTION */(function (module, global) {let __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
+(function (root) {
 	/** Detect free variables */
-	var freeExports = typeof exports == 'object' && exports &&
+	let freeExports = typeof exports === 'object' && exports &&
 		!exports.nodeType && exports;
-	var freeModule = typeof module == 'object' && module &&
+	let freeModule = typeof module === 'object' && module &&
 		!module.nodeType && module;
-	var freeGlobal = typeof global == 'object' && global;
-	if (
+	let freeGlobal = typeof global === 'object' && global;
+  if (
 		freeGlobal.global === freeGlobal ||
 		freeGlobal.window === freeGlobal ||
 		freeGlobal.self === freeGlobal
 	) {
-		root = freeGlobal;
-	}
+  root = freeGlobal;
+}
 
 	/**
 	 * The `punycode` object.
 	 * @name punycode
 	 * @type Object
 	 */
-	var punycode,
+	let punycode,
 
 	/** Highest positive signed 32-bit float value */
-	maxInt = 2147483647, // aka. 0x7FFFFFFF or 2^31-1
+  maxInt = 2147483647, // aka. 0x7FFFFFFF or 2^31-1
 
 	/** Bootstring parameters */
-	base = 36,
-	tMin = 1,
-	tMax = 26,
-	skew = 38,
-	damp = 700,
-	initialBias = 72,
-	initialN = 128, // 0x80
-	delimiter = '-', // '\x2D'
+  base = 36,
+  tMin = 1,
+  tMax = 26,
+  skew = 38,
+  damp = 700,
+  initialBias = 72,
+  initialN = 128, // 0x80
+  delimiter = '-', // '\x2D'
 
 	/** Regular expressions */
-	regexPunycode = /^xn--/,
-	regexNonASCII = /[^\x20-\x7E]/, // unprintable ASCII chars + non-ASCII chars
-	regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g, // RFC 3490 separators
+  regexPunycode = /^xn--/,
+  regexNonASCII = /[^\x20-\x7E]/, // unprintable ASCII chars + non-ASCII chars
+  regexSeparators = /[\x2E\u3002\uFF0E\uFF61]/g, // RFC 3490 separators
 
 	/** Error messages */
-	errors = {
-		'overflow': 'Overflow: input needs wider integers to process',
-		'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
-		'invalid-input': 'Invalid input'
-	},
+  errors = {
+		overflow: 'Overflow: input needs wider integers to process',
+  'not-basic': 'Illegal input >= 0x80 (not a basic code point)',
+  'invalid-input': 'Invalid input',
+},
 
 	/** Convenience shortcuts */
-	baseMinusTMin = base - tMin,
-	floor = Math.floor,
-	stringFromCharCode = String.fromCharCode,
+  baseMinusTMin = base - tMin,
+  floor = Math.floor,
+  stringFromCharCode = String.fromCharCode,
 
 	/** Temporary variable */
-	key;
+  key;
 
 	/*--------------------------------------------------------------------------*/
 
@@ -30496,9 +30737,9 @@ __webpack_require__(56)('observable');
 	 * @param {String} type The error type.
 	 * @returns {Error} Throws a `RangeError` with the applicable error message.
 	 */
-	function error(type) {
-		throw new RangeError(errors[type]);
-	}
+  function error(type) {
+  throw new RangeError(errors[type]);
+}
 
 	/**
 	 * A generic `Array#map` utility function.
@@ -30508,14 +30749,14 @@ __webpack_require__(56)('observable');
 	 * item.
 	 * @returns {Array} A new array of values returned by the callback function.
 	 */
-	function map(array, fn) {
-		var length = array.length;
-		var result = [];
-		while (length--) {
-			result[length] = fn(array[length]);
-		}
-		return result;
-	}
+  function map(array, fn) {
+		let length = array.length;
+		let result = [];
+  while (length--) {
+  result[length] = fn(array[length]);
+}
+  return result;
+}
 
 	/**
 	 * A simple `Array#map`-like wrapper to work with domain name strings or email
@@ -30527,21 +30768,21 @@ __webpack_require__(56)('observable');
 	 * @returns {Array} A new string of characters returned by the callback
 	 * function.
 	 */
-	function mapDomain(string, fn) {
-		var parts = string.split('@');
-		var result = '';
-		if (parts.length > 1) {
+  function mapDomain(string, fn) {
+		let parts = string.split('@');
+		let result = '';
+  if (parts.length > 1) {
 			// In email addresses, only the domain name should be punycoded. Leave
 			// the local part (i.e. everything up to `@`) intact.
-			result = parts[0] + '@';
-			string = parts[1];
-		}
+  result = `${parts[0]  }@`;
+  string = parts[1];
+}
 		// Avoid `split(regex)` for IE8 compatibility. See #17.
-		string = string.replace(regexSeparators, '\x2E');
-		var labels = string.split('.');
-		var encoded = map(labels, fn).join('.');
-		return result + encoded;
-	}
+  string = string.replace(regexSeparators, '\x2E');
+		let labels = string.split('.');
+		let encoded = map(labels, fn).join('.');
+  return result + encoded;
+}
 
 	/**
 	 * Creates an array containing the numeric code points of each Unicode
@@ -30556,31 +30797,31 @@ __webpack_require__(56)('observable');
 	 * @param {String} string The Unicode input string (UCS-2).
 	 * @returns {Array} The new array of code points.
 	 */
-	function ucs2decode(string) {
-		var output = [],
+  function ucs2decode(string) {
+		let output = [],
 		    counter = 0,
 		    length = string.length,
 		    value,
 		    extra;
-		while (counter < length) {
-			value = string.charCodeAt(counter++);
-			if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+  while (counter < length) {
+  value = string.charCodeAt(counter++);
+  if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
 				// high surrogate, and there is a next character
-				extra = string.charCodeAt(counter++);
-				if ((extra & 0xFC00) == 0xDC00) { // low surrogate
-					output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
-				} else {
+  extra = string.charCodeAt(counter++);
+  if ((extra & 0xFC00) == 0xDC00) { // low surrogate
+  output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+} else {
 					// unmatched surrogate; only append this code unit, in case the next
 					// code unit is the high surrogate of a surrogate pair
-					output.push(value);
-					counter--;
-				}
-			} else {
-				output.push(value);
-			}
-		}
-		return output;
-	}
+  output.push(value);
+  counter--;
+}
+} else {
+  output.push(value);
+}
+}
+  return output;
+}
 
 	/**
 	 * Creates a string based on an array of numeric code points.
@@ -30590,18 +30831,18 @@ __webpack_require__(56)('observable');
 	 * @param {Array} codePoints The array of numeric code points.
 	 * @returns {String} The new Unicode string (UCS-2).
 	 */
-	function ucs2encode(array) {
-		return map(array, function(value) {
-			var output = '';
-			if (value > 0xFFFF) {
-				value -= 0x10000;
-				output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
-				value = 0xDC00 | value & 0x3FF;
-			}
-			output += stringFromCharCode(value);
-			return output;
-		}).join('');
-	}
+  function ucs2encode(array) {
+return map(array, (value) => {
+			let output = '';
+  if (value > 0xFFFF) {
+  value -= 0x10000;
+  output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
+  value = 0xDC00 | value & 0x3FF;
+}
+  output += stringFromCharCode(value);
+  return output;
+}).join('');
+}
 
 	/**
 	 * Converts a basic code point into a digit/integer.
@@ -30612,18 +30853,18 @@ __webpack_require__(56)('observable');
 	 * representing integers) in the range `0` to `base - 1`, or `base` if
 	 * the code point does not represent a value.
 	 */
-	function basicToDigit(codePoint) {
-		if (codePoint - 48 < 10) {
-			return codePoint - 22;
-		}
-		if (codePoint - 65 < 26) {
-			return codePoint - 65;
-		}
-		if (codePoint - 97 < 26) {
-			return codePoint - 97;
-		}
-		return base;
-	}
+  function basicToDigit(codePoint) {
+  if (codePoint - 48 < 10) {
+  return codePoint - 22;
+}
+  if (codePoint - 65 < 26) {
+  return codePoint - 65;
+}
+  if (codePoint - 97 < 26) {
+  return codePoint - 97;
+}
+  return base;
+}
 
 	/**
 	 * Converts a digit/integer into a basic code point.
@@ -30636,26 +30877,26 @@ __webpack_require__(56)('observable');
 	 * used; else, the lowercase form is used. The behavior is undefined
 	 * if `flag` is non-zero and `digit` has no uppercase form.
 	 */
-	function digitToBasic(digit, flag) {
+  function digitToBasic(digit, flag) {
 		//  0..25 map to ASCII a..z or A..Z
 		// 26..35 map to ASCII 0..9
-		return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
-	}
+  return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
+}
 
 	/**
 	 * Bias adaptation function as per section 3.4 of RFC 3492.
 	 * https://tools.ietf.org/html/rfc3492#section-3.4
 	 * @private
 	 */
-	function adapt(delta, numPoints, firstTime) {
-		var k = 0;
-		delta = firstTime ? floor(delta / damp) : delta >> 1;
-		delta += floor(delta / numPoints);
-		for (/* no initialization */; delta > baseMinusTMin * tMax >> 1; k += base) {
-			delta = floor(delta / baseMinusTMin);
-		}
-		return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
-	}
+  function adapt(delta, numPoints, firstTime) {
+		let k = 0;
+  delta = firstTime ? floor(delta / damp) : delta >> 1;
+  delta += floor(delta / numPoints);
+  for (/* no initialization */; delta > baseMinusTMin * tMax >> 1; k += base) {
+  delta = floor(delta / baseMinusTMin);
+}
+  return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
+}
 
 	/**
 	 * Converts a Punycode string of ASCII-only symbols to a string of Unicode
@@ -30664,9 +30905,9 @@ __webpack_require__(56)('observable');
 	 * @param {String} input The Punycode string of ASCII-only symbols.
 	 * @returns {String} The resulting string of Unicode symbols.
 	 */
-	function decode(input) {
+  function decode(input) {
 		// Don't use UCS-2
-		var output = [],
+		let output = [],
 		    inputLength = input.length,
 		    out,
 		    i = 0,
@@ -30687,76 +30928,75 @@ __webpack_require__(56)('observable');
 		// points before the last delimiter, or `0` if there is none, then copy
 		// the first basic code points to the output.
 
-		basic = input.lastIndexOf(delimiter);
-		if (basic < 0) {
-			basic = 0;
-		}
+  basic = input.lastIndexOf(delimiter);
+  if (basic < 0) {
+  basic = 0;
+}
 
-		for (j = 0; j < basic; ++j) {
+  for (j = 0; j < basic; ++j) {
 			// if it's not a basic code point
-			if (input.charCodeAt(j) >= 0x80) {
-				error('not-basic');
-			}
-			output.push(input.charCodeAt(j));
-		}
+  if (input.charCodeAt(j) >= 0x80) {
+  error('not-basic');
+}
+  output.push(input.charCodeAt(j));
+}
 
 		// Main decoding loop: start just after the last delimiter if any basic code
 		// points were copied; start at the beginning otherwise.
 
-		for (index = basic > 0 ? basic + 1 : 0; index < inputLength; /* no final expression */) {
-
+  for (index = basic > 0 ? basic + 1 : 0; index < inputLength; /* no final expression */) {
 			// `index` is the index of the next character to be consumed.
 			// Decode a generalized variable-length integer into `delta`,
 			// which gets added to `i`. The overflow checking is easier
 			// if we increase `i` as we go, then subtract off its starting
 			// value at the end to obtain `delta`.
-			for (oldi = i, w = 1, k = base; /* no condition */; k += base) {
+  for (oldi = i, w = 1, k = base; /* no condition */; k += base) {
 
-				if (index >= inputLength) {
-					error('invalid-input');
-				}
+  if (index >= inputLength) {
+  error('invalid-input');
+}
 
-				digit = basicToDigit(input.charCodeAt(index++));
+  digit = basicToDigit(input.charCodeAt(index++));
 
-				if (digit >= base || digit > floor((maxInt - i) / w)) {
-					error('overflow');
-				}
+  if (digit >= base || digit > floor((maxInt - i) / w)) {
+  error('overflow');
+}
 
-				i += digit * w;
-				t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
+  i += digit * w;
+  t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
 
-				if (digit < t) {
-					break;
-				}
+  if (digit < t) {
+  break;
+}
 
-				baseMinusT = base - t;
-				if (w > floor(maxInt / baseMinusT)) {
-					error('overflow');
-				}
+  baseMinusT = base - t;
+  if (w > floor(maxInt / baseMinusT)) {
+  error('overflow');
+}
 
-				w *= baseMinusT;
+  w *= baseMinusT;
 
-			}
+}
 
-			out = output.length + 1;
-			bias = adapt(i - oldi, out, oldi == 0);
+  out = output.length + 1;
+  bias = adapt(i - oldi, out, oldi == 0);
 
 			// `i` was supposed to wrap around from `out` to `0`,
 			// incrementing `n` each time, so we'll fix that now:
-			if (floor(i / out) > maxInt - n) {
-				error('overflow');
-			}
+  if (floor(i / out) > maxInt - n) {
+  error('overflow');
+}
 
-			n += floor(i / out);
-			i %= out;
+  n += floor(i / out);
+  i %= out;
 
 			// Insert `n` at position `i` of the output
-			output.splice(i++, 0, n);
+  output.splice(i++, 0, n);
 
-		}
+}
 
-		return ucs2encode(output);
-	}
+  return ucs2encode(output);
+}
 
 	/**
 	 * Converts a string of Unicode symbols (e.g. a domain name label) to a
@@ -30765,8 +31005,8 @@ __webpack_require__(56)('observable');
 	 * @param {String} input The string of Unicode symbols.
 	 * @returns {String} The resulting Punycode string of ASCII-only symbols.
 	 */
-	function encode(input) {
-		var n,
+  function encode(input) {
+		let n,
 		    delta,
 		    handledCPCount,
 		    basicLength,
@@ -30786,91 +31026,90 @@ __webpack_require__(56)('observable');
 		    qMinusT;
 
 		// Convert the input in UCS-2 to Unicode
-		input = ucs2decode(input);
+  input = ucs2decode(input);
 
 		// Cache the length
-		inputLength = input.length;
+  inputLength = input.length;
 
 		// Initialize the state
-		n = initialN;
-		delta = 0;
-		bias = initialBias;
+  n = initialN;
+  delta = 0;
+  bias = initialBias;
 
 		// Handle the basic code points
-		for (j = 0; j < inputLength; ++j) {
-			currentValue = input[j];
-			if (currentValue < 0x80) {
-				output.push(stringFromCharCode(currentValue));
-			}
-		}
+  for (j = 0; j < inputLength; ++j) {
+  currentValue = input[j];
+  if (currentValue < 0x80) {
+  output.push(stringFromCharCode(currentValue));
+}
+}
 
-		handledCPCount = basicLength = output.length;
+  handledCPCount = basicLength = output.length;
 
 		// `handledCPCount` is the number of code points that have been handled;
 		// `basicLength` is the number of basic code points.
 
 		// Finish the basic string - if it is not empty - with a delimiter
-		if (basicLength) {
-			output.push(delimiter);
-		}
+  if (basicLength) {
+  output.push(delimiter);
+}
 
 		// Main encoding loop:
-		while (handledCPCount < inputLength) {
-
+  while (handledCPCount < inputLength) {
 			// All non-basic code points < n have been handled already. Find the next
 			// larger one:
-			for (m = maxInt, j = 0; j < inputLength; ++j) {
-				currentValue = input[j];
-				if (currentValue >= n && currentValue < m) {
-					m = currentValue;
-				}
-			}
+  for (m = maxInt, j = 0; j < inputLength; ++j) {
+  currentValue = input[j];
+  if (currentValue >= n && currentValue < m) {
+  m = currentValue;
+}
+}
 
 			// Increase `delta` enough to advance the decoder's <n,i> state to <m,0>,
 			// but guard against overflow
-			handledCPCountPlusOne = handledCPCount + 1;
-			if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
-				error('overflow');
-			}
+  handledCPCountPlusOne = handledCPCount + 1;
+  if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
+  error('overflow');
+}
 
-			delta += (m - n) * handledCPCountPlusOne;
-			n = m;
+  delta += (m - n) * handledCPCountPlusOne;
+  n = m;
 
-			for (j = 0; j < inputLength; ++j) {
-				currentValue = input[j];
+  for (j = 0; j < inputLength; ++j) {
+  currentValue = input[j];
 
-				if (currentValue < n && ++delta > maxInt) {
-					error('overflow');
-				}
+  if (currentValue < n && ++delta > maxInt) {
+  error('overflow');
+}
 
-				if (currentValue == n) {
+  if (currentValue == n) {
 					// Represent delta as a generalized variable-length integer
-					for (q = delta, k = base; /* no condition */; k += base) {
-						t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
-						if (q < t) {
-							break;
-						}
-						qMinusT = q - t;
-						baseMinusT = base - t;
-						output.push(
-							stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0))
+  for (q = delta, k = base; /* no condition */; k += base) {
+  t = k <= bias ? tMin : (k >= bias + tMax ? tMax : k - bias);
+  if (q < t) {
+  break;
+}
+  qMinusT = q - t;
+  baseMinusT = base - t;
+  output.push(
+							stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0)),
 						);
-						q = floor(qMinusT / baseMinusT);
-					}
+  q = floor(qMinusT / baseMinusT);
+}
 
-					output.push(stringFromCharCode(digitToBasic(q, 0)));
-					bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
-					delta = 0;
-					++handledCPCount;
-				}
-			}
+  output.push(stringFromCharCode(digitToBasic(q, 0)));
+  bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
+  delta = 0;
+  ++handledCPCount;
+}
+}
 
-			++delta;
-			++n;
+  ++delta;
+  ++n;
 
-		}
-		return output.join('');
-	}
+}
+  return output.join('');
+}
 
 	/**
 	 * Converts a Punycode string representing a domain name or an email address
@@ -30883,13 +31122,13 @@ __webpack_require__(56)('observable');
 	 * @returns {String} The Unicode representation of the given Punycode
 	 * string.
 	 */
-	function toUnicode(input) {
-		return mapDomain(input, function(string) {
-			return regexPunycode.test(string)
+  function toUnicode(input) {
+return mapDomain(input, (string) => {
+  return regexPunycode.test(string)
 				? decode(string.slice(4).toLowerCase())
 				: string;
-		});
-	}
+});
+}
 
 	/**
 	 * Converts a Unicode string representing a domain name or an email address to
@@ -30902,24 +31141,24 @@ __webpack_require__(56)('observable');
 	 * @returns {String} The Punycode representation of the given domain name or
 	 * email address.
 	 */
-	function toASCII(input) {
-		return mapDomain(input, function(string) {
-			return regexNonASCII.test(string)
-				? 'xn--' + encode(string)
+  function toASCII(input) {
+return mapDomain(input, (string) => {
+return regexNonASCII.test(string)
+				? `xn--${  encode(string)}`
 				: string;
-		});
-	}
+});
+}
 
 	/*--------------------------------------------------------------------------*/
 
 	/** Define the public API */
-	punycode = {
+  punycode = {
 		/**
 		 * A string representing the current Punycode.js version number.
 		 * @memberOf punycode
 		 * @type String
 		 */
-		'version': '1.4.1',
+		version: '1.4.1',
 		/**
 		 * An object of methods to convert from JavaScript's internal character
 		 * representation (UCS-2) to Unicode code points, and back.
@@ -30927,49 +31166,50 @@ __webpack_require__(56)('observable');
 		 * @memberOf punycode
 		 * @type Object
 		 */
-		'ucs2': {
-			'decode': ucs2decode,
-			'encode': ucs2encode
-		},
-		'decode': decode,
-		'encode': encode,
-		'toASCII': toASCII,
-		'toUnicode': toUnicode
-	};
+		ucs2: {
+			decode: ucs2decode,
+			encode: ucs2encode,
+},
+		decode: decode,
+		encode: encode,
+		toASCII: toASCII,
+		toUnicode: toUnicode,
+};
 
 	/** Expose `punycode` */
 	// Some AMD build optimizers, like r.js, check for specific condition patterns
 	// like the following:
-	if (
+  if (
 		true
 	) {
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
-			return punycode;
-		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (freeExports && freeModule) {
-		if (module.exports == freeExports) {
+  !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+  return punycode;
+}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+} else if (freeExports && freeModule) {
+  if (module.exports == freeExports) {
 			// in Node.js, io.js, or RingoJS v0.8.0+
-			freeModule.exports = punycode;
-		} else {
+  freeModule.exports = punycode;
+} else {
 			// in Narwhal or RingoJS v0.7.0-
-			for (key in punycode) {
-				punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
-			}
-		}
-	} else {
+  for (key in punycode) {
+  punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
+}
+}
+} else {
 		// in Rhino or a web browser
-		root.punycode = punycode;
-	}
-
+  root.punycode = punycode;
+}
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(262)(module), __webpack_require__(91)))
+/* WEBPACK VAR INJECTION */
+ }.call(exports, __webpack_require__(262)(module), __webpack_require__(91)));
 
-/***/ },
+/** *
+/ },
 /* 257 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
+
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -30991,42 +31231,45 @@ __webpack_require__(56)('observable');
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
+
 
 // If obj.hasOwnProperty has been overridden, then calling
 // obj.hasOwnProperty(prop) will break.
 // See: https://github.com/joyent/node/issues/1707
-function hasOwnProperty(obj, prop) {
+  function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-module.exports = function(qs, sep, eq, options) {
+  module.exports = function (qs, sep, eq, options) {
   sep = sep || '&';
   eq = eq || '=';
-  var obj = {};
+  let obj = {};
 
   if (typeof qs !== 'string' || qs.length === 0) {
     return obj;
   }
 
-  var regexp = /\+/g;
+  let regexp = /\+/g;
   qs = qs.split(sep);
 
-  var maxKeys = 1000;
+  let maxKeys = 1000;
   if (options && typeof options.maxKeys === 'number') {
     maxKeys = options.maxKeys;
   }
 
-  var len = qs.length;
+  let len = qs.length;
   // maxKeys <= 0 means that we should not limit keys count
   if (maxKeys > 0 && len > maxKeys) {
     len = maxKeys;
   }
 
-  for (var i = 0; i < len; ++i) {
-    var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
-        kstr, vstr, k, v;
+  for (let i = 0; i < len; ++i) {
+    let x = qs[i].replace(regexp, '%20'),
+      idx = x.indexOf(eq),
+      kstr, 
+vstr, 
+k, 
+v;
 
     if (idx >= 0) {
       kstr = x.substr(0, idx);
@@ -31051,16 +31294,17 @@ module.exports = function(qs, sep, eq, options) {
   return obj;
 };
 
-var isArray = Array.isArray || function (xs) {
+let isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
 
-/***/ },
+/** *
+/ },
 /* 258 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
+
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -31082,9 +31326,9 @@ var isArray = Array.isArray || function (xs) {
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
 
-var stringifyPrimitive = function(v) {
+
+let stringifyPrimitive = function (v) {
   switch (typeof v) {
     case 'string':
       return v;
@@ -31100,7 +31344,7 @@ var stringifyPrimitive = function(v) {
   }
 };
 
-module.exports = function(obj, sep, eq, name) {
+  module.exports = function (obj, sep, eq, name) {
   sep = sep || '&';
   eq = eq || '=';
   if (obj === null) {
@@ -31108,17 +31352,16 @@ module.exports = function(obj, sep, eq, name) {
   }
 
   if (typeof obj === 'object') {
-    return map(objectKeys(obj), function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+    return map(objectKeys(obj), (k) => {
+      let ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
       if (isArray(obj[k])) {
-        return map(obj[k], function(v) {
+        return map(obj[k], (v) => {
           return ks + encodeURIComponent(stringifyPrimitive(v));
         }).join(sep);
       } else {
         return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
       }
     }).join(sep);
-
   }
 
   if (!name) return '';
@@ -31126,44 +31369,46 @@ module.exports = function(obj, sep, eq, name) {
          encodeURIComponent(stringifyPrimitive(obj));
 };
 
-var isArray = Array.isArray || function (xs) {
+let isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-function map (xs, f) {
+  function map(xs, f) {
   if (xs.map) return xs.map(f);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
+  let res = [];
+  for (let i = 0; i < xs.length; i++) {
     res.push(f(xs[i], i));
   }
   return res;
 }
 
-var objectKeys = Object.keys || function (obj) {
-  var res = [];
-  for (var key in obj) {
+let objectKeys = Object.keys || function (obj) {
+  let res = [];
+  for (let key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
   }
   return res;
 };
 
 
-/***/ },
+/** *
+/ },
 /* 259 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-exports.decode = exports.parse = __webpack_require__(257);
-exports.encode = exports.stringify = __webpack_require__(258);
+  /** */ function (module, exports, __webpack_require__) {
 
 
-/***/ },
+
+
+  exports.decode = exports.parse = __webpack_require__(257);
+  exports.encode = exports.stringify = __webpack_require__(258);
+
+
+/** *
+/ },
 /* 260 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
+
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -31185,19 +31430,19 @@ exports.encode = exports.stringify = __webpack_require__(258);
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-'use strict';
 
-var punycode = __webpack_require__(256);
-var util = __webpack_require__(261);
 
-exports.parse = urlParse;
-exports.resolve = urlResolve;
-exports.resolveObject = urlResolveObject;
-exports.format = urlFormat;
+let punycode = __webpack_require__(256);
+let util = __webpack_require__(261);
 
-exports.Url = Url;
+  exports.parse = urlParse;
+  exports.resolve = urlResolve;
+  exports.resolveObject = urlResolveObject;
+  exports.format = urlFormat;
 
-function Url() {
+  exports.Url = Url;
+
+  function Url() {
   this.protocol = null;
   this.slashes = null;
   this.auth = null;
@@ -31216,80 +31461,80 @@ function Url() {
 
 // define these here so at least they only have to be
 // compiled once on the first module load.
-var protocolPattern = /^([a-z0-9.+-]+:)/i,
-    portPattern = /:[0-9]*$/,
+let protocolPattern = /^([a-z0-9.+-]+:)/i,
+  portPattern = /:[0-9]*$/,
 
     // Special case for a simple path URL
-    simplePathPattern = /^(\/\/?(?!\/)[^\?\s]*)(\?[^\s]*)?$/,
+  simplePathPattern = /^(\/\/?(?!\/)[^\?\s]*)(\?[^\s]*)?$/,
 
     // RFC 2396: characters reserved for delimiting URLs.
     // We actually just auto-escape these.
-    delims = ['<', '>', '"', '`', ' ', '\r', '\n', '\t'],
+  delims = ['<', '>', '"', '`', ' ', '\r', '\n', '\t'],
 
     // RFC 2396: characters not allowed for various reasons.
-    unwise = ['{', '}', '|', '\\', '^', '`'].concat(delims),
+  unwise = ['{', '}', '|', '\\', '^', '`'].concat(delims),
 
     // Allowed by RFCs, but cause of XSS attacks.  Always escape these.
-    autoEscape = ['\''].concat(unwise),
+  autoEscape = ['\''].concat(unwise),
     // Characters that are never ever allowed in a hostname.
     // Note that any invalid chars are also handled, but these
     // are the ones that are *expected* to be seen, so we fast-path
     // them.
-    nonHostChars = ['%', '/', '?', ';', '#'].concat(autoEscape),
-    hostEndingChars = ['/', '?', '#'],
-    hostnameMaxLen = 255,
-    hostnamePartPattern = /^[+a-z0-9A-Z_-]{0,63}$/,
-    hostnamePartStart = /^([+a-z0-9A-Z_-]{0,63})(.*)$/,
+  nonHostChars = ['%', '/', '?', ';', '#'].concat(autoEscape),
+  hostEndingChars = ['/', '?', '#'],
+  hostnameMaxLen = 255,
+  hostnamePartPattern = /^[+a-z0-9A-Z_-]{0,63}$/,
+  hostnamePartStart = /^([+a-z0-9A-Z_-]{0,63})(.*)$/,
     // protocols that can allow "unsafe" and "unwise" chars.
-    unsafeProtocol = {
-      'javascript': true,
-      'javascript:': true
+  unsafeProtocol = {
+      javascript: true,
+      'javascript:': true,
     },
     // protocols that never have a hostname.
-    hostlessProtocol = {
-      'javascript': true,
-      'javascript:': true
+  hostlessProtocol = {
+      javascript: true,
+      'javascript:': true,
     },
     // protocols that always contain a // bit.
-    slashedProtocol = {
-      'http': true,
-      'https': true,
-      'ftp': true,
-      'gopher': true,
-      'file': true,
+  slashedProtocol = {
+      http: true,
+      https: true,
+      ftp: true,
+      gopher: true,
+      file: true,
       'http:': true,
       'https:': true,
       'ftp:': true,
       'gopher:': true,
-      'file:': true
+      'file:': true,
     },
-    querystring = __webpack_require__(259);
+  querystring = __webpack_require__(259);
 
-function urlParse(url, parseQueryString, slashesDenoteHost) {
+  function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
 
-  var u = new Url;
+  let u = new Url();
   u.parse(url, parseQueryString, slashesDenoteHost);
   return u;
 }
 
-Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
+  Url.prototype.parse = function (url, parseQueryString, slashesDenoteHost) {
   if (!util.isString(url)) {
-    throw new TypeError("Parameter 'url' must be a string, not " + typeof url);
+    throw new TypeError(`Parameter 'url' must be a string, not ${  typeof url}`);
   }
 
   // Copy chrome, IE, opera backslash-handling behavior.
   // Back slashes before the query string get converted to forward slashes
   // See: https://code.google.com/p/chromium/issues/detail?id=25916
-  var queryIndex = url.indexOf('?'),
-      splitter =
+  let queryIndex = url.indexOf('?'),
+    splitter =
           (queryIndex !== -1 && queryIndex < url.indexOf('#')) ? '?' : '#',
-      uSplit = url.split(splitter),
-      slashRegex = /\\/g;
+    uSplit = url.split(splitter),
+    slashRegex = /\\/g;
   uSplit[0] = uSplit[0].replace(slashRegex, '/');
   url = uSplit.join(splitter);
 
-  var rest = url;
+  let rest = url;
 
   // trim before proceeding.
   // This is to support parse stuff like "  http://foo.com  \n"
@@ -31297,7 +31542,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
 
   if (!slashesDenoteHost && url.split('#').length === 1) {
     // Try fast path regexp
-    var simplePath = simplePathPattern.exec(rest);
+    let simplePath = simplePathPattern.exec(rest);
     if (simplePath) {
       this.path = rest;
       this.href = rest;
@@ -31317,7 +31562,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     }
   }
 
-  var proto = protocolPattern.exec(rest);
+  let proto = protocolPattern.exec(rest);
   if (proto) {
     proto = proto[0];
     var lowerProto = proto.toLowerCase();
@@ -31339,7 +31584,6 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
 
   if (!hostlessProtocol[proto] &&
       (slashes || (proto && !slashedProtocol[proto]))) {
-
     // there's a hostname.
     // the first instance of /, ?, ;, or # ends the host.
     //
@@ -31356,16 +31600,17 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     // Review our test case against browsers more comprehensively.
 
     // find the first instance of any hostEndingChars
-    var hostEnd = -1;
+    let hostEnd = -1;
     for (var i = 0; i < hostEndingChars.length; i++) {
       var hec = rest.indexOf(hostEndingChars[i]);
       if (hec !== -1 && (hostEnd === -1 || hec < hostEnd))
-        hostEnd = hec;
+        {hostEnd = hec;}
     }
 
     // at this point, either we have an explicit point where the
     // auth portion cannot go past, or the last @ char is the decider.
-    var auth, atSign;
+    let auth, 
+atSign;
     if (hostEnd === -1) {
       // atSign can be anywhere.
       atSign = rest.lastIndexOf('@');
@@ -31388,11 +31633,11 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     for (var i = 0; i < nonHostChars.length; i++) {
       var hec = rest.indexOf(nonHostChars[i]);
       if (hec !== -1 && (hostEnd === -1 || hec < hostEnd))
-        hostEnd = hec;
+        {hostEnd = hec;}
     }
     // if we still have not hit it, then the entire thing is a host.
     if (hostEnd === -1)
-      hostEnd = rest.length;
+      {hostEnd = rest.length;}
 
     this.host = rest.slice(0, hostEnd);
     rest = rest.slice(hostEnd);
@@ -31406,18 +31651,18 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
 
     // if hostname begins with [ and ends with ]
     // assume that it's an IPv6 address.
-    var ipv6Hostname = this.hostname[0] === '[' &&
+    let ipv6Hostname = this.hostname[0] === '[' &&
         this.hostname[this.hostname.length - 1] === ']';
 
     // validate a little.
     if (!ipv6Hostname) {
-      var hostparts = this.hostname.split(/\./);
+      let hostparts = this.hostname.split(/\./);
       for (var i = 0, l = hostparts.length; i < l; i++) {
-        var part = hostparts[i];
+        let part = hostparts[i];
         if (!part) continue;
         if (!part.match(hostnamePartPattern)) {
-          var newpart = '';
-          for (var j = 0, k = part.length; j < k; j++) {
+          let newpart = '';
+          for (let j = 0, k = part.length; j < k; j++) {
             if (part.charCodeAt(j) > 127) {
               // we replace non-ASCII char with a temporary placeholder
               // we need this to make sure size of hostname is not
@@ -31429,15 +31674,15 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
           }
           // we test again with ASCII char only
           if (!newpart.match(hostnamePartPattern)) {
-            var validParts = hostparts.slice(0, i);
-            var notHost = hostparts.slice(i + 1);
-            var bit = part.match(hostnamePartStart);
+            let validParts = hostparts.slice(0, i);
+            let notHost = hostparts.slice(i + 1);
+            let bit = part.match(hostnamePartStart);
             if (bit) {
               validParts.push(bit[1]);
               notHost.unshift(bit[2]);
             }
             if (notHost.length) {
-              rest = '/' + notHost.join('.') + rest;
+              rest = `/${  notHost.join('.')  }${rest}`;
             }
             this.hostname = validParts.join('.');
             break;
@@ -31461,8 +31706,8 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
       this.hostname = punycode.toASCII(this.hostname);
     }
 
-    var p = this.port ? ':' + this.port : '';
-    var h = this.hostname || '';
+    var p = this.port ? `:${  this.port}` : '';
+    let h = this.hostname || '';
     this.host = h + p;
     this.href += this.host;
 
@@ -31471,7 +31716,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     if (ipv6Hostname) {
       this.hostname = this.hostname.substr(1, this.hostname.length - 2);
       if (rest[0] !== '/') {
-        rest = '/' + rest;
+        rest = `/${  rest}`;
       }
     }
   }
@@ -31479,15 +31724,14 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
   // now rest is set to the post-host stuff.
   // chop off any delim chars.
   if (!unsafeProtocol[lowerProto]) {
-
     // First, make 100% sure that any "autoEscape" chars get
     // escaped, even if encodeURIComponent doesn't think they
     // need to be.
     for (var i = 0, l = autoEscape.length; i < l; i++) {
-      var ae = autoEscape[i];
+      let ae = autoEscape[i];
       if (rest.indexOf(ae) === -1)
-        continue;
-      var esc = encodeURIComponent(ae);
+        {continue;}
+      let esc = encodeURIComponent(ae);
       if (esc === ae) {
         esc = escape(ae);
       }
@@ -31497,13 +31741,13 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
 
 
   // chop off from the tail first.
-  var hash = rest.indexOf('#');
+  let hash = rest.indexOf('#');
   if (hash !== -1) {
     // got a fragment string.
     this.hash = rest.substr(hash);
     rest = rest.slice(0, hash);
   }
-  var qm = rest.indexOf('?');
+  let qm = rest.indexOf('?');
   if (qm !== -1) {
     this.search = rest.substr(qm);
     this.query = rest.substr(qm + 1);
@@ -31522,10 +31766,10 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
     this.pathname = '/';
   }
 
-  //to support http.request
+  // to support http.request
   if (this.pathname || this.search) {
     var p = this.pathname || '';
-    var s = this.search || '';
+    let s = this.search || '';
     this.path = p + s;
   }
 
@@ -31535,7 +31779,7 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
 };
 
 // format a parsed object into a url string
-function urlFormat(obj) {
+  function urlFormat(obj) {
   // ensure it's an object, and not a string url.
   // If it's an obj, this is a no-op.
   // this way, you can call url_format() on strings
@@ -31545,28 +31789,28 @@ function urlFormat(obj) {
   return obj.format();
 }
 
-Url.prototype.format = function() {
-  var auth = this.auth || '';
+  Url.prototype.format = function () {
+  let auth = this.auth || '';
   if (auth) {
     auth = encodeURIComponent(auth);
     auth = auth.replace(/%3A/i, ':');
     auth += '@';
   }
 
-  var protocol = this.protocol || '',
-      pathname = this.pathname || '',
-      hash = this.hash || '',
-      host = false,
-      query = '';
+  let protocol = this.protocol || '',
+    pathname = this.pathname || '',
+    hash = this.hash || '',
+    host = false,
+    query = '';
 
   if (this.host) {
     host = auth + this.host;
   } else if (this.hostname) {
     host = auth + (this.hostname.indexOf(':') === -1 ?
         this.hostname :
-        '[' + this.hostname + ']');
+        `[${  this.hostname  }]`);
     if (this.port) {
-      host += ':' + this.port;
+      host += `:${  this.port}`;
     }
   }
 
@@ -31576,7 +31820,7 @@ Url.prototype.format = function() {
     query = querystring.stringify(this.query);
   }
 
-  var search = this.search || (query && ('?' + query)) || '';
+  let search = this.search || (query && (`?${  query}`)) || '';
 
   if (protocol && protocol.substr(-1) !== ':') protocol += ':';
 
@@ -31584,16 +31828,16 @@ Url.prototype.format = function() {
   // unless they had them to begin with.
   if (this.slashes ||
       (!protocol || slashedProtocol[protocol]) && host !== false) {
-    host = '//' + (host || '');
-    if (pathname && pathname.charAt(0) !== '/') pathname = '/' + pathname;
+    host = `//${  host || ''}`;
+    if (pathname && pathname.charAt(0) !== '/') pathname = `/${  pathname}`;
   } else if (!host) {
     host = '';
   }
 
-  if (hash && hash.charAt(0) !== '#') hash = '#' + hash;
-  if (search && search.charAt(0) !== '?') search = '?' + search;
+  if (hash && hash.charAt(0) !== '#') hash = `#${  hash}`;
+  if (search && search.charAt(0) !== '?') search = `?${  search}`;
 
-  pathname = pathname.replace(/[?#]/g, function(match) {
+  pathname = pathname.replace(/[?#]/g, (match) => {
     return encodeURIComponent(match);
   });
   search = search.replace('#', '%23');
@@ -31601,30 +31845,30 @@ Url.prototype.format = function() {
   return protocol + host + pathname + search + hash;
 };
 
-function urlResolve(source, relative) {
+  function urlResolve(source, relative) {
   return urlParse(source, false, true).resolve(relative);
 }
 
-Url.prototype.resolve = function(relative) {
+  Url.prototype.resolve = function (relative) {
   return this.resolveObject(urlParse(relative, false, true)).format();
 };
 
-function urlResolveObject(source, relative) {
+  function urlResolveObject(source, relative) {
   if (!source) return relative;
   return urlParse(source, false, true).resolveObject(relative);
 }
 
-Url.prototype.resolveObject = function(relative) {
+  Url.prototype.resolveObject = function (relative) {
   if (util.isString(relative)) {
-    var rel = new Url();
+    let rel = new Url();
     rel.parse(relative, false, true);
     relative = rel;
   }
 
-  var result = new Url();
-  var tkeys = Object.keys(this);
-  for (var tk = 0; tk < tkeys.length; tk++) {
-    var tkey = tkeys[tk];
+  let result = new Url();
+  let tkeys = Object.keys(this);
+  for (let tk = 0; tk < tkeys.length; tk++) {
+    let tkey = tkeys[tk];
     result[tkey] = this[tkey];
   }
 
@@ -31641,14 +31885,14 @@ Url.prototype.resolveObject = function(relative) {
   // hrefs like //foo/bar always cut to the protocol.
   if (relative.slashes && !relative.protocol) {
     // take everything except the protocol from relative
-    var rkeys = Object.keys(relative);
-    for (var rk = 0; rk < rkeys.length; rk++) {
-      var rkey = rkeys[rk];
+    let rkeys = Object.keys(relative);
+    for (let rk = 0; rk < rkeys.length; rk++) {
+      let rkey = rkeys[rk];
       if (rkey !== 'protocol')
-        result[rkey] = relative[rkey];
+        {result[rkey] = relative[rkey];}
     }
 
-    //urlParse appends trailing / to urls like http://www.example.com
+    // urlParse appends trailing / to urls like http://www.example.com
     if (slashedProtocol[result.protocol] &&
         result.hostname && !result.pathname) {
       result.path = result.pathname = '/';
@@ -31668,9 +31912,9 @@ Url.prototype.resolveObject = function(relative) {
     // because that's known to be hostless.
     // anything else is assumed to be absolute.
     if (!slashedProtocol[relative.protocol]) {
-      var keys = Object.keys(relative);
-      for (var v = 0; v < keys.length; v++) {
-        var k = keys[v];
+      let keys = Object.keys(relative);
+      for (let v = 0; v < keys.length; v++) {
+        let k = keys[v];
         result[k] = relative[k];
       }
       result.href = result.format();
@@ -31697,8 +31941,8 @@ Url.prototype.resolveObject = function(relative) {
     result.port = relative.port;
     // to support http.request
     if (result.pathname || result.search) {
-      var p = result.pathname || '';
-      var s = result.search || '';
+      let p = result.pathname || '';
+      let s = result.search || '';
       result.path = p + s;
     }
     result.slashes = result.slashes || relative.slashes;
@@ -31707,16 +31951,16 @@ Url.prototype.resolveObject = function(relative) {
   }
 
   var isSourceAbs = (result.pathname && result.pathname.charAt(0) === '/'),
-      isRelAbs = (
+    isRelAbs = (
           relative.host ||
           relative.pathname && relative.pathname.charAt(0) === '/'
       ),
-      mustEndAbs = (isRelAbs || isSourceAbs ||
+    mustEndAbs = (isRelAbs || isSourceAbs ||
                     (result.host && relative.pathname)),
-      removeAllDots = mustEndAbs,
-      srcPath = result.pathname && result.pathname.split('/') || [],
-      relPath = relative.pathname && relative.pathname.split('/') || [],
-      psychotic = result.protocol && !slashedProtocol[result.protocol];
+    removeAllDots = mustEndAbs,
+    srcPath = result.pathname && result.pathname.split('/') || [],
+    relPath = relative.pathname && relative.pathname.split('/') || [],
+    psychotic = result.protocol && !slashedProtocol[result.protocol];
 
   // if the url is a non-slashed url, then relative
   // links like ../.. should be able
@@ -31767,9 +32011,9 @@ Url.prototype.resolveObject = function(relative) {
     // Put this after the other two cases because it simplifies the booleans
     if (psychotic) {
       result.hostname = result.host = srcPath.shift();
-      //occationaly the auth can get stuck only in host
-      //this especially happens in cases like
-      //url.resolveObject('mailto:local1@domain1', 'local2@domain2')
+      // occationaly the auth can get stuck only in host
+      // this especially happens in cases like
+      // url.resolveObject('mailto:local1@domain1', 'local2@domain2')
       var authInHost = result.host && result.host.indexOf('@') > 0 ?
                        result.host.split('@') : false;
       if (authInHost) {
@@ -31779,7 +32023,7 @@ Url.prototype.resolveObject = function(relative) {
     }
     result.search = relative.search;
     result.query = relative.query;
-    //to support http.request
+    // to support http.request
     if (!util.isNull(result.pathname) || !util.isNull(result.search)) {
       result.path = (result.pathname ? result.pathname : '') +
                     (result.search ? result.search : '');
@@ -31792,9 +32036,9 @@ Url.prototype.resolveObject = function(relative) {
     // no path at all.  easy.
     // we've already handled the other stuff above.
     result.pathname = null;
-    //to support http.request
+    // to support http.request
     if (result.search) {
-      result.path = '/' + result.search;
+      result.path = `/${  result.search}`;
     } else {
       result.path = null;
     }
@@ -31805,15 +32049,15 @@ Url.prototype.resolveObject = function(relative) {
   // if a url ENDs in . or .., then it must get a trailing slash.
   // however, if it ends in anything else non-slashy,
   // then it must NOT get a trailing slash.
-  var last = srcPath.slice(-1)[0];
-  var hasTrailingSlash = (
+  let last = srcPath.slice(-1)[0];
+  let hasTrailingSlash = (
       (result.host || relative.host || srcPath.length > 1) &&
       (last === '.' || last === '..') || last === '');
 
   // strip single dots, resolve double dots to parent dir
   // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = srcPath.length; i >= 0; i--) {
+  let up = 0;
+  for (let i = srcPath.length; i >= 0; i--) {
     last = srcPath[i];
     if (last === '.') {
       srcPath.splice(i, 1);
@@ -31842,16 +32086,16 @@ Url.prototype.resolveObject = function(relative) {
     srcPath.push('');
   }
 
-  var isAbsolute = srcPath[0] === '' ||
+  let isAbsolute = srcPath[0] === '' ||
       (srcPath[0] && srcPath[0].charAt(0) === '/');
 
   // put the host back
   if (psychotic) {
     result.hostname = result.host = isAbsolute ? '' :
                                     srcPath.length ? srcPath.shift() : '';
-    //occationaly the auth can get stuck only in host
-    //this especially happens in cases like
-    //url.resolveObject('mailto:local1@domain1', 'local2@domain2')
+    // occationaly the auth can get stuck only in host
+    // this especially happens in cases like
+    // url.resolveObject('mailto:local1@domain1', 'local2@domain2')
     var authInHost = result.host && result.host.indexOf('@') > 0 ?
                      result.host.split('@') : false;
     if (authInHost) {
@@ -31873,7 +32117,7 @@ Url.prototype.resolveObject = function(relative) {
     result.pathname = srcPath.join('/');
   }
 
-  //to support request.http
+  // to support request.http
   if (!util.isNull(result.pathname) || !util.isNull(result.search)) {
     result.path = (result.pathname ? result.pathname : '') +
                   (result.search ? result.search : '');
@@ -31884,9 +32128,9 @@ Url.prototype.resolveObject = function(relative) {
   return result;
 };
 
-Url.prototype.parseHost = function() {
-  var host = this.host;
-  var port = portPattern.exec(host);
+  Url.prototype.parseHost = function () {
+  let host = this.host;
+  let port = portPattern.exec(host);
   if (port) {
     port = port[0];
     if (port !== ':') {
@@ -31898,125 +32142,129 @@ Url.prototype.parseHost = function() {
 };
 
 
-/***/ },
+/** *
+/ },
 /* 261 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-"use strict";
-'use strict';
 
-module.exports = {
-  isString: function(arg) {
-    return typeof(arg) === 'string';
+
+
+  module.exports = {
+  isString: function (arg) {
+    return typeof (arg) === 'string';
   },
-  isObject: function(arg) {
-    return typeof(arg) === 'object' && arg !== null;
+  isObject: function (arg) {
+    return typeof (arg) === 'object' && arg !== null;
   },
-  isNull: function(arg) {
+  isNull: function (arg) {
     return arg === null;
   },
-  isNullOrUndefined: function(arg) {
+  isNullOrUndefined: function (arg) {
     return arg == null;
-  }
+  },
 };
 
 
-/***/ },
+/** *
+/ },
 /* 262 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
+  module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+  module.deprecate = function () {};
+  module.paths = [];
 		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			configurable: false,
-			get: function() { return module.l; }
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			configurable: false,
-			get: function() { return module.i; }
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
+  if (!module.children) module.children = [];
+  Object.defineProperty(module, 'loaded', {
+  enumerable: true,
+  configurable: false,
+  get: function () { return module.l; },
+});
+  Object.defineProperty(module, 'id', {
+  enumerable: true,
+  configurable: false,
+  get: function () { return module.i; },
+});
+  module.webpackPolyfill = 1;
 }
+  return module;
+};
 
 
-/***/ },
+/** *
+/ },
 /* 263 */
-/***/ function(module, exports) {
+  /** */ function (module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_263__;
+  module.exports = __WEBPACK_EXTERNAL_MODULE_263__;
 
-/***/ },
+/** *
+/ },
 /* 264 */
-/***/ function(module, exports, __webpack_require__) {
+  /** */ function (module, exports, __webpack_require__) {
 
-"use strict";
-'use strict';
 
-var _classCallCheck2 = __webpack_require__(0);
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _possibleConstructorReturn2 = __webpack_require__(3);
+let _classCallCheck2 = __webpack_require__(0);
 
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+let _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _inherits2 = __webpack_require__(2);
+let _possibleConstructorReturn2 = __webpack_require__(3);
 
-var _inherits3 = _interopRequireDefault(_inherits2);
+let _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
-var _globals = __webpack_require__(1);
+let _inherits2 = __webpack_require__(2);
 
-var _appComponent = __webpack_require__(92);
+let _inherits3 = _interopRequireDefault(_inherits2);
 
-var _appComponent2 = _interopRequireDefault(_appComponent);
+let _globals = __webpack_require__(1);
 
-var _scrollbarComponent = __webpack_require__(10);
+let _appComponent = __webpack_require__(92);
 
-var _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
+let _appComponent2 = _interopRequireDefault(_appComponent);
 
-var _controlsComponent = __webpack_require__(5);
+let _scrollbarComponent = __webpack_require__(10);
 
-var _controlsComponent2 = _interopRequireDefault(_controlsComponent);
+let _scrollbarComponent2 = _interopRequireDefault(_scrollbarComponent);
 
-var _modalManager = __webpack_require__(7);
+let _controlsComponent = __webpack_require__(5);
 
-var _modalManager2 = _interopRequireDefault(_modalManager);
+let _controlsComponent2 = _interopRequireDefault(_controlsComponent);
 
-var _jsonLoader = __webpack_require__(61);
+let _modalManager = __webpack_require__(7);
 
-var _jsonLoader2 = _interopRequireDefault(_jsonLoader);
+let _modalManager2 = _interopRequireDefault(_modalManager);
 
-var _photoRoll = __webpack_require__(93);
+let _jsonLoader = __webpack_require__(61);
 
-var PhotoRoll = _interopRequireWildcard(_photoRoll);
+let _jsonLoader2 = _interopRequireDefault(_jsonLoader);
 
-var _controls = __webpack_require__(6);
+let _photoRoll = __webpack_require__(93);
 
-var _controls2 = _interopRequireDefault(_controls);
+let PhotoRoll = _interopRequireWildcard(_photoRoll);
 
-var _controls3 = __webpack_require__(60);
+let _controls = __webpack_require__(6);
 
-var Controls = _interopRequireWildcard(_controls3);
+let _controls2 = _interopRequireDefault(_controls);
 
-var _sliderComponent = __webpack_require__(14);
+let _controls3 = __webpack_require__(60);
 
-var _sliderComponent2 = _interopRequireDefault(_sliderComponent);
+let Controls = _interopRequireWildcard(_controls3);
 
-var _sliderOverlayComponent = __webpack_require__(20);
+let _sliderComponent = __webpack_require__(14);
 
-var _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+let _sliderComponent2 = _interopRequireDefault(_sliderComponent);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+let _sliderOverlayComponent = __webpack_require__(20);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+let _sliderOverlayComponent2 = _interopRequireDefault(_sliderOverlayComponent);
+
+  function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { let newObj = {}; if (obj != null) { for (let key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * The React UI
@@ -32025,7 +32273,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @extends PhotoEditorSDK.EventEmitter
  * @memberof PhotoEditorSDK.UI
  */
-var ReactUI = function (_EventEmitter) {
+let ReactUI = (function (_EventEmitter) {
   (0, _inherits3.default)(ReactUI, _EventEmitter);
 
   /**
@@ -32431,7 +32679,7 @@ var ReactUI = function (_EventEmitter) {
   };
 
   return ReactUI;
-}(_globals.EventEmitter);
+}(_globals.EventEmitter));
 
 /**
  * Export event
@@ -32486,24 +32734,24 @@ var ReactUI = function (_EventEmitter) {
  */
 
 
-ReactUI.prototype.identifier = 'react';
+  ReactUI.prototype.identifier = 'react';
 
 // Export extendable stuff
-ReactUI.BaseComponent = _globals.BaseComponent;
-ReactUI.BaseControls = _controls2.default;
-ReactUI.ControlsComponent = _controlsComponent2.default;
-ReactUI.React = _globals.React;
-ReactUI.ReactBEM = _globals.ReactBEM;
-ReactUI.SharedState = _globals.SharedState;
-ReactUI.Constants = _globals.Constants;
-ReactUI.Utils = _globals.Utils;
-ReactUI.ScrollbarComponent = _scrollbarComponent2.default;
-ReactUI.ModalManager = _modalManager2.default;
-ReactUI.JSONLoader = _jsonLoader2.default;
-ReactUI.PhotoRoll = PhotoRoll;
-ReactUI.Controls = Controls;
-ReactUI.SliderComponent = _sliderComponent2.default;
-ReactUI.SliderOverlayComponent = _sliderOverlayComponent2.default;
+  ReactUI.BaseComponent = _globals.BaseComponent;
+  ReactUI.BaseControls = _controls2.default;
+  ReactUI.ControlsComponent = _controlsComponent2.default;
+  ReactUI.React = _globals.React;
+  ReactUI.ReactBEM = _globals.ReactBEM;
+  ReactUI.SharedState = _globals.SharedState;
+  ReactUI.Constants = _globals.Constants;
+  ReactUI.Utils = _globals.Utils;
+  ReactUI.ScrollbarComponent = _scrollbarComponent2.default;
+  ReactUI.ModalManager = _modalManager2.default;
+  ReactUI.JSONLoader = _jsonLoader2.default;
+  ReactUI.PhotoRoll = PhotoRoll;
+  ReactUI.Controls = Controls;
+  ReactUI.SliderComponent = _sliderComponent2.default;
+  ReactUI.SliderOverlayComponent = _sliderOverlayComponent2.default;
 
 /**
  * The PhotoEditorSDK UI can also be integrated as a React.js component
@@ -32512,7 +32760,7 @@ ReactUI.SliderOverlayComponent = _sliderOverlayComponent2.default;
  * @memberof PhotoEditorSDK.UI.ReactUI
  */
 
-var ReactComponent = function (_React$Component) {
+let ReactComponent = (function (_React$Component) {
   (0, _inherits3.default)(ReactComponent, _React$Component);
 
   function ReactComponent() {
@@ -32539,17 +32787,18 @@ var ReactComponent = function (_React$Component) {
   };
 
   return ReactComponent;
-}(_globals.React.Component);
+}(_globals.React.Component));
 
-ReactUI.ReactComponent = ReactComponent;
+  ReactUI.ReactComponent = ReactComponent;
 
 // Extend PhotoEditorSDK object
-_globals.SDK.UI = _globals.SDK.UI || {};
-_globals.SDK.UI.ReactUI = ReactUI;
+  _globals.SDK.UI = _globals.SDK.UI || {};
+  _globals.SDK.UI.ReactUI = ReactUI;
 
-module.exports = ReactUI;
+  module.exports = ReactUI;
 
-/***/ }
-/******/ ])
-});
-;
+/** *
+/ },
+/** ****/ ]);
+}));
+

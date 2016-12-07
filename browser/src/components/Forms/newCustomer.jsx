@@ -55,15 +55,15 @@ class newCustomerForm extends React.Component {
         switch (stepIndex) {
             case 0:
                 return (
-            <CustomerDetailsFormRoot next={this.handleNext}/>
+            <CustomerDetailsFormRoot next={this.handleNext} prev={this.handlePrev}/>
                 );
             case 1:
                 return (
-                <CustomerDispatchFormRoot next={this.handleNext}/>
+                <CustomerDispatchFormRoot next={this.handleNext} prev={this.handlePrev}/>
                 );
             case 2:
                 return (
-                <CustomerConfirmation next={this.handleNext}/>
+                <CustomerConfirmation next={this.handleNext} prev={this.handlePrev}/>
                 );
             default:
                 return 'You\'re a long way from home sonny jim!';
