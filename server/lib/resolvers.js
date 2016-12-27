@@ -18,6 +18,10 @@ const resolveFunctions = {
       const users = new ctx.constructor.Users();
       return users.findUsers();
     },
+    user(_, args, ctx) {
+      const user = new ctx.constructor.User();
+      return user.findUser(args);
+    },
     surveyors(_, __, ctx) {
       const surveyors = new ctx.constructor.Surveyors();
       return surveyors.findSurveyors();
@@ -103,4 +107,3 @@ const resolveFunctions = {
   },
 };
 module.exports = resolveFunctions;
-

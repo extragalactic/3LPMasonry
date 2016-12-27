@@ -3,53 +3,51 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
+
 import CustomerDispatchForm from './reduxCustomerDispatchForm';
 
 const styles = {
-    paperStyle: {
-        width: 500,
-        position: 'relative',
-        margin: 'auto',
-        marginTop: 20,
-        textAlign: 'center'
-    },
-    undelineStyle: {
-        borderColor: grey50
-    }
+  paperStyle: {
+    width: 500,
+    position: 'relative',
+    margin: 'auto',
+    marginTop: 20,
+    textAlign: 'center',
+  },
+  undelineStyle: {
+    borderColor: grey50,
+  },
 };
 
 class CustomerDispatchFormRootComp extends React.Component {
-    constructor () {
-        super();
-    }
-
-    handleSubmit = (values) => {
-        this.props.updateDispatch({ variables: {
-            dispatch: values,
-            id: localStorage.current_customer
-        } });
-        this.props.next();
-    }
-    render () {
-        return (
-            <div>
-            <Paper style={styles.paperStyle} zDepth={1} >
-            <br/>
-            <h3>Address and Dispatch</h3>
-            <CustomerDispatchForm
-              onSubmit={this.handleSubmit}
-              surveyors={this.props.data.surveyors}
-              customer={this.props.data.customer}
-              />
-            <br/>
-            </Paper>
+  handleSubmit = (values) => {
+    this.props.updateDispatch({ variables: {
+      dispatch: values,
+      id: this.props.currentCustomer,
+    } });
+    this.props.next();
+  }
+  render() {
+      console.log(this);
+    return (
+      <div>
+        <Paper style={styles.paperStyle} zDepth={1} >
+          <br />
+          <h3>Address and Dispatch</h3>
+          <CustomerDispatchForm
+            onSubmit={this.handleSubmit}
+            surveyors={this.props.data.surveyors}
+            currentCustomer={this.props.currentCustomer}
+          />
+          <br />
+        </Paper>
       </div>
-        );
-    }
+    );
+  }
 }
-
 const getSurveyorsCustomers = gql`
-  query getCurrentCustomer{
+  query getSurveyors{
     surveyors {
       id
       firstName
@@ -58,9 +56,7 @@ const getSurveyorsCustomers = gql`
      }
   }`;
 
-const CustomerDispatchFormQuery = graphql(getSurveyorsCustomers, {
-    options: { pollInterval: 100 }
-})(CustomerDispatchFormRootComp);
+const CustomerDispatchFormQuery = graphql(getSurveyorsCustomers)(CustomerDispatchFormRootComp);
 
 const updateDispatchInfo = gql`
   mutation updateDispatchInfo($dispatch:updateDispatch, $id:String) {
@@ -71,6 +67,12 @@ const updateDispatchInfo = gql`
   }
 }`;
 
-const CustomerDispatchFormRoot = graphql(updateDispatchInfo, { name: 'updateDispatch' })(CustomerDispatchFormQuery);
+const mapStateToProps = state => ({
+  currentCustomer: state.currentCustomer,
+});
+
+const _CustomerDispatchFormRoot = graphql(updateDispatchInfo, { name: 'updateDispatch' })(CustomerDispatchFormQuery);
+
+const CustomerDispatchFormRoot = connect(mapStateToProps)(_CustomerDispatchFormRoot);
 
 export default CustomerDispatchFormRoot;

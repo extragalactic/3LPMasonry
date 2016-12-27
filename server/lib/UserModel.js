@@ -12,8 +12,20 @@ const UsersSchema = new mongoose.Schema({
   region: String,
   appointments: [],
   customers: [],
+  newCustomers: [{
+    id: String,
+    firstName: String,
+    lastName: String,
+    email1: String,
+    email2: String,
+    hphone: String,
+    cphone: String,
+    wphone: String,
+    address: String,
+    status: String,
+  }],
 });
 
-const UsersModel = mongoose.model('users', UsersSchema);
+const UsersModel = mongoose.odel('users', UsersSchema);
 
 module.exports = UsersModel;

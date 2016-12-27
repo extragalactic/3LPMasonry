@@ -50,6 +50,16 @@ class Users {
   }
 }
 
+class User {
+  constructor() {
+    this.findUser = ({ id }) => {
+      console.log(id);
+      const user = UsersModel.findOne({ _id: id }, (error, data) => data);
+      return user;
+    };
+  }
+}
+
 class Surveyors {
   constructor() {
     this.findSurveyors = () => {
@@ -213,6 +223,21 @@ class SubmitCustomer {
                }
                if (!surveyor) {
                  sendSMStoSurveyor(data);
+                 UsersModel.findOne({ _id: data.surveyor.id })
+                         .then((user) => {
+                           user.newCustomers.push({
+                             id: data._id,
+                             firstName: data.firstName,
+                             lastName: data.lastName,
+                             email1: data.email1,
+                             email2: data.email2,
+                             cphone: data.cphone,
+                             hphone: data.hphone,
+                             wphone: data.wphone,
+                             address: data.address,
+                           });
+                           user.save();
+                         });
                  data.status = 3;
                  data.save();
                }
@@ -235,6 +260,7 @@ module.exports = {
   UpdateCustomer,
   Address,
   Users,
+  User,
   UpdateUser,
   Surveyors,
   GetCustomer,

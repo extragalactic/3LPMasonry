@@ -10,7 +10,7 @@ import SocialPerson from 'material-ui/svg-icons/social/person';
 import ComunicationEmail from 'material-ui/svg-icons/communication/email';
 import ComunicationMailOutline from 'material-ui/svg-icons/communication/mail-outline';
 import ComunicationContactMail from 'material-ui/svg-icons/communication/contact-mail';
-
+import { connect } from 'react-redux';
 import HardwareSmartPhone from 'material-ui/svg-icons/hardware/smartphone';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import ActionWork from 'material-ui/svg-icons/action/work';
@@ -20,8 +20,6 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import ActionSpeakerNotes from 'material-ui/svg-icons/action/speaker-notes';
 
 import ActionAssignmentInd from 'material-ui/svg-icons/action/assignment-ind';
-
-
 import Infinite from 'react-infinite';
 
 const styles = {
@@ -49,13 +47,17 @@ class CustomerConfirmationComp extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/getnotes/${localStorage.current_customer}`).then((data) => {
+    this.props.data.refetch({
+      id: this.props.currentCustomer,
+      options: { pollInterval: 1000 },
+    });
+    axios.get(`/getnotes/${this.props.currentCustomer}`).then((data) => {
       const ContentState = convertFromRaw(data.data);
       this.setState({
         editorState: EditorState.createWithContent(ContentState),
       });
     });
-    axios.get(`/getcustomer/${localStorage.current_customer}`)
+    axios.get(`/getcustomer/${this.props.currentCustomer}`)
             .then((data) => {
               this.setState({
                 currentCustomer: data.data,
@@ -68,7 +70,7 @@ class CustomerConfirmationComp extends React.Component {
 
   submitCustomer = () => {
     this.props.mutate({ variables: {
-      id: localStorage.current_customer,
+      id: this.props.currentCustomer,
     } }).then((data) => {
       if (data.data.submitCustomer.id) {
         browserHistory.push('/app');
@@ -173,8 +175,8 @@ class CustomerConfirmationComp extends React.Component {
 }
 
 const getFinalCustomerInfo = gql`
-  query getFinalCustomerInfo {
-    customer(id: "${localStorage.current_customer}") {
+  query getFinalCustomerInfo($id: String) {
+    customer(id: $id) {
     id    
     firstName
     lastName
@@ -207,10 +209,16 @@ const submitCustomer = gql `
   }
 }`;
 
-const CustomerConfirmationQuery = graphql(getFinalCustomerInfo, {
-  options: { pollInterval: 1000 },
-})(CustomerConfirmationComp);
+const mapStateToProps = state => ({
+  currentCustomer: state.currentCustomer,
+});
 
-const CustomerConfirmation = graphql(submitCustomer)(CustomerConfirmationQuery);
+
+
+const CustomerConfirmationQuery = graphql(getFinalCustomerInfo)(CustomerConfirmationComp);
+
+const _CustomerConfirmation = graphql(submitCustomer)(CustomerConfirmationQuery);
+
+const CustomerConfirmation = connect(mapStateToProps)(_CustomerConfirmation);
 
 export default CustomerConfirmation;

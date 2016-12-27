@@ -19,7 +19,6 @@ type Customers {
  homeNotification: Boolean
  workNotificaiton: Boolean
  sendSurvey: Boolean
-
 }
 
 type User {
@@ -32,6 +31,7 @@ type User {
   estimator: Boolean
   office: Boolean
   region: String
+  newCustomers: [newCust]
 }
 
 type Surveyor {
@@ -44,6 +44,18 @@ type Surveyor {
 type Address {
    description: String
 }
+
+type newCust {
+   id: String 
+   firstName: String
+   lastName: String
+   email1: String
+   email2: String
+   hphone: String
+   cphone: String
+   wphone: String
+   address: String
+   }
 
 input SurveyorInput {
   firstName: String
@@ -63,6 +75,19 @@ input updateDispatch {
   surveyor: SurveyorInput
 }
 
+input newCustomers {
+   id: String 
+   firstName: String
+   lastName: String
+   email1: String
+   email2: String
+   hphone: String
+   cphone: String
+   wphone: String
+   address: String
+   notes: String
+  }
+
 type Query {
 
   customers(firstName:String, lastName:String, email1: String, email2: String, hphone: String, cphone: String, 
@@ -74,7 +99,12 @@ type Query {
 
   users(filter: String):[User]
   
+  user(id: String):User
+  
   surveyors(filter: String): [Surveyor]
+  
+  newcustomers(id: String): [newCust]
+  
  }
 
 type Mutation {
@@ -116,12 +146,11 @@ type Mutation {
     status: String
   ): Customers
 
-updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean) : User
+updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean, newCustomers: [newCustomers]) : User
 
 }
   schema {
       query:Query
       mutation:Mutation
-  }
-`;
+  }`;
 export default [typeDefinitions];

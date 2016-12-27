@@ -1,54 +1,52 @@
-import CustomerDetailsForm from './reduxCustomerDetailsForm';
 import { grey50 } from 'material-ui/styles/colors';
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Paper from 'material-ui/Paper';
+import { connect } from 'react-redux';
+
+import CustomerDetailsForm from './reduxCustomerDetailsForm';
 
 const styles = {
-    paperStyle: {
-        width: 500,
-        position: 'relative',
-        margin: 'auto',
-        marginTop: 20,
-        textAlign: 'center'
-    },
-    undelineStyle: {
-        borderColor: grey50
-    }
+  paperStyle: {
+    width: 500,
+    position: 'relative',
+    margin: 'auto',
+    marginTop: 20,
+    textAlign: 'center',
+  },
+  undelineStyle: {
+    borderColor: grey50,
+  },
 };
 
 class CustomerDetailsFormRootComp extends React.Component {
-    constructor () {
-        super();
-    }
-
-    handleSubmit = (values) => {
-        this.props.mutate({ variables: {
-            firstName: values.firstName,
-            lastName: values.lastName,
-            email1: values.email1,
-            email2: values.email2,
-            hphone: values.hphone,
-            cphone: values.cphone,
-            wphone: values.wphone
-        } }).then((data) => {
-            localStorage.setItem('current_customer', data.data.newCustomer.id);
-        });
-        this.props.next();
-    }
-    render () {
-        return (
+  handleSubmit = (values) => {
+    this.props.mutate({ variables: {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email1: values.email1,
+      email2: values.email2,
+      hphone: values.hphone,
+      cphone: values.cphone,
+      wphone: values.wphone,
+    } }).then((data) => {
+      this.props.saveCustomer(data.data.newCustomer.id);
+    });
+    this.props.next();
+  }
+  render() {
+    return (
       <div>
-            <Paper style={styles.paperStyle} zDepth={1} >
-            <br/>
-            <h3>Enter Customer Details</h3>
-            <CustomerDetailsForm onSubmit={this.handleSubmit}/>
-            <br/>
-            </Paper>
+        <Paper style={styles.paperStyle} zDepth={1} >
+          <br />
+          <h3>Enter Customer Details</h3>
+          <CustomerDetailsForm onSubmit={this.handleSubmit} />
+          <br />
+        </Paper>
       </div>
-        );
-    }
+    );
+  }
 }
 
 const submitUser = gql`
@@ -62,7 +60,12 @@ const submitUser = gql`
   }
 }`;
 
-
-const CustomerDetailsFormRoot = graphql(submitUser)(CustomerDetailsFormRootComp);
+const mapActionsToProps = dispatch => ({
+  saveCustomer(currentCustomer) {
+    dispatch({ type: 'SAVE_CUSTOMER', payload: currentCustomer });
+  },
+});
+const _CustomerDetailsFormRoot = graphql(submitUser)(CustomerDetailsFormRootComp);
+const CustomerDetailsFormRoot = connect(null, mapActionsToProps)(_CustomerDetailsFormRoot);
 
 export default CustomerDetailsFormRoot;
