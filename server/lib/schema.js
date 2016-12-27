@@ -20,7 +20,6 @@ type Customers {
  workNotificaiton: Boolean
  sendSurvey: Boolean
 }
-
 type User {
   email: String
   _id: String
@@ -33,18 +32,15 @@ type User {
   region: String
   newCustomers: [newCust]
 }
-
 type Surveyor {
   firstName: String
   lastName: String
   mobile: String
   id: String
 }
-
 type Address {
    description: String
 }
-
 type newCust {
    id: String 
    firstName: String
@@ -56,14 +52,12 @@ type newCust {
    wphone: String
    address: String
    }
-
 input SurveyorInput {
   firstName: String
   lastName: String
   mobile: String
   id: String
 }
-
 input updateDispatch {
   address: String
   cphone: Boolean
@@ -74,7 +68,6 @@ input updateDispatch {
   survey: Boolean
   surveyor: SurveyorInput
 }
-
 input newCustomers {
    id: String 
    firstName: String
@@ -87,16 +80,11 @@ input newCustomers {
    address: String
    notes: String
   }
-
 type Query {
-
   customers(firstName:String, lastName:String, email1: String, email2: String, hphone: String, cphone: String, 
   wphone: String, address: String, notes: String, surveyor: String,estimator: String,status: String ): [Customers]
-
   customer(id: String!):Customers
-
   address(searchTerm:String!):[Address]
-
   users(filter: String):[User]
   
   user(id: String):User
@@ -106,15 +94,10 @@ type Query {
   newcustomers(id: String): [newCust]
   
  }
-
 type Mutation {
-
   submitCustomer(id: String): Customers
-
   updateDispatchInfo(dispatch: updateDispatch, id: String): Customers
-
   getCustomer(id: String): Customers
-
   newCustomer(
     firstName: String
     lastName: String
@@ -129,7 +112,6 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
-
     updateCustomer (
     id: String  
     firstName: String
@@ -145,9 +127,7 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
-
 updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean, newCustomers: [newCustomers]) : User
-
 }
   schema {
       query:Query
