@@ -5,7 +5,8 @@ import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
+  <TextField
+    hintText={label}
     floatingLabelText={label}
     errorText={touched && error}
     {...input}
@@ -14,23 +15,25 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
 );
 
 const renderCheckbox = ({ input, label, status }) => (
-  <Checkbox label={label}
+  <Checkbox
+    label={label}
     defaultChecked={status}
-    onCheck={input.onChange}/>
+    onCheck={input.onChange}
+  />
 );
 
-const UserDetailsForm = props => {
-    const { handleSubmit } = props;
-    return (
+const UserDetailsForm = (props) => {
+  const { handleSubmit } = props;
+  return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="firstName" component={renderTextField} label={props.firstName}/>
+        <Field name="firstName" component={renderTextField} label={props.firstName} />
       </div>
       <div>
-        <Field name="lastName" component={renderTextField} label={props.lastName}/>
+        <Field name="lastName" component={renderTextField} label={props.lastName} />
       </div>
       <div>
-        <Field name="mobile" component={renderTextField} label={props.mobile}/>
+        <Field name="mobile" component={renderTextField} label={props.mobile} />
       </div>
 
       <div>
@@ -39,38 +42,38 @@ const UserDetailsForm = props => {
           component={renderCheckbox}
           label="Surveyor"
           status={props.surveyor}
-      />
+        />
       </div>
-        <div>
+      <div>
         <Field
           name="estimator"
           component={renderCheckbox}
           label="Estimator"
           status={props.estimator}
-      />
+        />
       </div>
 
-       <div>
+      <div>
         <Field
           name="office"
           component={renderCheckbox}
           label="Office"
           status={props.office}
-      />
+        />
       </div>
 
-     <br/>
+      <br />
       <div>
-       <RaisedButton
-         type={"submit"}
-         label={"Save"}
-         primary
-       />
+        <RaisedButton
+          type={'submit'}
+          label={'Save'}
+          primary
+        />
       </div>
     </form>
-    );
+  );
 };
 
 export default reduxForm({
-    form: 'userDetailsForm'  // a unique identifier for this form
+  form: 'userDetailsForm',  // a unique identifier for this form
 })(UserDetailsForm);

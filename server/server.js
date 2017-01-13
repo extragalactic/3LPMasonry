@@ -90,7 +90,6 @@ app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
 app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
 
-
 app.use(express.static(path.join(__dirname, './ssr/')));
 app.get('/upload/:id', (req, res) => {
   res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
@@ -99,7 +98,6 @@ app.use(express.static(path.join(__dirname, '../customerfacing/')));
 app.get('/email', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerfacing/index.html'));
 });
-
 
 app.get('/estimate', (req, res) => {
   res.sendFile(path.join(__dirname, './ssr/pesdk/survey.html'));

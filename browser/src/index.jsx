@@ -14,6 +14,7 @@ if (module.hot) {
 }
 
 const client = new ApolloClient({
+  connectToDevTools: true,
   networkInterface: createNetworkInterface({
     uri: '/graphql',
     opts: {

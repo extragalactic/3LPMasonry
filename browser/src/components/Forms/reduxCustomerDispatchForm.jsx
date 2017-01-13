@@ -141,9 +141,7 @@ class CustomerDispatchFormComp extends Component {
       searchTerm: input,
     });
     if (this.props.data.address) {
-      const data = this.props.data.address.map((element) => {
-        return element.description;
-      });
+      const data = this.props.data.address.map(element => element.description);
       this.setState({ data });
     }
   };
@@ -163,13 +161,13 @@ class CustomerDispatchFormComp extends Component {
     const actions = [
       <FlatButton
         label="Save"
-        primary={true}
+        primary
         onTouchTap={this.submitNotes}
       />,
       <FlatButton
         label="Close"
-        secondary={true}
-        keyboardFocused={true}
+        secondary
+        keyboardFocused
         onTouchTap={this.closeNotesDialog}
       />,
     ];
@@ -201,19 +199,17 @@ class CustomerDispatchFormComp extends Component {
                 component={SelectField}
                 hintText={'Select a Surveyor'}
               >
-                {this.props.surveyors.map((surveyor, idx) => {
-                  return (
-                    <MenuItem
-                      value={{
-                        firstName: surveyor.firstName,
-                        lastName: surveyor.lastName,
-                        mobile: surveyor.mobile,
-                        id: surveyor.id,
-                      }}
-                      primaryText={`${surveyor.firstName} ${surveyor.lastName}`}
-                      key={idx}
-                    />);
-                })}
+                {this.props.surveyors.map((surveyor, idx) => (
+                  <MenuItem
+                    value={{
+                      firstName: surveyor.firstName,
+                      lastName: surveyor.lastName,
+                      mobile: surveyor.mobile,
+                      id: surveyor.id,
+                    }}
+                    primaryText={`${surveyor.firstName} ${surveyor.lastName}`}
+                    key={idx}
+                  />))}
               </Field> : null }
             <br />
             <Toggle
@@ -282,46 +278,46 @@ class CustomerDispatchFormComp extends Component {
           </div>
           <FlatButton
             label={'notes'}
-            primary={true}
+            primary
             onTouchTap={this.openNotesDialog}
           />
-        <br/>
+          <br />
           <RaisedButton
-            type={"submit"}
+            type={'submit'}
             backgroundColor={grey500}
           > Save </RaisedButton>
-          </form>
-          <Dialog
-            open={this.state.dialog}
-            actions={actions}
-          >
-         <Paper
-          style={paperStyle}
-          onClick={this.focus}
-          >
-          <div
-            style={editorStyle}
+        </form>
+        <Dialog
+          open={this.state.dialog}
+          actions={actions}
+        >
+          <Paper
+            style={paperStyle}
             onClick={this.focus}
           >
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            placeholder="Add some notes..."
-            ref="editor"
-            />
-          </div>
+            <div
+              style={editorStyle}
+              onClick={this.focus}
+            >
+              <Editor
+                editorState={this.state.editorState}
+                onChange={this.onChange}
+                placeholder="Add some notes..."
+                ref="editor"
+              />
+            </div>
           </Paper>
-         <Snackbar
-          open={this.state.snackBar}
-          message="Notes Saved"
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-          contentStyle={{ textAlign: 'center' }}
-        />
-         </Dialog>
-         </div>
-        );
-    }
+          <Snackbar
+            open={this.state.snackBar}
+            message="Notes Saved"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+            contentStyle={{ textAlign: 'center' }}
+          />
+        </Dialog>
+      </div>
+    );
+  }
 }
 
 CustomerDispatchFormComp.propTypes = {

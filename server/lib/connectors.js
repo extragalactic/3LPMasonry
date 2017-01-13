@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import axios from 'axios';
+import randomstring from 'randomstring';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
-import axios from 'axios';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
@@ -53,7 +54,6 @@ class Users {
 class User {
   constructor() {
     this.findUser = ({ id }) => {
-      console.log(id);
       const user = UsersModel.findOne({ _id: id }, (error, data) => data);
       return user;
     };
@@ -252,6 +252,40 @@ class SubmitCustomer {
     };
   }
 }
+class SubmitFollowup {
+  constructor() {
+    this.submitFollowup = (args) => {
+      console.log(args);
+      UsersModel.findOne({ _id: args.userid }).then((user) => {
+        user.followUp.push(args);
+        user.save();
+        console.log(user);
+      });
+    };
+  }
+}
+class GetAppointments {
+  constructor() {
+    this.getAppointments = (args) => {
+      const selectedMonthDate = {
+        date: new Date(args.date).getDate(),
+        month: new Date(args.date).getMonth(),
+      };
+      console.log(args);
+      return UsersModel.findOne({ _id: args.userid }).then(user => user.followUp.filter((apt) => {
+        console.log(apt);
+        const followupMonthDate = {
+          date: new Date(apt.start).getDate(),
+          month: new Date(apt.start).getMonth(),
+        };
+        if (_.isEqual(followupMonthDate, selectedMonthDate)) {
+          return apt;
+        }
+      }),
+     );
+    };
+  }
+}
 
 module.exports = {
   Customers,
@@ -266,4 +300,6 @@ module.exports = {
   GetCustomer,
   UpdateDispatchInfo,
   SubmitCustomer,
+  SubmitFollowup,
+  GetAppointments,
 };

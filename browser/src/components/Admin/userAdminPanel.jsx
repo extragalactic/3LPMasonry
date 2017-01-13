@@ -135,7 +135,6 @@ class userAdminPanelComp extends React.Component {
   }
 }
 
-
 const getAllUsers = gql`
    query {
   users {

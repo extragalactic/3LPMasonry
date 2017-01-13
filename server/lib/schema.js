@@ -31,6 +31,7 @@ type User {
   office: Boolean
   region: String
   newCustomers: [newCust]
+  followUp: [followUp] 
 }
 type Surveyor {
   firstName: String
@@ -41,6 +42,16 @@ type Surveyor {
 type Address {
    description: String
 }
+type Appointment {
+  _id: String
+  userid: String
+  start: String
+  end: String
+  name: String
+  address: String
+  description: String
+}
+
 type newCust {
    id: String 
    firstName: String
@@ -52,6 +63,15 @@ type newCust {
    wphone: String
    address: String
    }
+
+type followUp {
+  name: String
+  start: String
+  end: String
+  address: String 
+  description: String
+}
+
 input SurveyorInput {
   firstName: String
   lastName: String
@@ -86,18 +106,21 @@ type Query {
   customer(id: String!):Customers
   address(searchTerm:String!):[Address]
   users(filter: String):[User]
-  
   user(id: String):User
-  
   surveyors(filter: String): [Surveyor]
-  
   newcustomers(id: String): [newCust]
-  
- }
+}
+
 type Mutation {
+
+  getAppointmentsforDay(date: String, userid: String):[Appointment]
+
   submitCustomer(id: String): Customers
+  
   updateDispatchInfo(dispatch: updateDispatch, id: String): Customers
+  
   getCustomer(id: String): Customers
+  
   newCustomer(
     firstName: String
     lastName: String
@@ -112,7 +135,8 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
-    updateCustomer (
+  
+  updateCustomer(
     id: String  
     firstName: String
     lastName: String
@@ -127,10 +151,14 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
+
 updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean, newCustomers: [newCustomers]) : User
+
+submitFollowup(userid: String, custid: String, name: String, address: String, start: String, end: String, description: String):User
+
 }
   schema {
-      query:Query
-      mutation:Mutation
+    query:Query
+    mutation:Mutation
   }`;
 export default [typeDefinitions];

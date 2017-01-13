@@ -24,8 +24,17 @@ const UsersSchema = new mongoose.Schema({
     address: String,
     status: String,
   }],
+  followUp: [{
+    name: String,
+    address: String,
+    start: String,
+    end: String,
+    description: String,
+    userid: String,
+    custid: String,
+  }],
 });
 
-const UsersModel = mongoose.odel('users', UsersSchema);
+const UsersModel = mongoose.model('users', UsersSchema);
 
 module.exports = UsersModel;

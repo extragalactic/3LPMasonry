@@ -104,6 +104,14 @@ const resolveFunctions = {
       const customer = new ctx.constructor.SubmitCustomer();
       return customer.submitCustomer(args);
     },
+    submitFollowup(_, args, ctx) {
+      const appointment = new ctx.constructor.SubmitFollowup();
+      return appointment.submitFollowup(args);
+    },
+    getAppointmentsforDay(_, args, ctx) {
+      const appointments = new ctx.constructor.GetAppointments();
+      return appointments.getAppointments(args);
+    },
   },
 };
 module.exports = resolveFunctions;

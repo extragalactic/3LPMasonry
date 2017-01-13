@@ -8,23 +8,22 @@ import Footer from '../Footer/Footer';
 
 injectTapEventPlugin();
 
-export default class App extends React.Component {
-    render () {
-        let children = null;
-        if (this.props.children) {
-            children = React.cloneElement(this.props.children, {
-                auth: this.props.route.auth //sends auth instance from route to children
-            });
-        }
+const App = (props) => {
+  let children = null;
+  if (props.children) {
+    children = React.cloneElement(props.children, {
+      auth: props.route.auth
+    });
+  }
+  return (
+    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <div>
+        <Header />
+        { children }
+        <Footer />
+      </div>
+    </MuiThemeProvider>
+  );
+};
 
-        return (
-            <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-            <div>
-            <Header/>
-            {children}
-            <Footer/>
-            </div>
-            </MuiThemeProvider>
-        );
-    }
-}
+export default App;
