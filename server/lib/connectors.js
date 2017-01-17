@@ -259,7 +259,6 @@ class SubmitFollowup {
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.followUp.push(args);
         user.save();
-        console.log(user);
       });
     };
   }
@@ -271,9 +270,7 @@ class GetAppointments {
         date: new Date(args.date).getDate(),
         month: new Date(args.date).getMonth(),
       };
-      console.log(args);
       return UsersModel.findOne({ _id: args.userid }).then(user => user.followUp.filter((apt) => {
-        console.log(apt);
         const followupMonthDate = {
           date: new Date(apt.start).getDate(),
           month: new Date(apt.start).getMonth(),
@@ -287,6 +284,40 @@ class GetAppointments {
   }
 }
 
+class AddNotes {
+  constructor() {
+    this.addNotes = (args) => {
+      console.log(args)
+    };
+  }
+}
+
+class DeleteAppointment {
+  constructor() {
+    this.deleteAppointment = (args) => {
+      console.log("AARRGS", args)
+      UsersModel.findOne({ _id: args.userid }).then((user) => {
+        user.followUp = _.reject(user.followUp, (apt) => {
+           if(args.meetingid == apt._id){
+             return apt;
+           } 
+        });
+        console.log(user.followUp)
+        user.save();
+        return user;
+      });
+    };
+  }
+}
+
+class GetUser {
+  constructor() {
+    this.getUser = (args) => {
+      const user = UsersModel.findOne({ _id: args.id }, (error, data) => data);
+      return user;
+    };
+  }
+ }
 module.exports = {
   Customers,
   Customer,
@@ -302,4 +333,7 @@ module.exports = {
   SubmitCustomer,
   SubmitFollowup,
   GetAppointments,
+  AddNotes,
+  DeleteAppointment,
+  GetUser,
 };

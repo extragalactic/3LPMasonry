@@ -19,7 +19,9 @@ type Customers {
  homeNotification: Boolean
  workNotificaiton: Boolean
  sendSurvey: Boolean
+ coordinates: Coordinates
 }
+
 type User {
   email: String
   _id: String
@@ -39,6 +41,12 @@ type Surveyor {
   mobile: String
   id: String
 }
+ type notes {
+   text: String
+   timestamp: String
+   user: String
+ }
+
 type Address {
    description: String
 }
@@ -50,6 +58,12 @@ type Appointment {
   name: String
   address: String
   description: String
+  calid: String
+}
+
+type Coordinates {
+  latitude: String
+  longitude: String
 }
 
 type newCust {
@@ -70,6 +84,7 @@ type followUp {
   end: String
   address: String 
   description: String
+  calid: String
 }
 
 input SurveyorInput {
@@ -112,15 +127,14 @@ type Query {
 }
 
 type Mutation {
-
+  deleteAppointment(userid: String, meetingid: String, calid: String):Appointment
+  getNotes(id:String):[notes]
+  getUser(id: String):User
+  addNotes(text: String, timestamp: String, user: String, id:String):[notes]
   getAppointmentsforDay(date: String, userid: String):[Appointment]
-
   submitCustomer(id: String): Customers
-  
   updateDispatchInfo(dispatch: updateDispatch, id: String): Customers
-  
   getCustomer(id: String): Customers
-  
   newCustomer(
     firstName: String
     lastName: String
@@ -154,7 +168,7 @@ type Mutation {
 
 updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean, newCustomers: [newCustomers]) : User
 
-submitFollowup(userid: String, custid: String, name: String, address: String, start: String, end: String, description: String):User
+submitFollowup(userid: String, custid: String, name: String, address: String, start: String, end: String, description: String, calid: String): User
 
 }
   schema {

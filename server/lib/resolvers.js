@@ -112,6 +112,18 @@ const resolveFunctions = {
       const appointments = new ctx.constructor.GetAppointments();
       return appointments.getAppointments(args);
     },
+    addNotes(_, args, ctx) {
+      const notes = new ctx.constructor.AddNotes();
+      return notes.addNotes(args);
+    },
+    deleteAppointment(_, args, ctx) {
+      const appointment = new ctx.constructor.DeleteAppointment();
+      return appointment.deleteAppointment(args);
+    },
+    getUser(_, args, ctx) {
+      const user = new ctx.constructor.GetUser();
+      return user.getUser(args);
+    },
   },
 };
 module.exports = resolveFunctions;

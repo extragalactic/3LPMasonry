@@ -32,6 +32,10 @@ const CustomerSchema = new mongoose.Schema({
   location: {},
   streetViewData: String,
   streetViewUrl: String,
+  coordinates: {
+    latitude: String,
+    longitude: String,
+  },
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);
