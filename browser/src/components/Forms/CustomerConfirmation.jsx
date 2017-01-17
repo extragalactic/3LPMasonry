@@ -51,12 +51,7 @@ class CustomerConfirmationComp extends React.Component {
       id: this.props.currentCustomer,
       options: { pollInterval: 1000 },
     });
-    axios.get(`/getnotes/${this.props.currentCustomer}`).then((data) => {
-      const ContentState = convertFromRaw(data.data);
-      this.setState({
-        editorState: EditorState.createWithContent(ContentState),
-      });
-    });
+
     axios.get(`/getcustomer/${this.props.currentCustomer}`)
             .then((data) => {
               this.setState({

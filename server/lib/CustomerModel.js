@@ -10,10 +10,11 @@ const CustomerSchema = new mongoose.Schema({
   wphone: String,
   address: String,
   coordinance: String,
-  notes: {
-    entityMap: {},
-    blocks: [],
-  },
+  notes: [{
+    text: String,
+    timestamp: String,
+    user: String,
+  }],
   surveyor: {
     firstName: String,
     lastName: String,

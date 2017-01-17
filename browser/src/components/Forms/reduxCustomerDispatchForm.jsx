@@ -9,10 +9,13 @@ import Snackbar from 'material-ui/Snackbar';
 import { Editor, EditorState, convertToRaw } from 'draft-js';
 import { grey500, grey50 } from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
 import Toggle from 'material-ui/Toggle';
-import axios from 'axios';
+import TextField from 'material-ui/TextField';
+
+
+import { searchAddress } from '../../graphql/queries';
+import { getCustomer, addNotes } from '../../graphql/mutations';
 
 const toggleStyles = {
   block: {
@@ -73,11 +76,12 @@ class CustomerDispatchFormComp extends Component {
       emailtoggle: false,
       notesopen: false,
       currentcustomer: {},
+      notes: '',
       editorState: EditorState.createEmpty(),
       snackBar: false,
     };
     this.onChange = editorState => this.setState({ editorState });
-    this.focus = () => this.refs.editor.focus();
+        
   }
 
   componentDidMount() {
@@ -85,6 +89,9 @@ class CustomerDispatchFormComp extends Component {
         .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
         .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
         .focus();                // on TextField
+  }
+  onChangeNotes = (notes) => {
+    console..log(notes)
   }
   handleRequestClose = () => {
     this.setState({
@@ -147,15 +154,7 @@ class CustomerDispatchFormComp extends Component {
   };
 
   submitNotes = () => {
-    const that = this;
-    const ContentState = this.state.editorState.getCurrentContent();
-    const raw = convertToRaw(ContentState);
-    axios.post('/updatenotes', { rawdata: raw, customer: this.props.currentCustomer })
-        .then(() => {
-          that.setState({
-            snackBar: true,
-          });
-        });
+  console.log(this.state)
   };
   render() {
     const actions = [
@@ -293,17 +292,20 @@ class CustomerDispatchFormComp extends Component {
         >
           <Paper
             style={paperStyle}
-            onClick={this.focus}
+            //onClick={this.focus}
           >
             <div
               style={editorStyle}
               onClick={this.focus}
             >
-              <Editor
-                editorState={this.state.editorState}
-                onChange={this.onChange}
+              <TextField
+                onChange={this.onChangeNotes}
+                value={this.state.notes}
                 placeholder="Add some notes..."
-                ref="editor"
+                multiLine
+                underlineShow={false}
+                name={'notes'}
+
               />
             </div>
           </Paper>
@@ -329,33 +331,10 @@ CustomerDispatchFormComp = reduxForm({
   form: 'customerdispatch',
 })(CustomerDispatchFormComp);
 
-const searchAddress = gql`
-  query 
-    searchAddress($searchTerm:String!){
-      address(searchTerm:$searchTerm) {
-        description
-      } 
-  }`;
+const CustomerDispatchForm = compose(
+   graphql(searchAddress, { options: { variables: { searchTerm: '' } } }),
+   graphql(getCustomer, { name: 'getCustomer' }),
 
-const getCustomer = gql`
-  mutation getCustomer($id: String){
-    getCustomer(id:$id) {
-      id
-      firstName
-      lastName
-      email1
-      email2
-      cphone
-      hphone
-      wphone
-      address
-    }
-  }`;
-
-const CustomerDispatchQuery = graphql(searchAddress, {
-  options: { variables: { searchTerm: '' } },
-})(CustomerDispatchFormComp);
-
-const CustomerDispatchForm = graphql(getCustomer, { name: 'getCustomer' })(CustomerDispatchQuery);
+)(CustomerDispatchFormComp);
 
 export default CustomerDispatchForm;
