@@ -130,7 +130,7 @@ type Mutation {
   deleteAppointment(userid: String, meetingid: String, calid: String):Appointment
   getNotes(id:String):[notes]
   getUser(id: String):User
-  addNotes(text: String, timestamp: String, user: String, id:String):[notes]
+  addNotes(text: String, timestamp: String, user: String, custid:String):[notes]
   getAppointmentsforDay(date: String, userid: String):[Appointment]
   submitCustomer(id: String): Customers
   updateDispatchInfo(dispatch: updateDispatch, id: String): Customers

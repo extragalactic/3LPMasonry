@@ -287,9 +287,10 @@ class GetAppointments {
 class AddNotes {
   constructor() {
     this.addNotes = (args) => {
-      CustomersModel.findOne({_id: args.id}).then((customer)=>{
-        console.log(customer)
-      })
+      CustomersModel.findOne({_id: args.custid}).then((customer)=>{
+        customer.notes.push(args);
+        customer.save();
+      });
       console.log(args)
     };
   }

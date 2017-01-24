@@ -81,6 +81,8 @@ class CustomerDispatchFormComp extends Component {
       snackBar: false,
     };
     this.onChange = editorState => this.setState({ editorState });
+    this.focus = () => this.refs.notes.focus();
+
         
   }
 
@@ -90,9 +92,13 @@ class CustomerDispatchFormComp extends Component {
         .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
         .focus();                // on TextField
   }
-  onChangeNotes = (notes) => {
-    console..log(notes)
-  }
+  onChangeNotes = (notes, text) => {
+   // console.log(notes)
+    console.log('text', text)
+    this.setState({
+      notes: text
+    })
+  };
   handleRequestClose = () => {
     this.setState({
       snackBar: false,
@@ -152,9 +158,15 @@ class CustomerDispatchFormComp extends Component {
       this.setState({ data });
     }
   };
-
   submitNotes = () => {
-  console.log(this.state)
+    this.props.addNotes({
+      variables: {
+        custid: this.props.currentCustomer,
+        text: this.state.notes,
+        user:  JSON.parse(localStorage.profile).name,
+        timestamp: new Date(),
+      },
+    });
   };
   render() {
     const actions = [
@@ -292,7 +304,7 @@ class CustomerDispatchFormComp extends Component {
         >
           <Paper
             style={paperStyle}
-            //onClick={this.focus}
+            onClick={this.focus}
           >
             <div
               style={editorStyle}
@@ -301,10 +313,13 @@ class CustomerDispatchFormComp extends Component {
               <TextField
                 onChange={this.onChangeNotes}
                 value={this.state.notes}
-                placeholder="Add some notes..."
+                placeholder="Add some notes..."                
+                ref="notes"                
                 multiLine
                 underlineShow={false}
                 name={'notes'}
+                textareaStyle={{color:'black'}}
+                fullWidth
 
               />
             </div>
@@ -334,7 +349,7 @@ CustomerDispatchFormComp = reduxForm({
 const CustomerDispatchForm = compose(
    graphql(searchAddress, { options: { variables: { searchTerm: '' } } }),
    graphql(getCustomer, { name: 'getCustomer' }),
-
+  graphql(addNotes, { name: 'addNotes' }),
 )(CustomerDispatchFormComp);
 
 export default CustomerDispatchForm;

@@ -16,8 +16,8 @@ const getCustomer = gql`
   }`;
 
 const addNotes = gql `
-   mutation addNotes ($id: String, $text: String, $user: String, $timestamp : String ){
-  addNotes(id: $id, text: $text, user: $user, timestamp: $timestamp){
+   mutation addNotes ($custid: String, $text: String, $user: String, $timestamp : String ){
+  addNotes(custid: $custid, text: $text, user: $user, timestamp: $timestamp){
     user
   }
 }`;
