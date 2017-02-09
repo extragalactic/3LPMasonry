@@ -20,6 +20,7 @@ dotenv.config();
 console.log(process.env)
 
 if (process.env.PROD === 'false') {
+  console.log('hotload')
   console.log('dev');
   const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
