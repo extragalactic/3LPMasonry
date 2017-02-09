@@ -18,7 +18,7 @@ module.exports = {
       },
     ],
     query: {
-      presets: ['react', 'es2015', 'babel-preset-react-hmre'],
+      presets: ['react', 'es2015'],
     },
   },
   node: {

@@ -17,6 +17,7 @@ import CustomersModel from './lib/CustomerModel';
 
 const app = express();
 dotenv.config();
+console.log(process.env)
 
 if (process.env.PROD === 'false') {
   console.log('dev');
