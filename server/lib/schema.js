@@ -50,7 +50,7 @@ type SurveyPhotosArray {
   thumb: String
   photo: String
   caption: String
-  selected: String
+  selected: Boolean
 }
 
 type Address {

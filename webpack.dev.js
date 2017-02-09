@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import webpackValidator from 'webpack-validator';
 import webpack from 'webpack';
+
 module.exports = {
   devtool: 'inline-source-map',
   plugins: [
