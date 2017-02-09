@@ -124,6 +124,18 @@ const resolveFunctions = {
       const user = new ctx.constructor.GetUser();
       return user.getUser(args);
     },
+    addSurveyNotes(_, args, ctx) {
+      const notes = new ctx.constructor.AddSurveyNotes();
+      return notes.addSurveyNotes(args);
+    },
+    addSurveyPhoto(_, args, ctx) {
+      const photo = new ctx.constructor.AddSurveyPhoto();
+      return photo.addSurveyPhoto(args);
+    },
+    getSurveyPhotos(_, args, ctx) {
+      const photo = new ctx.constructor.GetSurveyPhotos();
+      return photo.getSurveyPhotos(args);
+    },
   },
 };
 module.exports = resolveFunctions;

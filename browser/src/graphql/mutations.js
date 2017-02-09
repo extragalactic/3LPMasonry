@@ -12,6 +12,11 @@ const getCustomer = gql`
       hphone
       wphone
       address
+      notes {
+        text
+        user
+        timestamp
+      }
     }
   }`;
 

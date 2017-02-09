@@ -37,6 +37,29 @@ const CustomerSchema = new mongoose.Schema({
     latitude: String,
     longitude: String,
   },
+  survey: {
+    notes: [{
+      heading: String,
+      description: String,
+      text: String,
+      timestamp: String,
+      user: String,
+    }],
+    photos: [{
+      heading: String,
+      description: String,
+      timestamp: String,
+      user: String,
+      orginalBase64: String,
+      editedlBase64: String,
+      orginalURL: String,
+      thumbURL: String,
+      thumb: String,
+      photo: String,
+      caption: String,
+      selected: Boolean,
+    }],
+  },
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);

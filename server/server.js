@@ -5,14 +5,14 @@ import bodyParser from 'body-parser';
 import Mongoose from 'mongoose';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-import Schema from './lib/schema';
-import Connectors from './lib/connectors';
-import Resolvers from './lib/resolvers';
-import config from '../webpack.dev';
 import webpack from 'webpack';
 import webpackMiddleWare from 'webpack-dev-middleware';
 import webpackHotLoading from 'webpack-hot-middleware';
 
+import Schema from './lib/schema';
+import Connectors from './lib/connectors';
+import Resolvers from './lib/resolvers';
+import config from '../webpack.dev';
 import CustomersModel from './lib/CustomerModel';
 
 const app = express();
@@ -44,6 +44,11 @@ const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
   resolvers: Resolvers,
 });
+
+const jsonParser = bodyParser.json({ limit:1024*1024*20, type:'application/json' });
+const urlencodedParser = bodyParser.urlencoded({ extended: true, limit: 1024*1024*20, type:'application/x-www-form-urlencoding' })
+app.use(jsonParser);
+app.use(urlencodedParser);
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({
   schema: executableSchema,
@@ -94,7 +99,17 @@ app.use(express.static(path.join(__dirname, './ssr/')));
 app.get('/upload/:id', (req, res) => {
   res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
 });
-app.use(express.static(path.join(__dirname, '../customerfacing/')));
+app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
+
+const imageOptions = {
+  index: false,
+};
+app.use('/images', express.static(path.join(__dirname, '../images'), imageOptions));
+app.get('/images/:filename', (req, res) => {
+  console.log(req.params.filename)
+  res.sendFile(path.join(__dirname, `../images/${req.params.filename}`));
+});
+
 app.get('/email', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerfacing/index.html'));
 });

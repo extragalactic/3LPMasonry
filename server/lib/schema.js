@@ -9,7 +9,7 @@ type Customers {
  cphone: String
  wphone: String
  address: String
- notes: String
+ notes: [notes]
  surveyor: Surveyor
  estimator: String
  status: String
@@ -21,7 +21,6 @@ type Customers {
  sendSurvey: Boolean
  coordinates: Coordinates
 }
-
 type User {
   email: String
   _id: String
@@ -46,6 +45,13 @@ type Surveyor {
    timestamp: String
    user: String
  }
+
+type SurveyPhotosArray {
+  thumb: String
+  photo: String
+  caption: String
+  selected: String
+}
 
 type Address {
    description: String
@@ -87,6 +93,38 @@ type followUp {
   calid: String
 }
 
+type Surveys {
+  headings: [String]
+  description: [String]
+  notes: [SurveyNotes]
+  photos: [SurveyPhotos]
+}
+
+type SurveyNotes {
+    heading: String
+    description: String
+    text: String
+    timestamp: String
+    user: String
+}
+
+type SurveyPhoto {
+    heading: String
+    description: String
+    orginalBase64: String
+    editedlBase64: String
+    timestamp: String
+    user: String
+}
+type SurveyPhotos {
+    heading: String
+    description: String
+    timestamp: String
+    user: String
+    orginalBase64: String
+    editedlBase64: String
+}
+
 input SurveyorInput {
   firstName: String
   lastName: String
@@ -116,8 +154,20 @@ input newCustomers {
    notes: String
   }
 type Query {
-  customers(firstName:String, lastName:String, email1: String, email2: String, hphone: String, cphone: String, 
-  wphone: String, address: String, notes: String, surveyor: String,estimator: String,status: String ): [Customers]
+  customers(
+    firstName:String, 
+    lastName:String, 
+    email1: String, 
+    email2: String, 
+    hphone: String, 
+    cphone: String, 
+    wphone: String, 
+    address: String, 
+    notes: String, 
+    surveyor: String,
+    estimator: String,
+    status: String
+  ): [Customers]
   customer(id: String!):Customers
   address(searchTerm:String!):[Address]
   users(filter: String):[User]
@@ -125,15 +175,49 @@ type Query {
   surveyors(filter: String): [Surveyor]
   newcustomers(id: String): [newCust]
 }
-
 type Mutation {
-  deleteAppointment(userid: String, meetingid: String, calid: String):Appointment
+ getSurveyPhotos( id: String ): [SurveyPhotosArray]
+
+  addSurveyNotes(
+    custid: String,
+    heading: String, 
+    description: String, 
+    text: String, 
+    timestamp: String, 
+    user: String
+    ): SurveyNotes
+
+  addSurveyPhoto(
+    custid: String,
+    heading: String, 
+    description: String, 
+    orginalBase64: String,
+    editedlBase64: String,
+    timestamp: String, 
+    user: String
+    ): SurveyPhoto
+
+  deleteAppointment(
+    userid: String, 
+    meetingid: String, 
+    calid: String
+    ):Appointment
   getNotes(id:String):[notes]
   getUser(id: String):User
-  addNotes(text: String, timestamp: String, user: String, custid:String):[notes]
-  getAppointmentsforDay(date: String, userid: String):[Appointment]
+  addNotes(text: String, 
+  timestamp: String, 
+  user: String, 
+  custid:String
+  ):[notes]
+  getAppointmentsforDay(
+    date: String, 
+    userid: String
+  ):[Appointment]
   submitCustomer(id: String): Customers
-  updateDispatchInfo(dispatch: updateDispatch, id: String): Customers
+  updateDispatchInfo(
+    dispatch: updateDispatch, 
+    id: String
+    ): Customers
   getCustomer(id: String): Customers
   newCustomer(
     firstName: String
@@ -166,10 +250,27 @@ type Mutation {
     status: String
   ): Customers
 
-updateUser(id: String, firstName: String, lastName: String, mobile:String, surveyor: Boolean, estimator: Boolean, office:Boolean, newCustomers: [newCustomers]) : User
+updateUser(
+  id: String, 
+  firstName: String, 
+  lastName: String, 
+  mobile:String, 
+  surveyor: Boolean, 
+  estimator: Boolean, 
+  office:Boolean, 
+  newCustomers: [newCustomers]
+  ): User
 
-submitFollowup(userid: String, custid: String, name: String, address: String, start: String, end: String, description: String, calid: String): User
-
+submitFollowup(
+  userid: String, 
+  custid: String, 
+  name: String, 
+  address: String, 
+  start: String, 
+  end: String, 
+  description: String, 
+  calid: String
+  ): User
 }
   schema {
     query:Query

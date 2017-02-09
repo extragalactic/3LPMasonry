@@ -1,12 +1,19 @@
 import _ from 'lodash';
+import fs from 'fs';
 import axios from 'axios';
+import dotenv from 'dotenv';
+import base64Img from 'base64-img';
 import randomstring from 'randomstring';
+import sharp from 'sharp';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 
+dotenv.config();
+
+console.log(base64Img)
 // 0: New Customer, Inquiry no survery
 // 1: New Customer, Online Survey sent
 // 2: Customer, Online Survey Received
@@ -299,21 +306,18 @@ class AddNotes {
 class DeleteAppointment {
   constructor() {
     this.deleteAppointment = (args) => {
-      console.log("AARRGS", args)
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.followUp = _.reject(user.followUp, (apt) => {
            if(args.meetingid == apt._id){
              return apt;
            } 
         });
-        console.log(user.followUp)
         user.save();
         return user;
       });
     };
   }
 }
-
 class GetUser {
   constructor() {
     this.getUser = (args) => {
@@ -322,7 +326,86 @@ class GetUser {
     };
   }
  }
+class AddSurveyNotes {
+  constructor() {
+    this.addSurveyNotes = (args) => {
+      const payload = {
+        heading: args.heading,
+        description: args.description,
+        text: args.text,
+        timestamp: args.timestamp,
+        user: args.user,
+      };
+      CustomersModel.findOne({_id: args.custid})
+        .then((customer) => {
+          customer.survey.notes.push(payload);
+          customer.save();
+        });
+    };
+  }
+ }
+
+class AddSurveyPhoto {
+  constructor() {
+    this.addSurveyPhoto = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          const folder = customer.firstName + customer.lastName;
+          const file = args.heading + randomstring.generate({
+            length: 4,
+            charset: 'numeric',
+          });
+          const originalUrl = `http://tlpm.ca:8080/images/${folder}/original/${file}.jpg`;
+          const thumbUrl = `http://tlpm.ca:8080/images/${folder}/thumbnail/${file}.jpg`;
+          const payload = {
+            heading: args.heading,
+            description: args.description,
+            orginalURL: originalUrl,
+            thumbURL: thumbUrl,
+            timestamp: args.timestamp,
+            user: args.user,
+            thumb: thumbUrl,
+            photo: originalUrl, // a remote photo or local media url  
+            caption: args.heading,
+            selected: false,
+          };
+          const buffer = Buffer.from(args.orginalBase64, 'base64');
+          if (fs.existsSync(!`images/${folder}`)) {
+            fs.mkdirSync(`images/${folder}`);
+            fs.mkdirSync(`images/${folder}/thumbnail`);
+            fs.mkdirSync(`images/${folder}/original`);
+          }
+          sharp(buffer)  //orginal photo
+           .toFile(`images/${folder}/original/${file}.jpg`)
+              .then(data => console.log('data', data))
+              .catch(err => console.log('error', err));
+          sharp(buffer)  //thumbnail photo
+            .resize(200)
+            .toFile(`images/${folder}/thumbnail/${file}.jpg`)
+              .then(data => console.log('data', data))
+              .catch(err => console.log('error', err));
+          customer.survey.photos.push(payload);
+          customer.save();
+        });
+    };
+  }
+ }
+
+class GetSurveyPhotos {
+  constructor() {
+    this.getSurveyPhotos = (args) => {
+      console.log(args);
+      return CustomersModel.findOne({ _id: args.id })
+        .then(customer => (customer.survey.photos),
+        );
+    };
+  }
+ }
+
+
 module.exports = {
+  AddSurveyPhoto,
+  GetSurveyPhotos,
   Customers,
   Customer,
   NewCustomer,
@@ -340,4 +423,5 @@ module.exports = {
   AddNotes,
   DeleteAppointment,
   GetUser,
+  AddSurveyNotes,
 };
