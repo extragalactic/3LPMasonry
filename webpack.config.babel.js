@@ -1,12 +1,14 @@
 import { resolve } from 'path';
+
 module.exports = {
+  devtool: 'inline-source-map',
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
-  context: resolve('customerfacing/src'),
+  context: resolve('browser/src'),
   entry: ['./index.jsx'],
   output: {
-    path: resolve('customerfacing/dist'),
+    path: resolve('browser/dist'),
     filename: 'bundle.js',
     publicPath: '/dist/',
   },
@@ -16,8 +18,10 @@ module.exports = {
       },
     ],
     query: {
-      presets: ['react', 'es2015'],
+      presets: ['react', 'es2015', 'babel-preset-react-hmre'],
     },
   },
-
+  node: {
+    fs: 'empty',
+  },
 };
