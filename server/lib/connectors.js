@@ -10,7 +10,7 @@ import UsersModel from '../lib/UserModel';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
-
+sharp.concurrency(1);
 dotenv.config();
 
 console.log(base64Img)
@@ -355,8 +355,8 @@ class AddSurveyPhoto {
             length: 4,
             charset: 'numeric',
           });
-          const originalUrl = `http://tlpm.ca:8080/images/${folder}/original/${file}.jpg`;
-          const thumbUrl = `http://tlpm.ca:8080/images/${folder}/thumbnail/${file}.jpg`;
+          const originalUrl = `http://192.168.1.105:8080/images/${folder}/original/${file}.jpg`;
+          const thumbUrl = `http://192.168.1.105:8080/images/${folder}/thumbnail/${file}.jpg`;
           const payload = {
             heading: args.heading,
             description: args.description,
