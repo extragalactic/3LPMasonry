@@ -26,6 +26,10 @@ const resolveFunctions = {
       const surveyors = new ctx.constructor.Surveyors();
       return surveyors.findSurveyors();
     },
+    getMessages(_, args, ctx) {
+      const message = new ctx.constructor.GetMessages();
+      return message.getMessages(args);
+    },
   },
   Mutation: {
     newCustomer(_, {

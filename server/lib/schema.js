@@ -40,11 +40,32 @@ type Surveyor {
   mobile: String
   id: String
 }
+
+type notesUser {
+  _id: String
+  name: String
+}
+
  type notes {
-   text: String
-   timestamp: String
-   user: String
+   _id: String
+  text: String
+  createdAt: String
+  user: notesUser
  }
+
+ input notesUserInput {
+  _id: String
+  name: String
+}
+
+  input notesInput {
+   _id: String
+   custid: String
+  text: String
+  createdAt: String
+  user: notesUserInput
+ }
+
 
 type SurveyPhotosArray {
   thumb: String
@@ -82,6 +103,7 @@ type newCust {
    cphone: String
    wphone: String
    address: String
+   status: Int
    }
 
 type followUp {
@@ -174,12 +196,14 @@ type Query {
   user(id: String):User
   surveyors(filter: String): [Surveyor]
   newcustomers(id: String): [newCust]
+  getMessages(id: String): [notes]
 }
 type Mutation {
  getSurveyPhotos( id: String ): [SurveyPhotosArray]
 
   addSurveyNotes(
     custid: String,
+    userid: String,
     heading: String, 
     description: String, 
     text: String, 
@@ -204,11 +228,10 @@ type Mutation {
     ):Appointment
   getNotes(id:String):[notes]
   getUser(id: String):User
-  addNotes(text: String, 
-  timestamp: String, 
-  user: String, 
-  custid:String
-  ):[notes]
+  
+  addNotes(note: notesInput ):[notes]
+  
+  
   getAppointmentsforDay(
     date: String, 
     userid: String
@@ -276,4 +299,5 @@ submitFollowup(
     query:Query
     mutation:Mutation
   }`;
+
 export default [typeDefinitions];

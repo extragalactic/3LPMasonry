@@ -11,9 +11,13 @@ const CustomerSchema = new mongoose.Schema({
   address: String,
   coordinance: String,
   notes: [{
+    _id: String,
     text: String,
-    timestamp: String,
-    user: String,
+    createdAt: String,
+    user: {
+      _id: String,
+      name: String,
+    },
   }],
   surveyor: {
     firstName: String,

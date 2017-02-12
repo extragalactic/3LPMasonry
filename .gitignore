@@ -13,13 +13,10 @@ bundle.js.map
 browser/dist/*
 *.env
 creds.env
-<<<<<<< f8bea8de782182c16962816d021e27f13127b630
 authcred.js
+images
+certs
 browser/src/assets/cred/*
-=======
-authcred.js
->>>>>>> update gitignore
-
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

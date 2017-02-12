@@ -22,7 +22,7 @@ const UsersSchema = new mongoose.Schema({
     cphone: String,
     wphone: String,
     address: String,
-    status: String,
+    status: Number,
   }],
   followUp: [{
     name: String,

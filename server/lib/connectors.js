@@ -10,6 +10,7 @@ import UsersModel from '../lib/UserModel';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
+
 sharp.concurrency(1);
 dotenv.config();
 
@@ -242,6 +243,7 @@ class SubmitCustomer {
                              hphone: data.hphone,
                              wphone: data.wphone,
                              address: data.address,
+                             status: 0,
                            });
                            user.save();
                          });
@@ -262,8 +264,16 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
-      console.log(args);
+      const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
+        user.newCustomers = user.newCustomers.map((customer) => {
+          if (customer.id === args.custid) {
+            customer.status = status;
+            return customer;
+          } else {
+            return customer;
+          }
+        });
         user.followUp.push(args);
         user.save();
       });
@@ -294,15 +304,21 @@ class GetAppointments {
 class AddNotes {
   constructor() {
     this.addNotes = (args) => {
-      CustomersModel.findOne({_id: args.custid}).then((customer)=>{
-        customer.notes.push(args);
-        customer.save();
-      });
-      console.log(args)
+      const payload = {
+        _id: randomstring.generate(7),
+        text: args.note.text,
+        user: args.note.user,
+        createdAt: args.note.createdAt,
+      };
+      CustomersModel.findOne({ _id: args.note.custid })
+        .then((customer) => {
+          customer.notes.push(payload);
+          customer.save();
+          return customer;
+        });
     };
   }
 }
-
 class DeleteAppointment {
   constructor() {
     this.deleteAppointment = (args) => {
@@ -336,11 +352,25 @@ class AddSurveyNotes {
         timestamp: args.timestamp,
         user: args.user,
       };
+      console.log(args)
       CustomersModel.findOne({_id: args.custid})
         .then((customer) => {
           customer.survey.notes.push(payload);
           customer.save();
         });
+
+      UsersModel.findOne({ _id: args.userid })
+           .then((user) => {
+              user.newCustomers = user.newCustomers.map((customer) => {
+                if (customer.id === args.custid) {
+                  customer.status = 3;
+                  return customer;
+                } else {
+                  return customer;
+                }
+              });
+             user.save();
+           });
     };
   }
  }
@@ -402,8 +432,24 @@ class GetSurveyPhotos {
   }
  }
 
+class GetMessages {
+  constructor() {
+    this.getMessages = (args) => {
+     const Messages = CustomersModel.findOne({_id: args.id})
+        .then((customer) => {
+          if(customer.notes){
+             return customer.notes
+          }
+         
+        })
+        console.log(Messages)
+        return Messages;
+     };
+  }
+ }
 
 module.exports = {
+  GetMessages,
   AddSurveyPhoto,
   GetSurveyPhotos,
   Customers,

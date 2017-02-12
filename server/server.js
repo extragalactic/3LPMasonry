@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
+import https from 'https';
 import express from 'express';
 import bodyParser from 'body-parser';
 import Mongoose from 'mongoose';
@@ -14,6 +16,16 @@ import Connectors from './lib/connectors';
 import Resolvers from './lib/resolvers';
 import config from '../webpack.dev';
 import CustomersModel from './lib/CustomerModel';
+
+const ssl = {
+  key: fs.readFileSync(path.join(__dirname, '../certs/private.key'), 'utf8'),
+  cert: fs.readFileSync(path.join(__dirname, '../certs/cert.crt'), 'utf8'),
+  ca: [fs.readFileSync(path.join(__dirname,'../certs/chain_a.crt'), 'utf8'),
+    fs.readFileSync(path.join(__dirname,'../certs/chain_b.crt'), 'utf8'),
+    fs.readFileSync(path.join(__dirname,'../certs/chain_c.crt'), 'utf8')],
+};
+
+
 
 const app = express();
 dotenv.config();
@@ -37,10 +49,6 @@ const cred = {
 };
 
 Mongoose.Promise = global.Promise;
-Mongoose.connect(process.env.DB_HOST, cred);
-Mongoose.connection.on('connected', () => {
-  console.log('mlab is connected!');
-});
 
 const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
@@ -124,4 +132,13 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
-app.listen(app.get('port'));
+
+Mongoose.connect(process.env.DB_HOST, cred);
+Mongoose.connection.on('connected', () => {
+  app.listen(app.get('port'));
+  https.createServer(ssl, app).listen(443);
+});
+
+
+
+
