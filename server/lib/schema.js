@@ -199,8 +199,12 @@ type Query {
   getMessages(id: String): [notes]
 }
 type Mutation {
+ selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
+ 
+ toggleSurveyReady(custid: String, userid: String): Customers
+ 
  getSurveyPhotos( id: String ): [SurveyPhotosArray]
-
+ 
   addSurveyNotes(
     custid: String,
     userid: String,

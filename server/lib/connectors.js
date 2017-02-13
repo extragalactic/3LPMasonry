@@ -324,9 +324,9 @@ class DeleteAppointment {
     this.deleteAppointment = (args) => {
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.followUp = _.reject(user.followUp, (apt) => {
-           if(args.meetingid == apt._id){
+           if (args.meetingid == apt._id) {
              return apt;
-           } 
+           }
         });
         user.save();
         return user;
@@ -385,8 +385,8 @@ class AddSurveyPhoto {
             length: 4,
             charset: 'numeric',
           });
-          const originalUrl = `http://192.168.1.105:8080/images/${folder}/original/${file}.jpg`;
-          const thumbUrl = `http://192.168.1.105:8080/images/${folder}/thumbnail/${file}.jpg`;
+          const originalUrl = `https://tlpm.ca/images/${folder}/original/${file}.jpg`;
+          const thumbUrl = `https://tlpm.ca/images/${folder}/thumbnail/${file}.jpg`;
           const payload = {
             heading: args.heading,
             description: args.description,
@@ -424,7 +424,6 @@ class AddSurveyPhoto {
 class GetSurveyPhotos {
   constructor() {
     this.getSurveyPhotos = (args) => {
-      console.log(args);
       return CustomersModel.findOne({ _id: args.id })
         .then(customer => (customer.survey.photos),
         );
@@ -435,20 +434,72 @@ class GetSurveyPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
-     const Messages = CustomersModel.findOne({_id: args.id})
+      const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
           if(customer.notes){
              return customer.notes
           }
-         
-        })
-        console.log(Messages)
-        return Messages;
-     };
+        });
+      return Messages;
+    };
   }
  }
 
+class ToggleSurveyReady {
+  constructor() {
+    this.toggleSurveyReady = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          if (customer.status === 3) {
+            customer.status = 4;
+          } else {
+             customer.status = 3;
+          }
+          customer.save();
+        });
+
+      UsersModel.findOne({ _id: args.userid })
+         .then((user) => {
+           user.newCustomers = user.newCustomers.map((customer) => {
+                if (customer.id === args.custid) {
+                     if(customer.status === 3) {
+                       customer.status = 4; 
+                     } else if (customer.status === 4) {
+                       customer.status = 3;
+                     }
+               }
+               return customer;
+           });
+           user.save();
+         });
+    };
+  }
+ }
+
+class SelectSurveyPhoto {
+  constructor() {
+    this.selectSurveyPhoto = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          customer.survey.photos = customer.survey.photos.map((photo, idx) => {
+            if (idx == parseInt(args.index)) {
+              console.log(photo);
+              photo.selected = !photo.selected;
+              return photo
+            }
+            return photo;
+          });
+          customer.save();
+        });
+    };
+  }
+ }
+
+
+
 module.exports = {
+  SelectSurveyPhoto,
+  ToggleSurveyReady,
   GetMessages,
   AddSurveyPhoto,
   GetSurveyPhotos,

@@ -25,8 +25,6 @@ const ssl = {
     fs.readFileSync(path.join(__dirname,'../certs/chain_c.crt'), 'utf8')],
 };
 
-
-
 const app = express();
 dotenv.config();
 console.log(process.env)
@@ -132,13 +130,9 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
-
 Mongoose.connect(process.env.DB_HOST, cred);
 Mongoose.connection.on('connected', () => {
   app.listen(app.get('port'));
   https.createServer(ssl, app).listen(443);
 });
-
-
-
 

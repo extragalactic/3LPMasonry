@@ -140,6 +140,14 @@ const resolveFunctions = {
       const photo = new ctx.constructor.GetSurveyPhotos();
       return photo.getSurveyPhotos(args);
     },
+    toggleSurveyReady(_, args, ctx) {
+      const customer = new ctx.constructor.ToggleSurveyReady();
+      return customer.toggleSurveyReady(args);
+    },
+    selectSurveyPhoto(_, args, ctx) {
+      const photos = new ctx.constructor.SelectSurveyPhoto();
+      return photos.selectSurveyPhoto(args);
+    },
   },
 };
 module.exports = resolveFunctions;
