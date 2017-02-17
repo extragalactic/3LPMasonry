@@ -1,46 +1,46 @@
 const typeDefinitions = `
-type Customers {
- id: String 
- firstName: String
- lastName: String
- email1: String
- email2: String
- hphone: String
- cphone: String
- wphone: String
- address: String
- notes: [notes]
- surveyor: Surveyor
- estimator: String
- status: String
- email1Notification: Boolean
- email2Notification: Boolean
- cellNotification: Boolean
- homeNotification: Boolean
- workNotificaiton: Boolean
- sendSurvey: Boolean
- coordinates: Coordinates
+  type Customers {
+    id: String 
+    firstName: String
+    lastName: String
+    email1: String
+    email2: String
+    hphone: String
+    cphone: String
+    wphone: String
+    address: String
+    notes: [notes]
+    surveyor: Surveyor
+    survey: Surveys
+    estimator: String
+    status: String
+    email1Notification: Boolean
+    email2Notification: Boolean
+    cellNotification: Boolean
+    homeNotification: Boolean
+    workNotificaiton: Boolean
+    sendSurvey: Boolean
+    coordinates: Coordinates
 }
-type User {
-  email: String
-  _id: String
-  firstName:String
-  lastName: String
-  mobile: String
-  surveyor: Boolean
-  estimator: Boolean
-  office: Boolean
-  region: String
-  newCustomers: [newCust]
-  followUp: [followUp] 
-}
-type Surveyor {
-  firstName: String
-  lastName: String
-  mobile: String
-  id: String
-}
-
+  type User {
+    email: String
+    _id: String
+    firstName:String
+    lastName: String
+    mobile: String
+    surveyor: Boolean
+    estimator: Boolean
+    office: Boolean
+    region: String
+    newCustomers: [newCust]
+    followUp: [followUp] 
+  }
+  type Surveyor {
+    firstName: String
+    lastName: String
+    mobile: String
+    id: String
+  }
 type notesUser {
   _id: String
   name: String
@@ -52,20 +52,6 @@ type notesUser {
   createdAt: String
   user: notesUser
  }
-
- input notesUserInput {
-  _id: String
-  name: String
-}
-
-  input notesInput {
-   _id: String
-   custid: String
-  text: String
-  createdAt: String
-  user: notesUserInput
- }
-
 
 type SurveyPhotosArray {
   thumb: String
@@ -116,8 +102,6 @@ type followUp {
 }
 
 type Surveys {
-  headings: [String]
-  description: [String]
   notes: [SurveyNotes]
   photos: [SurveyPhotos]
 }
@@ -130,14 +114,6 @@ type SurveyNotes {
     user: String
 }
 
-type SurveyPhoto {
-    heading: String
-    description: String
-    orginalBase64: String
-    editedlBase64: String
-    timestamp: String
-    user: String
-}
 type SurveyPhotos {
     heading: String
     description: String
@@ -145,6 +121,33 @@ type SurveyPhotos {
     user: String
     orginalBase64: String
     editedlBase64: String
+    thumbURL: String
+    thumb: String
+    photo: String
+    caption: String
+    selected: Boolean
+}
+
+type FinishedSurvey {
+  heading: String
+  notes: [FinishedSurveyNotes]
+  photos: [FinishedSurveyPhotos]
+
+}
+
+type FinishedSurveyNotes {
+   description: String
+   text: String
+   timestamp: String
+   user: String
+}
+type FinishedSurveyPhotos {
+   description: String
+   caption: String
+   timestamp: String
+   user: String
+   thumb: String
+   url: String
 }
 
 input SurveyorInput {
@@ -175,6 +178,20 @@ input newCustomers {
    address: String
    notes: String
   }
+
+ input notesUserInput {
+  _id: String
+  name: String
+}
+
+  input notesInput {
+   _id: String
+   custid: String
+  text: String
+  createdAt: String
+  user: notesUserInput
+ }
+
 type Query {
   customers(
     firstName:String, 
@@ -197,14 +214,13 @@ type Query {
   surveyors(filter: String): [Surveyor]
   newcustomers(id: String): [newCust]
   getMessages(id: String): [notes]
+  getFinishedSurvey(id: String): [FinishedSurvey]
+
 }
 type Mutation {
- selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
- 
- toggleSurveyReady(custid: String, userid: String): Customers
- 
- getSurveyPhotos( id: String ): [SurveyPhotosArray]
- 
+  selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
+  toggleSurveyReady(custid: String, userid: String): Customers
+  getSurveyPhotos( id: String ): [SurveyPhotosArray]
   addSurveyNotes(
     custid: String,
     userid: String,
@@ -214,7 +230,6 @@ type Mutation {
     timestamp: String, 
     user: String
     ): SurveyNotes
-
   addSurveyPhoto(
     custid: String,
     heading: String, 
@@ -223,8 +238,7 @@ type Mutation {
     editedlBase64: String,
     timestamp: String, 
     user: String
-    ): SurveyPhoto
-
+    ): SurveyPhotos
   deleteAppointment(
     userid: String, 
     meetingid: String, 
@@ -232,10 +246,7 @@ type Mutation {
     ):Appointment
   getNotes(id:String):[notes]
   getUser(id: String):User
-  
   addNotes(note: notesInput ):[notes]
-  
-  
   getAppointmentsforDay(
     date: String, 
     userid: String
@@ -260,7 +271,6 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
-  
   updateCustomer(
     id: String  
     firstName: String
@@ -276,7 +286,6 @@ type Mutation {
     estimator: String
     status: String
   ): Customers
-
 updateUser(
   id: String, 
   firstName: String, 
@@ -287,7 +296,6 @@ updateUser(
   office:Boolean, 
   newCustomers: [newCustomers]
   ): User
-
 submitFollowup(
   userid: String, 
   custid: String, 

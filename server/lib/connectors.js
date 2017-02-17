@@ -483,9 +483,8 @@ class SelectSurveyPhoto {
         .then((customer) => {
           customer.survey.photos = customer.survey.photos.map((photo, idx) => {
             if (idx == parseInt(args.index)) {
-              console.log(photo);
               photo.selected = !photo.selected;
-              return photo
+              return photo;
             }
             return photo;
           });
@@ -495,9 +494,50 @@ class SelectSurveyPhoto {
   }
  }
 
+class GetFinishedSurvey {
+  constructor() {
+    this.getFinishedSurvey = (args) => {
+      const output = [];
+      return CustomersModel.findOne({ _id: args.id })
+        .then((customer) => {
+          const results = customer.survey.photos.concat(customer.survey.notes);
+          const headings = _.uniq(results.map(heading => heading.heading));
+          headings.forEach((heading) => {
+            output.push({
+              heading,
+              photos: [],
+              notes: [],
+            });
+          });
+          customer.survey.photos.forEach((photo) => {
+            const idx = headings.indexOf(photo.heading);
+            output[idx].photos.push({
+              url: photo.photo,
+              thumb: photo.thumb,
+              description: photo.description,
+              timestamp: photo.timestamp,
+              caption: photo.caption,
+              user: photo.user,
+            });
+          });
+          customer.survey.notes.forEach((note) => {
+            const idx = headings.indexOf(note.heading);
+            output[idx].notes.push({
+              text: note.text,
+              description: note.description,
+              timestamp: note.timestamp,
+              caption: note.caption,
+              user: note.user,
+            });
+          });
+        }).then(() => output);
+    };
+  }
+ }
 
 
 module.exports = {
+  GetFinishedSurvey,
   SelectSurveyPhoto,
   ToggleSurveyReady,
   GetMessages,

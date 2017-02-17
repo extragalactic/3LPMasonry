@@ -30,6 +30,10 @@ const resolveFunctions = {
       const message = new ctx.constructor.GetMessages();
       return message.getMessages(args);
     },
+    getFinishedSurvey(_, args, ctx) {
+      const survey = new ctx.constructor.GetFinishedSurvey();
+      return survey.getFinishedSurvey(args);
+    },
   },
   Mutation: {
     newCustomer(_, {
