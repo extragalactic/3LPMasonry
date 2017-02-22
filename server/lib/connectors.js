@@ -7,9 +7,16 @@ import randomstring from 'randomstring';
 import sharp from 'sharp';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
+import PricingModel from '../lib/PricingModel';
+import QueueModel from '../lib/queueModel';
+
+import { sendPushtoEstimators } from '../methods/oneSIgnal';
+
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
+import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
+
 
 sharp.concurrency(1);
 dotenv.config();
@@ -22,6 +29,16 @@ console.log(base64Img)
 // 4: Surveyor made contact, followup required
 // 5: Onsite visit Scheduled
 // 6: Onsite Survey Complete
+
+class GetQueue {
+  constructor() {
+    this.getQueue = () => {
+      const queue = QueueModel.find((error, data) => data);
+      return queue;
+    };
+  }
+}
+
 
 class Customers {
   constructor() {
@@ -451,9 +468,14 @@ class ToggleSurveyReady {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
+      
+            sendPushtoEstimators(customer);
+            addCustomertoQueue(customer);
             customer.status = 4;
           } else {
-             customer.status = 3;
+    
+            removeCustomerfromQueue(customer);
+            customer.status = 3;
           }
           customer.save();
         });
@@ -535,8 +557,98 @@ class GetFinishedSurvey {
   }
  }
 
+class AddPricing {
+  constructor() {
+    this.addPricing = (args) => {
+      PricingModel.findOne({description: args.description})
+         .then((data) => {
+           if (!data) {
+             const newPrice = new PricingModel({
+               description: args.description,
+               price: args.price,
+             });
+             newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
+           }
+         });
+    };
+  }
+ }
+
+class AcceptEstimate {
+  constructor() {
+    this.acceptEstimate = (args) => {
+      removeCustomerfromQueue(args.custid);
+      return CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          UsersModel.findOne({ _id: args.userid })
+            .then((user) => {
+              user.estimates.push({
+                id: customer._id,
+                firstName:customer.firstName,
+                lastName: customer.lastName,
+                email1: customer.email1,
+                email2: customer.email2,
+                hphone: customer.hphone,
+                cphone: customer.cphone,
+                wphone: customer.wphone,
+                address: customer.address,
+                status: 0,
+              });
+              user.save();
+            });
+          customer.estimator = args.userid;
+          customer.save();
+          return customer;
+        });
+    };
+  }
+ }
+
+class GetMyCustomers {
+  constructor() {
+    this.getMyCustomers = (args) => {
+      const output = {
+        newcustomers: [],
+        followup: [],
+        onsite: [],
+        inprogress: [],
+        surveycomplete: [],
+        myestimates: [],
+      };
+      return UsersModel.findOne({ _id: args.id })
+           .then((user) => {
+             user.newCustomers.forEach((customer) => {
+               if (customer.status === 0) {
+                 output.newcustomers.push(customer);
+               }
+               if (customer.status === 1) {
+                 output.followup.push(customer);
+               }
+               if (customer.status === 2) {
+                 output.onsite.push(customer);
+               }
+               if (customer.status === 3) {
+                 output.inprogress.push(customer);
+               }
+               if (customer.status === 4) {
+                 output.surveycomplete.push(customer);
+               }
+             });
+             user.estimates.forEach((customer) => {
+               if (customer.status === 0) {
+                 output.myestimates.push(customer);
+               }
+             });
+           }).then(() => output);
+    };
+  }
+ }
 
 module.exports = {
+  GetMyCustomers,
+  GetQueue,
+  AcceptEstimate,
+  AddPricing,
   GetFinishedSurvey,
   SelectSurveyPhoto,
   ToggleSurveyReady,

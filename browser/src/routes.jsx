@@ -9,6 +9,8 @@ import auth0id from './assets/cred/authcred';
 import userAdminPanel from './components/Admin/userAdminPanel';
 import CustomerConfirmation from './components/Forms/CustomerConfirmation';
 import MapsTest from './components/Maps/MapsTest';
+import PhotoEditor from './components/PhotoEdit/photoEditor';
+
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -26,6 +28,7 @@ export default (
       <Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth} />
       <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth} />
       <Route path="/home" component={HomePage} />
+      <Route path="/photoedit" component={PhotoEditor} />
       <Route path="/maps" component={MapsTest} />
     </Route>
   </Route>

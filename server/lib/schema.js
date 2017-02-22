@@ -22,6 +22,21 @@ const typeDefinitions = `
     sendSurvey: Boolean
     coordinates: Coordinates
 }
+  type Queue {
+    customer: String
+    timestamp: String
+    accepted: Boolean 
+  }
+
+ type CustomerStatus {
+   newcustomers: [assignedCustomers]
+   followup: [assignedCustomers]
+   onsite: [assignedCustomers]
+   inprogress: [assignedCustomers]
+   surveycomplete: [assignedCustomers]
+   myestimates: [assignedCustomers]
+ }
+
   type User {
     email: String
     _id: String
@@ -34,6 +49,7 @@ const typeDefinitions = `
     region: String
     newCustomers: [newCust]
     followUp: [followUp] 
+    estimates: [myEstimates]
   }
   type Surveyor {
     firstName: String
@@ -79,6 +95,19 @@ type Coordinates {
   longitude: String
 }
 
+type assignedCustomers {
+   id: String 
+   firstName: String
+   lastName: String
+   email1: String
+   email2: String
+   hphone: String
+   cphone: String
+   wphone: String
+   address: String
+   status: Int
+   }
+
 type newCust {
    id: String 
    firstName: String
@@ -91,6 +120,20 @@ type newCust {
    address: String
    status: Int
    }
+
+type myEstimates {
+   id: String 
+   firstName: String
+   lastName: String
+   email1: String
+   email2: String
+   hphone: String
+   cphone: String
+   wphone: String
+   address: String
+   status: Int
+   }
+
 
 type followUp {
   name: String
@@ -150,6 +193,16 @@ type FinishedSurveyPhotos {
    url: String
 }
 
+type Estimate {
+  photos: [SurveyPhotos]
+  pricing: [SurveyPricing]
+}
+
+type SurveyPricing {
+  description: String
+  price: Int
+}
+
 input SurveyorInput {
   firstName: String
   lastName: String
@@ -207,6 +260,7 @@ type Query {
     estimator: String,
     status: String
   ): [Customers]
+  getQueue:[Queue]
   customer(id: String!):Customers
   address(searchTerm:String!):[Address]
   users(filter: String):[User]
@@ -215,9 +269,13 @@ type Query {
   newcustomers(id: String): [newCust]
   getMessages(id: String): [notes]
   getFinishedSurvey(id: String): [FinishedSurvey]
+  getMyCustomers(id: String): CustomerStatus
 
 }
 type Mutation {
+  acceptEstimate(userid: String, custid: String): Customers
+  getFinishedSurvey(id: String): [FinishedSurvey]
+  addPricing(custid: String, description: String, price: Int): Estimate
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
   toggleSurveyReady(custid: String, userid: String): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]

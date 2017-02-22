@@ -30,4 +30,14 @@ const addNotes = gql `
   }
 }`;
 
-export { getCustomer, addNotes };
+const getSurveyPhotos = gql`
+  mutation getSurveyImaged($id: String){
+  getSurveyPhotos(id: $id) {
+    thumb
+    photo
+    caption
+    selected
+  }
+}`;
+
+export { getCustomer, addNotes, getSurveyPhotos };

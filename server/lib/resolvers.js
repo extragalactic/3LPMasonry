@@ -34,6 +34,14 @@ const resolveFunctions = {
       const survey = new ctx.constructor.GetFinishedSurvey();
       return survey.getFinishedSurvey(args);
     },
+    getQueue(_, args, ctx) {
+      const queue = new ctx.constructor.GetQueue();
+      return queue.getQueue(args);
+    },
+    getMyCustomers(_, args, ctx) {
+      const customers = new ctx.constructor.GetMyCustomers();
+      return customers.getMyCustomers(args);
+    },
   },
   Mutation: {
     newCustomer(_, {
@@ -152,6 +160,19 @@ const resolveFunctions = {
       const photos = new ctx.constructor.SelectSurveyPhoto();
       return photos.selectSurveyPhoto(args);
     },
+    addPricing(_, args, ctx) {
+      const estimate = new ctx.constructor.AddPricing();
+      return estimate.addPricing(args);
+    },
+    getFinishedSurvey(_, args, ctx) {
+      const survey = new ctx.constructor.GetFinishedSurvey();
+      return survey.getFinishedSurvey(args);
+    },
+    acceptEstimate(_, args, ctx) {
+      const customer = new ctx.constructor.AcceptEstimate();
+      return customer.acceptEstimate(args);
+    },
   },
 };
 module.exports = resolveFunctions;
+

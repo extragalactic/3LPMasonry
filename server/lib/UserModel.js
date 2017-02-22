@@ -34,6 +34,18 @@ const UsersSchema = new mongoose.Schema({
     custid: String,
     calid: String,
   }],
+  estimates: [{
+    id: String,
+    firstName: String,
+    lastName: String,
+    email1: String,
+    email2: String,
+    hphone: String,
+    cphone: String,
+    wphone: String,
+    address: String,
+    status: Number,
+  }],
 });
 
 const UsersModel = mongoose.model('users', UsersSchema);
