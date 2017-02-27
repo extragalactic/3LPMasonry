@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 
-import Sketch from '../../assets/react-sketch/src/index';
+import Sketch from 'react-sketch';
 
 import { getSurveyPhotos, getImageBase64} from '../../graphql/mutations';
 
