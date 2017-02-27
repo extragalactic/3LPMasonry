@@ -62,7 +62,16 @@ const CustomerSchema = new mongoose.Schema({
       photo: String,
       caption: String,
       selected: Boolean,
+      docID: String,
     }],
+  },
+  estimate: {
+    prices: [{
+      description: String,
+      price: Number,
+    }],
+    photos: [String],
+    pdf: String,
   },
 });
 

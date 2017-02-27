@@ -57,6 +57,7 @@
     "material-ui": "^0.16.0",
     "mongoose": "^4.6.5",
     "node-base64-image": "^1.0.3",
+    "pdfkit": "^0.8.0",
     "pug": "^2.0.0-beta6",
     "randomstring": "^1.1.5",
     "react": "^15.3.2",

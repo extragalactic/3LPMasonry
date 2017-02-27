@@ -9,6 +9,8 @@ import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
+import PhotosModel from '../lib/PhotosModel';
+import { pdfKitCreateEstimatePreview } from '../methods/pdfKit';
 
 import { sendPushtoEstimators } from '../methods/oneSIgnal';
 
@@ -395,6 +397,7 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
+      const docID = randomstring.generate(12);
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           const folder = customer.firstName + customer.lastName;
@@ -415,6 +418,7 @@ class AddSurveyPhoto {
             photo: originalUrl, // a remote photo or local media url  
             caption: args.heading,
             selected: false,
+            docID,
           };
           const buffer = Buffer.from(args.orginalBase64, 'base64');
           if (fs.existsSync(!`images/${folder}`)) {
@@ -431,8 +435,17 @@ class AddSurveyPhoto {
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
+              console.log(payload)
           customer.survey.photos.push(payload);
           customer.save();
+
+          const photo = new PhotosModel({
+            base64: `data:image/jpeg;base64,${args.orginalBase64}`,
+            url: originalUrl,
+            docID,
+          });
+          console.log(photo)
+          photo.save();
         });
     };
   }
@@ -468,12 +481,10 @@ class ToggleSurveyReady {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
-      
             sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
           } else {
-    
             removeCustomerfromQueue(customer);
             customer.status = 3;
           }
@@ -570,6 +581,14 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
+      CustomersModel.findOne({ _id: args.custid })
+          .then((customer) => {
+            customer.estimate.prices.push({
+              description: args.description,
+              price: args.price,
+            });
+            customer.save();
+          });
     };
   }
  }
@@ -644,7 +663,41 @@ class GetMyCustomers {
   }
  }
 
+class GetPrices {
+  constructor() {
+    this.getPrices = () => {
+      const prices = PricingModel.find((error, data) => data);
+      return prices;
+    };
+  }
+}
+class GetEstimateResults {
+  constructor() {
+    this.getEstimateResults = args => CustomersModel.findOne({ _id: args.custid })
+      .then(customer => customer.estimate);
+  }
+}
+
+class GeneratePDFEstimate {
+  constructor() {
+    this.generatePDFEstimate = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+       .then(customer => pdfKitCreateEstimatePreview(customer));
+    };
+  }
+}
+
+class GetImageBase64 {
+  constructor() {
+    this.getImageBase64 = args => PhotosModel.findOne({ docID: args.docID }).then(photo => photo);
+  }
+}
+
 module.exports = {
+  GetImageBase64,
+  GeneratePDFEstimate,
+  GetEstimateResults,
+  GetPrices,
   GetMyCustomers,
   GetQueue,
   AcceptEstimate,

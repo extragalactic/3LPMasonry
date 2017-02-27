@@ -134,6 +134,11 @@ type myEstimates {
    status: Int
    }
 
+type base64Photo {
+  base64: String
+  url: String
+  docID: String
+}
 
 type followUp {
   name: String
@@ -203,6 +208,16 @@ type SurveyPricing {
   price: Int
 }
 
+type Price {
+  description: String
+  price:  Int
+}
+
+type EstimateResults {
+  prices: [Price]
+  photos: [String]
+}
+
 input SurveyorInput {
   firstName: String
   lastName: String
@@ -270,9 +285,15 @@ type Query {
   getMessages(id: String): [notes]
   getFinishedSurvey(id: String): [FinishedSurvey]
   getMyCustomers(id: String): CustomerStatus
+  getPrices: [Price]
+  getEstimateResults(custid: String): EstimateResults
+  
 
 }
 type Mutation {
+  getImageBase64(docID: String): base64Photo
+  generatePDFEstimate(custid: String): Customers
+  getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
   addPricing(custid: String, description: String, price: Int): Estimate

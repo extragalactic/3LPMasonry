@@ -42,6 +42,14 @@ const resolveFunctions = {
       const customers = new ctx.constructor.GetMyCustomers();
       return customers.getMyCustomers(args);
     },
+    getPrices(_, args, ctx) {
+      const prices = new ctx.constructor.GetPrices();
+      return prices.getPrices(args);
+    },
+    getEstimateResults(_, args, ctx) {
+      const estimate = new ctx.constructor.GetEstimateResults();
+      return estimate.getEstimateResults(args);
+    },
   },
   Mutation: {
     newCustomer(_, {
@@ -172,7 +180,20 @@ const resolveFunctions = {
       const customer = new ctx.constructor.AcceptEstimate();
       return customer.acceptEstimate(args);
     },
+    getEstimateResults(_, args, ctx) {
+      const estimate = new ctx.constructor.GetEstimateResults();
+      return estimate.getEstimateResults(args);
+    },
+    generatePDFEstimate(_, args, ctx) {
+      const estimate = new ctx.constructor.GeneratePDFEstimate();
+      return estimate.generatePDFEstimate(args);
+    },
+    getImageBase64(_, args, ctx) {
+      const photo = new ctx.constructor.GetImageBase64();
+      return photo.getImageBase64(args);
+    },
   },
 };
 module.exports = resolveFunctions;
+
 

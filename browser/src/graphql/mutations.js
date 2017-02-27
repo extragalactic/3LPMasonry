@@ -40,4 +40,14 @@ const getSurveyPhotos = gql`
   }
 }`;
 
-export { getCustomer, addNotes, getSurveyPhotos };
+const getImageBase64 = gql `
+  mutation getPhotoBase64($docID: String){
+  getImageBase64(docID:$docID){
+    base64
+    url
+    docID
+  }
+} `;
+
+
+export { getImageBase64, getCustomer, addNotes, getSurveyPhotos };
