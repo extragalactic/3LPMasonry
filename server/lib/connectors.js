@@ -447,7 +447,14 @@ class AddSurveyPhoto {
           
         }
    
-            
+          fs.open(`images/${folder}`, (err, data) => {
+            if(err) {
+              console.log('error');
+            }
+            if(data){
+              console.log('data');
+            }
+          })
           
          
              
