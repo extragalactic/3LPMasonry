@@ -421,13 +421,20 @@ class AddSurveyPhoto {
             selected: false,
             docID,
           };
-          const buffer = Buffer.from(args.orginalBase64, 'base64');
+
+            fs.mkdirSync(`images/${folder}`);
+            fs.mkdirSync(`images/${folder}/thumbnail`);
+            fs.mkdirSync(`images/${folder}/original`);
+
+       
+          /*
+   const buffer = Buffer.from(args.orginalBase64, 'base64');
           if (fs.existsSync(!`images/${folder}`)) {
             fs.mkdirSync(`images/${folder}`);
             fs.mkdirSync(`images/${folder}/thumbnail`);
             fs.mkdirSync(`images/${folder}/original`);
           }
-          /*
+
           sharp(buffer)  //orginal photo
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data', data))
@@ -447,7 +454,7 @@ class AddSurveyPhoto {
             url: originalUrl,
             docID,
           });
-          console.log(photo)
+          
           photo.save();
         });
     };
