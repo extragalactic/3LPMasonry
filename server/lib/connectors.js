@@ -421,24 +421,36 @@ class AddSurveyPhoto {
             selected: false,
             docID,
           };
-          const buffer = Buffer.from(args.orginalBase64, 'base64');
-          if (fs.existsSync(!`images/${folder}`)) {
-            fs.mkdirSync(`images/${folder}`);
-            fs.mkdirSync(`images/${folder}/thumbnail`);
-            fs.mkdirSync(`images/${folder}/original`);
-          }
-          setTimeout(() => {
-            sharp(buffer)  //orginal photo
+
+
+          const saveImagetoDisk = () => {
+            sharp(buffer)
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
-            sharp(buffer)  //thumbnail photo
+            sharp(buffer)
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
-              console.log(payload);
-          }, 3000);
+       };
+
+
+          const buffer = Buffer.from(args.orginalBase64, 'base64');
+          if (fs.existsSync(!`images/${folder}`)) {
+            console.log('doesntexist');
+            fs.mkdir(`images/${folder}`, (err, data) => {
+              console.log(err, data);
+            });
+            fs.mkdirSync(`images/${folder}/thumbnail`);
+            fs.mkdirSync(`images/${folder}/original`);
+          
+        }
+   
+            
+          
+         
+             
           customer.survey.photos.push(payload);
           customer.save();
 
