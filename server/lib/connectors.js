@@ -437,6 +437,7 @@ class AddSurveyPhoto {
 
 
           const buffer = Buffer.from(args.orginalBase64, 'base64');
+          /*
           if (fs.existsSync(!`images/${folder}`)) {
             console.log('doesntexist');
             fs.mkdir(`images/${folder}`, (err, data) => {
@@ -446,15 +447,16 @@ class AddSurveyPhoto {
             fs.mkdirSync(`images/${folder}/original`);
           
         }
+        */
    
-          fs.open(`images/${folder}`, (err, data) => {
+          fs.open(`images/${folder}`, 'wx+', (err, data) => {
             if(err) {
               console.log('error');
             }
             if(data){
               console.log('data');
             }
-          })
+          });
           
          
              
