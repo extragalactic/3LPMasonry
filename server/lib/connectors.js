@@ -439,10 +439,8 @@ class AddSurveyPhoto {
               fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
               fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
               fs.mkdirSync(`images/${folder}/original`, (err, data) => {
-                console.log(err)
+                saveImagetoDisk();
               });
-              saveImagetoDisk();
-
             }
           });
           customer.survey.photos.push(payload);
