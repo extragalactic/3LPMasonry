@@ -457,7 +457,8 @@ class AddSurveyPhoto {
               console.log('data');
             }
           });
-          
+
+        fs.open(`images/${folder}`, 'wx+').then((data)=>console.log(data));
          
              
           customer.survey.photos.push(payload);
