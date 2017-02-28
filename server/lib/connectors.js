@@ -421,9 +421,7 @@ class AddSurveyPhoto {
             selected: false,
             docID,
           };
-
-
-          const saveImagetoDisk = () => {
+          const saveImagetoDisk = (buffer) => {
             sharp(buffer)
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data'))
@@ -439,8 +437,10 @@ class AddSurveyPhoto {
               fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
               fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
               fs.mkdirSync(`images/${folder}/original`, (err, data) => {
-                saveImagetoDisk();
               });
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
+            } else {
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
             }
           });
           customer.survey.photos.push(payload);
