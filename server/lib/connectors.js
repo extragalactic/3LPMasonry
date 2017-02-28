@@ -449,7 +449,7 @@ class AddSurveyPhoto {
         }
         */
    
-          fs.open(`images/${folder}`, 'wx+', (err, data) => {
+          fs.open(`images/${folder}`, 'r', (err, data) => {
             if(err) {
               console.log('error');
             }
