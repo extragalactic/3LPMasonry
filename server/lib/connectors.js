@@ -11,6 +11,7 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import { pdfKitCreateEstimatePreview } from '../methods/pdfKit';
+import pdfMakeEstimate from '../methods/pdfMake';
 
 import { sendPushtoEstimators } from '../methods/oneSIgnal';
 
@@ -426,6 +427,7 @@ class AddSurveyPhoto {
             fs.mkdirSync(`images/${folder}/thumbnail`);
             fs.mkdirSync(`images/${folder}/original`);
           }
+          /*
           sharp(buffer)  //orginal photo
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data', data))
@@ -436,6 +438,7 @@ class AddSurveyPhoto {
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
               console.log(payload)
+              */
           customer.survey.photos.push(payload);
           customer.save();
 
@@ -682,7 +685,7 @@ class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
       CustomersModel.findOne({ _id: args.custid })
-       .then(customer => pdfKitCreateEstimatePreview(customer));
+       .then(customer => pdfMakeEstimate(customer));
     };
   }
 }
