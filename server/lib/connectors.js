@@ -449,11 +449,13 @@ class AddSurveyPhoto {
         }
         */
    
-fs.access(`images/${folder}`, function(err) {
-  if (err && err.code === 'ENOENT') {
-    fs.mkdir(`images/${folder}`);
-  }
-});
+          fs.access(`images/${folder}`, (err) => {
+            if (err && err.code === 'ENOENT') {
+              fs.mkdir(`images/${folder}`);
+              fs.mkdir(`images/${folder}/thumbnail`);
+              fs.mkdir(`images/${folder}/original`);
+            }
+          });
              
           customer.survey.photos.push(payload);
           customer.save();
