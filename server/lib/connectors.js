@@ -421,31 +421,24 @@ class AddSurveyPhoto {
             selected: false,
             docID,
           };
-
-            fs.mkdirSync(`images/${folder}`);
-            fs.mkdirSync(`images/${folder}/thumbnail`);
-            fs.mkdirSync(`images/${folder}/original`);
-
-       
-          /*
-   const buffer = Buffer.from(args.orginalBase64, 'base64');
+          const buffer = Buffer.from(args.orginalBase64, 'base64');
           if (fs.existsSync(!`images/${folder}`)) {
             fs.mkdirSync(`images/${folder}`);
             fs.mkdirSync(`images/${folder}/thumbnail`);
             fs.mkdirSync(`images/${folder}/original`);
           }
-
-          sharp(buffer)  //orginal photo
+          setTimeout(() => {
+            sharp(buffer)  //orginal photo
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
-          sharp(buffer)  //thumbnail photo
+            sharp(buffer)  //thumbnail photo
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
               .then(data => console.log('data', data))
               .catch(err => console.log('error', err));
-              console.log(payload)
-              */
+              console.log(payload);
+          }, 3000);
           customer.survey.photos.push(payload);
           customer.save();
 
@@ -454,7 +447,7 @@ class AddSurveyPhoto {
             url: originalUrl,
             docID,
           });
-          
+          console.log(photo)
           photo.save();
         });
     };
