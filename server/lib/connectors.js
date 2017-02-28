@@ -437,26 +437,18 @@ class AddSurveyPhoto {
 
 
           const buffer = Buffer.from(args.orginalBase64, 'base64');
-          /*
-          if (fs.existsSync(!`images/${folder}`)) {
-            console.log('doesntexist');
-            fs.mkdir(`images/${folder}`, (err, data) => {
-              console.log(err, data);
-            });
-            fs.mkdirSync(`images/${folder}/thumbnail`);
-            fs.mkdirSync(`images/${folder}/original`);
-          
-        }
-        */
-   
+        
           fs.access(`images/${folder}`, (err) => {
             if (err && err.code === 'ENOENT') {
-              fs.mkdir(`images/${folder}`);
-              fs.mkdir(`images/${folder}/thumbnail`);
-              fs.mkdir(`images/${folder}/original`);
+              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
+              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
+              fs.mkdirSync(`images/${folder}/original`, (err, data) => console.log(err, data));
+              saveImagetoDisk();
+            } else {
+              saveImagetoDisk();
             }
           });
-             
+ 
           customer.survey.photos.push(payload);
           customer.save();
 
