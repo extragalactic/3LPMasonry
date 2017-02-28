@@ -449,17 +449,11 @@ class AddSurveyPhoto {
         }
         */
    
-          fs.open(`images/${folder}`, 'r', (err, data) => {
-            if(err) {
-              console.log('error');
-            }
-            if(data){
-              console.log('data');
-            }
-          });
-
-       //fs.open(`images/${folder}`, 'wx+').then((data)=>console.log(data));
-         
+fs.access(`images/${folder}`, function(err) {
+  if (err && err.code === 'ENOENT') {
+    fs.mkdir(`images/${folder}`);
+  }
+});
              
           customer.survey.photos.push(payload);
           customer.save();
