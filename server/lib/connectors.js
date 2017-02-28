@@ -431,27 +431,24 @@ class AddSurveyPhoto {
             sharp(buffer)
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              .then(data => console.log('data'))
               .catch(err => console.log('error', err));
-       };
-
-
+          };
           const buffer = Buffer.from(args.orginalBase64, 'base64');
-        
           fs.access(`images/${folder}`, (err) => {
             if (err && err.code === 'ENOENT') {
               fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
               fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => console.log(err, data));
-              saveImagetoDisk();
+              fs.mkdirSync(`images/${folder}/original`, (err, data) => {
+                if (!err) {
+                  saveImagetoDisk();
+                }
+              });
             } else {
               saveImagetoDisk();
             }
           });
- 
           customer.survey.photos.push(payload);
           customer.save();
-
           const photo = new PhotosModel({
             base64: `data:image/jpeg;base64,${args.orginalBase64}`,
             url: originalUrl,
