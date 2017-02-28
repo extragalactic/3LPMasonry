@@ -17,6 +17,8 @@ import Resolvers from './lib/resolvers';
 import config from '../webpack.dev';
 import CustomersModel from './lib/CustomerModel';
 
+Mongoose.Promise = global.Promise;
+
 const ssl = {
   key: fs.readFileSync(path.join(__dirname, '../certs/private.key'), 'utf8'),
   cert: fs.readFileSync(path.join(__dirname, '../certs/cert.crt'), 'utf8'),
