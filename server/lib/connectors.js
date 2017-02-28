@@ -426,12 +426,12 @@ class AddSurveyPhoto {
           const saveImagetoDisk = () => {
             sharp(buffer)
            .toFile(`images/${folder}/original/${file}.jpg`)
-              .then(data => console.log('data', data))
+              .then(data => console.log('data'))
               .catch(err => console.log('error', err));
             sharp(buffer)
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              .then(data => console.log('data', data))
+              .then(data => console.log('data'))
               .catch(err => console.log('error', err));
        };
 
@@ -459,7 +459,7 @@ class AddSurveyPhoto {
             url: originalUrl,
             docID,
           });
-          console.log(photo)
+         // console.log(photo)
           photo.save();
         });
     };
