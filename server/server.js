@@ -137,4 +137,3 @@ Mongoose.connection.on('connected', () => {
   app.listen(app.get('port'));
   https.createServer(ssl, app).listen(443);
 });
-

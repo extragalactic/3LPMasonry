@@ -55,6 +55,7 @@
     "mailin-api-node-js": "^1.0.0",
     "material": "^0.1.1",
     "material-ui": "^0.16.0",
+    "moment": "^2.17.1",
     "mongoose": "^4.6.5",
     "node-base64-image": "^1.0.3",
     "pdfkit": "^0.8.0",
