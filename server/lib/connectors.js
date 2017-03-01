@@ -10,6 +10,7 @@ import UsersModel from '../lib/UserModel';
 import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
+import GenericModel from '../lib/GenericModel';
 import { pdfKitCreateEstimatePreview } from '../methods/pdfKit';
 import pdfMakeEstimate from '../methods/pdfMake';
 
@@ -699,7 +700,24 @@ class GetImageBase64 {
   }
 }
 
+class AddGeneric {
+  constructor() {
+    this.addGeneric = (args) => {
+      console.log(args)
+      const generic = new GenericModel({
+        heading: args.heading,
+        bulletpoints: args.bulletpoints,
+        paragraph: args.paragraph,
+        warranty: args.warranty,
+      });
+      generic.save();
+      return { heading: args.heading };
+    };
+  }
+}
+
 module.exports = {
+  AddGeneric,
   GetImageBase64,
   GeneratePDFEstimate,
   GetEstimateResults,

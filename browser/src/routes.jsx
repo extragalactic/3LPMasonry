@@ -10,7 +10,8 @@ import userAdminPanel from './components/Admin/userAdminPanel';
 import CustomerConfirmation from './components/Forms/CustomerConfirmation';
 import MapsTest from './components/Maps/MapsTest';
 import PhotoEditor from './components/PhotoEdit/photoEditor';
-
+import GenericsContainer from './components/Generics/GenericsContainer';
+import CustomersContainer from './components/Customers/CustomersContainer';
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -29,6 +30,8 @@ export default (
       <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth} />
       <Route path="/home" component={HomePage} />
       <Route path="/photoedit" component={PhotoEditor} />
+      <Route path="/generics" component={GenericsContainer} />
+      <Route path="/customers" component={CustomersContainer} />
       <Route path="/maps" component={MapsTest} />
     </Route>
   </Route>

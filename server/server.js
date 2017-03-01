@@ -116,7 +116,6 @@ const imageOptions = {
 };
 app.use('/images', express.static(path.join(__dirname, '../images'), imageOptions));
 app.get('/images/:filename', (req, res) => {
-  console.log(req.params.filename)
   res.sendFile(path.join(__dirname, `../images/${req.params.filename}`));
 });
 

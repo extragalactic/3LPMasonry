@@ -28,6 +28,11 @@ const typeDefinitions = `
     accepted: Boolean 
   }
 
+  type Generic {
+    heading: String
+    text: String
+  }
+
  type CustomerStatus {
    newcustomers: [assignedCustomers]
    followup: [assignedCustomers]
@@ -291,6 +296,7 @@ type Query {
 
 }
 type Mutation {
+  addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String): Customers
   getEstimateResults(custid: String): EstimateResults 

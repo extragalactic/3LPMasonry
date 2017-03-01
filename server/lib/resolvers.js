@@ -192,6 +192,10 @@ const resolveFunctions = {
       const photo = new ctx.constructor.GetImageBase64();
       return photo.getImageBase64(args);
     },
+    addGeneric(_, args, ctx) {
+      const generic = new ctx.constructor.AddGeneric();
+      return generic.addGeneric(args);
+    },
   },
 };
 module.exports = resolveFunctions;

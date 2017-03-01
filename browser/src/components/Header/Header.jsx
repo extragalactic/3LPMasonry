@@ -20,9 +20,8 @@ const titleStyle = {
   color: grey400,
 };
 
-const Logged = props => (
+const Logged = ({ newcustomer, generics, logout, admin, customers }) => (
   <IconMenu
-    {...props}
     iconButtonElement={
       <IconButton><MoreVertIcon /></IconButton>
     }
@@ -31,15 +30,23 @@ const Logged = props => (
   >
     <MenuItem
       primaryText="New Customer"
-      onTouchTap={props.data.newcustomer}
+      onTouchTap={newcustomer}
     />
     <MenuItem
       primaryText="Customers"
-      onTouchTap={() => { console.log(props); }}
+      onTouchTap={customers}
+    />
+    <MenuItem
+      primaryText="Admin"
+      onTouchTap={admin}
+    />
+    <MenuItem
+      primaryText="Generics"
+      onTouchTap={generics}
     />
     <MenuItem
       primaryText="Sign out"
-      onTouchTap={props.data.logout}
+      onTouchTap={logout}
     />
   </IconMenu>
 );
@@ -54,8 +61,6 @@ export default class Header extends React.Component {
       logged: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.logout = this.logout.bind(this);
-    this.newcustomer = this.newcustomer.bind(this);
   }
   componentDidMount() {
     setInterval(() => {
@@ -70,13 +75,22 @@ export default class Header extends React.Component {
       }
     }, 200);
   }
-  logout() {
+  logout = () => {
     auth.logout();
     this.forceUpdate();
   }
-  newcustomer() {
+  newcustomer = () => {
     browserHistory.push('/newcustomer');
   }
+  customers = () => {
+    browserHistory.push('/customers');
+  }
+  generics = () => {
+    browserHistory.push('/generics');
+  };
+  admin = () => {
+    browserHistory.push('/admin');
+  };
 
   render() {
     return (
@@ -85,7 +99,13 @@ export default class Header extends React.Component {
         style={headerStyle}
         titleStyle={titleStyle}
         iconElementRight={this.state.logged ?
-          <Logged data={{ logout: this.logout, newcustomer: this.newcustomer }} /> : <Login />}
+          <Logged
+            logout={this.logout}
+            newcustomer={this.newcustomer}
+            generics={this.generics}
+            admin={this.admin}
+            customers={this.customers}
+          /> : <Login />}
       />
     );
   }

@@ -49,5 +49,12 @@ const getImageBase64 = gql `
   }
 } `;
 
+const addGenerics = gql `
+  mutation addGeneric($heading: String, $paragraph: [String], $warranty: String, $bulletpoints: [String]){
+  addGeneric(heading:$heading, paragraph: $paragraph, bulletpoints: $bulletpoints, warranty: $warranty){
+    heading
+  }
+}`;
 
-export { getImageBase64, getCustomer, addNotes, getSurveyPhotos };
+
+export { getImageBase64, getCustomer, addNotes, getSurveyPhotos, addGenerics };
