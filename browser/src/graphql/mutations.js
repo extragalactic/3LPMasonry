@@ -24,9 +24,25 @@ const getCustomer = gql`
   }`;
 
 const addNotes = gql `
-   mutation addNotes ($custid: String, $text: String, $user: String, $timestamp : String ){
-  addNotes(custid: $custid, text: $text, user: $user, timestamp: $timestamp){
-    user
+   mutation addNote( $custid: String, $text: String, $createdAt: String, $userid: String, $name: String ){
+  addNotes(note: {
+  
+    createdAt:$createdAt,
+    text: $text,
+    custid: $custid
+    user: {
+      name: $name,
+      _id: $userid
+    }
+    
+  }) {
+    _id
+    text
+    createdAt
+    user{
+      name
+      _id
+    }
   }
 }`;
 

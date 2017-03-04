@@ -688,6 +688,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
+      console.log(args)
       CustomersModel.findOne({ _id: args.custid })
        .then(customer => pdfMakeEstimate(customer));
     };

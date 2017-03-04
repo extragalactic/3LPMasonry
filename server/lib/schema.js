@@ -21,6 +21,7 @@ const typeDefinitions = `
     workNotificaiton: Boolean
     sendSurvey: Boolean
     coordinates: Coordinates
+    estimate: Estimate
 }
   type Queue {
     customer: String
@@ -264,7 +265,28 @@ input newCustomers {
   createdAt: String
   user: notesUserInput
  }
-
+input generics {
+ banas: Boolean
+ concrete: Boolean
+ coping: Boolean
+ flagstone :Boolean
+ flashing : Boolean
+ fwarranty : Boolean
+ galleryModal : Boolean
+ nbc: Boolean
+ newcap: Boolean
+ newcrown : Boolean
+ obc: Boolean
+ pargeex: Boolean
+ priceText: Boolean
+ pricingModal: Boolean
+ pwarranty : Boolean
+ retaining :Boolean
+ roof: Boolean
+ sills: Boolean
+ tuckpoint:Boolean
+ waterproofing: Boolean
+}
 type Query {
   customers(
     firstName:String, 
@@ -298,7 +320,7 @@ type Query {
 type Mutation {
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String): Customers
+  generatePDFEstimate(custid: String, generics: generics): Customers
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]

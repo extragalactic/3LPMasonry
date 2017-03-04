@@ -73,6 +73,7 @@ class CustomerConfirmationComp extends React.Component {
     });
   }
   render() {
+    console.log('notes', this)
     const customer = this.state.currentCustomer;
     if (!customer) {
       return <h7>Loading</h7>;
@@ -139,15 +140,12 @@ class CustomerConfirmationComp extends React.Component {
                   </div>
                   : null}
               <br />
-              <FlatButton
-                label={'Street View'}
-                primary
-              />
+          
               <br />
               <br />
               <ActionSpeakerNotes />
               <Infinite containerHeight={100} elementHeight={100}>
-                <Editor editorState={this.state.editorState} onChange={this.onChange} />
+                {customer.notes ? customer.notes.map((note, idx) => <div key={idx}> {note.text}</div>) : <div>no notes</div>}
               </Infinite>
               <FlatButton
                 secondary

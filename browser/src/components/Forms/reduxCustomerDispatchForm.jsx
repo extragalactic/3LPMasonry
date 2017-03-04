@@ -163,11 +163,14 @@ class CustomerDispatchFormComp extends Component {
       variables: {
         custid: this.props.currentCustomer,
         text: this.state.notes,
-        user:  JSON.parse(localStorage.profile).name,
-        timestamp: new Date(),
+        name:  JSON.parse(localStorage.profile).name,
+        createdAt: new Date(),
+        userid:  JSON.parse(localStorage.profile).identities[0].user_id
       },
     });
+    this.setState({ notes: '' });
   };
+
   render() {
     const actions = [
       <FlatButton

@@ -3,6 +3,27 @@ import webpackValidator from 'webpack-validator';
 import webpack from 'webpack';
 
 module.exports = {
+  rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+        ],
+      },
+      {
+        test: /\.useable\.css$/,
+        use: [
+          { 
+            loader: "style-loader",
+            options: {
+              useable: true
+            },
+          },
+          { loader: "css-loader" },
+        ],
+      },
+    ],
   devtool: 'inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
