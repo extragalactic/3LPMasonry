@@ -5,9 +5,15 @@ const addCustomertoQueue = (customer) => {
       .then((data) => {
         if (data === null) {
           const queueItem = new QueueModel({
-               customer: customer._id,
-               timestamp: new Date(),
-               accepted: false,
+               id: customer._id,
+               firstName: customer.firstName ,
+               lastName: customer.lastName,
+               email1: customer.email1,
+               email2: customer.email2,
+               hphone: customer.hphone,
+               cphone: customer.cphone,
+               wphone: customer.wphone,
+               address: customer.address,
            });
             queueItem.save();
           }
@@ -21,3 +27,8 @@ const removeCustomerfromQueue = (customer) => {
 };
 
 export { addCustomertoQueue, removeCustomerfromQueue };
+
+
+
+
+

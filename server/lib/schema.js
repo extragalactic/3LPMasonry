@@ -24,9 +24,16 @@ const typeDefinitions = `
     estimate: Estimate
 }
   type Queue {
-    customer: String
-    timestamp: String
-    accepted: Boolean 
+    id: String
+    firstName: String
+    lastName: String
+    email1: String
+    email2: String
+    hphone: String
+    cphone: String
+    wphone: String
+    address: String  
+  
   }
 
   type Generic {
