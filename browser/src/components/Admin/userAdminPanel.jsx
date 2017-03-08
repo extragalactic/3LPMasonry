@@ -27,7 +27,6 @@ class userAdminPanelComp extends React.Component {
       surveyor: values.surveyor,
       estimator: values.estimator,
       office: values.office,
-      newCustomers: [],
     } });
     this.forceUpdate();
   };

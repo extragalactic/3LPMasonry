@@ -58,8 +58,10 @@
     "material": "^0.1.1",
     "material-ui": "^0.16.0",
     "moment": "^2.17.1",
+    "money-math": "^2.4.4",
     "mongoose": "^4.6.5",
     "node-base64-image": "^1.0.3",
+    "numeral": "^2.0.4",
     "pdfkit": "^0.8.0",
     "pdfmake": "^0.1.26",
     "pug": "^2.0.0-beta6",
@@ -113,6 +115,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "loaders.css": "^0.1.2",
+    "react-native-debugger-open": "^0.3.2",
     "style-loader": "^0.13.2"
   }
 }

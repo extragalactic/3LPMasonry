@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import base64Img from 'base64-img';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
+import numeral from 'numeral';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import PricingModel from '../lib/PricingModel';
@@ -20,6 +21,7 @@ import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
+import genericsMapping from './genericsMapping';
 
 
 sharp.concurrency(1);
@@ -192,6 +194,7 @@ class UpdateCustomer {
 class UpdateUser {
   constructor() {
     this.updateUser = (args) => {
+      console.log(args);
       const id = args.id;
       delete args.id;
       const User = UsersModel.findOneAndUpdate({ _id: id }, args)
@@ -688,9 +691,50 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      console.log(args)
+      const generics = [];
+      const output = [];
+      const prices = [];
+
+      _.forIn(args.generics, ((value, key) => {
+        if (value) {
+          generics.push(key);
+        }
+      }));
+
+
+
       CustomersModel.findOne({ _id: args.custid })
-       .then(customer => pdfMakeEstimate(customer));
+        .then((cust) => {
+          cust.estimate.prices.forEach((price) => {
+            prices.push([price.description, `$${price.price}`]);
+          });
+        });
+
+        generics.forEach((gen) => {
+          GenericModel.findOne({ _id: genericsMapping[gen] })
+            .then((g) => output.push(g));
+        });
+
+      setTimeout(() => {
+        const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
+        const total = pricesArray.reduce((acc, val) => {
+          return acc + val;
+        }, 0);
+        const hst = (total / 100) * 13;
+        
+        const Total = numeral(total + hst).format('$0,0.00');
+        const HST = numeral(hst).format('$0,0.00');
+
+        prices.push(['HST', HST]);
+        prices.push(['Total', Total]);
+
+
+        CustomersModel.findOne({ _id: args.custid })
+         .then(customer => pdfMakeEstimate(customer, output, prices));
+      }, 1000);
+
+
+      
     };
   }
 }
