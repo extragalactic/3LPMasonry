@@ -27,7 +27,7 @@ import genericsMapping from './genericsMapping';
 sharp.concurrency(1);
 dotenv.config();
 
-console.log(base64Img)
+//console.log(base64Img)
 // 0: New Customer, Inquiry no survery
 // 1: New Customer, Online Survey sent
 // 2: Customer, Online Survey Received
@@ -194,7 +194,7 @@ class UpdateCustomer {
 class UpdateUser {
   constructor() {
     this.updateUser = (args) => {
-      console.log(args);
+     // console.log(args);
       const id = args.id;
       delete args.id;
       const User = UsersModel.findOneAndUpdate({ _id: id }, args)
@@ -251,7 +251,10 @@ class SubmitCustomer {
                    sendEmailSurveytoCustomer({ email: data.email2, data });
                  }
                  data.status = 1;
+                 addCustomertoQueue(data);
+                 sendPushtoEstimators(data);
                  data.save();
+                 
                }
                if (!surveyor) {
                  sendSMStoSurveyor(data);
@@ -376,7 +379,7 @@ class AddSurveyNotes {
         timestamp: args.timestamp,
         user: args.user,
       };
-      console.log(args)
+      //console.log(args)
       CustomersModel.findOne({_id: args.custid})
         .then((customer) => {
           customer.survey.notes.push(payload);
@@ -748,7 +751,7 @@ class GetImageBase64 {
 class AddGeneric {
   constructor() {
     this.addGeneric = (args) => {
-      console.log(args)
+     // console.log(args)
       const generic = new GenericModel({
         heading: args.heading,
         bulletpoints: args.bulletpoints,
