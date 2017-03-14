@@ -253,8 +253,7 @@ class SubmitCustomer {
                  data.status = 1;
                  addCustomertoQueue(data);
                  sendPushtoEstimators(data);
-                 data.save();
-                 
+                 data.save(); 
                }
                if (!surveyor) {
                  sendSMStoSurveyor(data);
@@ -736,9 +735,6 @@ class GeneratePDFEstimate {
         CustomersModel.findOne({ _id: args.custid })
          .then(customer => pdfMakeEstimate(customer, output, prices));
       }, 1000);
-
-
-      
     };
   }
 }
