@@ -564,6 +564,7 @@ class GetFinishedSurvey {
               timestamp: photo.timestamp,
               caption: photo.caption,
               user: photo.user,
+              docID: photo.docID,
             });
           });
           customer.survey.notes.forEach((note) => {

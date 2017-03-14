@@ -187,6 +187,7 @@ type SurveyPhotos {
     photo: String
     caption: String
     selected: Boolean
+    docID: String
 }
 
 type FinishedSurvey {
@@ -209,6 +210,7 @@ type FinishedSurveyPhotos {
    user: String
    thumb: String
    url: String
+   docID: String
 }
 
 type Estimate {
