@@ -28,6 +28,7 @@ const selections = {
 
 
 const pdfMakeEstimate = (customer, generics, prices) => {
+  console.log(customer,generics, prices);
 
 
   const waterTest = {
@@ -336,7 +337,7 @@ const copingStone = {
   const docDefinition = {
     pageSize: 'LETTER',
     footer: { text: 'Three Little Pigs Masonry 14845 YongeSt., Unit6-Suite322, Aurora, ON, L4G 6H8 905-508-0500 416-595-0100', alignment: 'center' },
-    background: { image: path.join(__dirname, '../../assets/images/tlplogo.jpg'),
+    background: { image: path.join(__dirname, '../../assets/images/3lplogo.jpg'),
       width: 150,
       height: 150,
       alignment: 'right',
@@ -399,10 +400,14 @@ const copingStone = {
       },
     },
   };
-  const printer = new PDFMake(fonts);
-  const pdfDoc = printer.createPdfKitDocument(docDefinition);
-  pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
-  pdfDoc.end();
+
+  
+ const printer = new PDFMake(fonts);
+ const pdfDoc = printer.createPdfKitDocument(docDefinition);
+ pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
+ pdfDoc.end();
+ return true
+ 
 };
 
 export default pdfMakeEstimate;
