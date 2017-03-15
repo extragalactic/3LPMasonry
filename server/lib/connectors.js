@@ -749,6 +749,7 @@ class GeneratePDFEstimate {
           generics.push(key);
         }
       }));
+      console.log(args)
 
 
 
@@ -779,8 +780,13 @@ class GeneratePDFEstimate {
 
 
         CustomersModel.findOne({ _id: args.custid })
-         .then(customer => pdfMakeEstimate(customer, output, prices));
+         .then(customer => {
+           console.log(customer);
+           pdfMakeEstimate(customer, generics, prices);
+         });
+
       }, 1000);
+  
     };
   }
 }
