@@ -3,6 +3,30 @@ import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
 
+const selections = {
+  watertest: false,
+  obc: false,
+  nbc: false,
+  concrete: false,
+  retaining: false,
+  newcap: false,
+  newcrown: false,
+  roof: false,
+  sills: false,
+  pargeex: false,
+  coping: false,
+  flashing: false,
+  waterproofing: false,
+  tuckpoint: false,
+  flagstone: false,
+  banas: false,
+  fwarranty: false,
+  pwarranty: false,
+  custom: false,
+  customText: '',
+};
+
+
 const pdfMakeEstimate = (customer, generics, prices) => {
 
 

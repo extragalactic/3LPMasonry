@@ -50,6 +50,10 @@ const resolveFunctions = {
       const estimate = new ctx.constructor.GetEstimateResults();
       return estimate.getEstimateResults(args);
     },
+    getFinishedSurveyQuery(_, args, ctx) {
+      const survey = new ctx.constructor.GetFinishedSurveyQuery();
+      return survey.getFinishedSurveyQuery(args);
+    },
   },
   Mutation: {
     newCustomer(_, {
