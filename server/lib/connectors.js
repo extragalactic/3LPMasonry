@@ -581,6 +581,52 @@ class GetFinishedSurvey {
   }
  }
 
+class GetFinishedSurveyQuery {
+  constructor() {
+    this.getFinishedSurvey = (args) => {
+      const output = [];
+      return CustomersModel.findOne({ _id: args.id })
+        .then((customer) => {
+          const results = customer.survey.photos.concat(customer.survey.notes);
+          const headings = _.uniq(results.map(heading => heading.heading));
+          headings.forEach((heading) => {
+            output.push({
+              heading,
+              photos: [],
+              notes: [],
+            });
+          });
+          customer.survey.photos.forEach((photo) => {
+            const idx = headings.indexOf(photo.heading);
+            output[idx].photos.push({
+              url: photo.photo,
+              thumb: photo.thumb,
+              description: photo.description,
+              timestamp: photo.timestamp,
+              caption: photo.caption,
+              user: photo.user,
+              docID: photo.docID,
+            });
+          });
+          customer.survey.notes.forEach((note) => {
+            const idx = headings.indexOf(note.heading);
+            output[idx].notes.push({
+              text: note.text,
+              description: note.description,
+              timestamp: note.timestamp,
+              caption: note.caption,
+              user: note.user,
+            });
+          });
+        }).then(() => output);
+    };
+  }
+ }
+
+
+
+
+
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
@@ -795,5 +841,6 @@ module.exports = {
   DeleteAppointment,
   GetUser,
   AddSurveyNotes,
+  GetFinishedSurveyQuery,
 };
 

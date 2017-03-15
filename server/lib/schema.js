@@ -323,7 +323,8 @@ type Query {
   getMyCustomers(id: String): CustomerStatus
   getPrices: [Price]
   getEstimateResults(custid: String): EstimateResults
-  
+  getFinishedSurveyQuery(id: String): [FinishedSurvey]
+
 
 }
 type Mutation {
