@@ -119,6 +119,11 @@ app.get('/images/:filename', (req, res) => {
   res.sendFile(path.join(__dirname, `../images/${req.params.filename}`));
 });
 
+app.use('/documents', express.static(path.join(__dirname, '../documents'), imageOptions));
+app.get('/images/:filename', (req, res) => {
+  res.sendFile(path.join(__dirname, `../documents/${req.params.filename}`));
+});
+
 app.get('/email', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerfacing/index.html'));
 });
