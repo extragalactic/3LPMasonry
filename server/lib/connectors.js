@@ -12,7 +12,6 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
-import { pdfKitCreateEstimatePreview } from '../methods/pdfKit';
 import pdfMakeEstimate from '../methods/pdfMake';
 
 import { sendPushtoEstimators } from '../methods/oneSIgnal';
@@ -751,8 +750,6 @@ class GeneratePDFEstimate {
       }));
       console.log(args)
 
-
-
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
           cust.estimate.prices.forEach((price) => {
@@ -771,20 +768,17 @@ class GeneratePDFEstimate {
           return acc + val;
         }, 0);
         const hst = (total / 100) * 13;
-        
         const Total = numeral(total + hst).format('$0,0.00');
         const HST = numeral(hst).format('$0,0.00');
 
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
 
-
         CustomersModel.findOne({ _id: args.custid })
          .then(customer => {
            console.log(customer);
            pdfMakeEstimate(customer, generics, prices);
          });
-
       }, 1000);
   
     };
@@ -800,7 +794,6 @@ class GetImageBase64 {
 class AddGeneric {
   constructor() {
     this.addGeneric = (args) => {
-     // console.log(args)
       const generic = new GenericModel({
         heading: args.heading,
         bulletpoints: args.bulletpoints,

@@ -153,6 +153,13 @@ type base64Photo {
   docID: String
 }
 
+type base64PDF {
+  base64: String
+  url: String
+  docID: String
+}
+
+
 type followUp {
   name: String
   start: String
@@ -275,16 +282,19 @@ input newCustomers {
   user: notesUserInput
  }
 input generics {
+ watertest: Boolean
  banas: Boolean
  concrete: Boolean
+ concreteSteps:Boolean
+ concreteCare: Boolean
+ refacingSlice: Boolean
+ refacingComplete: Boolean
  coping: Boolean
  flagstone :Boolean
  flashing : Boolean
  fwarranty : Boolean
  galleryModal : Boolean
  nbc: Boolean
- newcap: Boolean
- newcrown : Boolean
  obc: Boolean
  pargeex: Boolean
  priceText: Boolean
@@ -294,6 +304,7 @@ input generics {
  roof: Boolean
  sills: Boolean
  tuckpoint:Boolean
+ custom: Boolean
  waterproofing: Boolean
 }
 type Query {
@@ -330,7 +341,7 @@ type Query {
 type Mutation {
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics): Customers
+  generatePDFEstimate(custid: String, generics: generics): base64PDF
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]

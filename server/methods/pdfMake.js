@@ -28,9 +28,6 @@ const selections = {
 
 
 const pdfMakeEstimate = (customer, generics, prices) => {
-  console.log(customer,generics, prices);
-
-
   const waterTest = {
     text: [
     { text: 'Waterproof Test', style: 'heading' },
@@ -406,6 +403,9 @@ const copingStone = {
  const pdfDoc = printer.createPdfKitDocument(docDefinition);
  pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
  pdfDoc.end();
+
+
+
  return true
  
 };
