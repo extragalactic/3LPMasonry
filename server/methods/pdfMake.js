@@ -3,42 +3,43 @@ import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
 
-const selections = {
-  watertest: false,
-  obc: false,
-  nbc: false,
-  concrete: false,
-  retaining: false,
-  newcap: false,
-  newcrown: false,
-  roof: false,
-  sills: false,
-  pargeex: false,
-  coping: false,
-  flashing: false,
-  waterproofing: false,
-  tuckpoint: false,
-  flagstone: false,
-  concreteCare: false,
-  fwarranty: false,
-  pwarranty: false,
-  custom: false,
-  customText: '',
-};
-
 
 const pdfMakeEstimate = (customer, generics, prices) => {
-  console.log(customer, generics, prices);
+  const genericText = {};
 
-  const waterTest = {
+  // TEST VALUES (remove)
+
+  generics = {
+    watertest: true,
+    obc: true,
+    nbc: true,
+    refacingSlices: true,
+    refacingComplete: true,
+    chimney: true,
+    concreteSteps: true,  
+    concreteCare: true,
+    retaining: true,
+    sills: true,
+    pargeex: true,
+    coping: true,
+    flashing: true,
+    waterproofing: true,
+    tuckpoint: true,
+    flagstone: true,
+    fwarranty: true,
+    pwarranty: true,
+    custom: true
+  };
+
+  genericText.waterTest = {
     text: { stack: [
       { text: 'Waterproof Test', style: 'heading' },
-      { text: 'A water test is the one and one only way to truly troubleshoot where water is coming from. \n \n' },
-        "You will need 2 people to conduct this water test. One on the inside and the other on the outside with the hose. Firstly, let's follow the law of gravity. We know water runs downhill so it makes no sense to put water any place on the elevation other than the very bottom (which is on the grass or concrete pavement etc. at the foundation). Just let the water sit and flow from the hose. With one person on the inside monitoring and after no more than 15 minutes of steady flow from a garden hose, if there is no moisture coming in then we know you're below grade foundation is good. The next junction is where the concrete meets the brick work or veneer, if there is not adequate flashing and weepers than that can also cause your water problem. But the water test and hose will tell you that after no more than 15 minutes with somebody monitoring on the inside. If there is still no evidence of water, keep raising the water (no more than 2 feet in height at a time) whether it be glass doors / windowsills / brickwork etc. Keep on going as one time we found that the water showing up on the basement floor actually originated from voids in mortar joints that were on the second floor a long way from the basement floor. \n \nYou may conduct this test yourself as explained, or we can provide the test for you for $500 plus HST. This will be discounted from the repair work should you require and accept our services",
+      { text: 'A water test is the one and one only way to truly troubleshoot where water is coming from. \n\n' },
+        "You will need 2 people to conduct this water test. One on the inside and the other on the outside with the hose. Firstly, let's follow the law of gravity. We know water runs downhill so it makes no sense to put water any place on the elevation other than the very bottom (which is on the grass or concrete pavement etc. at the foundation). Just let the water sit and flow from the hose. With one person on the inside monitoring and after no more than 15 minutes of steady flow from a garden hose, if there is no moisture coming in then we know you're below grade foundation is good. The next junction is where the concrete meets the brick work or veneer, if there is not adequate flashing and weepers than that can also cause your water problem. But the water test and hose will tell you that after no more than 15 minutes with somebody monitoring on the inside. If there is still no evidence of water, keep raising the water (no more than 2 feet in height at a time) whether it be glass doors / windowsills / brickwork etc. Keep on going as one time we found that the water showing up on the basement floor actually originated from voids in mortar joints that were on the second floor a long way from the basement floor. \n\nYou may conduct this test yourself as explained, or we can provide the test for you for $500 plus HST. This will be discounted from the repair work should you require and accept our services.",
     ], style: 'textSection' }
   };
 
-  const stoneWindowSills = {
+  genericText.stoneWindowSills = {
     content: { stack: [
     { text: "Stone Window Sills", style: 'heading' },
       { ul: [
@@ -53,7 +54,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     ], style: 'textSection' }    
   };
 
-  const repairGrindParge = {
+  genericText.repairGrindParge = {
     content: { stack: [
     { text: "Repair, Grind & Parge", style: 'heading' },
       { ul: [
@@ -66,7 +67,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     ], style: 'textSection' }
   };
 
-  const stoneRefacingSlices = {
+  genericText.stoneRefacingSlices = {
     content: { stack: [
     { text: "Stone Refacing Slices - Remove siding and/or trim work from around windows", style: 'heading' },
       { ul: [
@@ -80,7 +81,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     ], style: 'textSection' } 
   };
 
-  const completeStonerefacing = {
+  genericText.completeStonerefacing = {
     content: { stack: [
     { text: "Complete Stone Refacing", style: 'heading' },
       { ul: [
@@ -95,16 +96,16 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     ], style: 'textSection' }
   };
 
- const additionalWork = {
+ genericText.additionalWork = {
    content: { stack: [
-     { text: "Additional work outside of the estimate to be assessed and discussed on-site with customer." },
+     { text: "Please Note: Additional work outside of the estimate to be assessed and discussed on-site with customer.\n\n" },
      { text: "Warranties as stated or until structural movement or work done by others affects our work." },
    ], style: 'textSection' }
  };
 
-const OBC = {
+genericText.OBC = {
     content: { stack: [
-    { text: "Ontario Building Code (OBC) — Sidewalk / garage pad / slab", style: 'heading' },
+    { text: "Ontario Building Code (OBC) — Sidewalk / Garage Pad / Slab", style: 'heading' },
       { ul: [
         "Remove existing slab if required and prepare", 
         "Install 2\" HPB aggregates", 
@@ -117,9 +118,9 @@ const OBC = {
     ], style: 'textSection' }
   }
 
-  const NBC = {
+  genericText.NBC = {
     content: { stack: [
-    { text: "National Building Code (NBC) — Sidewalk / garage pad / slab", style: 'heading' },
+    { text: "National Building Code (NBC) — Sidewalk / Garage Pad / Slab", style: 'heading' },
       { ul: [
         "Remove existing slab or concrete", 
         "Drill 4 foot deep pilings 10 inches in diameter and a minimum of 5 foot intervals", 
@@ -133,7 +134,7 @@ const OBC = {
     ], style: 'textSection' }
   }
 
-const concreteSteps = {
+  genericText.concreteSteps = {
     content: { stack: [
     { text: "Concrete Steps / Landing / Treads / Risers", style: 'heading' },
       { ul: [
@@ -151,9 +152,18 @@ const concreteSteps = {
     ], style: 'textSection' }
   }
 
-const retainingWalkout = {
+  genericText.concreteCare = {
     content: { stack: [
-    { text: "Retaining Walk-outs (NBC)", style: 'heading' },
+        { text: 'Concrete Care', style: 'heading' },
+        {text: "We only recommend the use of coarse sand on your concrete/flagstone for winter conditions. All other products are harmful and may cause pitting or discolouration. A bag of coarse sand can be purchased at Home Depot.\n"},
+        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot.\n"},
+        {text: "Also note: our parging or roll-on coating or combination of both for floor surfaces have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot."},
+    ], style: 'textSection' }
+  };
+
+  genericText.retainingWalkout = {
+    content: { stack: [
+    { text: "Retaining Walk-Outs (NBC)", style: 'heading' },
       { ul: [
         "Remove existing walk out, landscaping, decking, fence etc. (if required) and haul away", 
         "Drill and install 4 foot deep pilings, 10 inches in diameter at a maximum of 5 foot intervals at all grades, including treads and risers", 
@@ -169,7 +179,7 @@ const retainingWalkout = {
     ], style: 'textSection' }
   }
 
- const chimney = {
+  genericText.chimney = {
     content: { stack: [
     { text: "Chimney", style: 'heading' },
       { ul: [
@@ -200,7 +210,7 @@ const retainingWalkout = {
     ], style: 'textSection' }
   };
 
-  const copingStone = {
+  genericText.copingStone = {
     content: { stack: [
     { text: "Coping Stone", style: 'heading' },
       { ul: [
@@ -211,10 +221,10 @@ const retainingWalkout = {
     ], style: 'textSection' }
   }
 
- const flashingWeepers = {
+  genericText.flashingWeepers = {
     text: { stack: [
     { text: 'Flashing / Weeper / Plugged Weepers', style: 'heading' },
-    {text: "Through the wall flashing (behind the brick) and clean active weepers should be located at: the top of foundation walls, all openings, and the top of all grade levels and landings (in other words, whatever is exposed to the environment). \n Brick (masonry units) absorb water, but when it gets behind the brick (cavity) it needs a place to vent. This is where weepers come in, providing they are functional and are even present. \n Without weepers, or plugged weepers, water becomes trapped in the cavity and slowly starts to erode the brick from the inside out, or worse yet, starts entering inside the building, causing mold and other issues. \n We also want to protect the exterior face by applying a parge to the new masonry, to ensure that the exterior is repelling the moisture away rather then absorbing the water that it is usually exposed to." },
+    { text: "Through the wall flashing (behind the brick) and clean active weepers should be located at: the top of foundation walls, all openings, and the top of all grade levels and landings (in other words, whatever is exposed to the environment). \n\n Brick (masonry units) absorb water, but when it gets behind the brick (cavity) it needs a place to vent. This is where weepers come in, providing they are functional and are even present. \n\n Without weepers, or plugged weepers, water becomes trapped in the cavity and slowly starts to erode the brick from the inside out, or worse yet, starts entering inside the building, causing mold and other issues. \n\n We also want to protect the exterior face by applying a parge to the new masonry, to ensure that the exterior is repelling the moisture away rather then absorbing the water that it is usually exposed to.\n\n" },
      { ul: [
       "Remove at least 2 courses of brick",
       "Shore up brickwork above",
@@ -228,7 +238,7 @@ const retainingWalkout = {
     ], style: 'textSection' }
   };
 
- const exteriorWaterproofing = {
+  genericText.exteriorWaterproofing = {
     content: { stack: [
     { text: 'Exterior Waterproofing', style: 'heading' },
      { ul: [
@@ -248,7 +258,7 @@ const retainingWalkout = {
     ], style: 'textSection' }
   };
 
- const tuckPointing = {
+  genericText.tuckPointing = {
     content: { stack: [
     { text: 'Tuckpointing', style: 'heading' },
      { ul: [
@@ -261,7 +271,7 @@ const retainingWalkout = {
     ], style: 'textSection' }
   };
 
- const flagStone = {
+  genericText.flagStone = {
     content: { stack: [
     { text: 'Flagstone', style: 'heading' },
      { ul: [
@@ -270,26 +280,16 @@ const retainingWalkout = {
         "Full piece treads (as few mortar joints as possible on coping area)", 
         "Overhang with drip edges"
     ] },
-
     ], style: 'textSection' }
   };
 
-  const concreteCare = {
-    content: { stack: [
-        { text: 'Concrete Care', style: 'heading' },
-        {text: "We only recommend the use of coarse sand on your concrete/flagstone for winter conditions. All other products are harmful and may cause pitting or discolouration. A bag of coarse sand can be purchased at Home Depot."},
-        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot."},
-        {text: "Also note: our parging or roll-on coating or combination of both for floor surfaces have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot."},
-    ], style: 'textSection' }
-  };
-
-  const fwarranty = {
+  genericText.fwarranty = {
     content: { stack: [
     { text: "FLAGSTONE WARRANTY: Our flagstone installation has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot." }
      ], style: 'textSection' }
   };
 
- const pwarranty = {
+  genericText.pwarranty = {
     content: { stack: [
     { text: "PARGING & COATING WARRANTY: Our parging and coating have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot." }
      ], style: 'textSection' }
@@ -310,43 +310,44 @@ const retainingWalkout = {
     pageMargins: [ 40, 60, 40, 70 ],
 
     footer: [
-      { canvas: [{ type: 'line', x1: 215, y1: 2, x2: 400, y2: 2, lineWidth: 0.5 }] },
+      horizontalLine(),
       { text: '\nThree Little Pigs Masonry 14845 YongeSt., Unit6-Suite322, Aurora, ON, L4G 6H8', alignment: 'center' },
       { text: '905-508-0500  416-595-0100', alignment: 'center' }
     ],
 
-    pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
-      // console.log('PAGE INFO: ' + JSON.stringify(currentNode) ;
-      // return currentNode.pageNumbers.length != 1;
-      return false;
-    },
-
-    content: [
-
+    content: { stack: [
      { image: path.join(__dirname, '../../assets/images/3lplogo.jpg'),
-       width: 225,
-       height: 225,
+       width: 325,
+       height: 325,
        alignment: 'center'     
      },
 
      { text: 'Estimate', alignment: 'center', style: 'estimate' },
 
-     { text: `Prepared for ${customer.firstName} ${customer.lastName}`, alignment: 'center', bold: true },
-     { text: `${customer.address}`, alignment: 'center' },
-     { text: `${moment().format('dddd, MMMM Do YYYY')}`, alignment: 'center' },     
+     { text: `Prepared for ${customer.firstName} ${customer.lastName}`, alignment: 'center', bold: true, style: 'subheading' },
+     { text: `${customer.address}`, alignment: 'center'},
+     { text: `${moment().format('dddd, MMMM Do YYYY')}`, alignment: 'center'},     
 
-     writeGenericText(),
+     writeGenericText(generics, genericText),
 
-     { text: "Three Little Pigs Masonry would like to thank you for the opportunity to quote on your project. Why choose Three Little Pigs Masonry? Since 2004, Three Little Pigs Masonry has grown to become a trusted name in masonry and concrete throughout the GTA. With over 40 years experience and with actual masonry and concrete experts at the helm, your satisfaction is our main priority. \n Three Little Pigs Masonry will not leave your property until you are completely satisfied and our warranties reflect our confidence in our ability to provide the best in masonry and concrete. \n"}, 
-     { table: { widths: [400, 100],
-          body: prices,
-        },
-        style: 'tableExample'
-      },
+     { text: "Three Little Pigs Masonry would like to thank you for the opportunity to quote on your project. Why choose Three Little Pigs Masonry? Since 2004, Three Little Pigs Masonry has grown to become a trusted name in masonry and concrete throughout the GTA. With over 40 years experience and with actual masonry and concrete experts at the helm, your satisfaction is our main priority. \n Three Little Pigs Masonry will not leave your property until you are completely satisfied and our warranties reflect our confidence in our ability to provide the best in masonry and concrete. \n", style: 'textSection'}, 
 
-      {text: "Please take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n", bold:true},
+     { stack: [
+       { text: 'Pricing Summary', alignment: 'center', style: 'heading'},
+       { table: { widths: [400, 100],
+            body: prices,
+          },
+          style: 'pricingTable'
+        }
+      ], style: 'textSection'},
+
+      {text: "\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n", bold:true},
       {text: "\nAdditional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n", bold: true},
-    ],
+    ]},
+    
+    pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
+      return currentNode.pageNumbers.length > 1 && previousNodesOnPage.length !== 0;
+    },
 
     styles: {
       header: {
@@ -372,8 +373,13 @@ const retainingWalkout = {
         bold: true,
         marginBottom: 5        
       },
-      tableExample: {
-        margin: [0, 5, 0, 15],
+      subheading: {
+        fontSize: 14,
+        bold: true,
+        marginBottom: 5        
+      },      
+      pricingTable: {
+        margin: [0, 10, 0, 15],
       },
       textSection: {
         marginTop: 10,
@@ -382,32 +388,39 @@ const retainingWalkout = {
     }
   };
 
-// Write the text for the selected services based on array of boolean flags
-function writeGenericText() {
-  return (
-    [
-      waterTest.text,
-      stoneWindowSills.content,
-      repairGrindParge.content,
-      stoneRefacingSlices.content,
-      completeStonerefacing.content,
-      additionalWork.content,
-      OBC.content,
-      NBC.content,
-      concreteSteps.content,
-      retainingWalkout.content,
-      chimney.content,
-      copingStone.content,
-      flashingWeepers.text,
-      exteriorWaterproofing.content,
-      tuckPointing.content,
-      flagStone.content,
-      pwarranty.content,
-      fwarranty.content  
-    ]
-  );
-}
+  // Write the text for the selected services based on array of boolean flags
+  function writeGenericText(selected, genericText) {
+    return (
+      [
+        selected.watertest ? genericText.waterTest.text : '',
+        selected.sills ? genericText.stoneWindowSills.content : '',
+        selected.pargeex ? genericText.repairGrindParge.content : '',
+        selected.refacingSlices ? genericText.stoneRefacingSlices.content : '',
+        selected.refacingComplete ? genericText.completeStonerefacing.content : '',
+        selected.obc ? genericText.OBC.content : '',
+        selected.nbc ? genericText.NBC.content : '',
+        selected.concreteSteps ? genericText.concreteSteps.content : '',
+        selected.concreteCare ? genericText.concreteCare.content : '',        
+        selected.retaining ? genericText.retainingWalkout.content : '',
+        selected.chimney ? genericText.chimney.content : '',
+        selected.coping ? genericText.copingStone.content : '',
+        selected.flashing ? genericText.flashingWeepers.text : '',
+        selected.waterproofing ? genericText.exteriorWaterproofing.content : '',
+        selected.tuckpoint ? genericText.tuckPointing.content : '',
+        selected.flagstone ? genericText.flagStone.content : '',
+        selected.custom ? genericText.additionalWork.content : '',        
+        selected.pwarranty ? genericText.pwarranty.content : '',
+        selected.fwarranty ? genericText.fwarranty.content : ''  
+      ]
+    );
+  }
+
+  // create a thin vector separator line
+  function horizontalLine() {
+    return { canvas: [{ type: 'line', x1: 215, y1: 2, x2: 400, y2: 2, lineWidth: 0.5 }] };
+  }
   
+
  const printer = new PDFMake(fonts);
  const pdfDoc = printer.createPdfKitDocument(docDefinition);
  pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
