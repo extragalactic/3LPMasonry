@@ -23,6 +23,7 @@ const selections = {
   fwarranty: false,
   pwarranty: false,
   custom: false,
+  customText: '',
 };
 
 
@@ -403,6 +404,10 @@ const copingStone = {
  pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
  pdfDoc.end();
 
+
+
+ return true
+ 
 };
 
 export default pdfMakeEstimate;
