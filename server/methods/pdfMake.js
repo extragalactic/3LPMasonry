@@ -8,34 +8,71 @@ const pdfMakeEstimate = (customer, generics, prices) => {
   const genericText = {};
 
   // TEST VALUES (remove)
-
   generics = {
-    watertest: true,
+    watertest: false,
     obc: true,
-    nbc: true,
-    refacingSlices: true,
-    refacingComplete: true,
+    nbc: false,
+    refacingSlices: false,
+    refacingComplete: false,
     chimney: true,
-    concreteSteps: true,  
+    concreteSteps: false,  
     concreteCare: true,
     retaining: true,
-    sills: true,
+    sills: false,
     pargeex: true,
-    coping: true,
-    flashing: true,
+    coping: false,
+    flashing: false,
     waterproofing: true,
-    tuckpoint: true,
-    flagstone: true,
+    tuckpoint: false,
+    flagstone: false,
     fwarranty: true,
     pwarranty: true,
     custom: true
   };
 
+  // TEST VALUES (remove)
+  const surveyPhotos = [
+    {
+      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging1586.jpg",
+      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto1.jpg'),
+      "caption": "Parging",
+      "selected": false
+    },
+    {
+      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging8812.jpg",
+      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto2.jpg'),
+      "caption": "Parging",
+      "selected": false
+    },
+    {
+      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging5270.jpg",
+      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto3.jpg'),
+      "caption": "Parging",
+      "selected": false
+    },
+    {
+      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Concrete8938.jpg",
+      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto4.jpg'),
+      "caption": "Concrete",
+      "selected": false
+    },
+    {
+      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/DirectUpload7931.jpg",
+      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto5.jpg'),
+      "caption": "DirectUpload",
+      "selected": false
+    }
+  ];
+
+  const IMAGE_MAX_WIDTH = 730;
+  const IMAGE_MAX_HEIGHT = 270; 
+
+
   genericText.waterTest = {
     text: { stack: [
       { text: 'Waterproof Test', style: 'heading' },
-      { text: 'A water test is the one and one only way to truly troubleshoot where water is coming from. \n\n' },
-        "You will need 2 people to conduct this water test. One on the inside and the other on the outside with the hose. Firstly, let's follow the law of gravity. We know water runs downhill so it makes no sense to put water any place on the elevation other than the very bottom (which is on the grass or concrete pavement etc. at the foundation). Just let the water sit and flow from the hose. With one person on the inside monitoring and after no more than 15 minutes of steady flow from a garden hose, if there is no moisture coming in then we know you're below grade foundation is good. The next junction is where the concrete meets the brick work or veneer, if there is not adequate flashing and weepers than that can also cause your water problem. But the water test and hose will tell you that after no more than 15 minutes with somebody monitoring on the inside. If there is still no evidence of water, keep raising the water (no more than 2 feet in height at a time) whether it be glass doors / windowsills / brickwork etc. Keep on going as one time we found that the water showing up on the basement floor actually originated from voids in mortar joints that were on the second floor a long way from the basement floor. \n\nYou may conduct this test yourself as explained, or we can provide the test for you for $500 plus HST. This will be discounted from the repair work should you require and accept our services.",
+      { text: 'A water test is the one and only way to truly troubleshoot where water is coming from. \n\n' },
+        "You will need 2 people to conduct this water test - one on the inside and the other on the outside with the hose. Firstly, let's follow the law of gravity. We know water runs downhill so it makes no sense to put water any place on the elevation other than the very bottom (which is on the grass or concrete pavement etc. at the foundation). Just let the water sit and flow from the hose. With one person on the inside monitoring and after no more than 15 minutes of steady flow from a garden hose, if there is no moisture coming in then we know your below-grade foundation is good. The next junction is where the concrete meets the brick work or veneer. If there is not adequate flashing and weepers than that can also cause your water problem. But the water test and hose will tell you that after no more than 15 minutes with somebody monitoring on the inside. If there is still no evidence of water, keep raising the water (no more than 2 feet in height at a time) whether it be glass doors / windowsills / brickwork etc. Keep on going as one time we found that the water showing up on the basement floor actually originated from voids in mortar joints that were on the second floor a long way from the basement floor. \n\nYou may conduct this test yourself as explained, or we can provide the test for you for $500 plus HST. This will be discounted from the repair work should you require and accept our services.",
     ], style: 'textSection' }
   };
 
@@ -155,8 +192,8 @@ genericText.OBC = {
   genericText.concreteCare = {
     content: { stack: [
         { text: 'Concrete Care', style: 'heading' },
-        {text: "We only recommend the use of coarse sand on your concrete/flagstone for winter conditions. All other products are harmful and may cause pitting or discolouration. A bag of coarse sand can be purchased at Home Depot.\n"},
-        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot.\n"},
+        {text: "We only recommend the use of coarse sand on your concrete/flagstone for winter conditions. All other products are harmful and may cause pitting or discolouration. A bag of coarse sand can be purchased at Home Depot.\n\n"},
+        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot.\n\n"},
         {text: "Also note: our parging or roll-on coating or combination of both for floor surfaces have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot."},
     ], style: 'textSection' }
   };
@@ -301,6 +338,10 @@ genericText.OBC = {
       bold: path.join(__dirname, '../../assets/fonts/Roboto-Medium.ttf'),
       italics: path.join(__dirname, '../../assets/fonts/Roboto-Italic.ttf'),
     },
+    Verdana: {
+      normal: path.join(__dirname, '../../assets/fonts/Verdana-Regular.ttf'),
+      bold: path.join(__dirname, '../../assets/fonts/Verdana-Bold.ttf')    
+    }
   };
 
   // --------------------------------------------------------------------------
@@ -311,7 +352,7 @@ genericText.OBC = {
 
     footer: [
       horizontalLine(),
-      { text: '\nThree Little Pigs Masonry 14845 YongeSt., Unit6-Suite322, Aurora, ON, L4G 6H8', alignment: 'center' },
+      { text: 'Three Little Pigs Masonry 14845 YongeSt., Unit6-Suite322, Aurora, ON, L4G 6H8', alignment: 'center' },
       { text: '905-508-0500  416-595-0100', alignment: 'center' }
     ],
 
@@ -323,7 +364,6 @@ genericText.OBC = {
      },
 
      { text: 'Estimate', alignment: 'center', style: 'estimate' },
-
      { text: `Prepared for ${customer.firstName} ${customer.lastName}`, alignment: 'center', bold: true, style: 'subheading' },
      { text: `${customer.address}`, alignment: 'center'},
      { text: `${moment().format('dddd, MMMM Do YYYY')}`, alignment: 'center'},     
@@ -341,12 +381,35 @@ genericText.OBC = {
         }
       ], style: 'textSection'},
 
-      {text: "\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n", bold:true},
-      {text: "\nAdditional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n", bold: true},
-    ]},
-    
+      { text: "\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n\n", bold:true},
+      { text: "Additional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n\n", bold: true},
+      { text: "If you wish to proceed with your estimate, please respond to this email or contact <b>Barbara</b> at (416)595-0100 EXT 102 \n\n" },
+      { text: "Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416) 595-0100 extension 106."},    
+
+     // { text: '', pageBreak: 'after' },
+     // { text: 'Photos From Site Survey\n\n', style: 'heading', alignment: 'center' },
+
+      createSitePhotos(surveyPhotos)
+
+      /*
+      { stack: [
+        { image: surveyPhotos[0].photo, alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
+        { text: surveyPhotos[0].caption, alignment: 'center' },
+      ], style: 'sitePhoto' },
+      { stack: [
+        { image: path.join(__dirname, '../../assets/images/sampleSitePhoto2.jpg'), alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
+        { text: 'caption 1', alignment: 'center' },
+      ], style: 'sitePhoto' },
+      { stack: [
+        { image: path.join(__dirname, '../../assets/images/sampleSitePhoto1.jpg'), alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
+        { text: 'caption 1', alignment: 'center' },
+      ], style: 'sitePhoto' }
+      */
+            
+    ], font: 'Verdana' },
+
     pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
-      return currentNode.pageNumbers.length > 1 && previousNodesOnPage.length !== 0;
+      return currentNode.pageNumbers.length > 1 && previousNodesOnPage.length !== 0 && currentNode.id != 'photos';
     },
 
     styles: {
@@ -369,7 +432,8 @@ genericText.OBC = {
         position: 'relative',
       },
       heading: {
-        fontSize: 18,
+        font: 'Roboto',
+        fontSize: 17,
         bold: true,
         marginBottom: 5        
       },
@@ -377,7 +441,10 @@ genericText.OBC = {
         fontSize: 14,
         bold: true,
         marginBottom: 5        
-      },      
+      },  
+      sitePhoto: {
+        marginBottom: 20
+      },    
       pricingTable: {
         margin: [0, 10, 0, 15],
       },
@@ -388,7 +455,7 @@ genericText.OBC = {
     }
   };
 
-  // Write the text for the selected services based on array of boolean flags
+  // Write the text for the selected services based on an array (object) of boolean flags
   function writeGenericText(selected, genericText) {
     return (
       [
@@ -415,9 +482,30 @@ genericText.OBC = {
     );
   }
 
-  // create a thin vector separator line
+  // Generate the list of site photos
+  function createSitePhotos(photos) {
+    return ( 
+      { stack: [
+        { text: '', pageBreak: 'before' },
+        { text: 'Photos From Site Survey\n\n', style: 'heading', alignment: 'center' },
+        
+        { stack: photos.map( (sitePhoto) => {
+            return (
+              { stack: [
+                { image: sitePhoto.photo, alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
+                { text: sitePhoto.caption, alignment: 'center' },
+              ], style: 'sitePhoto' }      
+            );
+          }), id: 'photos'
+        }
+        
+      ], id: 'photos'}
+    );
+  }
+
+  // create a thin vector horizontal separator line
   function horizontalLine() {
-    return { canvas: [{ type: 'line', x1: 215, y1: 2, x2: 400, y2: 2, lineWidth: 0.5 }] };
+    return { canvas: [{ type: 'line', x1: 215, y1: 2, x2: 400, y2: 2, lineWidth: 0.5 }], marginBottom: 10, alignment: 'center' };
   }
   
 
