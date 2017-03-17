@@ -9,25 +9,33 @@ const pdfMakeEstimate = (customer, generics, prices) => {
 
   // TEST VALUES (remove)
   generics = {
-    watertest: false,
+    watertest: true,
     obc: true,
-    nbc: false,
-    refacingSlices: false,
-    refacingComplete: false,
+    nbc: true,
+    refacingSlices: true,
+    refacingComplete: true,
     chimney: true,
-    concreteSteps: false,  
+    concreteSteps: true,  
     concreteCare: true,
     retaining: true,
-    sills: false,
+    sills: true,
     pargeex: true,
-    coping: false,
-    flashing: false,
+    coping: true,
+    flashing: true,
     waterproofing: true,
-    tuckpoint: false,
-    flagstone: false,
+    tuckpoint: true,
+    flagstone: true,
     fwarranty: true,
     pwarranty: true,
-    custom: true
+    disclaimerA: true,
+    disclaimerS: true,
+    disclaimerAS: true,
+    tuckpointUniform: true,
+    surveyInvite: true,
+    surveyInviteDave: true,
+    customerClean: true,
+    existingConcrete: true,
+    custom: true  
   };
 
   // TEST VALUES (remove)
@@ -64,6 +72,11 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     }
   ];
 
+  // TEST VALUE (remove)
+  const customText = "Insert custom text here";
+
+
+
   const IMAGE_MAX_WIDTH = 730;
   const IMAGE_MAX_HEIGHT = 270; 
 
@@ -93,14 +106,14 @@ const pdfMakeEstimate = (customer, generics, prices) => {
 
   genericText.repairGrindParge = {
     content: { stack: [
-    { text: "Repair, Grind & Parge", style: 'heading' },
+      { text: "Repair, Grind & Parge", style: 'heading' },
       { ul: [
         'We lightly grind every single square inch of concrete until the surface is completely clean. Missing a single square inch can and will cause the parge to breakdown.',
         'We repair all cracks and voids in foundation. Our parge includes 2-3” below grade and where there is interlock, we lift interlock, cut interlock if necessary and reset.',
-        'We apply trowel on parge by pressing into place as evenly as possible. After initial setting finish, we parge with a float sandstone finish.',
+        'We apply trowel on parge by pressing into place as evenly as possible. After initial setting finish, we parge with a float sandstone finish.\n\n',
         ],
-      },
-      { text: "10 year warranty on workmanship and materials", bold: true }
+      },    
+      { text: "PARGING & COATING WARRANTY: Our parging and coating have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot." }
     ], style: 'textSection' }
   };
 
@@ -133,14 +146,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     ], style: 'textSection' }
   };
 
- genericText.additionalWork = {
-   content: { stack: [
-     { text: "Please Note: Additional work outside of the estimate to be assessed and discussed on-site with customer.\n\n" },
-     { text: "Warranties as stated or until structural movement or work done by others affects our work." },
-   ], style: 'textSection' }
- };
-
-genericText.OBC = {
+  genericText.OBC = {
     content: { stack: [
     { text: "Ontario Building Code (OBC) — Sidewalk / Garage Pad / Slab", style: 'heading' },
       { ul: [
@@ -193,8 +199,7 @@ genericText.OBC = {
     content: { stack: [
         { text: 'Concrete Care', style: 'heading' },
         {text: "We only recommend the use of coarse sand on your concrete/flagstone for winter conditions. All other products are harmful and may cause pitting or discolouration. A bag of coarse sand can be purchased at Home Depot.\n\n"},
-        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot.\n\n"},
-        {text: "Also note: our parging or roll-on coating or combination of both for floor surfaces have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot."},
+        {text: "Please note: our flagstone installation/restoration has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot."}
     ], style: 'textSection' }
   };
 
@@ -295,7 +300,7 @@ genericText.OBC = {
     ], style: 'textSection' }
   };
 
-  genericText.tuckPointing = {
+  genericText.tuckpoint = {
     content: { stack: [
     { text: 'Tuckpointing', style: 'heading' },
      { ul: [
@@ -310,13 +315,14 @@ genericText.OBC = {
 
   genericText.flagStone = {
     content: { stack: [
-    { text: 'Flagstone', style: 'heading' },
-     { ul: [
-        "We install Banas stone, sandstone, natural stone or limestone", 
-        "Square cut", 
-        "Full piece treads (as few mortar joints as possible on coping area)", 
-        "Overhang with drip edges"
-    ] },
+      { text: 'Flagstone', style: 'heading' },
+      { ul: [
+          "We install Banas stone, sandstone, natural stone or limestone", 
+          "Square cut", 
+          "Full piece treads (as few mortar joints as possible on coping area)", 
+          "Overhang with drip edges\n\n"
+      ] },
+      { text: "FLAGSTONE WARRANTY: Our flagstone installation has a warranty for 5 years provided you use only sand in the winter for icy conditions. All other products cause damage to the mortar joints. Small bags of construction sand can be purchased at Home Depot." }    
     ], style: 'textSection' }
   };
 
@@ -331,6 +337,61 @@ genericText.OBC = {
     { text: "PARGING & COATING WARRANTY: Our parging and coating have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot." }
      ], style: 'textSection' }
   };
+
+  genericText.disclaimerA = {
+    content: { stack: [
+    { text: "Please Note: Additional work outside of the estimate to be assessed and discussed onsite with customer." }
+     ], style: 'textSection' }
+  };
+
+  genericText.disclaimerS = {
+    content: { stack: [
+    { text: "Warranties as stated or until structural movement or work done by others affects our work." }
+     ], style: 'textSection' }
+  };
+
+  genericText.disclaimerAS = {
+    content: { stack: [
+    { text: "Please Note: Additional work outside of the estimate to be assessed and discussed onsite with customer. Warranties as stated or until structural movement or work done by others affects our work." }
+     ], style: 'textSection' }
+  };  
+
+  genericText.tuckpointUniform = {
+    content: { stack: [
+      { text: "For uniformity to the look and long term weather proofing of your masonry we recommend you consider Tuckpointing complete elevations rather than patch repairs." },
+      { text: "This should also include RGP parge minimum 8\" from grade around property where accessible." }    ], style: 'textSection' }
+  };
+
+  genericText.surveyInvite = {
+    content: { stack: [
+    { text: "If you are interested in using our services we can arrange for one of our surveyors to visit your property. Estimate may change as a result of the survey." }
+     ], style: 'textSection' }
+  };
+  
+  genericText.surveyInviteDave = {
+    content: { stack: [
+    { text: "If you are interested in using our services a further site visit will be required from the owner David Fritz to discuss details etc. Estimate may change as a result of this consultation." }
+     ], style: 'textSection' }
+  };
+
+  genericText.customerClean = {
+    content: { stack: [
+    { text: "Customer to arrange timber decking/handrails etc. to be removed before our work begins and re-installed after our work is done." }
+     ], style: 'textSection' }
+  };
+
+  genericText.existingConcrete = {
+    content: { stack: [
+    { text: "Your existing concrete porch steps/landing show signs of moving so are not structurally solid. Any stones you put on its surface will not last as the movement will break the mortar joints between the stones. Without continually filling these joints, water will get in the broken joints, will freeze, expand, and accelerate the rate of damage." }
+     ], style: 'textSection' }
+  };  
+
+  genericText.custom = {
+    content: { stack: [
+    { text: customText }
+     ], style: 'textSection' }
+  };  
+
 
   const fonts = {
     Roboto: {
@@ -357,7 +418,7 @@ genericText.OBC = {
     ],
 
     content: { stack: [
-     { image: path.join(__dirname, '../../assets/images/3lplogo.jpg'),
+     { image: path.join(__dirname, '../../assets/images/3lplogo.jpg'), 
        width: 325,
        height: 325,
        alignment: 'center'     
@@ -368,9 +429,15 @@ genericText.OBC = {
      { text: `${customer.address}`, alignment: 'center'},
      { text: `${moment().format('dddd, MMMM Do YYYY')}`, alignment: 'center'},     
 
-     writeGenericText(generics, genericText),
+     { text: 'Our Thanks', style: 'heading', id: 'startOfContent' },
+     { text: "Three Little Pigs Masonry would like to thank you for the opportunity to quote on your project. Why choose Three Little Pigs Masonry? Since 2004, Three Little Pigs Masonry has grown to become a trusted name in masonry and concrete throughout the GTA. With over 40 years experience and with actual masonry and concrete experts at the helm, your satisfaction is our main priority. \n\n Three Little Pigs Masonry will not leave your property until you are completely satisfied and our warranties reflect our confidence in our ability to provide the best in masonry and concrete. \n", style: 'textSection' }, 
 
-     { text: "Three Little Pigs Masonry would like to thank you for the opportunity to quote on your project. Why choose Three Little Pigs Masonry? Since 2004, Three Little Pigs Masonry has grown to become a trusted name in masonry and concrete throughout the GTA. With over 40 years experience and with actual masonry and concrete experts at the helm, your satisfaction is our main priority. \n Three Little Pigs Masonry will not leave your property until you are completely satisfied and our warranties reflect our confidence in our ability to provide the best in masonry and concrete. \n", style: 'textSection'}, 
+     { text: "\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n\n", bold:true},
+     { text: "Additional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n\n", bold: true},
+     { text: "If you wish to proceed with your estimate, please respond to this email or contact Barbara at (416)595-0100 EXT 102 \n\n" },
+     { text: "Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416)595-0100 extension 106."},    
+
+     writeGenericText(generics, genericText),
 
      { stack: [
        { text: 'Pricing Summary', alignment: 'center', style: 'heading'},
@@ -379,37 +446,21 @@ genericText.OBC = {
           },
           style: 'pricingTable'
         }
-      ], style: 'textSection'},
-
-      { text: "\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n\n", bold:true},
-      { text: "Additional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n\n", bold: true},
-      { text: "If you wish to proceed with your estimate, please respond to this email or contact <b>Barbara</b> at (416)595-0100 EXT 102 \n\n" },
-      { text: "Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416) 595-0100 extension 106."},    
-
-     // { text: '', pageBreak: 'after' },
-     // { text: 'Photos From Site Survey\n\n', style: 'heading', alignment: 'center' },
+      ], style: 'textSection', id: 'pricingTable' },
 
       createSitePhotos(surveyPhotos)
-
-      /*
-      { stack: [
-        { image: surveyPhotos[0].photo, alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
-        { text: surveyPhotos[0].caption, alignment: 'center' },
-      ], style: 'sitePhoto' },
-      { stack: [
-        { image: path.join(__dirname, '../../assets/images/sampleSitePhoto2.jpg'), alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
-        { text: 'caption 1', alignment: 'center' },
-      ], style: 'sitePhoto' },
-      { stack: [
-        { image: path.join(__dirname, '../../assets/images/sampleSitePhoto1.jpg'), alignment: 'center', fit: [IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT] },
-        { text: 'caption 1', alignment: 'center' },
-      ], style: 'sitePhoto' }
-      */
             
     ], font: 'Verdana' },
 
+    // Note: the page breaks were messing up the site photos section layout, so I added extra logic to not line-break if the node has an id of 'photos'.
+    // Line breaks are also set for the start of main text content, and before the pricing table.
+    // The id tags on the content blocks are only used to manage these line breaks.
     pageBreakBefore: function (currentNode, followingNodesOnPage, nodesOnNextPage, previousNodesOnPage) {
-      return currentNode.pageNumbers.length > 1 && previousNodesOnPage.length !== 0 && currentNode.id != 'photos';
+      return (
+              (currentNode.pageNumbers.length > 1 && previousNodesOnPage.length !== 0 && currentNode.id != 'photos') 
+              || currentNode.id === 'startOfContent'
+              || currentNode.id === 'pricingTable'
+              );
     },
 
     styles: {
@@ -473,14 +524,23 @@ genericText.OBC = {
         selected.coping ? genericText.copingStone.content : '',
         selected.flashing ? genericText.flashingWeepers.text : '',
         selected.waterproofing ? genericText.exteriorWaterproofing.content : '',
-        selected.tuckpoint ? genericText.tuckPointing.content : '',
-        selected.flagstone ? genericText.flagStone.content : '',
-        selected.custom ? genericText.additionalWork.content : '',        
+        selected.tuckpoint ? genericText.tuckpoint.content : '',
+        selected.flagstone ? genericText.flagStone.content : '',         
+        selected.disclaimerA ? genericText.disclaimerA.content : '',
+        selected.disclaimerS ? genericText.disclaimerS.content : '',
+        selected.disclaimerAS ? genericText.disclaimerAS.content : '',
+        selected.tuckpointUniform ? genericText.tuckpointUniform.content : '',
+        selected.surveyInvite ? genericText.surveyInvite.content : '',
+        selected.surveyInviteDave ? genericText.surveyInviteDave.content : '',
+        selected.customerClean ? genericText.customerClean.content : '',
+        selected.existingConcrete ? genericText.existingConcrete.content : '', 
+        selected.custom ? genericText.custom.content : '',           
         selected.pwarranty ? genericText.pwarranty.content : '',
-        selected.fwarranty ? genericText.fwarranty.content : ''  
+        selected.fwarranty ? genericText.fwarranty.content : ''
       ]
     );
   }
+
 
   // Generate the list of site photos
   function createSitePhotos(photos) {
