@@ -283,29 +283,33 @@ input newCustomers {
  }
 input generics {
  watertest: Boolean
- banas: Boolean
- concrete: Boolean
  concreteSteps:Boolean
  concreteCare: Boolean
  refacingSlice: Boolean
  refacingComplete: Boolean
  coping: Boolean
- flagstone :Boolean
- flashing : Boolean
- fwarranty : Boolean
- galleryModal : Boolean
+ flagstone: Boolean
+ flashing: Boolean
+ fwarranty: Boolean
  nbc: Boolean
  obc: Boolean
  pargeex: Boolean
- priceText: Boolean
- pricingModal: Boolean
- pwarranty : Boolean
- retaining :Boolean
+ pwarranty: Boolean
+ retaining: Boolean
  roof: Boolean
  sills: Boolean
  tuckpoint:Boolean
  custom: Boolean
  waterproofing: Boolean
+ disclaimerA: Boolean
+ disclaimerS: Boolean
+ tuckpointUniform: Boolean
+ surveyInvite: Boolean
+ surveyInviteDave: Boolean
+ customerClean: Boolean
+ additionalWork: Boolean
+ warrantyAsStated: Boolean
+ existingConcrete: Boolean
 }
 type Query {
   customers(
