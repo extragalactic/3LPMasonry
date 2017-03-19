@@ -63,6 +63,7 @@ const CustomerSchema = new mongoose.Schema({
       thumb: String,
       photo: String,
       caption: String,
+      filename: String,
       selected: Boolean,
       docID: String,
     }],

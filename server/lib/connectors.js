@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import base64Img from 'base64-img';
@@ -17,7 +18,7 @@ import pdfMakeEstimate from '../methods/pdfMake';
 import { sendPushtoEstimators } from '../methods/oneSIgnal';
 
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
-import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
+import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import genericsMapping from './genericsMapping';
@@ -421,9 +422,10 @@ class AddSurveyPhoto {
             timestamp: args.timestamp,
             user: args.user,
             thumb: thumbUrl,
-            photo: originalUrl, // a remote photo or local media url  
+            photo: originalUrl,
             caption: args.heading,
             selected: false,
+            filename: file,
             docID,
           };
           const saveImagetoDisk = (buffer) => {
@@ -622,10 +624,6 @@ class GetFinishedSurveyQuery {
   }
  }
 
-
-
-
-
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
@@ -739,29 +737,15 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      const generics = [];
+      const generics = args.generics;
       const output = [];
       const prices = [];
-
-      _.forIn(args.generics, ((value, key) => {
-        if (value) {
-          generics.push(key);
-        }
-      }));
-      console.log(args)
-
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
           cust.estimate.prices.forEach((price) => {
             prices.push([price.description, `$${price.price}`]);
           });
         });
-
-        generics.forEach((gen) => {
-          GenericModel.findOne({ _id: genericsMapping[gen] })
-            .then((g) => output.push(g));
-        });
-
       setTimeout(() => {
         const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
         const total = pricesArray.reduce((acc, val) => {
@@ -770,17 +754,24 @@ class GeneratePDFEstimate {
         const hst = (total / 100) * 13;
         const Total = numeral(total + hst).format('$0,0.00');
         const HST = numeral(hst).format('$0,0.00');
-
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
-
         CustomersModel.findOne({ _id: args.custid })
          .then(customer => {
-           console.log(customer);
-           pdfMakeEstimate(customer, generics, prices);
+           const photos = customer.survey.photos.filter((img)=> {
+             if(img.selected){
+               return img;
+             }
+           }).map((image) => {
+             image.photo = path.join(__dirname, `../../images/${customer.firstName}${customer.lastName}/original/${image.filename}.jpg`);
+             return image;
+           });
+
+           pdfMakeEstimate(customer, generics, prices, photos);
+           sendEmailEstimatetoCustomer(customer);
          });
       }, 1000);
-  
+      
     };
   }
 }

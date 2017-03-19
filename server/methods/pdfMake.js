@@ -3,6 +3,13 @@ import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
 
+<<<<<<< HEAD
+
+const pdfMakeEstimate = (customer, generics, prices, surveyPhotos) => {
+  const genericText = {};
+ console.log('gen', generics)
+
+=======
 
 const pdfMakeEstimate = (customer, generics, prices) => {
   const genericText = {};
@@ -72,6 +79,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     }
   ];
 
+>>>>>>> 44b11225e0fa3d5191d366e663d2c6f1529515af
   // TEST VALUE (remove)
   const customText = "Insert custom text here";
 
@@ -336,6 +344,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
     content: { stack: [
     { text: "PARGING & COATING WARRANTY: Our parging and coating have a 5 year warranty provided you use only sand in the winter for icy conditions. All other products cause damage to concrete, parge and coatings. Small bags of construction sand can be purchased at Home Depot." }
      ], style: 'textSection' }
+<<<<<<< HEAD
   };
 
   genericText.disclaimerA = {
@@ -380,6 +389,52 @@ const pdfMakeEstimate = (customer, generics, prices) => {
      ], style: 'textSection' }
   };
 
+=======
+  };
+
+  genericText.disclaimerA = {
+    content: { stack: [
+    { text: "Please Note: Additional work outside of the estimate to be assessed and discussed onsite with customer." }
+     ], style: 'textSection' }
+  };
+
+  genericText.disclaimerS = {
+    content: { stack: [
+    { text: "Warranties as stated or until structural movement or work done by others affects our work." }
+     ], style: 'textSection' }
+  };
+
+  genericText.disclaimerAS = {
+    content: { stack: [
+    { text: "Please Note: Additional work outside of the estimate to be assessed and discussed onsite with customer. Warranties as stated or until structural movement or work done by others affects our work." }
+     ], style: 'textSection' }
+  };  
+
+  genericText.tuckpointUniform = {
+    content: { stack: [
+      { text: "For uniformity to the look and long term weather proofing of your masonry we recommend you consider Tuckpointing complete elevations rather than patch repairs." },
+      { text: "This should also include RGP parge minimum 8\" from grade around property where accessible." }    ], style: 'textSection' }
+  };
+
+  genericText.surveyInvite = {
+    content: { stack: [
+    { text: "If you are interested in using our services we can arrange for one of our surveyors to visit your property. Estimate may change as a result of the survey." }
+     ], style: 'textSection' }
+  };
+  
+  genericText.surveyInviteDave = {
+    content: { stack: [
+    { text: "If you are interested in using our services a further site visit will be required from the owner David Fritz to discuss details etc. Estimate may change as a result of this consultation." }
+     ], style: 'textSection' }
+  };
+
+  genericText.customerClean = {
+    content: { stack: [
+    { text: "Customer to arrange timber decking/handrails etc. to be removed before our work begins and re-installed after our work is done." }
+     ], style: 'textSection' }
+  };
+
+>>>>>>> 44b11225e0fa3d5191d366e663d2c6f1529515af
   genericText.existingConcrete = {
     content: { stack: [
     { text: "Your existing concrete porch steps/landing show signs of moving so are not structurally solid. Any stones you put on its surface will not last as the movement will break the mortar joints between the stones. Without continually filling these joints, water will get in the broken joints, will freeze, expand, and accelerate the rate of damage." }
@@ -392,6 +447,10 @@ const pdfMakeEstimate = (customer, generics, prices) => {
      ], style: 'textSection' }
   };  
 
+<<<<<<< HEAD
+console.log(writeGenericText(generics, genericText))
+=======
+>>>>>>> 44b11225e0fa3d5191d366e663d2c6f1529515af
 
   const fonts = {
     Roboto: {
