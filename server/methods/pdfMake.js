@@ -4,73 +4,9 @@ import fs from 'fs';
 import moment from 'moment';
 
 
-const pdfMakeEstimate = (customer, generics, prices) => {
+const pdfMakeEstimate = (customer, generics, prices, surveyPhotos) => {
   const genericText = {};
-
-  // TEST VALUES (remove)
-  generics = {
-    watertest: true,
-    obc: true,
-    nbc: true,
-    refacingSlices: true,
-    refacingComplete: true,
-    chimney: true,
-    concreteSteps: true,  
-    concreteCare: true,
-    retaining: true,
-    sills: true,
-    pargeex: true,
-    coping: true,
-    flashing: true,
-    waterproofing: true,
-    tuckpoint: true,
-    flagstone: true,
-    fwarranty: true,
-    pwarranty: true,
-    disclaimerA: true,
-    disclaimerS: true,
-    disclaimerAS: true,
-    tuckpointUniform: true,
-    surveyInvite: true,
-    surveyInviteDave: true,
-    customerClean: true,
-    existingConcrete: true,
-    custom: true  
-  };
-
-  // TEST VALUES (remove)
-  const surveyPhotos = [
-    {
-      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging1586.jpg",
-      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto1.jpg'),
-      "caption": "Parging",
-      "selected": false
-    },
-    {
-      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging8812.jpg",
-      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto2.jpg'),
-      "caption": "Parging",
-      "selected": false
-    },
-    {
-      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Parging5270.jpg",
-      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto3.jpg'),
-      "caption": "Parging",
-      "selected": false
-    },
-    {
-      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/Concrete8938.jpg",
-      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto4.jpg'),
-      "caption": "Concrete",
-      "selected": false
-    },
-    {
-      "thumb": "https://tlpm.ca/images/JohnFritz/thumbnail/DirectUpload7931.jpg",
-      "photo": path.join(__dirname, '../../assets/images/sampleSitePhoto5.jpg'),
-      "caption": "DirectUpload",
-      "selected": false
-    }
-  ];
+ console.log('gen', generics)
 
   // TEST VALUE (remove)
   const customText = "Insert custom text here";
@@ -392,6 +328,7 @@ const pdfMakeEstimate = (customer, generics, prices) => {
      ], style: 'textSection' }
   };  
 
+console.log(writeGenericText(generics, genericText))
 
   const fonts = {
     Roboto: {

@@ -22,7 +22,7 @@ class _CustomersContainer extends React.Component {
       <div>
         <CustomersTable
           customers={this.props.data.customers}
-         />
+        />
       </div>
     );
   }
