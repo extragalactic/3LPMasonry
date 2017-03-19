@@ -343,6 +343,7 @@ type Query {
 
 }
 type Mutation {
+  deletePrice(custid: String, index: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String, generics: generics): base64PDF
