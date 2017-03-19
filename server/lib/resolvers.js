@@ -176,6 +176,10 @@ const resolveFunctions = {
       const estimate = new ctx.constructor.AddPricing();
       return estimate.addPricing(args);
     },
+    deletePrice(_, args, ctx) {
+      const estimate = new ctx.constructor.DeletePrice();
+      return estimate.deletePrice(args);
+    },
     getFinishedSurvey(_, args, ctx) {
       const survey = new ctx.constructor.GetFinishedSurvey();
       return survey.getFinishedSurvey(args);

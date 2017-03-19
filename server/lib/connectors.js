@@ -649,6 +649,19 @@ class AddPricing {
   }
  }
 
+class DeletePrice {
+  constructor() {
+    this.deletePrice = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          customer.estimate.prices.splice(args.index, 1);
+          customer.save();
+        });
+      return true;
+    };
+  }
+ }
+
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
@@ -798,6 +811,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  DeletePrice,
   AddGeneric,
   GetImageBase64,
   GeneratePDFEstimate,
