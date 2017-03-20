@@ -208,4 +208,3 @@ const resolveFunctions = {
 };
 module.exports = resolveFunctions;
 
-

@@ -24,7 +24,6 @@ class _GenericsContainer extends React.Component {
    }
 
   componentDidMount() {
-    console.log(window.innerWidth)
 
   }
 
@@ -61,9 +60,6 @@ class _GenericsContainer extends React.Component {
   };
 
   submitGeneric = () => {
-    console.log(this)
-
-      
     this.props.addGenerics({
       variables: {
         heading: this.state.heading,

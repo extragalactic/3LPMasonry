@@ -78,5 +78,4 @@ const getAllCustomers = gql `
 }`;
 
 
-
 export { searchAddress, getAllCustomers };

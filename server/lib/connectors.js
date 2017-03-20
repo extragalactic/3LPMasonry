@@ -27,7 +27,7 @@ import genericsMapping from './genericsMapping';
 sharp.concurrency(1);
 dotenv.config();
 
-//console.log(base64Img)
+// console.log(base64Img)
 // 0: New Customer, Inquiry no survery
 // 1: New Customer, Online Survey sent
 // 2: Customer, Online Survey Received
@@ -231,7 +231,7 @@ class SubmitCustomer {
     this.submitCustomer = (args) => {
       const Customer = CustomersModel.findOne({ _id: args.id })
              .then((data) => {
-               const surveyor = !data.surveyor.id ? true : false;
+               const surveyor = !data.surveyor.id;
                const survey = !data.sendSurvey;
                const inquriy = survey && surveyor;
                if (data.sendSurvey === true) {
@@ -253,7 +253,7 @@ class SubmitCustomer {
                  data.status = 1;
                  addCustomertoQueue(data);
                  sendPushtoEstimators(data);
-                 data.save(); 
+                 data.save();
                }
                if (!surveyor) {
                  sendSMStoSurveyor(data);
@@ -296,9 +296,8 @@ class SubmitFollowup {
           if (customer.id === args.custid) {
             customer.status = status;
             return customer;
-          } else {
-            return customer;
           }
+          return customer;
         });
         user.followUp.push(args);
         user.save();
@@ -350,9 +349,9 @@ class DeleteAppointment {
     this.deleteAppointment = (args) => {
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.followUp = _.reject(user.followUp, (apt) => {
-           if (args.meetingid == apt._id) {
-             return apt;
-           }
+          if (args.meetingid == apt._id) {
+            return apt;
+          }
         });
         user.save();
         return user;
@@ -378,8 +377,8 @@ class AddSurveyNotes {
         timestamp: args.timestamp,
         user: args.user,
       };
-      //console.log(args)
-      CustomersModel.findOne({_id: args.custid})
+      // console.log(args)
+      CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
           customer.save();
@@ -387,14 +386,13 @@ class AddSurveyNotes {
 
       UsersModel.findOne({ _id: args.userid })
            .then((user) => {
-              user.newCustomers = user.newCustomers.map((customer) => {
-                if (customer.id === args.custid) {
-                  customer.status = 3;
-                  return customer;
-                } else {
-                  return customer;
-                }
-              });
+             user.newCustomers = user.newCustomers.map((customer) => {
+               if (customer.id === args.custid) {
+                 customer.status = 3;
+                 return customer;
+               }
+               return customer;
+             });
              user.save();
            });
     };
@@ -404,6 +402,7 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
+      console.log(args)
       const docID = randomstring.generate(12);
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
@@ -427,6 +426,7 @@ class AddSurveyPhoto {
             selected: false,
             filename: file,
             docID,
+            localfile: args.localfile,
           };
           const saveImagetoDisk = (buffer) => {
             sharp(buffer)
@@ -466,11 +466,9 @@ class AddSurveyPhoto {
 
 class GetSurveyPhotos {
   constructor() {
-    this.getSurveyPhotos = (args) => {
-      return CustomersModel.findOne({ _id: args.id })
+    this.getSurveyPhotos = args => CustomersModel.findOne({ _id: args.id })
         .then(customer => (customer.survey.photos),
         );
-    };
   }
  }
 
@@ -479,8 +477,8 @@ class GetMessages {
     this.getMessages = (args) => {
       const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
-          if(customer.notes){
-             return customer.notes
+          if (customer.notes) {
+            return customer.notes;
           }
         });
       return Messages;
@@ -507,14 +505,14 @@ class ToggleSurveyReady {
       UsersModel.findOne({ _id: args.userid })
          .then((user) => {
            user.newCustomers = user.newCustomers.map((customer) => {
-                if (customer.id === args.custid) {
-                     if(customer.status === 3) {
-                       customer.status = 4; 
-                     } else if (customer.status === 4) {
-                       customer.status = 3;
-                     }
+             if (customer.id === args.custid) {
+               if (customer.status === 3) {
+                 customer.status = 4;
+               } else if (customer.status === 4) {
+                 customer.status = 3;
                }
-               return customer;
+             }
+             return customer;
            });
            user.save();
          });
@@ -627,7 +625,7 @@ class GetFinishedSurveyQuery {
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
-      PricingModel.findOne({description: args.description})
+      PricingModel.findOne({ description: args.description })
          .then((data) => {
            if (!data) {
              const newPrice = new PricingModel({
@@ -672,7 +670,7 @@ class AcceptEstimate {
             .then((user) => {
               user.estimates.push({
                 id: customer._id,
-                firstName:customer.firstName,
+                firstName: customer.firstName,
                 lastName: customer.lastName,
                 email1: customer.email1,
                 email2: customer.email2,
@@ -761,18 +759,16 @@ class GeneratePDFEstimate {
         });
       setTimeout(() => {
         const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
-        const total = pricesArray.reduce((acc, val) => {
-          return acc + val;
-        }, 0);
+        const total = pricesArray.reduce((acc, val) => acc + val, 0);
         const hst = (total / 100) * 13;
         const Total = numeral(total + hst).format('$0,0.00');
         const HST = numeral(hst).format('$0,0.00');
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
         CustomersModel.findOne({ _id: args.custid })
-         .then(customer => {
-           const photos = customer.survey.photos.filter((img)=> {
-             if(img.selected){
+         .then((customer) => {
+           const photos = customer.survey.photos.filter((img) => {
+             if (img.selected) {
                return img;
              }
            }).map((image) => {
@@ -784,7 +780,6 @@ class GeneratePDFEstimate {
            sendEmailEstimatetoCustomer(customer);
          });
       }, 1000);
-      
     };
   }
 }

@@ -6,8 +6,6 @@ import moment from 'moment';
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos) => {
   const genericText = {};
- console.log('gen', generics)
-
   // TEST VALUE (remove)
   const customText = "Insert custom text here";
 
