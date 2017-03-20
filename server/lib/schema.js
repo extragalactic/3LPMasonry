@@ -195,6 +195,7 @@ type SurveyPhotos {
     caption: String
     selected: Boolean
     docID: String
+    localfile: String
 }
 
 type FinishedSurvey {
@@ -370,7 +371,8 @@ type Mutation {
     orginalBase64: String,
     editedlBase64: String,
     timestamp: String, 
-    user: String
+    user: String,
+    localfile: String,
     ): SurveyPhotos
   deleteAppointment(
     userid: String, 

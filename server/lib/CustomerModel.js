@@ -66,6 +66,7 @@ const CustomerSchema = new mongoose.Schema({
       filename: String,
       selected: Boolean,
       docID: String,
+      localfile: String,
     }],
   },
   estimate: {
