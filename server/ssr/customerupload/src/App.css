@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 170px;
+}
+
+.App-header {
+  background-color: #d3d3d3;
+  height: 140px;
+  padding: 10px;
+  color: black;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+.Photos {
+  align-items: 'center'
+}
+
+.Gallery {
+  width: '10px'
+}

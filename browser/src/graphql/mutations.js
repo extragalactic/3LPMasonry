@@ -26,7 +26,6 @@ const getCustomer = gql`
 const addNotes = gql `
    mutation addNote( $custid: String, $text: String, $createdAt: String, $userid: String, $name: String ){
   addNotes(note: {
-  
     createdAt:$createdAt,
     text: $text,
     custid: $custid
@@ -34,7 +33,6 @@ const addNotes = gql `
       name: $name,
       _id: $userid
     }
-    
   }) {
     _id
     text
@@ -72,5 +70,47 @@ const addGenerics = gql `
   }
 }`;
 
+const toggleSurveyReady = gql `
+  mutation toggleSurveyReady($custid: String, $userid: String){
+  toggleSurveyReady(custid: $custid, userid: $userid) {
+    id
+    firstName
+    lastName
+  }
+}`;
+const addSurveyPhoto = gql`
+  mutation addSurveyPhoto(
+  $custid: String, 
+  $heading: String,
+  $description: String, 
+  $timestamp: String, 
+  $user: String,
+  $orginalBase64: String,
+){
+    addSurveyPhoto (
+      custid: $custid,
+      heading: $heading,
+      description: $description,
+      timestamp: $timestamp,
+      user: $user,
+      orginalBase64:$orginalBase64
+    )
+    {
+      heading
+      description
+      timestamp
+      user
+      orginalBase64
+      editedlBase64
+     }
+  }`;
 
-export { getImageBase64, getCustomer, addNotes, getSurveyPhotos, addGenerics };
+export {
+  getImageBase64,
+  getCustomer,
+  addNotes,
+  getSurveyPhotos,
+  addGenerics,
+  toggleSurveyReady,
+  addSurveyPhoto,
+};

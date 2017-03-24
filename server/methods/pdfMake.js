@@ -4,12 +4,9 @@ import fs from 'fs';
 import moment from 'moment';
 
 
-const pdfMakeEstimate = (customer, generics, prices, surveyPhotos) => {
+const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
   const genericText = {};
   // TEST VALUE (remove)
-  const customText = "Insert custom text here";
-
-
 
   const IMAGE_MAX_WIDTH = 730;
   const IMAGE_MAX_HEIGHT = 270; 
@@ -325,8 +322,6 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos) => {
     { text: customText }
      ], style: 'textSection' }
   };  
-
-console.log(writeGenericText(generics, genericText))
 
   const fonts = {
     Roboto: {

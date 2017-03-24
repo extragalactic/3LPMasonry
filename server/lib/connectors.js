@@ -404,8 +404,15 @@ class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
       console.log(args)
+      const parseImgString = () => {
+        const array = args.orginalBase64.split(',');
+        if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
+          return array[1];
+        }
+        return args.orginalBase64;
+      };
       const docID = randomstring.generate(12);
-      CustomersModel.findOne({ _id: args.custid })
+      return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           const folder = customer.firstName + customer.lastName;
           const file = args.heading + randomstring.generate({
@@ -439,7 +446,7 @@ class AddSurveyPhoto {
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
               .catch(err => console.log('error', err));
           };
-          const buffer = Buffer.from(args.orginalBase64, 'base64');
+          const buffer = Buffer.from(parseImgString(), 'base64');
           fs.access(`images/${folder}`, (err) => {
             if (err && err.code === 'ENOENT') {
               fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
@@ -454,12 +461,12 @@ class AddSurveyPhoto {
           customer.survey.photos.push(payload);
           customer.save();
           const photo = new PhotosModel({
-            base64: `data:image/jpeg;base64,${args.orginalBase64}`,
+            base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
             docID,
           });
-         // console.log(photo)
-          photo.save();
+           photo.save();
+          return { heading: originalUrl };  //fix this, why is photo prop not showing?
         });
     };
   }
@@ -777,7 +784,7 @@ class GeneratePDFEstimate {
              return image;
            });
 
-           pdfMakeEstimate(customer, generics, prices, photos);
+           pdfMakeEstimate(customer, generics, prices, photos, args.text);
            sendEmailEstimatetoCustomer(customer);
          });
       }, 1000);

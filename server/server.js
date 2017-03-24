@@ -106,8 +106,13 @@ app.use(express.static(path.join(__dirname, '../browser/')));
 app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
 
 app.use(express.static(path.join(__dirname, './ssr/')));
-app.get('/upload/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static/css')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static/media')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build')));
+
+app.get('/upload/:userid', (req, res) => {
+  res.sendFile(path.join(__dirname, './ssr/customerupload/build/index.html'));
 });
 app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
 
