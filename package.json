@@ -120,6 +120,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
     "node-sass": "^4.5.1",
+    "loaders.css": "^0.1.2",
     "react-native-debugger-open": "^0.3.2",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",

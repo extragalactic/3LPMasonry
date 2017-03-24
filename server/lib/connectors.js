@@ -411,6 +411,7 @@ class AddSurveyPhoto {
         }
         return args.orginalBase64;
       };
+
       const docID = randomstring.generate(12);
       return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
