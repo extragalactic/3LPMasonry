@@ -1,14 +1,12 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
-
 import Sketch from 'react-sketch';
+import { graphql, compose } from 'react-apollo';
+import { getSurveyPhotos, getImageBase64 } from '../../graphql/mutations';
 
-import { getSurveyPhotos, getImageBase64} from '../../graphql/mutations';
-
-const SketchField = Sketch.SketchField
+const SketchField = Sketch.SketchField;
 const Tools = Sketch.Tools;
 const sketch = Sketch.SketchField.prototype;
-window.sketch = sketch
+window.sketch = sketch;
 
 class _PhotoEditor extends React.Component {
   constructor() {
@@ -17,20 +15,22 @@ class _PhotoEditor extends React.Component {
       photos: [],
     };
   }
-  componentDidMount () {
+  componentDidMount() {
 
- }
-  
+  }
+
   render() {
-     return (
-  <div> 
-      <SketchField width='1024px' 
-                         height='768px' 
-                         tool={Tools.Pencil} 
-                         color='black'
-                         lineWidth={3}/>
-  
-  </div>
+    return (
+      <div>
+        <SketchField
+          width="1024px"
+          height="768px"
+          tool={Tools.Pencil}
+          color="black"
+          lineWidth={3}
+        />
+
+      </div>
     );
   }
 }

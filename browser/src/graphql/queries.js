@@ -72,10 +72,7 @@ const getAllCustomers = gql `
         price
       }
     }
-    
   }
-  
 }`;
-
 
 export { searchAddress, getAllCustomers };
