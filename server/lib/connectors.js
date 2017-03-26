@@ -403,7 +403,6 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
-      console.log(args);
       const parseImgString = () => {
         const array = args.orginalBase64.split(',');
         if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
@@ -785,7 +784,6 @@ class GeneratePDFEstimate {
              image.photo = path.join(__dirname, `../../images/${customer.firstName}${customer.lastName}/original/${image.filename}.jpg`);
              return image;
            });
-
            pdfMakeEstimate(customer, generics, prices, photos, args.text);
            if (!args.preview) {
              sendEmailEstimatetoCustomer(customer);

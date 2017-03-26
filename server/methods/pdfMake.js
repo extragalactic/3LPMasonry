@@ -349,7 +349,6 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     ],
       style: 'textSection' },
   };
-
   const fonts = {
     Roboto: {
       normal: path.join(__dirname, '../../assets/fonts/Roboto-Regular.ttf'),
