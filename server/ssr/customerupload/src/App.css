@@ -25,3 +25,14 @@
 .Gallery {
   width: '10px'
 }
+
+
+ol ol {
+    margin-left: 2em;
+}
+li {
+  list-style-position: inside;
+  padding: 0;
+}
+
+

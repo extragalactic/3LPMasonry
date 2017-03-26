@@ -21,10 +21,9 @@ module.exports = {
     loaders: [
       { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
       {
-              test: /\.css$/,
-                loader:'style!css!'
-        },
-        
+        test: /\.css$/,
+        loader: 'style!css!',
+      },
     ],
     query: {
       presets: ['react', 'es2015', 'babel-preset-react-hmre'],

@@ -53,7 +53,7 @@ const CustomerSchema = new mongoose.Schema({
     }],
     photos: [{
       heading: String,
-      description: [ String ],
+      description: [String],
       timestamp: String,
       user: String,
       orginalBase64: String,
