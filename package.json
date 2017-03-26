@@ -93,6 +93,7 @@
     "react-tap-event-plugin": "^2.0.0",
     "react-wobbly-spinner": "^1.1.0",
     "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.0",
     "redux-form": "^6.2.0",
     "redux-form-material-ui": "^4.1.0",
     "request": "^2.78.0",

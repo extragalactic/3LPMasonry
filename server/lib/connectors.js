@@ -403,7 +403,7 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
-      console.log(args)
+      console.log(args);
       const parseImgString = () => {
         const array = args.orginalBase64.split(',');
         if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
@@ -466,8 +466,8 @@ class AddSurveyPhoto {
             url: originalUrl,
             docID,
           });
-           photo.save();
-          return { heading: originalUrl };  //fix this, why is photo prop not showing?
+          photo.save();
+          return { heading: originalUrl };  // fix this, why is photo prop not showing?
         });
     };
   }
@@ -757,6 +757,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
+      console.log('PREVIEW', args.preview);
       const generics = args.generics;
       const output = [];
       const prices = [];
@@ -786,7 +787,9 @@ class GeneratePDFEstimate {
            });
 
            pdfMakeEstimate(customer, generics, prices, photos, args.text);
-           sendEmailEstimatetoCustomer(customer);
+           if (!args.preview) {
+             sendEmailEstimatetoCustomer(customer);
+           }
          });
       }, 1000);
     };

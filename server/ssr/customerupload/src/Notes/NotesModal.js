@@ -1,10 +1,8 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
-import Snackbar from 'material-ui/Snackbar';
-import { grey500, grey50 } from 'material-ui/styles/colors';
+import { grey50 } from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 
 const paperStyle = {
