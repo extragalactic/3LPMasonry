@@ -3,7 +3,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import { browserHistory } from 'react-router';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { filter } from 'lodash';
@@ -14,6 +14,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import '../carousel.css';
 
+import HandbookModal from '../Handbook/HanbookModal';
 
 const styles = {
   paperStyle: {
@@ -51,6 +52,7 @@ class WebViewContainer extends React.Component {
       images: [],
       lightboxIsOpen: false,
       notesModal: false,
+      handbookModal: false,
       notesText: '',
     };
   }
@@ -76,7 +78,7 @@ class WebViewContainer extends React.Component {
                       },
                     })
                     .then((img) => {
-                    this.forceUpdate();
+                      this.forceUpdate();
                     });
                   }, 1000);
                 },
@@ -101,19 +103,23 @@ class WebViewContainer extends React.Component {
   render() {
     return (
       <MuiThemeProvider
-        muiTheme={getMuiTheme(darkBaseTheme)}
+        muiTheme={getMuiTheme(lightBaseTheme)}
       >
         <div className="App">
-          <div className="App-header">
+        
+         
+        {!this.state.handbookModal ?
+          <div>
+            <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
           </div>
-          <p className="App-intro">
+           <p className="App-intro">
           Upload your photos, get directions from handbook
           </p>
-          <FlatButton
+         <FlatButton
             backgroundColor={'#9E9E9E'}
             label="Handbook"
-            onTouchTap={() => browserHistory.push('/handbook')}
+            onTouchTap={() => this.setState({ handbookModal: true })}
           />
           <br />
           <br />
@@ -133,14 +139,15 @@ class WebViewContainer extends React.Component {
           >
             <input multiple type="file" style={styles.uploadInput} onChange={(img, i) => this.onInputChange(img, i)} />
           </FlatButton>
-          <br />
-          <br />
-          <br />
-          { this.state.images.length > 1 ?
-            <div>
+          { this.state.images.length > 0 ?
+            <div
+              style={styles.paperStyle}
+            >
               <ImageGallery
                 items={this.state.images}
                 slideInterval={2000}
+                showThumbnails={false}
+                showPlayButton={false} 
                 onImageLoad={this.handleImageLoad}
               />
               <FlatButton
@@ -151,13 +158,24 @@ class WebViewContainer extends React.Component {
               <br />
               <br />
             </div> : null}
-          <div style={styles.paperStyle}>
+
+
+          </div>
+          
+           : null}
+        
+          <div>
+            <HandbookModal
+              isOpen={this.state.handbookModal}
+              close={() => this.setState({ handbookModal: false })}
+            />
             <NotesModal
               onChangeNotes={this.onChangeNotes}
               open={this.state.notesModal}
               close={this.closeNotesModal}
               notesText={this.state.notesText}
             />
+          
           </div>
         </div>
       </MuiThemeProvider>

@@ -3,6 +3,8 @@ import { graphql, compose } from 'react-apollo';
 import MobileDetect from 'mobile-detect';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import 'react-image-gallery/styles/css/image-gallery.css';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
 import { addSurveyPhoto, toggleSurveyReady } from './graphql/mutations';
 import './App.css';
 import './carousel.css';
@@ -23,6 +25,7 @@ class _App extends Component {
   componentDidMount() {
   }
   render() {
+    console.log('test')
     if (!md.tablet() && !md.is('iPhone')) {
       return (
         <WebViewContainer
