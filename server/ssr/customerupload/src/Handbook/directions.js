@@ -12,8 +12,8 @@ const handleImageLoad = (event) => {
 
 const styles = {
   paperStyle: {
-    height:'30%',
-    width: '35%',
+    height: '45%',
+    width: '75%',
     margin: 'auto',
     marginTop: '2%',
     backgroundColor: grey200,
@@ -62,6 +62,9 @@ const Chimneys = () => (
     <div
       style={styles.paperStyle}
     >
+    <div
+     style={{ backgroundColor: 'transparent' }}
+    >
     <ImageGallery
       items={[
        { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/chimney1.jpg' },
@@ -75,6 +78,7 @@ const Chimneys = () => (
       showFullscreenButton={false}
       showPlayButton={false}
     />
+    </div>
     </div>
   </div>
 );
