@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
-import { Router, browserHistory } from 'react-router';
-import routes from './routes';
 import './index.css';
 import App from './App';
 
