@@ -56,7 +56,7 @@ const Chimneys = () => (
       <ul>
         <li >Please upload photos showing at least two sides of the chimney, include areas where damaged bricks are visible. <b> Figures: 1, 2, 3 </b> </li>
         <li>Please show how TLP would access the work area with our scaffolding.<b> Figures: 1, 2, 3 </b></li>
-        <li>If possible please provide us with a close up photo of the brick in use, including its measurements <b> Figures: 4 </b></li>
+        <li>If possible please provide us with a close up photo of the brick in use, including its measurements <b> Figure: 4 </b></li>
       </ul>
     </div>
     <div
@@ -87,9 +87,9 @@ const Flagstone = () => (
         <li> Please upload photos that show the complete area of your proposed
              project including width/length mesurements
           <b> Figures: 1, 2 </b></li>
-        <li>For porches provide measurements of width/length
+        <li>For porches please provide width/length measurements
             of landing and width of steps.
-          <b> Figures: 1, 2 </b></li>
+         </li>
       </ul>
     </div>
     <div
@@ -103,6 +103,9 @@ const Flagstone = () => (
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false} 
       />
     </div>
   </div>
@@ -113,7 +116,7 @@ const Windowsills = () => (
    <div>
     <div style={styles.text}>
       <ul>
-        <li >Show each side of property clearly.
+        <li >Please uplod photos that show each side of property clearly.
           <b>Fig: 1, 2 </b></li>
         <li> Provide a measurement in inches of any sill to be replaced
           <b>Fig: 1, 2 </b></li>
@@ -132,6 +135,9 @@ const Windowsills = () => (
          ]}
          slideInterval={2000}
          onImageLoad={handleImageLoad}
+         showThumbnails={false}
+         showFullscreenButton={false}
+         showPlayButton={false} 
        />
      </div>
    </div>
@@ -164,6 +170,9 @@ const Brickrepair = () => (
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false} 
       />
     </div>
   </div>
@@ -192,6 +201,9 @@ const WaterProofing = () => (
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false} 
       />
     </div>
   </div>
@@ -221,6 +233,10 @@ const Concrete = () => (
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false} 
+        
       />
     </div>
   </div>
@@ -274,6 +290,9 @@ const Retaining = () => (
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
+        showThumbnails={false}
+        showFullscreenButton={false}
+        showPlayButton={false} 
       />
     </div>
   </div>
