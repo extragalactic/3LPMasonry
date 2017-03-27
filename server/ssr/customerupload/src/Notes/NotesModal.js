@@ -4,7 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import { red500 } from 'material-ui/styles/colors';
 import Modal from 'react-modal';
+import { graphql, compose } from 'react-apollo';
 import '../App.css';
+import { addSurveyNotes } from '../graphql/mutations';
 
 const style = {
   position: 'fixed',
@@ -30,7 +32,7 @@ const customStyles = {
   },
 };
 
-class NotesModal extends React.Component {
+class _NotesModal extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -40,6 +42,20 @@ class NotesModal extends React.Component {
   }
   handleChange = (event, index, value) => this.setState({ value });
   updateNotesInput = notes => this.setState({ notes });
+
+  submiNotes = () => {
+    this.props.addSurveyNotes({
+      variables: {
+        custid: location.pathname.split('/')[2],
+        userid: '00001',
+        heading: 'OnlineSurvey',
+        description: 'OnlineSurvey',
+        text: this.state.notes,
+        timestamp: new Date(),
+        user: 'OnlineSurvey',
+      },
+    });
+  }
 
   render() {
     return (
@@ -60,6 +76,16 @@ class NotesModal extends React.Component {
         <p className="App-intro">
           Please give us a full and detailed decription of the issue.
         </p>
+        <TextField
+          hintText="What do you need fixed?"
+          floatingLabelText="Tell us about your masonry woes, we are happy to help"
+          multiLine
+          rows={12}
+          rowsMax={12}
+          fullWidth
+          value={this.state.notes}
+          onChange={(event, value) => this.updateNotesInput(value)}
+        />
         <FlatButton
           label="Submit"
           primary
@@ -67,19 +93,14 @@ class NotesModal extends React.Component {
           fullWidth
           backgroundColor={'#F5F5F5'}
         />
-        <TextField
-          hintText="What do you need fixed?"
-          floatingLabelText="Tell us about your masonry woes, we are happy can help"
-          multiLine
-          rows={12}
-          maxRows={12}
-          fullWidth
-          value={this.state.notes}
-          onChange={(event, value) => this.updateNotesInput(value)}
-        />
       </Modal>
     );
   }
 }
+
+
+const NotesModal = compose(
+   graphql(addSurveyNotes, { name: 'addSurveyPhoto' }),
+)(_NotesModal);
 
 export default NotesModal;
