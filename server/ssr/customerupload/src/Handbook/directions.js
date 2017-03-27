@@ -261,7 +261,7 @@ const Foundation = () => (
     >
       <ImageGallery
         items={[
-          { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging1.JPG' },
+          { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging1.jpg' },
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging2.JPG' },
         ]}
         slideInterval={2000}

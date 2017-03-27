@@ -7,7 +7,11 @@ import { Router, browserHistory } from 'react-router';
 import { addSurveyPhoto, toggleSurveyReady } from './graphql/mutations';
 import './App.css';
 import './carousel.css';
+
 import WebViewContainer from './WebView/WebViewContainer';
+import TabletContainer from './TabletView/TabletViewContainer';
+
+
 injectTapEventPlugin();
 const md = new MobileDetect(window.navigator.userAgent)
 
@@ -30,11 +34,15 @@ class _App extends Component {
         <WebViewContainer
           addSurveyPhoto={this.props.addSurveyPhoto}
           toggleSurveyReady={this.props.toggleSurveyReady}
-        />);
+        />
+        );
     }
     if (md.tablet()) {
       return (
-        <div> tablet </div>
+        <TabletContainer
+          addSurveyPhoto={this.props.addSurveyPhoto}
+          toggleSurveyReady={this.props.toggleSurveyReady}
+        />
       );
     }
     if (md.is('iPhone')) {
