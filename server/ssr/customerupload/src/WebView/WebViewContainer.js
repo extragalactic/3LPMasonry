@@ -15,6 +15,7 @@ import '../App.css';
 import '../carousel.css';
 
 import HandbookModal from '../Handbook/HanbookModal';
+import ThankYouModal from '../ThankYou/ThankYouModal';
 
 const styles = {
   paperStyle: {
@@ -33,7 +34,7 @@ const styles = {
   uploadButton: {
     verticalAlign: 'middle',
     margin: 2,
-    marginBottom: 3
+    marginBottom: 3,
   },
   uploadInput: {
     cursor: 'pointer',
@@ -56,6 +57,7 @@ class WebViewContainer extends React.Component {
       notesModal: false,
       handbookModal: false,
       notesText: '',
+      thankYouModal: false,
     };
   }
   onInputChange = (e) => {
@@ -102,70 +104,72 @@ class WebViewContainer extends React.Component {
       notesModal: false,
     });
   };
+
+  submitSurvey = () => {
+    this.setState({ ThankYouModal: true });
+    setTimeout(() => { window.close(); }, 3000);
+  };
+
   render() {
     return (
       <MuiThemeProvider
         muiTheme={getMuiTheme(lightBaseTheme)}
       >
         <div className="App">
-        
-         
-        {!this.state.handbookModal && !this.state.notesModal ?
-          <div>
-            <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
-           <p className="App-intro">
-          Upload your photos, get directions from handbook
-          </p>
-         <FlatButton
-            backgroundColor={'#9E9E9E'}
-            label="Handbook"
-            onTouchTap={() => this.setState({ handbookModal: true })}
-            style={{margin: 2}}
-
-          />
-        
-          <FlatButton
-            backgroundColor={'#9E9E9E'}
-            label="Add Notes"
-            onTouchTap={() => this.setState({ notesModal: true })}
-            style={{margin: 2}}
-          />
-           <FlatButton
-            backgroundColor={'#9E9E9E'}
-            label="Add Images"
-            labelPosition="before"
-            style={styles.uploadButton}
-            containerElement="label"
-          >
-            <input multiple type="file" style={styles.uploadInput} onChange={(img, i) => this.onInputChange(img, i)} />
-          </FlatButton>
-          { this.state.images.length > 0 ?
-            <div
-              style={styles.paperStyle}
-            >
-              <ImageGallery
-                items={this.state.images}
-                slideInterval={2000}
-                showThumbnails={false}
-                showPlayButton={false} 
-                onImageLoad={this.handleImageLoad}
+          {!this.state.handbookModal && !this.state.notesModal ?
+            <div>
+              <div className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+              </div>
+              <p className="App-intro">
+               Upload your photos, get directions from handbook
+              </p>
+              <FlatButton
+                backgroundColor={'#9E9E9E'}
+                label="Handbook"
+                onTouchTap={() => this.setState({ handbookModal: true })}
+                style={{ margin: 2 }}
               />
               <FlatButton
                 backgroundColor={'#9E9E9E'}
-                label="Submit"
-                fullWidth
+                label="Add Notes"
+                onTouchTap={() => this.setState({ notesModal: true })}
+                style={{ margin: 2 }}
               />
-              <br />
-              <br />
+              <FlatButton
+                backgroundColor={'#9E9E9E'}
+                label="Add Images"
+                labelPosition="before"
+                style={styles.uploadButton}
+                containerElement="label"
+              >
+                <input
+                  multiple
+                  type="file"
+                  style={styles.uploadInput}
+                  onChange={(img, i) => this.onInputChange(img, i)}
+                />
+              </FlatButton>
+              { this.state.images.length > 0 ?
+                <div
+                  style={styles.paperStyle}
+                >
+                  <ImageGallery
+                    items={this.state.images}
+                    slideInterval={2000}
+                    showThumbnails={false}
+                    showPlayButton={false}
+                    onImageLoad={this.handleImageLoad}
+                  />
+                  <FlatButton
+                    backgroundColor={'#9E9E9E'}
+                    label="Submit"
+                    fullWidth
+                    onTouchTap={this.submitSurvey}
+                  />
+                  <br />
+                </div> : null}
             </div> : null}
-
-
-          </div>
-          
-           : null}
-        
           <div>
             <HandbookModal
               isOpen={this.state.handbookModal}
@@ -177,7 +181,9 @@ class WebViewContainer extends React.Component {
               close={this.closeNotesModal}
               notesText={this.state.notesText}
             />
-          
+            <ThankYouModal
+              isOpen={this.state.thankYouModal}
+            />
           </div>
         </div>
       </MuiThemeProvider>
