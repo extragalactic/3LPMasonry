@@ -36,5 +36,30 @@ const addSurveyPhoto = gql`
      }
   }`;
 
-
-export { toggleSurveyReady, addSurveyPhoto };
+const addSurveyNotes = gql`
+  mutation addSurveyNotes(
+  $custid: String, 
+  $userid: String,
+  $heading: String,
+  $description: String, 
+  $text: String, 
+  $timestamp: String, 
+  $user: String){
+    addSurveyNotes(
+      custid: $custid,
+      userid: $userid,
+      heading: $heading,
+      description: $description,
+      text: $text,
+      timestamp: $timestamp,
+      user: $user,
+    )
+    {
+      heading
+      description
+      text
+      timestamp
+      user
+     }
+  }`;
+export { toggleSurveyReady, addSurveyPhoto, addSurveyNotes };
