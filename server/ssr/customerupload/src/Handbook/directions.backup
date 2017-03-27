@@ -52,9 +52,9 @@ const Chimneys = () => (
       style={styles.text}
     >
       <ul>
-        <li >Please upload photos showing at least two sides of the chimney, include areas where damaged bricks are visible. </li>
-        <li>Please show how TLP would access the work area with our scaffolding</li>
-        <li>If possible please provide us with a close up photo of the brick in use, including its measurements</li>
+        <li >Please upload photos showing at least two sides of the chimney, include areas where damaged bricks are visible. <b> Figures: 1, 2, 3 </b> </li>
+        <li>Please show how TLP would access the work area with our scaffolding.<b> Figures: 1, 2, 3 </b></li>
+        <li>If possible please provide us with a close up photo of the brick in use, including its measurements <b> Figure: 4 </b></li>
       </ul>
     </div>
     <div
@@ -88,7 +88,7 @@ const Flagstone = () => (
       <ul>
         <li> Please upload photos that show the complete area of your proposed
              project including width/length mesurements
-        </li>
+          <b> Figures: 1, 2 </b></li>
         <li>For porches please provide width/length measurements
             of landing and width of steps.
          </li>
@@ -119,11 +119,11 @@ const Windowsills = () => (
     <div style={styles.text}>
       <ul>
         <li >Please upload photos that show each side of property clearly.
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li> Provide a measurement in inches of any sill to be replaced
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li> Take measurement of sill not window size.
-        </li>
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
      <div
@@ -150,15 +150,15 @@ const Brickrepair = () => (
     <div style={styles.text}>
       <ul>
         <li >Brick Repairs: Tuckpointing & Brick Replacement.
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Example for flagstones
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Example for masonry
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Example for porch
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Example for stonework
-        </li>
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
     <div
@@ -169,14 +169,12 @@ const Brickrepair = () => (
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/brick1.JPG' },
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/brick2.JPG' },
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/brick3.JPG' },
-          { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/brick4.JPG' },
-
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
         showThumbnails={false}
         showFullscreenButton={false}
-        showPlayButton={false}
+        showPlayButton={false} 
       />
     </div>
   </div>
@@ -186,11 +184,12 @@ const WaterProofing = () => (
     <div style={styles.text}>
       <ul>
         <li >Photo to show complete side of property to be waterproofed
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Take measurements of wall corner to corner
-           </li>
+          <b>Fig: 1, 2 </b></li>
                <li>Give details of foundation material, eg concrete/block etc
-          </li>
+
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
     <div
@@ -215,11 +214,11 @@ const Concrete = () => (
     <div style={styles.text}>
       <ul>
         <li >We require  3 pictures for porches showing the front,left side & right side
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Take measurements for width & length of landing and the width for any steps
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Walkways/garages/pads etc we require width and length of area
-        </li>
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
     <div
@@ -249,9 +248,9 @@ const Foundation = () => (
     <div style={styles.text}>
       <ul>
         <li >We require photos of the complete sides of your property foundation.
-        </li>
+          <b>Fig: 1, 2 </b></li>
         <li>For garage piers a photo of all front piers in 1 photo
-        </li>
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
     <div
@@ -261,8 +260,6 @@ const Foundation = () => (
         items={[
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging1.jpg' },
           { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging2.JPG' },
-          { original: 'https://s3.ca-central-1.amazonaws.com/tlpm/web/parging3.jpg' },
-
         ]}
         slideInterval={2000}
         onImageLoad={handleImageLoad}
@@ -276,11 +273,11 @@ const Retaining = () => (
     <div style={styles.text}>
       <ul>
         <li >Provide photos from distance, showing the entire existing  wall and steps or area new wall is to be installed
-         </li>
+          <b>Fig: 1, 2 </b></li>
         <li>Provide measurements for the length and height of existing/proposed new wall
-         </li>
+          <b>Fig: 1, 2 </b></li>
         <li>If steps are part of the retaining wall please measure the width of the steps.
-         </li>
+          <b>Fig: 1, 2 </b></li>
       </ul>
     </div>
     <div

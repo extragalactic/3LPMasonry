@@ -60,8 +60,7 @@ console.log(this);
         <p className="App-intro">
           Choose type of work from drop down.
           <br />
-          Please follow directions carefully to ensure
-          we can complete your estimate in a timeley manner.
+          By following the picture exampes in this guide you will assist us in providing a more acurate estimate for your project.
         </p>
         <div
           className={'menu'}
@@ -81,7 +80,7 @@ console.log(this);
           <MenuItem value={5} primaryText="Waterproofing" />
           <MenuItem value={6} primaryText="Concrete Install/Repair" />
           <MenuItem value={7} primaryText="Foundation Repair/Parging" />
-          <MenuItem value={8} primaryText="Retaininng Walls" />
+          <MenuItem value={8} primaryText="Retaining Walls" />
         </SelectField>
         </div>
         <div>

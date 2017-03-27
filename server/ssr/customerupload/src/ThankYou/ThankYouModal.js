@@ -46,9 +46,9 @@ class ThankYouModal extends React.Component {
           style={style.photoStyle}
         />
         <div className="App-intro">
-          <h4> Thank You for contactng Three Little Pigs Masonry</h4>
+          <h4> Thank You for contacting Three Little Pigs Masonry</h4>
           <h4> We look forward to helping you improve or protect your home investment</h4>
-          <h4> Keep an eye on your email to receive your estimate, it will be sent out shortly</h4>
+          <h4> Keep an eye on your email or spam folder to receive your estimate, it will be sent out shortly</h4>
           <h4> If we need more into, a TLP staff member will contact you</h4>
         </div>
       </Modal>

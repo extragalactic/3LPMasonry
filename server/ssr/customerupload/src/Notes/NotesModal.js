@@ -58,7 +58,6 @@ class _NotesModal extends React.Component {
     })
     .then((data) => console.log(data))
     .catch((err) => console.error(err));
-
     this.setState({ notes: '' });
   }
 

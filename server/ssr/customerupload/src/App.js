@@ -31,7 +31,6 @@ class _App extends Component {
     window.close();
   }
   render() {
-    console.log('test')
     if (!md.tablet() && !md.is('iPhone')) {
       return (
         <WebViewContainer
