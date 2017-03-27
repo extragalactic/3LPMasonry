@@ -26,6 +26,7 @@ const customStyles = {
     bottom: '50%',
     marginRight: '-50%',
     height: '60%',
+    width: '85%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'rgba(255, 255, 255, 0.75)',
     display: 'inline-block',
@@ -82,11 +83,9 @@ class _NotesModal extends React.Component {
         </p>
         <TextField
           hintText="What do you need fixed?"
-          floatingLabelText="Tell us about your masonry woes, we are happy to help"
           multiLine
           rows={12}
-          rowsMax={12}
-          fullWidth
+          maxRows={12}
           value={this.state.notes}
           onChange={(event, value) => this.updateNotesInput(value)}
         />

@@ -9,7 +9,7 @@ import './App.css';
 import './carousel.css';
 
 import WebViewContainer from './WebView/WebViewContainer';
-import TabletContainer from './TabletView/TabletViewContainer';
+import MobileContainer from './MobileView/MobileContainer';
 
 
 injectTapEventPlugin();
@@ -31,7 +31,6 @@ class _App extends Component {
     window.close();
   }
   render() {
-    console.log('test')
     if (!md.tablet() && !md.is('iPhone')) {
       return (
         <WebViewContainer
@@ -50,9 +49,13 @@ class _App extends Component {
         />
       );
     }
-    if (md.is('iPhone')) {
+    if (md.phone()) {
       return (
-        <div> iPhone</div>
+        <MobileContainer
+          exit={this.exit}
+          addSurveyPhoto={this.props.addSurveyPhoto}
+          toggleSurveyReady={this.props.toggleSurveyReady}
+        />
       );
     }
     return (

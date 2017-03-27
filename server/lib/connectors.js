@@ -251,8 +251,8 @@ class SubmitCustomer {
                    sendEmailSurveytoCustomer({ email: data.email2, data });
                  }
                  data.status = 1;
-                 addCustomertoQueue(data);
-                 sendPushtoEstimators(data);
+                 //addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
+                 //sendPushtoEstimators(data);
                  data.save();
                }
                if (!surveyor) {

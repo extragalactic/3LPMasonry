@@ -13,7 +13,7 @@ const handleImageLoad = (event) => {
 const styles = {
   paperStyle: {
     height: '45%',
-    width: '75%',
+    width: '90%',
     margin: 'auto',
     marginTop: '2%',
     backgroundColor: grey200,

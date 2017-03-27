@@ -11,7 +11,7 @@ import {red500, yellow500, lightBlue100,blue500} from 'material-ui/styles/colors
 import MenuItem from 'material-ui/MenuItem';
 import { grey800 } from 'material-ui/styles/colors';
 import Modal from 'react-modal';
-import { Chimneys, Flagstone, Windowsills, Brickrepair, WaterProofing, Concrete, Foundation, Retaining } from './directions';
+import { Chimneys, Flagstone, Windowsills, Brickrepair, WaterProofing, Concrete, Foundation, Retaining } from './MobileDirectons';
 
 const iconStyles = {
   flex: 1,
@@ -36,6 +36,7 @@ console.log(this);
     bottom                : '50%',
     marginRight           : '-50%',
     height                : '90%',
+    width: '90%',
     transform             : 'translate(-50%, -50%)',
     backgroundColor   : 'rgba(255, 255, 255, 0.75)',
     display: 'inline-block',
