@@ -32,8 +32,6 @@ const styles = {
   },
   uploadButton: {
     verticalAlign: 'middle',
-    margin: 2,
-    marginBottom: 3
   },
   uploadInput: {
     cursor: 'pointer',
@@ -47,7 +45,7 @@ const styles = {
   },
 };
 
-class WebViewContainer extends React.Component {
+class TabletContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -122,17 +120,14 @@ class WebViewContainer extends React.Component {
             backgroundColor={'#9E9E9E'}
             label="Handbook"
             onTouchTap={() => this.setState({ handbookModal: true })}
-            style={{margin: 2}}
-
           />
-        
           <FlatButton
             backgroundColor={'#9E9E9E'}
             label="Add Notes"
             onTouchTap={() => this.setState({ notesModal: true })}
             style={{margin: 2}}
           />
-           <FlatButton
+          <FlatButton
             backgroundColor={'#9E9E9E'}
             label="Add Images"
             labelPosition="before"
@@ -185,4 +180,4 @@ class WebViewContainer extends React.Component {
   }
 }
 
-export default WebViewContainer;
+export default TabletContainer;
