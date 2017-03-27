@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const toggleSurveyReady = gql `
-  mutation toggleSurveyReady($custid: String, $userid: String){
-  toggleSurveyReady(custid: $custid, userid: $userid) {
+  mutation toggleSurveyReady($custid: String, $userid: String, $online: Boolean){
+  toggleSurveyReady(custid: $custid, userid: $userid, online: $online) {
     id
     firstName
     lastName
@@ -44,7 +44,9 @@ const addSurveyNotes = gql`
   $description: String, 
   $text: String, 
   $timestamp: String, 
-  $user: String){
+  $user: String,
+  $online: Boolean,
+  ){
     addSurveyNotes(
       custid: $custid,
       userid: $userid,
@@ -53,6 +55,7 @@ const addSurveyNotes = gql`
       text: $text,
       timestamp: $timestamp,
       user: $user,
+      online: $online,
     )
     {
       heading

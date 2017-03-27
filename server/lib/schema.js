@@ -353,7 +353,7 @@ type Mutation {
   getFinishedSurvey(id: String): [FinishedSurvey]
   addPricing(custid: String, description: String, price: Int): Estimate
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
-  toggleSurveyReady(custid: String, userid: String): Customers
+  toggleSurveyReady(custid: String, userid: String, online: Boolean): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]
   addSurveyNotes(
     custid: String,
@@ -362,8 +362,9 @@ type Mutation {
     description: String, 
     text: String, 
     timestamp: String, 
-    user: String
-    ): SurveyNotes
+    user: String,
+    online: Boolean
+    ): SurveyNotes,
   addSurveyPhoto(
     custid: String,
     heading: String, 

@@ -53,6 +53,7 @@ class _NotesModal extends React.Component {
         text: this.state.notes,
         timestamp: new Date(),
         user: 'OnlineSurvey',
+        online: true,
       },
     })
     .then((data) => console.log(data))
