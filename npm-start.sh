@@ -6,5 +6,6 @@ sudo webpack
 cd server/ssr/customerupload
 sudo yarn
 sudo yarn build
+cd ../../..
 sudo pm2 start --interpreter babel-node server/server.js --watch
 
