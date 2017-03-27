@@ -106,13 +106,22 @@ class WebViewContainer extends React.Component {
   };
 
   submitSurvey = () => {
-    this.setState({ thankYouModal: true });
-    setTimeout(() => { 
-      const tab = window.open(location, '_self', '');
-      tab.close();
-      this.props.exit();
-      window.close();
-    }, 10000);
+    this.props.toggleSurveyReady({
+      variables: {
+        custid: location.pathname.split('/')[2],
+        userid: null,
+        online: true,
+      },
+    })
+    .then(() => {
+      this.setState({ thankYouModal: true });
+      setTimeout(() => {
+        const tab = window.open(location, '_self', '');
+        tab.close();
+        this.props.exit();
+        window.close();
+      }, 10000);
+    });
   };
 
   render() {

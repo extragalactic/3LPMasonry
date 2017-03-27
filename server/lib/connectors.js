@@ -378,14 +378,13 @@ class AddSurveyNotes {
         timestamp: args.timestamp,
         user: args.user,
       };
-      // console.log(args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
           customer.save();
         });
-
-      UsersModel.findOne({ _id: args.userid })
+      if (!args.online) {
+        UsersModel.findOne({ _id: args.userid })
            .then((user) => {
              user.newCustomers = user.newCustomers.map((customer) => {
                if (customer.id === args.custid) {
@@ -396,6 +395,7 @@ class AddSurveyNotes {
              });
              user.save();
            });
+      }
     };
   }
  }
@@ -497,6 +497,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
+      console.log('togle', args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
@@ -509,8 +510,8 @@ class ToggleSurveyReady {
           }
           customer.save();
         });
-
-      UsersModel.findOne({ _id: args.userid })
+      if (!args.online) {
+        UsersModel.findOne({ _id: args.userid })
          .then((user) => {
            user.newCustomers = user.newCustomers.map((customer) => {
              if (customer.id === args.custid) {
@@ -524,6 +525,7 @@ class ToggleSurveyReady {
            });
            user.save();
          });
+      }
     };
   }
  }
