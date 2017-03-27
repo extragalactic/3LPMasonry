@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/7.7.2/bin/node /usr/local/bin/yarn
+  /usr/local/Cellar/node/7.7.2/bin/node /usr/local/bin/yarn add react-text-input
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -69,11 +69,13 @@ npm manifest:
       "graphql-server-express": "^0.4.3",
       "graphql-tag": "^0.1.16",
       "graphql-tools": "^0.8.0",
+      "jshashes": "^1.0.6",
       "jwt-decode": "^2.1.0",
       "lodash": "^4.16.6",
       "mailin-api-node-js": "^1.0.0",
       "material": "^0.1.1",
       "material-ui": "^0.16.0",
+      "material-ui-upload": "^1.0.0",
       "moment": "^2.17.1",
       "money-math": "^2.4.4",
       "mongoose": "^4.6.5",
@@ -107,6 +109,7 @@ npm manifest:
       "react-tap-event-plugin": "^2.0.0",
       "react-wobbly-spinner": "^1.1.0",
       "redux": "^3.6.0",
+      "redux-devtools-extension": "^2.13.0",
       "redux-form": "^6.2.0",
       "redux-form-material-ui": "^4.1.0",
       "request": "^2.78.0",
@@ -133,8 +136,12 @@ npm manifest:
       "eslint-plugin-import": "^2.2.0",
       "eslint-plugin-jsx-a11y": "^4.0.0",
       "eslint-plugin-react": "^6.10.0",
+      "node-sass": "^4.5.1",
+      "loaders.css": "^0.1.2",
       "react-native-debugger-open": "^0.3.2",
-      "style-loader": "^0.13.2"
+      "sass-loader": "^6.0.3",
+      "style-loader": "^0.13.2",
+      "webpack": "^1.14.0"
     }
   }
 

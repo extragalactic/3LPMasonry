@@ -1,20 +1,10 @@
 import React from 'react';
-import '../App.css';
-import logo from '../logo.svg';
-import SelectField from 'material-ui/SelectField';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import TextField from 'material-ui/TextField';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { browserHistory } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, blue500} from 'material-ui/styles/colors';
-import MenuItem from 'material-ui/MenuItem';
-import { grey800, teal50 } from 'material-ui/styles/colors';
+import { red500 } from 'material-ui/styles/colors';
 import Modal from 'react-modal';
-import {Input, TextArea, GenericInput} from 'react-text-input'; 
-import { Chimneys, Flagstone, Windowsills, Brickrepair, WaterProofing, Concrete, Foundation, Retaining } from '../Handbook/directions';
+import '../App.css';
 
 const style = {
   position: 'fixed',
@@ -26,32 +16,32 @@ const iconStyles = {
   marginRight: 24,
   alignItem: 'right',
 };
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: '50%',
+    bottom: '50%',
+    marginRight: '-50%',
+    height: '60%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    display: 'inline-block',
+  },
+};
 
 class NotesModal extends React.Component {
   constructor() {
     super();
-    this.state = { value: 1 };
+    this.state = {
+      value: 1,
+      notes: '',
+    };
   }
   handleChange = (event, index, value) => this.setState({ value });
+  updateNotesInput = notes => this.setState({ notes });
 
   render() {
-console.log(this);
-    const customStyles = {
-    content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : '50%',
-    bottom                : '50%',
-    marginRight           : '-50%',
-    height                : '60%',
-    transform             : 'translate(-50%, -50%)',
-    backgroundColor   : 'rgba(255, 255, 255, 0.75)',
-    display: 'inline-block'
-  
-
-  }
-};
-
     return (
       <Modal
         isOpen={this.props.isOpen}
@@ -59,8 +49,9 @@ console.log(this);
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div onClick={this.props.close} className={'close'} >
+        <div className={'close'} >
           <FontIcon
+            onClick={this.props.close}
             className="material-icons"
             style={iconStyles} color={red500}
           > close
@@ -69,26 +60,26 @@ console.log(this);
         <p className="App-intro">
           Please give us a full and detailed decription of the issue.
         </p>
-  
-         <FlatButton 
-         label="Submit" 
-         primary={true} 
-         style={style} ddsf
-         fullWidth 
-         backgroundColor={teal50}
-         />
-    <TextField
-      hintText="What do you need fixed?"
-      floatingLabelText="Tell us about your masonry woes, we can help"
-      multiLine={true}
-      rows={12}
-      fullWidth
-    />
+        <FlatButton
+          label="Submit"
+          primary
+          style={style}
+          fullWidth
+          backgroundColor={'#F5F5F5'}
+        />
+        <TextField
+          hintText="What do you need fixed?"
+          floatingLabelText="Tell us about your masonry woes, we are happy can help"
+          multiLine
+          rows={12}
+          maxRows={12}
+          fullWidth
+          value={this.state.notes}
+          onChange={(event, value) => this.updateNotesInput(value)}
+        />
       </Modal>
     );
   }
-
-
 }
 
 export default NotesModal;
