@@ -30,9 +30,14 @@ const iconStyles = {
 class NotesModal extends React.Component {
   constructor() {
     super();
-    this.state = { value: 1 };
+    this.state = { 
+      value: 1,
+      notes: '', 
+    
+  };
   }
   handleChange = (event, index, value) => this.setState({ value });
+  updateNotesInput = (notes) => this.setState({notes});
 
   render() {
 console.log(this);
@@ -73,16 +78,19 @@ console.log(this);
          <FlatButton 
          label="Submit" 
          primary={true} 
-         style={style} ddsf
+         style={style}
          fullWidth 
-         backgroundColor={teal50}
+         backgroundColor={'#F5F5F5'}
          />
     <TextField
       hintText="What do you need fixed?"
       floatingLabelText="Tell us about your masonry woes, we can help"
       multiLine={true}
       rows={12}
+        rowsMax={12}
       fullWidth
+      value={this.state.notes}
+      onChange={(event, value) => this.updateNotesInput(value)}
     />
       </Modal>
     );

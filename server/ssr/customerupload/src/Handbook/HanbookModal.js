@@ -7,7 +7,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { browserHistory } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+import {red500, yellow500, lightBlue100,blue500} from 'material-ui/styles/colors';
 import MenuItem from 'material-ui/MenuItem';
 import { grey800 } from 'material-ui/styles/colors';
 import Modal from 'react-modal';
@@ -70,6 +70,9 @@ console.log(this);
           hintText="Frequency"
           value={this.state.value}
           onChange={this.handleChange}
+          style={{
+            backgroundColor: '#F5F5F5'
+          }}
         >
           <MenuItem value={1} primaryText="Chimneys" />
           <MenuItem value={2} primaryText="Flagstone" />
