@@ -1,7 +1,15 @@
 import React from 'react';
 import Modal from 'react-modal';
 import '../App.css';
+const style = {
+  photoStyle: {
+    width: '30%',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 
+  },
+};
 const customStyles = {
   content: {
     top: '50%',
@@ -32,9 +40,17 @@ class ThankYouModal extends React.Component {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <p className="App-intro">
-          Thank You
-        </p>
+        <img
+          alt={'_'}
+          src="https://s3.ca-central-1.amazonaws.com/tlpm/pictures/iTunesArtwork%403x.png" 
+          style={style.photoStyle}
+        />
+        <div className="App-intro">
+          <h4> Thank You for contactng Three Little Pigs Masonry</h4>
+          <h4> We look forward to helping you improve or protect your home investment</h4>
+          <h4> Keep an eye on your email to receive your estimate, it will be sent out shortly</h4>
+          <h4> If we need more into, a TLP staff member will contact you</h4>
+        </div>
       </Modal>
     );
   }
