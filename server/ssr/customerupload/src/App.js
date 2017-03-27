@@ -27,11 +27,15 @@ class _App extends Component {
   }
   componentDidMount() {
   }
+  exit = () => {
+    window.close();
+  }
   render() {
     console.log('test')
     if (!md.tablet() && !md.is('iPhone')) {
       return (
         <WebViewContainer
+          exit={this.exit}
           addSurveyPhoto={this.props.addSurveyPhoto}
           toggleSurveyReady={this.props.toggleSurveyReady}
         />
@@ -39,7 +43,8 @@ class _App extends Component {
     }
     if (md.tablet()) {
       return (
-        <TabletContainer
+        <WebViewContainer
+          exit={this.exit}
           addSurveyPhoto={this.props.addSurveyPhoto}
           toggleSurveyReady={this.props.toggleSurveyReady}
         />

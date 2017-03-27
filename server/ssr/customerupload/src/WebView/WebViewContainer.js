@@ -106,8 +106,13 @@ class WebViewContainer extends React.Component {
   };
 
   submitSurvey = () => {
-    this.setState({ ThankYouModal: true });
-    setTimeout(() => { window.close(); }, 3000);
+    this.setState({ thankYouModal: true });
+    setTimeout(() => { 
+      const tab = window.open(location, '_self', '');
+      tab.close();
+      this.props.exit();
+      window.close();
+    }, 10000);
   };
 
   render() {
@@ -116,7 +121,7 @@ class WebViewContainer extends React.Component {
         muiTheme={getMuiTheme(lightBaseTheme)}
       >
         <div className="App">
-          {!this.state.handbookModal && !this.state.notesModal ?
+          {!this.state.handbookModal && !this.state.notesModal && !this.state.thankYouModal ?
             <div>
               <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
@@ -124,6 +129,12 @@ class WebViewContainer extends React.Component {
               <p className="App-intro">
                Upload your photos, get directions from handbook
               </p>
+              <FlatButton
+                backgroundColor={'#9E9E9E'}
+                label="Test"
+                onTouchTap={this.submitSurvey}
+                style={{ margin: 2 }}
+              />
               <FlatButton
                 backgroundColor={'#9E9E9E'}
                 label="Handbook"
