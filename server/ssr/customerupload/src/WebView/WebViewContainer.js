@@ -131,6 +131,12 @@ class WebViewContainer extends React.Component {
               </p>
               <FlatButton
                 backgroundColor={'#9E9E9E'}
+                label="Test"
+                onTouchTap={this.submitSurvey}
+                style={{ margin: 2 }}
+              />
+              <FlatButton
+                backgroundColor={'#9E9E9E'}
                 label="Handbook"
                 onTouchTap={() => this.setState({ handbookModal: true })}
                 style={{ margin: 2 }}
