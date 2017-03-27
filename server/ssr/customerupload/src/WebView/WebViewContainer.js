@@ -9,11 +9,11 @@ import FlatButton from 'material-ui/FlatButton';
 import { filter } from 'lodash';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { grey200 } from 'material-ui/styles/colors';
-import NotesModal from '../Notes/NotesModal';
 import logo from '../logo.svg';
 import '../App.css';
 import '../carousel.css';
 
+import NotesModal from '../Notes/NotesModal';
 import HandbookModal from '../Handbook/HanbookModal';
 import ThankYouModal from '../ThankYou/ThankYouModal';
 

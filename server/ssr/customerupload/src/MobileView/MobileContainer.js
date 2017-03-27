@@ -9,12 +9,14 @@ import FlatButton from 'material-ui/FlatButton';
 import { filter } from 'lodash';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { grey200 } from 'material-ui/styles/colors';
-import NotesModal from '../Notes/NotesModal';
+
 import logo from '../logo.svg';
 import '../App.css';
 import '../carousel.css';
 
-import HandbookModal from '../Handbook/HanbookModal';
+import HandbookModal from './MobileHanbookModal';
+import NotesModal from './MobileNotesModal';
+import ThankYouModal from '../ThankYou/ThankYouModal';
 
 const styles = {
   paperStyle: {
@@ -45,7 +47,7 @@ const styles = {
   },
 };
 
-class TabletContainer extends React.Component {
+class MobileContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -54,6 +56,8 @@ class TabletContainer extends React.Component {
       notesModal: false,
       handbookModal: false,
       notesText: '',
+      thankYouModal: false,
+
     };
   }
   onInputChange = (e) => {
@@ -83,7 +87,7 @@ class TabletContainer extends React.Component {
                   }, 1000);
                 },
             );
-  }
+ }
 
 
   onChangeNotes = (notesText) => {
@@ -98,6 +102,25 @@ class TabletContainer extends React.Component {
   closeNotesModal = () => {
     this.setState({
       notesModal: false,
+    });
+  };
+
+  submitSurvey = () => {
+    this.props.toggleSurveyReady({
+      variables: {
+        custid: location.pathname.split('/')[2],
+        userid: null,
+        online: true,
+      },
+    })
+    .then(() => {
+      this.setState({ thankYouModal: true });
+      setTimeout(() => {
+        const tab = window.open(location, '_self', '');
+        tab.close();
+        this.props.exit();
+        window.close();
+      }, 10000);
     });
   };
   render() {
@@ -172,7 +195,9 @@ class TabletContainer extends React.Component {
               close={this.closeNotesModal}
               notesText={this.state.notesText}
             />
-          
+            <ThankYouModal
+              isOpen={this.state.thankYouModal}
+            />
           </div>
         </div>
       </MuiThemeProvider>
@@ -180,4 +205,4 @@ class TabletContainer extends React.Component {
   }
 }
 
-export default TabletContainer;
+export default MobileContainer;
