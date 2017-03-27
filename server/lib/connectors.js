@@ -370,7 +370,7 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
-      console.log(args);
+      console.log('NOTES', args);
       const payload = {
         heading: args.heading,
         description: args.description,

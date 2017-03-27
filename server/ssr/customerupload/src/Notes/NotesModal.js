@@ -43,7 +43,7 @@ class _NotesModal extends React.Component {
   handleChange = (event, index, value) => this.setState({ value });
   updateNotesInput = notes => this.setState({ notes });
 
-  submiNotes = () => {
+  submitNotes = () => {
     this.props.addSurveyNotes({
       variables: {
         custid: location.pathname.split('/')[2],
@@ -58,7 +58,7 @@ class _NotesModal extends React.Component {
     .then((data) => console.log(data))
     .catch((err) => console.error(err));
 
-    this.state.setState({ notes: '' });
+    this.setState({ notes: '' });
   }
 
   render() {
@@ -96,6 +96,7 @@ class _NotesModal extends React.Component {
           style={style}
           fullWidth
           backgroundColor={'#F5F5F5'}
+          onTouchTap={this.submitNotes}
         />
       </Modal>
     );
@@ -104,7 +105,7 @@ class _NotesModal extends React.Component {
 
 
 const NotesModal = compose(
-   graphql(addSurveyNotes, { name: 'addSurveyPhoto' }),
+   graphql(addSurveyNotes, { name: 'addSurveyNotes' }),
 )(_NotesModal);
 
 export default NotesModal;
