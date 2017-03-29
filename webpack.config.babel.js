@@ -14,7 +14,11 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/,
+       { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
+      {
+        test: /\.css$/,
+        loader: 'style!css?modules',
+        include: /flexboxgrid/,
       },
     ],
     query: {
