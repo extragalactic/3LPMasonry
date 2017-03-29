@@ -7,7 +7,8 @@ const footerStyle = {
   width: '100%',
   bottom: 0,
   backgroundColor: grey900,
-  color: grey100
+  color: grey100,
+  zIndex: 100
 };
 
 const Foot = () => (

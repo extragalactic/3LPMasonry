@@ -108,10 +108,8 @@ export default class Header extends React.Component {
       primaryText="Generics"
       onTouchTap={generics}
     />
-
     <MenuItem
       primaryText="Customers"
       onTouchTap={customers}
     />
-
 */

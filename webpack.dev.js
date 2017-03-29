@@ -22,7 +22,9 @@ module.exports = {
       { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
       {
         test: /\.css$/,
-        loader: 'style!css!',
+        loader: 'style!css?modules',
+    include: /flexboxgrid/
+
       },
     ],
     query: {
