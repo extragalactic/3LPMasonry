@@ -14,8 +14,8 @@ import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
 import pdfMakeEstimate from '../methods/pdfMake';
-
-import { sendPushtoEstimators } from '../methods/oneSIgnal';
+import AWS from 'aws-sdk';
+import { sendPushtoEstimators } from '../methods/oneSignal';
 
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
@@ -441,24 +441,27 @@ class AddSurveyPhoto {
             sharp(buffer)
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data'))
-              //.catch(err => console.log('error', err));
+              .catch(err => console.log('error', err));
             sharp(buffer)
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              //catch(err => console.log('error', err));
+              .catch(err => console.log('error', err));
           };
           const buffer = Buffer.from(parseImgString(), 'base64');
-          uploadPhotoS3(buffer, args.custid);
-          fs.access(`images/${folder}`, (err) => {
-            if (err && err.code === 'ENOENT') {
-              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            } else {
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            }
+          //uploadPhotoS3(buffer, args.custid);
+          const s3 = new AWS.S3({ region: 'us-east-2' });
+          const s3Params = {
+            Bucket: '3lpm',
+            Key: `${customer._id}/${file}.jpg`,
+            Expires: 60,
+            ACL: 'public-read',
+            Body: buffer,
+          };
+          s3.upload(s3Params, (err, res) => {
+            console.log(res);
+            console.log(err);
           });
+
           customer.survey.photos.push(payload);
           customer.save();
           const photo = new PhotosModel({
@@ -467,7 +470,8 @@ class AddSurveyPhoto {
             docID,
           });
           photo.save();
-          return true;  // fix this, why is photo prop not showing?
+     
+          return true;  
         });
     };
   }
@@ -864,3 +868,16 @@ module.exports = {
   GetFinishedSurveyQuery,
 };
 
+        /*
+          fs.access(`images/${folder}`, (err) => {
+            if (err && err.code === 'ENOENT') {
+              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
+            } else {
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
+            }
+          });
+          */
+          
