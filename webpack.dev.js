@@ -3,27 +3,6 @@ import webpackValidator from 'webpack-validator';
 import webpack from 'webpack';
 
 module.exports = {
-  rules: [
-      {
-        test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-        ],
-      },
-      {
-        test: /\.useable\.css$/,
-        use: [
-          { 
-            loader: "style-loader",
-            options: {
-              useable: true
-            },
-          },
-          { loader: "css-loader" },
-        ],
-      },
-    ],
   devtool: 'inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -41,6 +20,12 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
+      {
+        test: /\.css$/,
+        loader: 'style!css?modules',
+    include: /flexboxgrid/
+
+      },
     ],
     query: {
       presets: ['react', 'es2015', 'babel-preset-react-hmre'],
