@@ -18,32 +18,32 @@ const styles = {
 };
 
 class CustomerDetailsTabs extends React.Component {
-	constructor(props) {
-  	super(props); 	
-	}	
- 
-	render() {
-		return (
-		  <Tabs>
-		    <Tab label="Survey Photos" style={styleCSS.tabsBar} >
-					<Row style={styleCSS.photoViewer} >
-						<PhotoViewer 
-							photos={this.props.photos}  
-							photoData={this.props.photoData}
-						/>
-					</Row>
-		    </Tab>
-		    <Tab label="Notes" style={styleCSS.tabsBar} >
+  constructor(props) {
+  	super(props);
+  }
+
+  render() {
+    return (
+      <Tabs>
+        <Tab label="Survey Photos" style={styleCSS.tabsBar} >
+          <Row style={styleCSS.photoViewer} >
+            <PhotoViewer
+              photos={this.props.photos}
+              photoData={this.props.photoData}
+            />
+          </Row>
+        </Tab>
+        <Tab label="Notes" style={styleCSS.tabsBar} >
 		    	Notes go here
-		    </Tab>			    
-		    <Tab label="Location Map" style={styleCSS.tabsBar} >
-					<Row style={styleCSS.googleMapsContainer}>
-						<LocationMap lat={this.props.location.lat} lon={this.props.location.lon} />
-					</Row>
-		    </Tab>	    
-		  </Tabs>
-		);
-	}
+		    </Tab>
+        <Tab label="Location Map" style={styleCSS.tabsBar} >
+          <Row style={styleCSS.googleMapsContainer}>
+            <LocationMap lat={this.props.location.lat} lon={this.props.location.lon} />
+          </Row>
+        </Tab>
+      </Tabs>
+    );
+  }
 }
 
 export default CustomerDetailsTabs;

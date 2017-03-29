@@ -14,14 +14,12 @@ import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
 import pdfMakeEstimate from '../methods/pdfMake';
-
-import { sendPushtoEstimators } from '../methods/oneSIgnal';
-
+import AWS from 'aws-sdk';
+import { sendPushtoEstimators } from '../methods/oneSignal';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
-import { uploadPhotoS3 } from '../methods/s3Upload';
 import genericsMapping from './genericsMapping';
 
 
@@ -403,7 +401,6 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
-   // console.log(args);
       const parseImgString = () => {
         const array = args.orginalBase64.split(',');
         if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
@@ -420,8 +417,9 @@ class AddSurveyPhoto {
             length: 4,
             charset: 'numeric',
           });
-          const originalUrl = `https://tlpm.ca/images/${folder}/original/${file}.jpg`;
-          const thumbUrl = `https://tlpm.ca/images/${folder}/thumbnail/${file}.jpg`;
+         
+          const originalUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/${file}.jpg`;
+          const thumbUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/thumbnail${file}.jpg`;
           const payload = {
             heading: args.heading,
             description: args.description,
@@ -437,28 +435,38 @@ class AddSurveyPhoto {
             docID,
             localfile: args.localfile,
           };
-          const saveImagetoDisk = (buffer) => {
-            sharp(buffer)
-           .toFile(`images/${folder}/original/${file}.jpg`)
-              .then(data => console.log('data'))
-              //.catch(err => console.log('error', err));
-            sharp(buffer)
-            .resize(200)
-            .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              //catch(err => console.log('error', err));
-          };
+   
           const buffer = Buffer.from(parseImgString(), 'base64');
-          uploadPhotoS3(buffer, args.custid);
-          fs.access(`images/${folder}`, (err) => {
-            if (err && err.code === 'ENOENT') {
-              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            } else {
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            }
+          const s3 = new AWS.S3({ region: 'us-east-2' });
+          sharp(buffer)
+            .resize(50, 50) //resize doesnt seem to be working now, covert from buffer to file then back again?
+            .toBuffer()
+              .then((buf) => {
+                const params = {
+                  Bucket: '3lpm',
+                  Key: `${customer._id}/thumbnail${file}.jpg`,
+                  Expires: 60,
+                  ACL: 'public-read',
+                  Body: buffer,
+                };
+                s3.upload(params, (err, res) => {
+                console.log(res);
+                console.log(err);
+              });
+              });
+
+          const s3Params = {
+            Bucket: '3lpm',
+            Key: `${customer._id}/${file}.jpg`,
+            Expires: 60,
+            ACL: 'public-read',
+            Body: buffer,
+          };
+          s3.upload(s3Params, (err, res) => {
+            console.log(res);
+            console.log(err);
           });
+
           customer.survey.photos.push(payload);
           customer.save();
           const photo = new PhotosModel({
@@ -467,7 +475,7 @@ class AddSurveyPhoto {
             docID,
           });
           photo.save();
-          return true;  // fix this, why is photo prop not showing?
+          return true;
         });
     };
   }
@@ -864,3 +872,15 @@ module.exports = {
   GetFinishedSurveyQuery,
 };
 
+        /*
+          fs.access(`images/${folder}`, (err) => {
+            if (err && err.code === 'ENOENT') {
+              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
+            } else {
+              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
+            }
+          });
+          */

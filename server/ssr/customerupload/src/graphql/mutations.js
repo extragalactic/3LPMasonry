@@ -26,14 +26,6 @@ const addSurveyPhoto = gql`
       user: $user,
       orginalBase64:$orginalBase64
     )
-    {
-      heading
-      description
-      timestamp
-      user
-      orginalBase64
-      editedlBase64
-     }
   }`;
 
 const addSurveyNotes = gql`
