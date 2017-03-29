@@ -126,8 +126,7 @@ class _CustomerDetails extends React.Component {
 }
 
 const CustomerDetails = compose(
-//   graphql( getCustomer, { options: ({ id }) => ({ variables: { id: id }}) } )
-   graphql(getCustomer, { options: ({ id }) => ({ variables: { id: '58d98639146f2004a943f199' } }) }),
+   graphql(getCustomer, { options: ({ id }) => ({ variables: { id } }) }),
  )(_CustomerDetails);
 
 export default CustomerDetails;
