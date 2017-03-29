@@ -29,7 +29,7 @@ const ssl = {
 
 const app = express();
 dotenv.config();
-console.log(process.env);
+//console.log(process.env);
 
 if (process.env.PROD === 'false') {
   console.log('hotload');
