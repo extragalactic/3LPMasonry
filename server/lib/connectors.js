@@ -21,6 +21,7 @@ import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
+import { uploadPhotoS3 } from '../methods/s3Upload';
 import genericsMapping from './genericsMapping';
 
 
@@ -370,7 +371,6 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
-      console.log('NOTES', args);
       const payload = {
         heading: args.heading,
         description: args.description,
@@ -403,6 +403,7 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
+   // console.log(args);
       const parseImgString = () => {
         const array = args.orginalBase64.split(',');
         if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
@@ -440,19 +441,19 @@ class AddSurveyPhoto {
             sharp(buffer)
            .toFile(`images/${folder}/original/${file}.jpg`)
               .then(data => console.log('data'))
-              .catch(err => console.log('error', err));
+              //.catch(err => console.log('error', err));
             sharp(buffer)
             .resize(200)
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              .catch(err => console.log('error', err));
+              //catch(err => console.log('error', err));
           };
           const buffer = Buffer.from(parseImgString(), 'base64');
+          uploadPhotoS3(buffer, args.custid);
           fs.access(`images/${folder}`, (err) => {
             if (err && err.code === 'ENOENT') {
-              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
-              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => {
-              });
+              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
+              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
               setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
             } else {
               setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
@@ -466,7 +467,7 @@ class AddSurveyPhoto {
             docID,
           });
           photo.save();
-          return { heading: originalUrl };  // fix this, why is photo prop not showing?
+          return true;  // fix this, why is photo prop not showing?
         });
     };
   }
@@ -477,6 +478,13 @@ class GetSurveyPhotos {
     this.getSurveyPhotos = args => CustomersModel.findOne({ _id: args.id })
         .then(customer => (customer.survey.photos),
         );
+  }
+ }
+class GetSurveyLocalPhotos {
+  constructor() {
+    this.getSurveyLocalPhotos = args => CustomersModel.findOne({ _id: args.id })
+    .then(customer => customer.survey.photos.map(c => ({ photo: c.localfile, selected: false })),
+  );
   }
  }
 
@@ -758,7 +766,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      console.log('PREVIEW', args.preview);
+      //console.log('PREVIEW', args.preview);
       const generics = args.generics;
       const output = [];
       const prices = [];
@@ -818,6 +826,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  GetSurveyLocalPhotos,
   DeletePrice,
   AddGeneric,
   GetImageBase64,
