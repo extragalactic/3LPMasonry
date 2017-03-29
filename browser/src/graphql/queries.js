@@ -8,9 +8,70 @@ const searchAddress = gql`
       } 
   }`;
 
+
+const getCustomer = gql `
+  query getCustomer($id: String!){
+  customer(id: $id) {
+     id
+    firstName
+    lastName
+    email1
+    email2
+    cphone
+    hphone
+    wphone
+    address
+    coordinates {
+      latitude
+      longitude
+    }
+   surveyor {
+      id
+      firstName
+      lastName
+      mobile
+    }
+    estimator
+    status
+    notes{
+      _id
+      text
+      user {
+        name
+        _id
+      }
+    }
+    survey {
+      notes {
+        heading
+        description
+        timestamp
+        user
+        text
+    }
+      photos{
+        heading
+        description
+        timestamp
+        user
+        orginalBase64
+        editedlBase64
+        thumbURL
+        thumb
+        photo
+        caption
+        selected
+        docID
+      }
+    }
+  }
+}`;
+
+
 const getAllCustomers = gql `
-  query{
+query{
   customers{
+    id
     firstName
     lastName
     email1
@@ -72,11 +133,15 @@ const getAllCustomers = gql `
         price
       }
     }
-    
+    surveyor {
+      id
+      firstName
+      lastName
+    }
+    status
   }
   
 }`;
 
 
-
-export { searchAddress, getAllCustomers };
+export { searchAddress, getAllCustomers, getCustomer };

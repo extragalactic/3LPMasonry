@@ -153,6 +153,13 @@ type base64Photo {
   docID: String
 }
 
+type base64PDF {
+  base64: String
+  url: String
+  docID: String
+}
+
+
 type followUp {
   name: String
   start: String
@@ -188,6 +195,7 @@ type SurveyPhotos {
     caption: String
     selected: Boolean
     docID: String
+    localfile: String
 }
 
 type FinishedSurvey {
@@ -275,26 +283,34 @@ input newCustomers {
   user: notesUserInput
  }
 input generics {
- banas: Boolean
- concrete: Boolean
+ watertest: Boolean
+ concreteSteps:Boolean
+ concreteCare: Boolean
+ refacingSlice: Boolean
+ refacingComplete: Boolean
  coping: Boolean
- flagstone :Boolean
- flashing : Boolean
- fwarranty : Boolean
- galleryModal : Boolean
+ flagstone: Boolean
+ flashing: Boolean
+ fwarranty: Boolean
  nbc: Boolean
- newcap: Boolean
- newcrown : Boolean
  obc: Boolean
  pargeex: Boolean
- priceText: Boolean
- pricingModal: Boolean
- pwarranty : Boolean
- retaining :Boolean
+ pwarranty: Boolean
+ retaining: Boolean
  roof: Boolean
  sills: Boolean
  tuckpoint:Boolean
+ custom: Boolean
  waterproofing: Boolean
+ disclaimerA: Boolean
+ disclaimerS: Boolean
+ tuckpointUniform: Boolean
+ surveyInvite: Boolean
+ surveyInviteDave: Boolean
+ customerClean: Boolean
+ additionalWork: Boolean
+ warrantyAsStated: Boolean
+ existingConcrete: Boolean
 }
 type Query {
   customers(
@@ -328,15 +344,16 @@ type Query {
 
 }
 type Mutation {
+  deletePrice(custid: String, index: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics): Customers
+  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): base64PDF
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
   addPricing(custid: String, description: String, price: Int): Estimate
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
-  toggleSurveyReady(custid: String, userid: String): Customers
+  toggleSurveyReady(custid: String, userid: String, online: Boolean): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]
   addSurveyNotes(
     custid: String,
@@ -345,8 +362,9 @@ type Mutation {
     description: String, 
     text: String, 
     timestamp: String, 
-    user: String
-    ): SurveyNotes
+    user: String,
+    online: Boolean
+    ): SurveyNotes,
   addSurveyPhoto(
     custid: String,
     heading: String, 
@@ -354,7 +372,8 @@ type Mutation {
     orginalBase64: String,
     editedlBase64: String,
     timestamp: String, 
-    user: String
+    user: String,
+    localfile: String,
     ): SurveyPhotos
   deleteAppointment(
     userid: String, 

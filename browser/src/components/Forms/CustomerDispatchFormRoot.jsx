@@ -29,7 +29,6 @@ class CustomerDispatchFormRootComp extends React.Component {
     this.props.next();
   }
   render() {
-      console.log(this);
     return (
       <div>
         <Paper style={styles.paperStyle} zDepth={1} >

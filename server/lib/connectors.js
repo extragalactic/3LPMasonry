@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import fs from 'fs';
+import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
 import base64Img from 'base64-img';
@@ -12,13 +13,12 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
-import { pdfKitCreateEstimatePreview } from '../methods/pdfKit';
 import pdfMakeEstimate from '../methods/pdfMake';
 
 import { sendPushtoEstimators } from '../methods/oneSIgnal';
 
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
-import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
+import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import genericsMapping from './genericsMapping';
@@ -27,7 +27,7 @@ import genericsMapping from './genericsMapping';
 sharp.concurrency(1);
 dotenv.config();
 
-//console.log(base64Img)
+// console.log(base64Img)
 // 0: New Customer, Inquiry no survery
 // 1: New Customer, Online Survey sent
 // 2: Customer, Online Survey Received
@@ -231,7 +231,7 @@ class SubmitCustomer {
     this.submitCustomer = (args) => {
       const Customer = CustomersModel.findOne({ _id: args.id })
              .then((data) => {
-               const surveyor = !data.surveyor.id ? true : false;
+               const surveyor = !data.surveyor.id;
                const survey = !data.sendSurvey;
                const inquriy = survey && surveyor;
                if (data.sendSurvey === true) {
@@ -251,9 +251,9 @@ class SubmitCustomer {
                    sendEmailSurveytoCustomer({ email: data.email2, data });
                  }
                  data.status = 1;
-                 addCustomertoQueue(data);
-                 sendPushtoEstimators(data);
-                 data.save(); 
+                 //addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
+                 //sendPushtoEstimators(data);
+                 data.save();
                }
                if (!surveyor) {
                  sendSMStoSurveyor(data);
@@ -296,9 +296,8 @@ class SubmitFollowup {
           if (customer.id === args.custid) {
             customer.status = status;
             return customer;
-          } else {
-            return customer;
           }
+          return customer;
         });
         user.followUp.push(args);
         user.save();
@@ -350,9 +349,9 @@ class DeleteAppointment {
     this.deleteAppointment = (args) => {
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.followUp = _.reject(user.followUp, (apt) => {
-           if (args.meetingid == apt._id) {
-             return apt;
-           }
+          if (args.meetingid == apt._id) {
+            return apt;
+          }
         });
         user.save();
         return user;
@@ -371,6 +370,7 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
+      console.log('NOTES', args);
       const payload = {
         heading: args.heading,
         description: args.description,
@@ -378,25 +378,24 @@ class AddSurveyNotes {
         timestamp: args.timestamp,
         user: args.user,
       };
-      //console.log(args)
-      CustomersModel.findOne({_id: args.custid})
+      CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
           customer.save();
         });
-
-      UsersModel.findOne({ _id: args.userid })
+      if (!args.online) {
+        UsersModel.findOne({ _id: args.userid })
            .then((user) => {
-              user.newCustomers = user.newCustomers.map((customer) => {
-                if (customer.id === args.custid) {
-                  customer.status = 3;
-                  return customer;
-                } else {
-                  return customer;
-                }
-              });
+             user.newCustomers = user.newCustomers.map((customer) => {
+               if (customer.id === args.custid) {
+                 customer.status = 3;
+                 return customer;
+               }
+               return customer;
+             });
              user.save();
            });
+      }
     };
   }
  }
@@ -404,8 +403,16 @@ class AddSurveyNotes {
 class AddSurveyPhoto {
   constructor() {
     this.addSurveyPhoto = (args) => {
+      const parseImgString = () => {
+        const array = args.orginalBase64.split(',');
+        if (array[0] === 'data:image/png;base64' || array[0] === 'data:image/jpeg;base64') {
+          return array[1];
+        }
+        return args.orginalBase64;
+      };
+
       const docID = randomstring.generate(12);
-      CustomersModel.findOne({ _id: args.custid })
+      return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           const folder = customer.firstName + customer.lastName;
           const file = args.heading + randomstring.generate({
@@ -422,10 +429,12 @@ class AddSurveyPhoto {
             timestamp: args.timestamp,
             user: args.user,
             thumb: thumbUrl,
-            photo: originalUrl, // a remote photo or local media url  
+            photo: originalUrl,
             caption: args.heading,
             selected: false,
+            filename: file,
             docID,
+            localfile: args.localfile,
           };
           const saveImagetoDisk = (buffer) => {
             sharp(buffer)
@@ -437,7 +446,7 @@ class AddSurveyPhoto {
             .toFile(`images/${folder}/thumbnail/${file}.jpg`)
               .catch(err => console.log('error', err));
           };
-          const buffer = Buffer.from(args.orginalBase64, 'base64');
+          const buffer = Buffer.from(parseImgString(), 'base64');
           fs.access(`images/${folder}`, (err) => {
             if (err && err.code === 'ENOENT') {
               fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
@@ -452,12 +461,12 @@ class AddSurveyPhoto {
           customer.survey.photos.push(payload);
           customer.save();
           const photo = new PhotosModel({
-            base64: `data:image/jpeg;base64,${args.orginalBase64}`,
+            base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
             docID,
           });
-         // console.log(photo)
           photo.save();
+          return { heading: originalUrl };  // fix this, why is photo prop not showing?
         });
     };
   }
@@ -465,11 +474,9 @@ class AddSurveyPhoto {
 
 class GetSurveyPhotos {
   constructor() {
-    this.getSurveyPhotos = (args) => {
-      return CustomersModel.findOne({ _id: args.id })
+    this.getSurveyPhotos = args => CustomersModel.findOne({ _id: args.id })
         .then(customer => (customer.survey.photos),
         );
-    };
   }
  }
 
@@ -478,8 +485,8 @@ class GetMessages {
     this.getMessages = (args) => {
       const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
-          if(customer.notes){
-             return customer.notes
+          if (customer.notes) {
+            return customer.notes;
           }
         });
       return Messages;
@@ -490,6 +497,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
+      console.log('togle', args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
@@ -502,21 +510,22 @@ class ToggleSurveyReady {
           }
           customer.save();
         });
-
-      UsersModel.findOne({ _id: args.userid })
+      if (!args.online) {
+        UsersModel.findOne({ _id: args.userid })
          .then((user) => {
            user.newCustomers = user.newCustomers.map((customer) => {
-                if (customer.id === args.custid) {
-                     if(customer.status === 3) {
-                       customer.status = 4; 
-                     } else if (customer.status === 4) {
-                       customer.status = 3;
-                     }
+             if (customer.id === args.custid) {
+               if (customer.status === 3) {
+                 customer.status = 4;
+               } else if (customer.status === 4) {
+                 customer.status = 3;
                }
-               return customer;
+             }
+             return customer;
            });
            user.save();
          });
+      }
     };
   }
  }
@@ -623,14 +632,10 @@ class GetFinishedSurveyQuery {
   }
  }
 
-
-
-
-
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
-      PricingModel.findOne({description: args.description})
+      PricingModel.findOne({ description: args.description })
          .then((data) => {
            if (!data) {
              const newPrice = new PricingModel({
@@ -652,6 +657,19 @@ class AddPricing {
   }
  }
 
+class DeletePrice {
+  constructor() {
+    this.deletePrice = (args) => {
+      CustomersModel.findOne({ _id: args.custid })
+        .then((customer) => {
+          customer.estimate.prices.splice(args.index, 1);
+          customer.save();
+        });
+      return true;
+    };
+  }
+ }
+
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
@@ -662,7 +680,7 @@ class AcceptEstimate {
             .then((user) => {
               user.estimates.push({
                 id: customer._id,
-                firstName:customer.firstName,
+                firstName: customer.firstName,
                 lastName: customer.lastName,
                 email1: customer.email1,
                 email2: customer.email2,
@@ -740,53 +758,40 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      const generics = [];
+      console.log('PREVIEW', args.preview);
+      const generics = args.generics;
       const output = [];
       const prices = [];
-
-      _.forIn(args.generics, ((value, key) => {
-        if (value) {
-          generics.push(key);
-        }
-      }));
-      console.log(args)
-
-
-
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
           cust.estimate.prices.forEach((price) => {
             prices.push([price.description, `$${price.price}`]);
           });
         });
-
-        generics.forEach((gen) => {
-          GenericModel.findOne({ _id: genericsMapping[gen] })
-            .then((g) => output.push(g));
-        });
-
       setTimeout(() => {
         const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
-        const total = pricesArray.reduce((acc, val) => {
-          return acc + val;
-        }, 0);
+        const total = pricesArray.reduce((acc, val) => acc + val, 0);
         const hst = (total / 100) * 13;
-        
         const Total = numeral(total + hst).format('$0,0.00');
         const HST = numeral(hst).format('$0,0.00');
-
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
-
-
         CustomersModel.findOne({ _id: args.custid })
-         .then(customer => {
-           console.log(customer);
-           pdfMakeEstimate(customer, generics, prices);
+         .then((customer) => {
+           const photos = customer.survey.photos.filter((img) => {
+             if (img.selected) {
+               return img;
+             }
+           }).map((image) => {
+             image.photo = path.join(__dirname, `../../images/${customer.firstName}${customer.lastName}/original/${image.filename}.jpg`);
+             return image;
+           });
+           pdfMakeEstimate(customer, generics, prices, photos, args.text);
+           if (!args.preview) {
+             sendEmailEstimatetoCustomer(customer);
+           }
          });
-
       }, 1000);
-  
     };
   }
 }
@@ -800,7 +805,6 @@ class GetImageBase64 {
 class AddGeneric {
   constructor() {
     this.addGeneric = (args) => {
-     // console.log(args)
       const generic = new GenericModel({
         heading: args.heading,
         bulletpoints: args.bulletpoints,
@@ -814,6 +818,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  DeletePrice,
   AddGeneric,
   GetImageBase64,
   GeneratePDFEstimate,

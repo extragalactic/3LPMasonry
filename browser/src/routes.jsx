@@ -12,6 +12,7 @@ import MapsTest from './components/Maps/MapsTest';
 import PhotoEditor from './components/PhotoEdit/photoEditor';
 import GenericsContainer from './components/Generics/GenericsContainer';
 import CustomersContainer from './components/Customers/CustomersContainer';
+import CustomerUploadContainer from './components/customerUpload/customerUploadContainer';
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -23,6 +24,7 @@ const requireAuth = (nextState, replace) => {
 
 export default (
   <Route path="/" >
+    <Route path={'/customerupload/:id'} component={CustomerUploadContainer} />
     <Route path={'/app'} component={App} auth={auth} >
       <IndexRedirect to="/home" />
       <Route path="/confirm" component={CustomerConfirmation} />

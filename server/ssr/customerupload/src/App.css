@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 170px;
+}
+
+.App-header {
+  background-color: #d3d3d3;
+  height: 140px;
+  padding: 10px;
+  color: black;
+}
+
+.App-intro {
+  font-size: large;
+      text-align: center;
+
+}
+
+
+.Photos {
+  align-items: 'center'
+}
+
+.Gallery {
+  width: '10px'
+}
+
+
+ol ol {
+    margin-left: 2em;
+}
+li {
+  list-style-position: inside;
+  padding: 0;
+}
+
+
+.close {
+  float: right;
+} 
+
+.menu {
+   display: block;
+    margin: auto;
+    width: 40%;
+}
+
+.submitButton {
+position: relative;
+bottom: 20px;
+right: 20px;
+}

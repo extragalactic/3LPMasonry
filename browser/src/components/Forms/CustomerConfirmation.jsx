@@ -73,7 +73,6 @@ class CustomerConfirmationComp extends React.Component {
     });
   }
   render() {
-    console.log('notes', this)
     const customer = this.state.currentCustomer;
     if (!customer) {
       return <h7>Loading</h7>;

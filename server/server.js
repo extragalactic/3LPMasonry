@@ -22,17 +22,17 @@ Mongoose.Promise = global.Promise;
 const ssl = {
   key: fs.readFileSync(path.join(__dirname, '../certs/private.key'), 'utf8'),
   cert: fs.readFileSync(path.join(__dirname, '../certs/cert.crt'), 'utf8'),
-  ca: [fs.readFileSync(path.join(__dirname,'../certs/chain_a.crt'), 'utf8'),
-    fs.readFileSync(path.join(__dirname,'../certs/chain_b.crt'), 'utf8'),
-    fs.readFileSync(path.join(__dirname,'../certs/chain_c.crt'), 'utf8')],
+  ca: [fs.readFileSync(path.join(__dirname, '../certs/chain_a.crt'), 'utf8'),
+    fs.readFileSync(path.join(__dirname, '../certs/chain_b.crt'), 'utf8'),
+    fs.readFileSync(path.join(__dirname, '../certs/chain_c.crt'), 'utf8')],
 };
 
 const app = express();
 dotenv.config();
-console.log(process.env)
+console.log(process.env);
 
 if (process.env.PROD === 'false') {
-  console.log('hotload')
+  console.log('hotload');
   console.log('dev');
   const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
@@ -55,8 +55,8 @@ const executableSchema = makeExecutableSchema({
   resolvers: Resolvers,
 });
 
-const jsonParser = bodyParser.json({ limit:1024*1024*20, type:'application/json' });
-const urlencodedParser = bodyParser.urlencoded({ extended: true, limit: 1024*1024*20, type:'application/x-www-form-urlencoding' })
+const jsonParser = bodyParser.json({ limit: 1024 * 1024 * 20, type: 'application/json' });
+const urlencodedParser = bodyParser.urlencoded({ extended: true, limit: 1024 * 1024 * 20, type: 'application/x-www-form-urlencoding' });
 app.use(jsonParser);
 app.use(urlencodedParser);
 
@@ -106,8 +106,13 @@ app.use(express.static(path.join(__dirname, '../browser/')));
 app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
 
 app.use(express.static(path.join(__dirname, './ssr/')));
-app.get('/upload/:id', (req, res) => {
-  res.sendFile(path.join(__dirname, './ssr/uploadcare.html'));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static/css')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build/static/media')));
+app.use(express.static(path.join(__dirname, './ssr/customerupload/build')));
+
+app.get('/upload/:userid', (req, res) => {
+  res.sendFile(path.join(__dirname, './ssr/customerupload/build/index.html'));
 });
 app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
 
@@ -117,6 +122,11 @@ const imageOptions = {
 app.use('/images', express.static(path.join(__dirname, '../images'), imageOptions));
 app.get('/images/:filename', (req, res) => {
   res.sendFile(path.join(__dirname, `../images/${req.params.filename}`));
+});
+
+app.use('/documents', express.static(path.join(__dirname, '../documents'), imageOptions));
+app.get('/images/:filename', (req, res) => {
+  res.sendFile(path.join(__dirname, `../documents/${req.params.filename}`));
 });
 
 app.get('/email', (req, res) => {

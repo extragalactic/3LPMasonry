@@ -53,7 +53,7 @@ const CustomerSchema = new mongoose.Schema({
     }],
     photos: [{
       heading: String,
-      description: String,
+      description: [String],
       timestamp: String,
       user: String,
       orginalBase64: String,
@@ -63,8 +63,10 @@ const CustomerSchema = new mongoose.Schema({
       thumb: String,
       photo: String,
       caption: String,
+      filename: String,
       selected: Boolean,
       docID: String,
+      localfile: String,
     }],
   },
   estimate: {
