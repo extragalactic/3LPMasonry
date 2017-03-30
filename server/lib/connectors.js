@@ -806,6 +806,9 @@ class GeneratePDFEstimate {
            });
            return setTimeout(() => {
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
+             if (!args.preview) {
+               sendEmailEstimatetoCustomer(customer);
+             }
              return true;
            }, 2000);
          });
@@ -813,12 +816,6 @@ class GeneratePDFEstimate {
     };
   }
 }
-
-/*
-   if (!args.preview) {
-                sendEmailEstimatetoCustomer(customer);
-             }
-*/
 
 class GetImageBase64 {
   constructor() {
