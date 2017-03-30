@@ -438,9 +438,33 @@ class AddSurveyPhoto {
    
           const buffer = Buffer.from(parseImgString(), 'base64');
           const s3 = new AWS.S3({ region: 'us-east-2' });
+
+
           sharp(buffer)
-            .resize(50, 50) //resize doesnt seem to be working now, covert from buffer to file then back again?
-            .toBuffer()
+            .resize(100) //resize doesnt seem to be working now, covert from buffer to file then back again?
+            .toFile(`images/${file}.jpg`)
+              .then(() => {
+                fs.readFile(`images/${file}.jpg`, {}, (err, res) => {
+               
+                const params = {
+                  Bucket: '3lpm',
+                  Key: `${customer._id}/thumbnail${file}.jpg`,
+                  Expires: 60,
+                  ACL: 'public-read',
+                  Body: res,
+                };
+                
+                s3.upload(params, (err, res) => {
+                console.log(res);
+                console.log(err);
+              });
+
+                 });
+              });
+
+
+/*
+
               .then((buf) => {
                 const params = {
                   Bucket: '3lpm',
@@ -454,7 +478,7 @@ class AddSurveyPhoto {
                 console.log(err);
               });
               });
-
+*/
           const s3Params = {
             Bucket: '3lpm',
             Key: `${customer._id}/${file}.jpg`,
