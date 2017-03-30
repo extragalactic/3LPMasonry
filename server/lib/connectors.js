@@ -417,7 +417,6 @@ class AddSurveyPhoto {
             length: 4,
             charset: 'numeric',
           });
-         
           const originalUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/${file}.jpg`;
           const thumbUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/thumbnail${file}.jpg`;
           const payload = {
@@ -435,50 +434,27 @@ class AddSurveyPhoto {
             docID,
             localfile: args.localfile,
           };
-   
           const buffer = Buffer.from(parseImgString(), 'base64');
           const s3 = new AWS.S3({ region: 'us-east-2' });
-
-
           sharp(buffer)
-            .resize(100) //resize doesnt seem to be working now, covert from buffer to file then back again?
+            .resize(100)
             .toFile(`images/${file}.jpg`)
               .then(() => {
                 fs.readFile(`images/${file}.jpg`, {}, (err, res) => {
-               
-                const params = {
-                  Bucket: '3lpm',
-                  Key: `${customer._id}/thumbnail${file}.jpg`,
-                  Expires: 60,
-                  ACL: 'public-read',
-                  Body: res,
-                };
-                
-                s3.upload(params, (err, res) => {
-                console.log(res);
-                console.log(err);
+                  const params = {
+                    Bucket: '3lpm',
+                    Key: `${customer._id}/thumbnail${file}.jpg`,
+                    Expires: 60,
+                    ACL: 'public-read',
+                    Body: res,
+                  };
+                  s3.upload(params, (err, res) => {
+                    console.log(res);
+                    console.log(err);
+                  });
+                });
               });
 
-                 });
-              });
-
-
-/*
-
-              .then((buf) => {
-                const params = {
-                  Bucket: '3lpm',
-                  Key: `${customer._id}/thumbnail${file}.jpg`,
-                  Expires: 60,
-                  ACL: 'public-read',
-                  Body: buffer,
-                };
-                s3.upload(params, (err, res) => {
-                console.log(res);
-                console.log(err);
-              });
-              });
-*/
           const s3Params = {
             Bucket: '3lpm',
             Key: `${customer._id}/${file}.jpg`,
@@ -798,9 +774,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      //console.log('PREVIEW', args.preview);
       const generics = args.generics;
-      const output = [];
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
@@ -808,7 +782,7 @@ class GeneratePDFEstimate {
             prices.push([price.description, `$${price.price}`]);
           });
         });
-      setTimeout(() => {
+      return setTimeout(() => {
         const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
         const total = pricesArray.reduce((acc, val) => acc + val, 0);
         const hst = (total / 100) * 13;
@@ -816,25 +790,35 @@ class GeneratePDFEstimate {
         const HST = numeral(hst).format('$0,0.00');
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
-        CustomersModel.findOne({ _id: args.custid })
+        return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
-           }).map((image) => {
-             image.photo = path.join(__dirname, `../../images/${customer.firstName}${customer.lastName}/original/${image.filename}.jpg`);
-             return image;
            });
-           pdfMakeEstimate(customer, generics, prices, photos, args.text);
-           if (!args.preview) {
-             sendEmailEstimatetoCustomer(customer);
-           }
+           const base64Images = [];
+           photos.forEach((photo) => {
+             PhotosModel.findOne({ docID: photo.docID })
+               .then((p) => {
+                 base64Images.push({ caption: photo.caption, photo: p.base64 });
+               });
+           });
+           return setTimeout(() => {
+             pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
+             return true;
+           }, 2000);
          });
       }, 1000);
     };
   }
 }
+
+/*
+   if (!args.preview) {
+                sendEmailEstimatetoCustomer(customer);
+             }
+*/
 
 class GetImageBase64 {
   constructor() {
