@@ -374,7 +374,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     ],
 
     content: { stack: [
-      { image: path.join(__dirname, '../../assets/images/3lplogo.jpg'),
+      { image: path.join(__dirname, '../../assets/images/3lplogo.png'),
         width: 325,
         height: 325,
         alignment: 'center',
@@ -514,7 +514,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
                 { text: sitePhoto.caption, alignment: 'center' },
         ],
           style: 'sitePhoto' }
-            )),
+     )),
         id: 'photos',
       },
 
