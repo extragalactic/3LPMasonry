@@ -480,7 +480,6 @@ class AddSurveyPhoto {
     };
   }
  }
-
 class GetSurveyPhotos {
   constructor() {
     this.getSurveyPhotos = args => CustomersModel.findOne({ _id: args.id })
@@ -876,16 +875,3 @@ module.exports = {
   AddSurveyNotes,
   GetFinishedSurveyQuery,
 };
-
-        /*
-          fs.access(`images/${folder}`, (err) => {
-            if (err && err.code === 'ENOENT') {
-              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => {console.log(err)});
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            } else {
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            }
-          });
-          */
