@@ -412,7 +412,6 @@ class AddSurveyPhoto {
       const docID = randomstring.generate(12);
       return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          const folder = customer.firstName + customer.lastName;
           const file = args.heading + randomstring.generate({
             length: 4,
             charset: 'numeric',
