@@ -12,9 +12,8 @@ const sendPushtoEstimators = (customer) => {
       headings: { en: customer.address },
       buttons: [{ id: 'id1', text: 'Accept' }],
     },
-    headers: { Authorization: 'Basic M2Y2ZGIxOWQtZTY0MC00MjYyLWEzODUtZjYxNmMwNDdiZTBm' },
+    headers: { Authorization: `Basic ${process.env.ONE_SIGNAL_AUTH}` },
   }).then(data => console.log(data)).catch(err => console.error(err));
 };
-
 
 export { sendPushtoEstimators };
