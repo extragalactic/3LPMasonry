@@ -2,6 +2,11 @@ import PDFMake from 'pdfmake';
 import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
+import AWS from 'aws-sdk';
+
+const s3 = new AWS.S3({ region: 'us-east-2' });
+
+import CustomerModel from '../lib/CustomerModel';
 
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
@@ -533,7 +538,32 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
   const pdfDoc = printer.createPdfKitDocument(docDefinition);
   pdfDoc.pipe(fs.createWriteStream(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`));
   pdfDoc.end();
+
+  setTimeout(() => {
+    fs.readFile(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`, {}, (err, res) => {
+      const params = {
+        Bucket: '3lpm',
+        Key: `${customer._id}/${customer.firstName}${customer.lastName}Estimate.pdf`,
+        Expires: 60,
+        ACL: 'public-read',
+        Body: res,
+      };
+      s3.upload(params, (err, res) => {
+         console.log(res);
+         console.log(err);
+        CustomerModel.findOne({_id: customer._id})
+          .then((customer) => {
+            customer.estimatePDF = res.Location;
+            customer.save();
+          });
+      });
+    });
+  }, 1000);
   return true;
 };
 
 export default pdfMakeEstimate;
+
+
+
+

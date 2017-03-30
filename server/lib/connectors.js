@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import fs from 'fs';
-import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import base64Img from 'base64-img';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import numeral from 'numeral';
+import AWS from 'aws-sdk';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import PricingModel from '../lib/PricingModel';
@@ -14,13 +13,11 @@ import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
 import pdfMakeEstimate from '../methods/pdfMake';
-import AWS from 'aws-sdk';
 import { sendPushtoEstimators } from '../methods/oneSignal';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
-import genericsMapping from './genericsMapping';
 
 
 sharp.concurrency(1);
