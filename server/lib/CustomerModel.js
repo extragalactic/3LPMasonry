@@ -94,6 +94,7 @@ const CustomerSchema = new mongoose.Schema({
     photos: [String],
     pdf: String,
   },
+  estimatePDF: String,
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);

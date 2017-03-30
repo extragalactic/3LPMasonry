@@ -15,6 +15,7 @@ const getCustomer = gql `
      id
     firstName
     lastName
+    estimatePDF
     email1
     email2
     cphone
@@ -80,6 +81,7 @@ query{
     cphone
     wphone
     address
+    estimatePDF
     coordinates {
       latitude
       longitude
