@@ -230,7 +230,8 @@ class SubmitCustomer {
                const surveyor = !data.surveyor.id;
                const survey = !data.sendSurvey;
                const inquriy = survey && surveyor;
-               if (data.sendSurvey === true) {
+               //does customer want online estmate? send to prefered mode of contact
+               if (data.sendSurvey === true) {    
                  if (data.cellNotification) {
                    sendSMStoCustomer({ number: data.cphone, data });
                  }
@@ -508,7 +509,6 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      console.log('togle', args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
