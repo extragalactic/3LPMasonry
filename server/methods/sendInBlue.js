@@ -16,7 +16,7 @@ const sendEmailEstimatetoCustomer = (customer) => {
   const emailData = { id: 3,
     to: customer.email1,
     cc: 'j@jonathonfritz.com',
-    attr: { CUSTOMER: customer.firstName, LINK: `tlpm.ca/documents/${customer.firstName}${customer.lastName}Estimate.pdf` },
+    attr: { CUSTOMER: customer.firstName, LINK: `3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/${customer.firstName}${customer.lastName}Estimate.pdf` },
   };
   client.send_transactional_template(emailData).on('complete', (data) => {
     console.log(data);
