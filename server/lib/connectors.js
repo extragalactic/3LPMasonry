@@ -509,7 +509,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-       CustomersModel.findOne({ _id: args.custid })
+      CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
             sendPushtoEstimators(customer);
