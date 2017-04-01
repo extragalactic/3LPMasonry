@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import fs from 'fs';
-import path from 'path';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import base64Img from 'base64-img';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import numeral from 'numeral';
+import AWS from 'aws-sdk';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import PricingModel from '../lib/PricingModel';
@@ -14,14 +13,11 @@ import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
 import pdfMakeEstimate from '../methods/pdfMake';
-
-import { sendPushtoEstimators } from '../methods/oneSIgnal';
-
+import { sendPushtoEstimators } from '../methods/oneSignal';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
-import genericsMapping from './genericsMapping';
 
 
 sharp.concurrency(1);
@@ -234,7 +230,8 @@ class SubmitCustomer {
                const surveyor = !data.surveyor.id;
                const survey = !data.sendSurvey;
                const inquriy = survey && surveyor;
-               if (data.sendSurvey === true) {
+               //does customer want online estmate? send to prefered mode of contact
+               if (data.sendSurvey === true) {    
                  if (data.cellNotification) {
                    sendSMStoCustomer({ number: data.cphone, data });
                  }
@@ -370,7 +367,6 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
-      console.log('NOTES', args);
       const payload = {
         heading: args.heading,
         description: args.description,
@@ -414,13 +410,12 @@ class AddSurveyPhoto {
       const docID = randomstring.generate(12);
       return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          const folder = customer.firstName + customer.lastName;
           const file = args.heading + randomstring.generate({
             length: 4,
             charset: 'numeric',
           });
-          const originalUrl = `https://tlpm.ca/images/${folder}/original/${file}.jpg`;
-          const thumbUrl = `https://tlpm.ca/images/${folder}/thumbnail/${file}.jpg`;
+          const originalUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/${file}.jpg`;
+          const thumbUrl = `https://3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/thumbnail${file}.jpg`;
           const payload = {
             heading: args.heading,
             description: args.description,
@@ -436,28 +431,39 @@ class AddSurveyPhoto {
             docID,
             localfile: args.localfile,
           };
-          const saveImagetoDisk = (buffer) => {
-            sharp(buffer)
-           .toFile(`images/${folder}/original/${file}.jpg`)
-              .then(data => console.log('data'))
-              .catch(err => console.log('error', err));
-            sharp(buffer)
-            .resize(200)
-            .toFile(`images/${folder}/thumbnail/${file}.jpg`)
-              .catch(err => console.log('error', err));
-          };
           const buffer = Buffer.from(parseImgString(), 'base64');
-          fs.access(`images/${folder}`, (err) => {
-            if (err && err.code === 'ENOENT') {
-              fs.mkdirSync(`images/${folder}`, (err, data) => console.log(err, data));
-              fs.mkdirSync(`images/${folder}/thumbnail`, (err, data) => console.log(err, data));
-              fs.mkdirSync(`images/${folder}/original`, (err, data) => {
+          const s3 = new AWS.S3({ region: 'us-east-2' });
+          sharp(buffer)
+            .resize(100)
+            .toFile(`images/${file}.jpg`)
+              .then(() => {
+                fs.readFile(`images/${file}.jpg`, {}, (err, res) => {
+                  const params = {
+                    Bucket: '3lpm',
+                    Key: `${customer._id}/thumbnail${file}.jpg`,
+                    Expires: 60,
+                    ACL: 'public-read',
+                    Body: res,
+                  };
+                  s3.upload(params, (err, res) => {
+                    console.log(res);
+                    console.log(err);
+                  });
+                });
               });
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            } else {
-              setTimeout(() => { saveImagetoDisk(buffer); }, 1000);
-            }
+
+          const s3Params = {
+            Bucket: '3lpm',
+            Key: `${customer._id}/${file}.jpg`,
+            Expires: 60,
+            ACL: 'public-read',
+            Body: buffer,
+          };
+          s3.upload(s3Params, (err, res) => {
+            console.log(res);
+            console.log(err);
           });
+
           customer.survey.photos.push(payload);
           customer.save();
           const photo = new PhotosModel({
@@ -466,17 +472,23 @@ class AddSurveyPhoto {
             docID,
           });
           photo.save();
-          return { heading: originalUrl };  // fix this, why is photo prop not showing?
+          return true;
         });
     };
   }
  }
-
 class GetSurveyPhotos {
   constructor() {
     this.getSurveyPhotos = args => CustomersModel.findOne({ _id: args.id })
         .then(customer => (customer.survey.photos),
         );
+  }
+ }
+class GetSurveyLocalPhotos {
+  constructor() {
+    this.getSurveyLocalPhotos = args => CustomersModel.findOne({ _id: args.id })
+    .then(customer => customer.survey.photos.map(c => ({ photo: c.localfile, selected: false })),
+  );
   }
  }
 
@@ -497,7 +509,6 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      console.log('togle', args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status === 3) {
@@ -758,9 +769,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-      console.log('PREVIEW', args.preview);
       const generics = args.generics;
-      const output = [];
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
@@ -768,7 +777,7 @@ class GeneratePDFEstimate {
             prices.push([price.description, `$${price.price}`]);
           });
         });
-      setTimeout(() => {
+      return setTimeout(() => {
         const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
         const total = pricesArray.reduce((acc, val) => acc + val, 0);
         const hst = (total / 100) * 13;
@@ -776,20 +785,27 @@ class GeneratePDFEstimate {
         const HST = numeral(hst).format('$0,0.00');
         prices.push(['HST', HST]);
         prices.push(['Total', Total]);
-        CustomersModel.findOne({ _id: args.custid })
+        return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
-           }).map((image) => {
-             image.photo = path.join(__dirname, `../../images/${customer.firstName}${customer.lastName}/original/${image.filename}.jpg`);
-             return image;
            });
-           pdfMakeEstimate(customer, generics, prices, photos, args.text);
-           if (!args.preview) {
-             sendEmailEstimatetoCustomer(customer);
-           }
+           const base64Images = [];
+           photos.forEach((photo) => {
+             PhotosModel.findOne({ docID: photo.docID })
+               .then((p) => {
+                 base64Images.push({ caption: photo.caption, photo: p.base64 });
+               });
+           });
+           return setTimeout(() => {
+             pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
+             if (!args.preview) {
+               sendEmailEstimatetoCustomer(customer);
+             }
+             return true;
+           }, 2000);
          });
       }, 1000);
     };
@@ -818,6 +834,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  GetSurveyLocalPhotos,
   DeletePrice,
   AddGeneric,
   GetImageBase64,
@@ -854,4 +871,3 @@ module.exports = {
   AddSurveyNotes,
   GetFinishedSurveyQuery,
 };
-
