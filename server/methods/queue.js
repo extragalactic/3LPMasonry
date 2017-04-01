@@ -1,4 +1,5 @@
 import QueueModel from '../lib/queueModel';
+import CustomerModel from '../lib/CustomerModel';
 
 const addCustomertoQueue = (customer) => {
   QueueModel.findOne({ customer: customer._id })
@@ -15,14 +16,19 @@ const addCustomertoQueue = (customer) => {
             wphone: customer.wphone,
             address: customer.address,
           });
-          queueItem.save();
+          queueItem.save().then((res) => {
+            CustomerModel.findOne({ _id: customer._id })
+             .then((customer) => {
+               customer.estimateQueueId = res._id;
+               customer.save();
+             });
+          });
         }
       });
 };
 
 const removeCustomerfromQueue = (customer) => {
-  console.log('REMOVE');
-  QueueModel.findOneAndRemove({ customer: customer._id })
+  QueueModel.findByIdAndRemove(customer.estimateQueueId)
     .then(data => console.log(data)).catch(err => console.error(err));
 };
 

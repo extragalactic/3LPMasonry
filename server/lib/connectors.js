@@ -511,13 +511,15 @@ class ToggleSurveyReady {
     this.toggleSurveyReady = (args) => {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          if (customer.status === 3) {
+          if (customer.status <= 3) {
             sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
+            customer.surveyReadyforPrice = true;
           } else {
             removeCustomerfromQueue(customer);
             customer.status = 3;
+            customer.surveyReadyforPrice = false;
           }
           customer.save();
         });
