@@ -1,6 +1,7 @@
 const customerDetailsStyles = {
 	detailsPage: {
 		marginTop: 10,
+		paddingBottom: 70,
 		fontSize: 15,
 		fontFamily: 'Verdana',		
 	},
@@ -11,7 +12,7 @@ const customerDetailsStyles = {
 		fontSize: 18,
 	},
 	photoViewer: {
-		width: 500,
+		width: 550,
 		marginTop: 20,
 		marginLeft: 5,
 		marginRight: 5,				 
@@ -22,16 +23,18 @@ const customerDetailsStyles = {
 	statusMessage: {
 		fontSize: 18,
 		fontVariant: 'small-caps',
+		paddingTop: 13
 	},
 	statusBar: {
 		backgroundColor: '#ddd',
-		padding: 10,
+		padding: 0,
 	},
 	googleMapsContainer: {
 		marginTop: 15,
+		marginLeft: 5
 	},
 	googleMap: {
-		width: 500,
+		width: 550,
 		height: 280
 	},
 	tabsBar: {
@@ -42,6 +45,9 @@ const customerDetailsStyles = {
 		fontStyle: 'italic',
 		fontSize: 13,
 		color: '#888',
+	},
+	uploadInput: {
+		cursor: 'pointer',
 	}
 };
 

@@ -1,50 +1,50 @@
 import React from 'react';
-import { Table, Column, Cell } from 'fixed-data-table';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
+import { Table, Column, Cell} from 'fixed-data-table-2';
+import Dimensions from 'react-dimensions';
 
 import { CustomerDataList, customerFieldNames } from './CustomerDataList';
 
 import styles from 'style-loader!css-loader!fixed-data-table/dist/fixed-data-table.css';
 import styleCSS from '../../styles/customerTableStyles';
 
-'use strict;';
+"use strict;"
 const fields = customerFieldNames;
 const SEARCHABLE_COLUMNS = [fields.FIRST_NAME, fields.LAST_NAME, fields.ADDRESS, fields.STATUS, fields.EMAIL1, fields.EMAIL2, fields.WPHONE, fields.CPHONE, fields.HPHONE, fields.SURVEY_TYPE, fields.SURVEYOR_NAME, fields.ESTIMATOR_NAME];
-
+const ROW_HEIGHT = 70;
+const HEADER_HEIGHT =50;
 const columnWidths = {
   name: 110,
-  address: 160,
+  address: 180,
   phone: 110,
   email: 200,
   emailNotify: 80,
   status: 130,
   surveyType: 70,
-  notes: 400,
+  notes: 400
 };
 
-const TextCell = ({ rowIndex, data, col, activeRow = -1, ...props }) => (
-  <Cell
-    style={rowIndex === activeRow ? { ...styleCSS.cellStyle, ...styleCSS.cellHighlight } : styleCSS.cellStyle}
+const TextCell = ({rowIndex, data, col, activeRow=-1, ...props}) => (
+  <Cell 
+    style={ rowIndex===activeRow ? {...styleCSS.cellStyle, ...styleCSS.cellHighlight} : styleCSS.cellStyle } 
     {...props}
   >
-    {data.getDataAt(rowIndex, col)}
+      {data.getDataAt(rowIndex, col)}
   </Cell>
 );
 
-const HeaderCell = ({ title, ...props }) => (
+const HeaderCell = ({title, ...props}) => (
   <Cell style={styleCSS.headerCellStyle}>
     {title}
   </Cell>
 );
 
-
 class DataListWrapper {
   constructor(data, indexMap) {
     this.data = data;
-    this.indexMap = indexMap;
+    this.indexMap = indexMap;    
   }
 
   getSize() {
@@ -52,19 +52,19 @@ class DataListWrapper {
   }
 
   getDataAt(index, col) {
-    return this.data.getDataAt(this.indexMap[index], col);
+    return this.data.getDataAt( this.indexMap[index], col );
   }
 }
 
-
+  
 class _CustomersTable extends React.Component {
   constructor(props) {
     super(props);
 
     this.dataList = new CustomerDataList(props.customers);
     this.state = {
-      filteredDataList: this.dataList,
-      activeRow: -1,
+      filteredDataList : this.dataList,
+      activeRow : -1
     };
 
     this.onFilterChange = this.onFilterChange.bind(this);
@@ -74,9 +74,9 @@ class _CustomersTable extends React.Component {
   }
 
   onFilterChange(e) {
-    if (!e.target.value) {
+     if (!e.target.value) {
       this.setState({
-        filteredDataList: this.dataList,
+        filteredDataList: this.dataList
       });
     }
     const filterBy = e.target.value.toLowerCase();
@@ -94,140 +94,140 @@ class _CustomersTable extends React.Component {
       }
     }
     this.setState({
-      filteredDataList: new DataListWrapper(this.dataList, filteredIndexes),
+      filteredDataList: new DataListWrapper(this.dataList, filteredIndexes)
     });
   }
 
   onRowMouseEnter(e, index) {
-    this.setState({ activeRow: index });
+    this.setState({activeRow: index});
   }
 
   onRowMouseLeave(e, index) {
-    this.setState({ activeRow: -1 });
+    this.setState({activeRow: -1});
   }
 
   onRowClick(e, index) {
     // save selected customer ID, then goto CustomerDetails page
-    this.props.saveCustomerID(this.state.filteredDataList.getDataAt(index, 'id'));
-    browserHistory.push('details');
+    this.props.saveCustomerID( this.state.filteredDataList.getDataAt(index, 'id') );
+    browserHistory.push('details'); 
   }
 
   render() {
-    const { filteredDataList } = this.state;
-    const { activeRow } = this.state;
+    const {filteredDataList} = this.state;
+    const {activeRow} = this.state;
+    // the following props are passed in via react-dimensions
+    const {containerHeight, containerWidth, ...props} = this.props;
 
     return (
-      <div>
+      <div style={styleCSS.tableStyle} >
+        <input style={styleCSS.inputBox}
+          onChange={this.onFilterChange}
+          placeholder="Enter Search Text"
+        />
+        <br />
 
-        <div style={styleCSS.tableStyle}>
-          <input
-            style={styleCSS.inputBox}
-            onChange={this.onFilterChange}
-            placeholder="Enter Search Text"
+        <Table
+          rowHeight={ ROW_HEIGHT }
+          rowsCount={filteredDataList.getSize()}
+          width={containerWidth}
+          height={ filteredDataList.getSize() * ROW_HEIGHT + HEADER_HEIGHT + 20 < containerHeight ?
+                  filteredDataList.getSize() * ROW_HEIGHT + HEADER_HEIGHT + 20 :
+                  containerHeight
+          }
+          headerHeight={ HEADER_HEIGHT }
+          onRowMouseEnter={this.onRowMouseEnter}
+          onRowMouseLeave={this.nRowMouseLeave}
+          onRowClick={this.onRowClick}
+          {...this.props}
+        >
+          <Column
+            header={<HeaderCell title={"First Name"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.FIRST_NAME} activeRow={activeRow} />}
+            width={columnWidths.name}
+            fixed={true}
           />
-          <br />
 
-          <Table
-            rowHeight={70}
-            rowsCount={filteredDataList.getSize()}
-            width={1800}
-            height={900}
-            headerHeight={50}
-            onRowMouseEnter={this.onRowMouseEnter}
-            onRowMouseLeave={this.nRowMouseLeave}
-            onRowClick={this.onRowClick}
-            {...this.props}
-          >
-            <Column
-              header={<HeaderCell title={'First Name'} />}
-              cell={<TextCell data={filteredDataList} col={fields.FIRST_NAME} activeRow={activeRow} />}
-              width={columnWidths.name}
-            />
+          <Column
+            header={<HeaderCell title={"Last Name"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.LAST_NAME} activeRow={activeRow} />}
+            width={columnWidths.name}
+            fixed={true}
+          />
 
-            <Column
-              header={<HeaderCell title={'Last Name'} />}
-              cell={<TextCell data={filteredDataList} col={fields.LAST_NAME} activeRow={activeRow} />}
-              width={columnWidths.name}
-            />
+          <Column
+            header={<HeaderCell title={"Status"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.STATUS} activeRow={activeRow} />}
+            width={columnWidths.status}
+          />
 
-            <Column
-              header={<HeaderCell title={'Status'} />}
-              cell={<TextCell data={filteredDataList} col={fields.STATUS} activeRow={activeRow} />}
-              width={columnWidths.status}
-            />
+          <Column
+            header={<HeaderCell title={"Address"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.ADDRESS} activeRow={activeRow} />}
+            width={columnWidths.address}
+          />
 
-            <Column
-              header={<HeaderCell title={'Address'} />}
-              cell={<TextCell data={filteredDataList} col={fields.ADDRESS} activeRow={activeRow} />}
-              width={columnWidths.address}
-            />
+          <Column
+            header={<HeaderCell title={"Email 1"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.EMAIL1} activeRow={activeRow} />}
+            width={columnWidths.email}
+          />
 
-            <Column
-              header={<HeaderCell title={'Email 1'} />}
-              cell={<TextCell data={filteredDataList} col={fields.EMAIL1} activeRow={activeRow} />}
-              width={columnWidths.email}
-            />
+          <Column
+            header={<HeaderCell title={"Email 1 Notify"}></HeaderCell>}            
+            cell={<TextCell data={filteredDataList} col={fields.EMAIL1NOTIFY} activeRow={activeRow} />}
+            width={columnWidths.emailNotify}
+          />
 
-            <Column
-              header={<HeaderCell title={'Email 1 Notify'} />}
-              cell={<TextCell data={filteredDataList} col={fields.EMAIL1NOTIFY} activeRow={activeRow} />}
-              width={columnWidths.emailNotify}
-            />
+          <Column
+            header={<HeaderCell title={"Email 2"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.EMAIL2} activeRow={activeRow} />}
+            width={columnWidths.email}
+          />
 
-            <Column
-              header={<HeaderCell title={'Email 2'} />}
-              cell={<TextCell data={filteredDataList} col={fields.EMAIL2} activeRow={activeRow} />}
-              width={columnWidths.email}
-            />
+          <Column
+            header={<HeaderCell title={"Email 2 Notify"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.EMAIL2NOTIFY} activeRow={activeRow} />}
+            width={columnWidths.emailNotify}
+          />
 
-            <Column
-              header={<HeaderCell title={'Email 2 Notify'} />}
-              cell={<TextCell data={filteredDataList} col={fields.EMAIL2NOTIFY} activeRow={activeRow} />}
-              width={columnWidths.emailNotify}
-            />
+          <Column
+            header={<HeaderCell title={"Cell Phone"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.CPHONE} activeRow={activeRow} />}
+            width={columnWidths.phone}
+          />
 
-            <Column
-              header={<HeaderCell title={'Cell Phone'} />}
-              cell={<TextCell data={filteredDataList} col={fields.CPHONE} activeRow={activeRow} />}
-              width={columnWidths.phone}
-            />
+          <Column
+            header={<HeaderCell title={"Work Phone"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.WPHONE} activeRow={activeRow} />}
+            width={columnWidths.phone}
+          />
 
-            <Column
-              header={<HeaderCell title={'Work Phone'} />}
-              cell={<TextCell data={filteredDataList} col={fields.WPHONE} activeRow={activeRow} />}
-              width={columnWidths.phone}
-            />
+          <Column
+            header={<HeaderCell title={"Home Phone"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.HPHONE} activeRow={activeRow} />}
+            width={columnWidths.phone}
+          />
 
-            <Column
-              header={<HeaderCell title={'Home Phone'} />}
-              cell={<TextCell data={filteredDataList} col={fields.HPHONE} activeRow={activeRow} />}
-              width={columnWidths.phone}
-            />
+          <Column
+            header={<HeaderCell title={"Survey Type"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.SURVEY_TYPE} activeRow={activeRow} />}
+            width={columnWidths.surveyType}
+          />
 
-            <Column
-              header={<HeaderCell title={'Survey Type'} />}
-              cell={<TextCell data={filteredDataList} col={fields.SURVEY_TYPE} activeRow={activeRow} />}
-              width={columnWidths.surveyType}
-            />
+          <Column
+            header={<HeaderCell title={"Surveyor Name"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.SURVEYOR_NAME} activeRow={activeRow} />}
+            width={columnWidths.name}
+          />
 
-            <Column
-              header={<HeaderCell title={'Surveyor Name'} />}
-              cell={<TextCell data={filteredDataList} col={fields.SURVEYOR_NAME} activeRow={activeRow} />}
-              width={columnWidths.name}
-            />
-
-            <Column
-              header={<HeaderCell title={'Estimator Name'} />}
-              cell={<TextCell data={filteredDataList} col={fields.ESTIMATOR_NAME} activeRow={activeRow} />}
-              width={columnWidths.name}
-            />
-
-          </Table>
-
-        </div>
-
+          <Column
+            header={<HeaderCell title={"Estimator Name"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.ESTIMATOR_NAME} activeRow={activeRow} />}
+            width={columnWidths.name}
+          />
+        </Table>
       </div>
-    );
+   );
   }
 
 }
@@ -239,4 +239,13 @@ const mapActionsToProps = dispatch => ({
 });
 const CustomersTable = connect(null, mapActionsToProps)(_CustomersTable);
 
-export default CustomersTable;
+// Using a react-dimensions wrapper enables responsive resizing of components that require pixel value sizes (such as fixed-data-table-2)
+module.exports = Dimensions({
+  getHeight: function(element) {
+    return window.innerHeight - 200;
+  },
+  getWidth: function(element) {
+    var widthOffset = 40;
+    return window.innerWidth - widthOffset;
+  }
+})(CustomersTable);
