@@ -23,6 +23,7 @@ const typeDefinitions = `
     coordinates: Coordinates
     estimate: Estimate
     estimatePDF: String
+    surveyReadyforPrice: Boolean
 }
   type Queue {
     id: String
