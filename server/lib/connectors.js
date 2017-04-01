@@ -706,6 +706,7 @@ class AcceptEstimate {
               user.save();
             });
           customer.estimator = args.userid;
+          removeCustomerfromQueue(customer);
           customer.save();
           return customer;
         });
