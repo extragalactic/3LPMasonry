@@ -54,8 +54,12 @@ class Customers {
 class Customer {
   constructor() {
     this.findCustomer = ({ id }) => {
-      const customer = CustomersModel.findOne({ _id: id }, (error, data) => data);
-      return customer;
+      if (id) {
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+          const customer = CustomersModel.findOne({ _id: id }, (error, data) => data);
+          return customer;
+        }
+      }
     };
   }
 }
@@ -63,8 +67,12 @@ class Customer {
 class GetCustomer {
   constructor() {
     this.getCustomer = ({ id }) => {
-      const customer = CustomersModel.findOne({ _id: id }, (error, data) => data);
-      return customer;
+      if (id) {
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+          const customer = CustomersModel.findOne({ _id: id }, (error, data) => data);
+          return customer;
+        }
+      }
     };
   }
 }
@@ -81,8 +89,12 @@ class Users {
 class User {
   constructor() {
     this.findUser = ({ id }) => {
-      const user = UsersModel.findOne({ _id: id }, (error, data) => data);
-      return user;
+      if (id) {
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+          const user = UsersModel.findOne({ _id: id }, (error, data) => data);
+          return user;
+        }
+      }
     };
   }
 }
@@ -230,8 +242,8 @@ class SubmitCustomer {
                const surveyor = !data.surveyor.id;
                const survey = !data.sendSurvey;
                const inquriy = survey && surveyor;
-               //does customer want online estmate? send to prefered mode of contact
-               if (data.sendSurvey === true) {    
+               // does customer want online estmate? send to prefered mode of contact
+               if (data.sendSurvey === true) {
                  if (data.cellNotification) {
                    sendSMStoCustomer({ number: data.cphone, data });
                  }
@@ -248,8 +260,8 @@ class SubmitCustomer {
                    sendEmailSurveytoCustomer({ email: data.email2, data });
                  }
                  data.status = 1;
-                 //addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
-                 //sendPushtoEstimators(data);
+                 // addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
+                 // sendPushtoEstimators(data);
                  data.save();
                }
                if (!surveyor) {
@@ -305,20 +317,24 @@ class SubmitFollowup {
 class GetAppointments {
   constructor() {
     this.getAppointments = (args) => {
-      const selectedMonthDate = {
-        date: new Date(args.date).getDate(),
-        month: new Date(args.date).getMonth(),
-      };
-      return UsersModel.findOne({ _id: args.userid }).then(user => user.followUp.filter((apt) => {
-        const followupMonthDate = {
-          date: new Date(apt.start).getDate(),
-          month: new Date(apt.start).getMonth(),
-        };
-        if (_.isEqual(followupMonthDate, selectedMonthDate)) {
-          return apt;
-        }
-      }),
+      if (args.userid) {
+        if (args.userid.match(/^[0-9a-fA-F]{24}$/)) {
+          const selectedMonthDate = {
+            date: new Date(args.date).getDate(),
+            month: new Date(args.date).getMonth(),
+          };
+          return UsersModel.findOne({ _id: args.userid }).then(user => user.followUp.filter((apt) => {
+            const followupMonthDate = {
+              date: new Date(apt.start).getDate(),
+              month: new Date(apt.start).getMonth(),
+            };
+            if (_.isEqual(followupMonthDate, selectedMonthDate)) {
+              return apt;
+            }
+          }),
      );
+        }
+      }
     };
   }
 }
@@ -359,8 +375,12 @@ class DeleteAppointment {
 class GetUser {
   constructor() {
     this.getUser = (args) => {
-      const user = UsersModel.findOne({ _id: args.id }, (error, data) => data);
-      return user;
+      if (id) {
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+          const user = UsersModel.findOne({ _id: args.id }, (error, data) => data);
+          return user;
+        }
+      }
     };
   }
  }
@@ -495,13 +515,15 @@ class GetSurveyLocalPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
-      const Messages = CustomersModel.findOne({ _id: args.id })
+      if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
+        const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
           if (customer.notes) {
             return customer.notes;
           }
         });
-      return Messages;
+        return Messages;
+      }
     };
   }
  }
@@ -511,13 +533,15 @@ class ToggleSurveyReady {
     this.toggleSurveyReady = (args) => {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          if (customer.status === 3) {
+          if (customer.status <= 3) {
             sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
+            customer.surveyReadyforPrice = true;
           } else {
             removeCustomerfromQueue(customer);
             customer.status = 3;
+            customer.surveyReadyforPrice = false;
           }
           customer.save();
         });
@@ -704,6 +728,7 @@ class AcceptEstimate {
               user.save();
             });
           customer.estimator = args.userid;
+          removeCustomerfromQueue(customer);
           customer.save();
           return customer;
         });
@@ -722,7 +747,9 @@ class GetMyCustomers {
         surveycomplete: [],
         myestimates: [],
       };
-      return UsersModel.findOne({ _id: args.id })
+      if (args.id) {
+        if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
+          return UsersModel.findOne({ _id: args.id })
            .then((user) => {
              user.newCustomers.forEach((customer) => {
                if (customer.status === 0) {
@@ -747,6 +774,8 @@ class GetMyCustomers {
                }
              });
            }).then(() => output);
+        }
+      }
     };
   }
  }

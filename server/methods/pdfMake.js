@@ -546,6 +546,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
         Key: `${customer._id}/${customer.firstName}${customer.lastName}Estimate.pdf`,
         Expires: 60,
         ACL: 'public-read',
+        ContentType: 'application/pdf',
         Body: res,
       };
       s3.upload(params, (err, res) => {
