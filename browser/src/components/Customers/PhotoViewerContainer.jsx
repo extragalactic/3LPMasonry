@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { filter } from 'lodash';
+import Divider from 'material-ui/Divider';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from './WarningMessage';
@@ -8,6 +9,13 @@ import WarningMessage from './WarningMessage';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 class PhotoViewerContainer extends React.Component {
+	static propTypes = {	
+		id: React.PropTypes.string.isRequired,
+		photos: React.PropTypes.array.isRequired,
+		photoData: React.PropTypes.array.isRequired,
+		addSurveyPhoto: React.PropTypes.func.isRequired,
+	};
+
 	constructor(props) {
 		super(props);	
     this.renderPhotoViewer = this.renderPhotoViewer.bind(this);
@@ -31,7 +39,8 @@ class PhotoViewerContainer extends React.Component {
 	                description: 'OnlineEstimateTest',
 	                orginalBase64: reader.result,
 	                timestamp: new Date(),
-	                custid: location.pathname.split('/')[2],
+	                custid: this.props.id,
+	                user: JSON.parse(localStorage.getItem('profile')).user_id
 	              },
 	            })
 	            .then((img) => {
@@ -43,6 +52,8 @@ class PhotoViewerContainer extends React.Component {
   }
 
   renderPhotoViewer() {
+  	 console.log();
+
 		if (this.props.photos && this.props.photos.length > 0) {
 			return (
 				<div>
@@ -63,6 +74,7 @@ class PhotoViewerContainer extends React.Component {
 		return (
 			<div>
 				{this.renderPhotoViewer()}
+				<br />
 				<Row style={{marginTop:10, marginBottom:5}}>
 					<div style={styleCSS.subtitle}>Upload a New Photo</div>
 				</Row>

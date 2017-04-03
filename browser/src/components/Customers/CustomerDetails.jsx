@@ -24,6 +24,10 @@ import { addSurveyPhoto } from '../../graphql/mutations';
 "use strict;"
 
 class _CustomerDetails extends React.Component {
+	static propTypes = {
+		id: React.PropTypes.string.isRequired
+	};
+
 	constructor(props) {
   	super(props);
 	}
@@ -31,7 +35,6 @@ class _CustomerDetails extends React.Component {
   onBackClick() { 
     browserHistory.push('customers'); 
   }
-
 
 	render() {
     if (this.props.data.loading) {
@@ -108,29 +111,30 @@ class _CustomerDetails extends React.Component {
 							}
 							<br/>
 
-							<Row>
-								<Col xs={6} md={6} lg={6}>
-									<Row>
-										<div>
-											<FlatButton 
-												label="View Estimate PDF" 
-												primary={true} 
-												target="_blank"
-     										href={data.estimatePDF}
-     									/>
-										</div>
-									</Row>
-								</Col>
-								<Col xs={6} md={6} lg={6}>
-									<Row>								
-										<div>
-											<AcceptEstimateButton />
-										</div>
-									</Row>										
-								</Col>
-							</Row>
-							<br/>
-
+							{(data.estimatePDF && data.estimatePDF.length>0) && 
+								<Row>
+									<Col xs={6} md={6} lg={6}>
+										<Row>
+											<div>
+												<FlatButton 
+													label="View Estimate PDF" 
+													primary={true} 
+													target="_blank"
+	     										href={data.estimatePDF}
+	     									/>
+											</div>
+										</Row>
+									</Col>
+									<Col xs={6} md={6} lg={6}>
+										<Row>								
+											<div>
+												<AcceptEstimateButton />
+											</div>
+											<br />
+										</Row>										
+									</Col>
+								</Row>
+							}
 							<Row>
 								<ProjectNotes />
 							</Row>
@@ -140,6 +144,7 @@ class _CustomerDetails extends React.Component {
 						<Col md={7} lg={7} style={{padding:10}}> {/* start second column */}
 							<Row>
 								<CustomerDetailsTabs 
+									id={this.props.id}
 									location={ {lat: parseFloat(data.coordinates.latitude), lon: parseFloat(data.coordinates.longitude)} } 
 									photos={photos}
 									photoData={photoData}
@@ -157,7 +162,6 @@ class _CustomerDetails extends React.Component {
 
 const CustomerDetails = compose(
    graphql( getCustomer, { options: ({ id }) => ({ variables: { id: id }}) } ),	
-//   graphql( getCustomer, { options: ({ id }) => ({ variables: { id: "58dc34c2fa3be310e66f7fb3" }}) } ),
    graphql(addSurveyPhoto, { name: 'addSurveyPhoto' }),
  )( _CustomerDetails );
 

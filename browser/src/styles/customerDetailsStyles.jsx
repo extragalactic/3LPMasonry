@@ -18,7 +18,8 @@ const customerDetailsStyles = {
 		marginRight: 5,				 
 	},	
 	projectNotes: {
-		marginTop: 10
+		marginTop: 10,
+		paddingLeft: 15
 	},
 	statusMessage: {
 		fontSize: 18,

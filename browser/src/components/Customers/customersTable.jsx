@@ -56,8 +56,13 @@ class DataListWrapper {
   }
 }
 
+
   
 class _CustomersTable extends React.Component {
+  static propTypes = {
+    customers: React.PropTypes.array.isRequired
+  };
+
   constructor(props) {
     super(props);
 

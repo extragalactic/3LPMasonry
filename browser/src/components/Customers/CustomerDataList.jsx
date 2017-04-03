@@ -1,3 +1,4 @@
+
 // Wrapper class for customer data array of objects
 "use strict;"
 const CUSTOMER_STATUS = ["new customer", "customer called, pending call back", "survey scheduled", "survey in progress", "estimate in queue", "estimate accepted", "estimate sent"];
@@ -22,7 +23,6 @@ const customerFieldNames = {
 };
 
 class CustomerDataList {
-
 	constructor(data) {
 		// accepts a customer data array
 		this.data = data;

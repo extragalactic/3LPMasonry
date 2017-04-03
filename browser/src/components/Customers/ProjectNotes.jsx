@@ -10,7 +10,7 @@ class ProjectNotes extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={styleCSS.projectNotes}>
 				<Row>
 					<div style={styleCSS.title}>Project Notes</div>
 				</Row>	

@@ -14,6 +14,14 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 
 class CustomerDetailsTabs extends React.Component {
+	static propTypes = {
+		id: React.PropTypes.string.isRequired,
+		location: React.PropTypes.object.isRequired,
+		photos: React.PropTypes.array.isRequired,
+		photoData: React.PropTypes.array.isRequired,
+		addSurveyPhoto: React.PropTypes.func.isRequired,
+	};
+
 	constructor(props) {
   	super(props); 	
  	}	
@@ -36,6 +44,7 @@ class CustomerDetailsTabs extends React.Component {
 		    <Tab label="Survey Photos" style={styleCSS.tabsBar} >
 					<Row style={styleCSS.photoViewer} >
 						<PhotoViewerContainer 
+							id={this.props.id}
 							photos={this.props.photos}  
 							photoData={this.props.photoData}
 							addSurveyPhoto={this.props.addSurveyPhoto}
