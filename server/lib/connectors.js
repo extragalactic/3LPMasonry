@@ -317,8 +317,8 @@ class SubmitFollowup {
 class GetAppointments {
   constructor() {
     this.getAppointments = (args) => {
-      if (id) {
-        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      if (args.userid) {
+        if (args.userid.match(/^[0-9a-fA-F]{24}$/)) {
           const selectedMonthDate = {
             date: new Date(args.date).getDate(),
             month: new Date(args.date).getMonth(),
