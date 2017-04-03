@@ -534,7 +534,7 @@ class ToggleSurveyReady {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
-            sendPushtoEstimators(customer);
+           // sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
             customer.surveyReadyforPrice = true;
