@@ -12,31 +12,31 @@ class AcceptEstimateButton extends React.Component {
   }
 
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
-        secondary
+        secondary={true}
         onTouchTap={this.handleClose}
       />,
       <FlatButton
         label="Accept"
-        primary
-        keyboardFocused
+        primary={true}
+        keyboardFocused={true}
         onTouchTap={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <FlatButton label="Accept Estimate" primary onTouchTap={this.handleOpen} />
+        <FlatButton label="Accept Estimate"  primary={true}  onTouchTap={this.handleOpen} />
         <Dialog
           title="Accept Estimate?"
           actions={actions}

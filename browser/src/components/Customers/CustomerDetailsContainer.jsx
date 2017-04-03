@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomerDetails from './CustomerDetails';
 
+const DEFAULT_CUSTOMER_ID = "58dc34c2fa3be310e66f7fb3"; // used for testing... perhaps use localStorage to remember the last customer id
 
 class _CustomerDetailsContainer extends React.Component {
   constructor(props) {
@@ -10,13 +11,14 @@ class _CustomerDetailsContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ID = ' + this.props.userID);
   }
 
-  render() {
+  render() {    
     return (
       <div>
         <CustomerDetails
-          id={this.props.userID}
+          id={typeof this.props.userID === 'string'? this.props.userID : DEFAULT_CUSTOMER_ID}
         />
       </div>
     );
@@ -28,4 +30,6 @@ const mapStateToProps = state => ({
 });
 
 
-const CustomerDetailsContainer = connect(mapStateToProps)(_CustomerDetailsContainer);
+const CustomerDetailsContainer = connect( mapStateToProps )( _CustomerDetailsContainer );
+
+export default CustomerDetailsContainer;

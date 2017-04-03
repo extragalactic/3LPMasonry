@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
-import WobblySpinner from 'react-wobbly-spinner';
+import WobblySpinner from "react-wobbly-spinner";
 
 import CustomersTable from './customersTable';
 

@@ -8,6 +8,7 @@ const searchAddress = gql`
       } 
   }`;
 
+
 const getCustomer = gql `
   query getCustomer($id: String!){
   customer(id: $id) {
@@ -15,7 +16,6 @@ const getCustomer = gql `
     firstName
     lastName
     estimatePDF
-    surveyReadyforPrice
     email1
     email2
     cphone
