@@ -1,8 +1,6 @@
 const customerTableStyles= {
   tableStyle: {
     margin: 10,
-    width: '100%',
-    overflowX: 'scroll',
   },
   cellStyle: {
     fontSize: 14,

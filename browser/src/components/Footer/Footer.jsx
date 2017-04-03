@@ -15,7 +15,7 @@ const Foot = () => (
   <Footer style={footerStyle} size="mini">
     <FooterSection type="bottom">
       <FooterLinkList>
-          Copyright 2016 Three Little Pigs Masonry
+          Copyright 2017 Three Little Pigs Masonry
           </FooterLinkList>
     </FooterSection>
   </Footer>

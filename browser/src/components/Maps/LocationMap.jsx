@@ -5,6 +5,11 @@ import styleCSS from '../../styles/customerDetailsStyles';
 "use strict;"
 
 class LocationMap extends React.Component {
+	static propTypes = {
+		lat: React.PropTypes.number.isRequired,
+		lon: React.PropTypes.number.isRequired,
+	}
+
 	constructor(props) {
 		super(props);
 	}
