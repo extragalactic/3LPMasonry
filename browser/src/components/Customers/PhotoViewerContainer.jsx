@@ -21,18 +21,24 @@ class PhotoViewerContainer extends React.Component {
     this.renderPhotoViewer = this.renderPhotoViewer.bind(this);
 	}
  
+ 	onLoadComplete(index) {
+ 		console.log('load completed: ' + index);
+ 	}
+
   onFileSelected = (e) => {
+  	console.log(e.target.files);
+  	const fileTypeRegex = /(.jpg|.jpeg|.png|.gif)/g;
+
     filter(
 	      e.target.files,
-	      file => file.type.match(this.props.fileTypeRegex) !== null, // Note: need fileTypeRegex 
+	      file => file.type.match(fileTypeRegex) !== null
     	)
 	    .forEach(
-	        (file) => {
+	        (file, index) => {
 	          const reader = new FileReader();
-	          reader.onload = this.props.onFileLoad;
+	          reader.onload = this.onLoadComplete(index);
 	          reader.readAsDataURL(file);
 	          setTimeout(() => {
-	            //this.state.images.push({ original: reader.result });
 	            this.props.addSurveyPhoto({
 	              variables: {
 	                heading: 'OnlineEstimateTest',
@@ -40,21 +46,16 @@ class PhotoViewerContainer extends React.Component {
 	                orginalBase64: reader.result,
 	                timestamp: new Date(),
 	                custid: this.props.id,
-	                user: JSON.parse(localStorage.getItem('profile')).user_id
-	                //user: this.props.id,
+	                //user: JSON.parse(localStorage.getItem('profile')).user_id
+	                user: 'office_upload',
 	              },
 	            })
-	            .then((img) => {
-	              this.forceUpdate();
-	            });
 	          }, 1000);
 	        },
 	    );
   }
 
   renderPhotoViewer() {
-  	 console.log();
-
 		if (this.props.photos && this.props.photos.length > 0) {
 			return (
 				<div>
@@ -83,8 +84,9 @@ class PhotoViewerContainer extends React.Component {
           <input
             multiple
             type="file"
+            accept=".jpg, .jpeg, .png, .gif"
             style={styleCSS.uploadInput}
-            onChange={(img, i) => this.onFileSelected(img, i)}
+            onChange={this.onFileSelected}
           />
         </Row>	
 			</div>		

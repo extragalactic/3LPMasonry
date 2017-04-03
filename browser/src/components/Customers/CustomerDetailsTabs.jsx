@@ -13,8 +13,7 @@ import LocationMap from '../Maps/LocationMap';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 
-class CustomerDetailsTabs extends React.Component {
-	static propTypes = {
+CustomerDetailsTabs.propTypes = {
 		id: React.PropTypes.string.isRequired,
 		location: React.PropTypes.object.isRequired,
 		photos: React.PropTypes.array.isRequired,
@@ -22,14 +21,12 @@ class CustomerDetailsTabs extends React.Component {
 		addSurveyPhoto: React.PropTypes.func.isRequired,
 	};
 
-	constructor(props) {
-  	super(props); 	
- 	}	
+function CustomerDetailsTabs (props) {
 
-  renderGoogleMaps() {
-		if (this.props.location.lat && this.props.location.lon) { 
+  const renderGoogleMaps = function() {
+		if (props.location.lat && props.location.lon) { 
 			return (
-				<LocationMap lat={this.props.location.lat} lon={this.props.location.lon} />
+				<LocationMap lat={props.location.lat} lon={props.location.lon} />
 			);
 		} else {
 				return (
@@ -38,27 +35,26 @@ class CustomerDetailsTabs extends React.Component {
 		}
   }
 
-	render() {
-		return (
-		  <Tabs>
-		    <Tab label="Survey Photos" style={styleCSS.tabsBar} >
-					<Row style={styleCSS.photoViewer} >
-						<PhotoViewerContainer 
-							id={this.props.id}
-							photos={this.props.photos}  
-							photoData={this.props.photoData}
-							addSurveyPhoto={this.props.addSurveyPhoto}
-						/>
-					</Row>				
-		    </Tab>		    
-		    <Tab label="Location Map" style={styleCSS.tabsBar} >
-					<Row style={styleCSS.googleMapsContainer}>
-						{this.renderGoogleMaps()}
-					</Row>
-		    </Tab>	    
-		  </Tabs>
-		);
-	}
+	return (
+	  <Tabs>
+	    <Tab label="Survey Photos" style={styleCSS.tabsBar} >
+				<Row style={styleCSS.photoViewer} >
+					<PhotoViewerContainer 
+						id={props.id}
+						photos={props.photos}  
+						photoData={props.photoData}
+						addSurveyPhoto={props.addSurveyPhoto}
+					/>
+				</Row>				
+	    </Tab>		    
+	    <Tab label="Location Map" style={styleCSS.tabsBar} >
+				<Row style={styleCSS.googleMapsContainer}>
+					{renderGoogleMaps()}
+				</Row>
+	    </Tab>	    
+	  </Tabs>
+	);
+
 }
 
 export default CustomerDetailsTabs;

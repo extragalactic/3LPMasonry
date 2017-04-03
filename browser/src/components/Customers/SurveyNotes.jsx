@@ -5,19 +5,19 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 "use strict;"
 
-function ProjectNotes (props) {
+function SurveyNotes (props) {
 
 	return (
 		<div style={styleCSS.projectNotes}>
 			<Row>
-				<div style={styleCSS.title}>Project Notes</div>
+				<div style={styleCSS.title}>Survey Notes</div>
 			</Row>	
 			<Row>				
-				<div>{`View and add/delete general notes.`}</div>
+				<div>{`View survey notes.`}</div>
 			</Row>	
 		</div>
 	);
 
 }
 
-export default ProjectNotes;
+export default SurveyNotes;
