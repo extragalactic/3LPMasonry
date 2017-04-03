@@ -8,13 +8,14 @@ const searchAddress = gql`
       } 
   }`;
 
-
 const getCustomer = gql `
   query getCustomer($id: String!){
   customer(id: $id) {
      id
     firstName
     lastName
+    estimatePDF
+    surveyReadyforPrice
     email1
     email2
     cphone
@@ -80,6 +81,7 @@ query{
     cphone
     wphone
     address
+    estimatePDF
     coordinates {
       latitude
       longitude

@@ -33,6 +33,10 @@ const Logged = ({ newcustomer, generics, logout, admin, customers }) => (
       onTouchTap={newcustomer}
     />
     <MenuItem
+      primaryText="Customers"
+      onTouchTap={customers}
+    />
+    <MenuItem
       primaryText="Admin"
       onTouchTap={admin}
     />
@@ -104,12 +108,5 @@ export default class Header extends React.Component {
 }
 
 /*
-    <MenuItem
-      primaryText="Generics"
-      onTouchTap={generics}
-    />
-    <MenuItem
-      primaryText="Customers"
-      onTouchTap={customers}
-    />
+   
 */

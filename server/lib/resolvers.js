@@ -164,6 +164,10 @@ const resolveFunctions = {
       const photo = new ctx.constructor.GetSurveyPhotos();
       return photo.getSurveyPhotos(args);
     },
+    getSurveyLocalPhotos(_, args, ctx) {
+      const photo = new ctx.constructor.GetSurveyLocalPhotos();
+      return photo.getSurveyLocalPhotos(args);
+    },
     toggleSurveyReady(_, args, ctx) {
       const customer = new ctx.constructor.ToggleSurveyReady();
       return customer.toggleSurveyReady(args);

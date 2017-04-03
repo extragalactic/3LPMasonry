@@ -12,7 +12,7 @@ class _CustomerDetailsContainer extends React.Component {
   componentDidMount() {
   }
 
-  render() {    
+  render() {
     return (
       <div>
         <CustomerDetails
@@ -28,6 +28,4 @@ const mapStateToProps = state => ({
 });
 
 
-const CustomerDetailsContainer = connect( mapStateToProps )( _CustomerDetailsContainer );
-
-export default CustomerDetailsContainer;
+const CustomerDetailsContainer = connect(mapStateToProps)(_CustomerDetailsContainer);

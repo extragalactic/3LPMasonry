@@ -68,6 +68,23 @@ const CustomerSchema = new mongoose.Schema({
       docID: String,
       localfile: String,
     }],
+    localPhotos: [{
+      heading: String,
+      description: [String],
+      timestamp: String,
+      user: String,
+      orginalBase64: String,
+      editedlBase64: String,
+      orginalURL: String,
+      thumbURL: String,
+      thumb: String,
+      photo: String,
+      caption: String,
+      filename: String,
+      selected: Boolean,
+      docID: String,
+      localfile: String,
+    }],
   },
   estimate: {
     prices: [{
@@ -77,6 +94,9 @@ const CustomerSchema = new mongoose.Schema({
     photos: [String],
     pdf: String,
   },
+  estimatePDF: String,
+  surveyReadyforPrice: { type: Boolean, default: false },
+  estimateQueueId: String,
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);

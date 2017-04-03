@@ -29,7 +29,7 @@ const ssl = {
 
 const app = express();
 dotenv.config();
-console.log(process.env);
+//console.log(process.env);
 
 if (process.env.PROD === 'false') {
   console.log('hotload');
@@ -143,6 +143,8 @@ app.get('/*', (req, res) => {
 
 Mongoose.connect(process.env.DB_HOST, cred);
 Mongoose.connection.on('connected', () => {
-  app.listen(app.get('port'));
-  https.createServer(ssl, app).listen(443);
+  setTimeout(() => {
+    app.listen(app.get('port'));
+    https.createServer(ssl, app).listen(443);
+  }, 1000);
 });

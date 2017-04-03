@@ -22,6 +22,8 @@ const typeDefinitions = `
     sendSurvey: Boolean
     coordinates: Coordinates
     estimate: Estimate
+    estimatePDF: String
+    surveyReadyforPrice: Boolean
 }
   type Queue {
     id: String
@@ -347,7 +349,7 @@ type Mutation {
   deletePrice(custid: String, index: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): base64PDF
+  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): Boolean
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
@@ -355,6 +357,7 @@ type Mutation {
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
   toggleSurveyReady(custid: String, userid: String, online: Boolean): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]
+  getSurveyLocalPhotos( id: String ): [SurveyPhotosArray]
   addSurveyNotes(
     custid: String,
     userid: String,
@@ -374,7 +377,7 @@ type Mutation {
     timestamp: String, 
     user: String,
     localfile: String,
-    ): SurveyPhotos
+    ): Boolean
   deleteAppointment(
     userid: String, 
     meetingid: String, 
