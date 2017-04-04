@@ -5,6 +5,7 @@ import Divider from 'material-ui/Divider';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from './WarningMessage';
+import LoadingPopup from './LoadingPopup';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -19,15 +20,38 @@ class PhotoViewerContainer extends React.Component {
 	constructor(props) {
 		super(props);	
     this.renderPhotoViewer = this.renderPhotoViewer.bind(this);
+
+    this.state = {
+      isLoading: false,
+      numFilesToLoad: 0
+    };
 	}
  
- 	onLoadComplete(index) {
- 		console.log('load completed: ' + index);
+ 	onLoadComplete() {
+ 		let isLoading = this.state.isLoading; 
+ 		let numFilesToLoad = this.state.numFilesToLoad;
+
+ 		numFilesToLoad--;
+ 		console.log('image loaded');
+
+ 		if(numFilesToLoad <= 0) {
+			isLoading = false;
+			console.log('...loading done.')
+ 		}
+    this.setState({
+      isLoading: isLoading,
+      numFilesToLoad: numFilesToLoad
+    }); 		
  	}
 
   onFileSelected = (e) => {
   	console.log(e.target.files);
   	const fileTypeRegex = /(.jpg|.jpeg|.png|.gif)/g;
+
+    this.setState({
+      isLoading: true,
+      numFilesToLoad: e.target.files.length
+    });
 
     filter(
 	      e.target.files,
@@ -36,7 +60,7 @@ class PhotoViewerContainer extends React.Component {
 	    .forEach(
 	        (file, index) => {
 	          const reader = new FileReader();
-	          reader.onload = this.onLoadComplete(index);
+	          //reader.onload = this.onLoadComplete(index);
 	          reader.readAsDataURL(file);
 	          setTimeout(() => {
 	            this.props.addSurveyPhoto({
@@ -49,7 +73,9 @@ class PhotoViewerContainer extends React.Component {
 	                //user: JSON.parse(localStorage.getItem('profile')).user_id
 	                user: 'office_upload',
 	              },
-	            })
+	            }).then( () => {
+	            	this.onLoadComplete();
+	            });
 	          }, 1000);
 	        },
 	    );
@@ -88,8 +114,11 @@ class PhotoViewerContainer extends React.Component {
             style={styleCSS.uploadInput}
             onChange={this.onFileSelected}
           />
-        </Row>	
-			</div>		
+        </Row>
+        {this.state.isLoading &&
+       		<LoadingPopup message="Uploading files to server..."/>	
+       	}
+			</div>
 		);
 	}
 }

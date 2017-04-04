@@ -82,6 +82,8 @@ function _CustomerDetails (props) {
 						<div style={styleCSS.statusMessage}> {`STATUS: ${CUSTOMER_STATUS[data.status]} `}</div>
 					</Col> 
 				</Row>
+
+				
 				<Row style={{marginTop:10}}>
 					<Col md={5} lg={5} style={{padding:10}}> {/* start first column */}
 						<div style={styleCSS.title}> {`${data.firstName} ${data.lastName}`}<br/></div>

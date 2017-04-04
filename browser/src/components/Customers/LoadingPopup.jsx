@@ -1,15 +1,24 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
-
-LoadingPopup.propTypes = {
-	onComplete: React.PropTypes.func.isRequired
-}
+import LinearProgress from 'material-ui/LinearProgress';
 
 class LoadingPopup extends React.Component {
-	render() {
-		return (
-
-		);
+	static propTypes = {
+		message: React.PropTypes.string.isRequired,
 	}
+
+	render() {
+    return (
+	      <div>
+	        <Dialog
+	          title={this.props.message}
+	          modal={false}
+	          open={true}
+	        >
+	        	<LinearProgress mode="indeterminate" />
+	        </Dialog>
+	      </div>
+    );
+  }
 }
 export default LoadingPopup;
