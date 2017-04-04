@@ -7,6 +7,7 @@ import Dimensions from 'react-dimensions';
 
 import { CustomerDataList, customerFieldNames } from './CustomerDataList';
 
+
 import styles from 'style-loader!css-loader!fixed-data-table/dist/fixed-data-table.css';
 import styleCSS from '../../styles/customerTableStyles';
 

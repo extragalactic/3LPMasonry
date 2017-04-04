@@ -26,7 +26,12 @@ function CustomerDetailsTabs (props) {
   const renderGoogleMaps = function() {
 		if (props.location.lat && props.location.lon) { 
 			return (
-				<LocationMap lat={props.location.lat} lon={props.location.lon} />
+				<LocationMap 
+					lat={props.location.lat} 
+					lon={props.location.lon} 
+					mapWidth={500}
+					mapHeight={280}
+				/>
 			);
 		} else {
 				return (

@@ -8,8 +8,10 @@ class LocationMap extends React.Component {
 	static propTypes = {
 		lat: React.PropTypes.number.isRequired,
 		lon: React.PropTypes.number.isRequired,
+		mapWidth: React.PropTypes.number.isRequired,
+		mapHeight: React.PropTypes.number.isRequired,
 	}
-
+	
 	constructor(props) {
 		super(props);
 	}
@@ -31,7 +33,8 @@ class LocationMap extends React.Component {
 			pov: {
 				heading: 34,
 				pitch: 10
-			}
+			},
+			fullscreenControl: true
 		});
 		map.setStreetView(panorama);
 	}
@@ -39,9 +42,12 @@ class LocationMap extends React.Component {
 	render() {
 		return (
 			<div>
-				<div id="map"  style={styleCSS.googleMap} />
-				<br/>
-				<div id="pano"  style={styleCSS.googleMap} />
+				<div>				
+					<div id="map"  style={{width: this.props.mapWidth, height: this.props.mapHeight}} />
+				</div>
+				<div>
+					<div id="pano"  style={{width: this.props.mapWidth, height: this.props.mapHeight}} />
+				</div>
 			</div>
 		)
 	}

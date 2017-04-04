@@ -32,11 +32,8 @@ class PhotoViewerContainer extends React.Component {
  		let numFilesToLoad = this.state.numFilesToLoad;
 
  		numFilesToLoad--;
- 		console.log('image loaded');
-
  		if(numFilesToLoad <= 0) {
 			isLoading = false;
-			console.log('...loading done.')
  		}
     this.setState({
       isLoading: isLoading,
@@ -60,7 +57,6 @@ class PhotoViewerContainer extends React.Component {
 	    .forEach(
 	        (file, index) => {
 	          const reader = new FileReader();
-	          //reader.onload = this.onLoadComplete(index);
 	          reader.readAsDataURL(file);
 	          setTimeout(() => {
 	            this.props.addSurveyPhoto({
@@ -116,7 +112,7 @@ class PhotoViewerContainer extends React.Component {
           />
         </Row>
         {this.state.isLoading &&
-       		<LoadingPopup message="Uploading files to server..."/>	
+       		<LoadingPopup message="Uploading images to server..."/>	
        	}
 			</div>
 		);

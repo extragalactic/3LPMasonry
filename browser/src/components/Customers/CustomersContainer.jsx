@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import WobblySpinner from "react-wobbly-spinner";
+import LocationMap from '../Maps/LocationMap';
 
 import CustomersTable from './customersTable';
 import { getAllCustomers } from '../../graphql/queries';
@@ -18,6 +19,8 @@ function _CustomersContainer (props) {
       <CustomersTable
         customers={props.data.customers}
       />
+      {/* This is a hack to initialize the Google map streetview, so that it can go fullscreen on Chrome */}
+      <LocationMap lat={0} lon={0} mapWidth={1} mapHeight={1} />
     </div>
   );
 }
