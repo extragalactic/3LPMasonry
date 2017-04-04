@@ -40,7 +40,7 @@ const customerDetailsStyles = {
 	},
 	tabsBar: {
 		backgroundColor: '#fff',
-		fontSize:20		
+		fontSize:20,
 	},
 	italicData: {
 		fontStyle: 'italic',
