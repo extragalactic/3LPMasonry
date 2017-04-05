@@ -31,16 +31,16 @@ const customerDetailsStyles = {
 		marginTop: 10,
 		paddingLeft: 15
 	},
-	surveyNotesList: {
+	surveyNotes: {
 		marginTop: 10,
 		paddingLeft: 15
 	},	
-	surveyNotesListTitle: {
+	surveyNotesTitle: {
 		fontSize: 22,
 		marginBottom: 10
 	},	
 	surveyNote: {
-		margin: 5,
+		margin: 13,
 	},	
 	surveyNoteTitle: {
 		fontStyle: 'italic',

@@ -23,6 +23,7 @@ class LocationMap extends React.Component {
 				lat: this.props.lat,
 				lng: this.props.lon
 			},
+			mapTypeId: 'hybrid',
 			fullscreenControl: true
 		});
 		const panorama = new google.maps.StreetViewPanorama(document.getElementById("pano"), {

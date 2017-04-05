@@ -13,7 +13,7 @@ import WarningMessage from './WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
 import ProjectNotes from './ProjectNotes';
-import SurveyNotesList from './SurveyNotesList';
+import SurveyNotes from './SurveyNotes';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -102,7 +102,7 @@ function CustomerDetailsTabs (props) {
 						</Row>
 					}
 					<Row>
-						<ProjectNotes />
+						<ProjectNotes notes={data.notes}/>
 					</Row>
 				</Col>
 
@@ -118,7 +118,7 @@ function CustomerDetailsTabs (props) {
 	    	<Row>
 	    		<Col md={5} lg={5} style={{padding:10}}>
 						<Row style={{width:500}}>
-							<SurveyNotesList notes={data.survey.notes}/>
+							<SurveyNotes notes={data.survey.notes}/>
 						</Row>	    		
 	    		</Col>
 	    		<Col md={7} lg={7}>
