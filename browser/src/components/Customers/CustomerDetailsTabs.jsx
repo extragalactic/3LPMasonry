@@ -4,6 +4,7 @@ import Slider from 'material-ui/Slider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 import { filter } from 'lodash';
 //import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -14,6 +15,7 @@ import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
 import ProjectNotes from './ProjectNotes';
 import SurveyNotes from './SurveyNotes';
+import EstimatesContainer from './EstimatesContainer';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -52,74 +54,81 @@ function CustomerDetailsTabs (props) {
 	  <Tabs>
 	    <Tab label="Customer Data" style={styleCSS.tabsBar}>
 	    	<Row>
-				<Col md={5} lg={5} style={{padding:10}}> 
-					<div style={styleCSS.title}> {`${data.firstName} ${data.lastName}`}<br/></div>
-					{data.address}<br/><br/>
-					<a href={"mailto:" + data.email1}>{data.email1}</a><br/>
-					{data.email2 && 
-					  <div><a href={"mailto:" + data.email2}>{data.email2}</a><br/></div>
-					} 
-					<br/>
-					{data.wphone && 
-						<div>W: {data.wphone}<br/></div>
-					}
-					{data.cphone && 
-						<div>C: {data.cphone}<br/></div>
-					}
-					{data.hphone && 
-						<div>H: {data.hphone}<br/></div>
-					}	
-					<br/>
-					<div>{`Survey Type: ${SURVEY_TYPES[0]} `}</div>
-					<div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
-					{data.estimator!==null  && 
-						<div>{`Estimator: ...`}</div>
-					}
-					<br/>
+					<Col md={5} lg={5} style={{padding:10}}> 
+					<Paper style={styleCSS.paperStyleLarge} zDepth={2}> 
+						<div style={styleCSS.title}> {`${data.firstName} ${data.lastName}`}<br/></div>
+						{data.address}<br/><br/>
+						<a href={"mailto:" + data.email1}>{data.email1}</a><br/>
+						{data.email2 && 
+						  <div><a href={"mailto:" + data.email2}>{data.email2}</a><br/></div>
+						} 
+						<br/>
+						{data.wphone && 
+							<div>W: {data.wphone}<br/></div>
+						}
+						{data.cphone && 
+							<div>C: {data.cphone}<br/></div>
+						}
+						{data.hphone && 
+							<div>H: {data.hphone}<br/></div>
+						}	
+						<br/>
+						<div>{`Survey Type: ${SURVEY_TYPES[0]} `}</div>
+						<div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
+						{data.estimator!==null  && 
+							<div>{`Estimator: ...`}</div>
+						}
+						<br/>
 
-					{(data.estimatePDF && data.estimatePDF.length>0) && 
+						{(data.estimatePDF && data.estimatePDF.length>0) && 
+							<Row>
+								<Col xs={6} md={6} lg={6}>
+									<Row>
+										<div>
+											<FlatButton 
+												label="View Estimate PDF" 
+												primary={true} 
+												target="_blank"
+	   										href={data.estimatePDF}
+	   									/>
+										</div>
+									</Row>
+								</Col>
+								<Col xs={6} md={6} lg={6}>
+									<Row>								
+										<div>
+											<AcceptEstimateButton />
+										</div>
+										<br />
+									</Row>										
+								</Col>
+							</Row>
+						}
+					</Paper>
+					<br/>
+					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row>
-							<Col xs={6} md={6} lg={6}>
-								<Row>
-									<div>
-										<FlatButton 
-											label="View Estimate PDF" 
-											primary={true} 
-											target="_blank"
-   										href={data.estimatePDF}
-   									/>
-									</div>
-								</Row>
-							</Col>
-							<Col xs={6} md={6} lg={6}>
-								<Row>								
-									<div>
-										<AcceptEstimateButton />
-									</div>
-									<br />
-								</Row>										
-							</Col>
+							<ProjectNotes notes={data.notes}/>
 						</Row>
-					}
-					<Row>
-						<ProjectNotes notes={data.notes}/>
-					</Row>
-				</Col>
+					</Paper>
+					</Col>
 
-	    	<Col md={7} lg={7}>
-					<Row style={styleCSS.googleMapsContainer}>
-						{renderGoogleMaps()}
-					</Row>
-				</Col>
+		    	<Col md={7} lg={7}>
+						<Row style={styleCSS.googleMapsContainer}>
+							{renderGoogleMaps()}
+						</Row>
+					</Col>
 				</Row>
 	    </Tab>	
 
 	    <Tab label="Survey Photos & Notes"  style={styleCSS.tabsBar}>
 	    	<Row>
 	    		<Col md={5} lg={5} style={{padding:10}}>
-						<Row style={{width:500}}>
-							<SurveyNotes notes={data.survey.notes}/>
-						</Row>	    		
+	    			<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
+							<Row style={{width:500}}>
+								<SurveyNotes notes={data.survey.notes}/>
+							</Row>	   
+						</Paper> 		
 	    		</Col>
 	    		<Col md={7} lg={7}>
 						<Row style={styleCSS.photoViewer}>
@@ -134,7 +143,7 @@ function CustomerDetailsTabs (props) {
 				</Row>
 	    </Tab>	
 	    <Tab label="Estimates"  style={styleCSS.tabsBar}>
-
+	    	<EstimatesContainer />
 	    </Tab>	    
 
 	  </Tabs>

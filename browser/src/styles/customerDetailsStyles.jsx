@@ -13,14 +13,26 @@ const customerDetailsStyles = {
 	},
 	titleName: {
 		fontSize: 18,
-		marginTop: 10,
-		marginRight: 10,
-		paddingTop: 3,
+		marginTop: 3,
+		marginRight: 0,
+		paddingTop: 2,
 		paddingBottom: 3,
-		paddingLeft: 10,
-		paddingRight: 10,		
+		paddingLeft: 7,
+		paddingRight: 8,		
 		backgroundColor: '#fff'
 	},
+	paperStyleLarge: {
+	  padding: 10,
+	  backgroundColor: '#fff',
+	  color: '#000',
+	},
+	paperStyleSmall: {
+	  marginTop: 8,
+	  marginRight: 8,
+	  padding: 1,
+	  backgroundColor: '#fff',
+	  color: '#000',
+	},	
 	photoViewer: {
 		width: 550,
 		marginTop: 20,
@@ -32,7 +44,7 @@ const customerDetailsStyles = {
 		paddingLeft: 15
 	},
 	surveyNotes: {
-		marginTop: 10,
+		marginTop: 0,
 		paddingLeft: 15
 	},	
 	surveyNotesTitle: {
@@ -53,7 +65,8 @@ const customerDetailsStyles = {
 	statusMessage: {
 		fontSize: 22,
 		fontVariant: 'small-caps',
-		marginTop: 11
+		marginTop: 10,
+		marginLeft: 3
 	},
 	statusBar: {
 		backgroundColor: '#ddd',

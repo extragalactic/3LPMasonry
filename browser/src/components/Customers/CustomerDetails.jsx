@@ -7,6 +7,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ArrowBackIcon from 'material-ui/svg-icons/navigation/arrow-back';
+import Paper from 'material-ui/Paper';
 
 import { CUSTOMER_STATUS } from './CustomerDataList';
 import CustomerDetailsTabs from './CustomerDetailsTabs';
@@ -71,10 +72,12 @@ function _CustomerDetails (props) {
 						</IconButton>
 					</Col>
 					<Col>
-						<div style={styleCSS.titleName}>{`${data.firstName} ${data.lastName}`}</div>
+						<Paper style={styleCSS.paperStyleSmall} zDepth={1}>
+							<div style={styleCSS.titleName}>{`${data.firstName} ${data.lastName}`}</div>
+						</Paper>
 					</Col>
 					<Col>
-						<div style={styleCSS.statusMessage}> {`STATUS: ${CUSTOMER_STATUS[data.status]} `}</div>
+						<div style={styleCSS.statusMessage}> {`status: ${CUSTOMER_STATUS[data.status]} `}</div>
 					</Col> 
 				</Row>
 
