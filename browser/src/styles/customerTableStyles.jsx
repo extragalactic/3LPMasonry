@@ -2,6 +2,13 @@ const customerTableStyles= {
   tableStyle: {
     margin: 10,
   },
+  title: {
+    fontSize: 24,
+    fontFamily: 'Verdana',
+    marginRight: 15,
+    marginLeft: 5,
+    float:'left'    
+  },
   cellStyle: {
     fontSize: 14,
     fontFamily: 'Verdana',

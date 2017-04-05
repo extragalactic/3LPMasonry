@@ -6,10 +6,20 @@ const customerDetailsStyles = {
 		fontFamily: 'Verdana',		
 	},
 	title: {
-		fontSize: 22
+		fontSize: 22,
 	},	
 	subtitle: {
 		fontSize: 18,
+	},
+	titleName: {
+		fontSize: 18,
+		marginTop: 10,
+		marginRight: 10,
+		paddingTop: 3,
+		paddingBottom: 3,
+		paddingLeft: 10,
+		paddingRight: 10,		
+		backgroundColor: '#fff'
 	},
 	photoViewer: {
 		width: 550,
@@ -21,14 +31,32 @@ const customerDetailsStyles = {
 		marginTop: 10,
 		paddingLeft: 15
 	},
+	surveyNotesList: {
+		marginTop: 10,
+		paddingLeft: 15
+	},	
+	surveyNotesListTitle: {
+		fontSize: 22,
+		marginBottom: 10
+	},	
+	surveyNote: {
+		margin: 5,
+	},	
+	surveyNoteTitle: {
+		fontStyle: 'italic',
+	},	
+	surveyNoteTimestamp: {
+		fontSize: 11,
+		fontStyle: 'italic',
+		marginBottom:3
+	},		
 	statusMessage: {
-		fontSize: 18,
+		fontSize: 22,
 		fontVariant: 'small-caps',
-		paddingTop: 13
+		marginTop: 11
 	},
 	statusBar: {
 		backgroundColor: '#ddd',
-		padding: 0,
 	},
 	googleMapsContainer: {
 		marginTop: 15,
@@ -39,7 +67,7 @@ const customerDetailsStyles = {
 		height: 280
 	},
 	tabsBar: {
-		backgroundColor: '#fff',
+		backgroundColor: '#eee',
 		fontSize:20,
 	},
 	italicData: {
@@ -49,7 +77,8 @@ const customerDetailsStyles = {
 	},
 	uploadInput: {
 		cursor: 'pointer',
-	}
+	},
+
 };
 
 export default customerDetailsStyles;

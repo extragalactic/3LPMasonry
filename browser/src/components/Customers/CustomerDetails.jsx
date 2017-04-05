@@ -68,16 +68,18 @@ function _CustomerDetails (props) {
 							onClick={onBackClick}
 						>
 								<ArrowBackIcon color={"#000"} hoverColor={"#0f0"}/>
-							</IconButton>
-						</Col>
-						<Col>
+						</IconButton>
+					</Col>
+					<Col>
+						<div style={styleCSS.titleName}>{`${data.firstName} ${data.lastName}`}</div>
+					</Col>
+					<Col>
 						<div style={styleCSS.statusMessage}> {`STATUS: ${CUSTOMER_STATUS[data.status]} `}</div>
 					</Col> 
 				</Row>
 
 				<Row>
-					<Col md={12} lg={12} style={{padding:10}}> {/* start second column */}
-
+					<Col md={12} lg={12} style={{padding:10}}>
 							<CustomerDetailsTabs 
 								id={props.id}
 								data={data}

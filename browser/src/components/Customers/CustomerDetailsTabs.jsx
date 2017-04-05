@@ -13,19 +13,19 @@ import WarningMessage from './WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
 import ProjectNotes from './ProjectNotes';
-import SurveyNotes from './SurveyNotes';
+import SurveyNotesList from './SurveyNotesList';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 "use strict;"
 
 CustomerDetailsTabs.propTypes = {
-		id: React.PropTypes.string.isRequired,
-		data: React.PropTypes.object.isRequired,
-		photos: React.PropTypes.array.isRequired,
-		photoData: React.PropTypes.array.isRequired,
-		addSurveyPhoto: React.PropTypes.func.isRequired,
-	};
+	id: React.PropTypes.string.isRequired,
+	data: React.PropTypes.object.isRequired,
+	photos: React.PropTypes.array.isRequired,
+	photoData: React.PropTypes.array.isRequired,
+	addSurveyPhoto: React.PropTypes.func.isRequired,
+};
 
 function CustomerDetailsTabs (props) {
 
@@ -52,7 +52,7 @@ function CustomerDetailsTabs (props) {
 	  <Tabs>
 	    <Tab label="Customer Data" style={styleCSS.tabsBar}>
 	    	<Row>
-				<Col md={5} lg={5} style={{padding:10}}> {/* start first column */}
+				<Col md={5} lg={5} style={{padding:10}}> 
 					<div style={styleCSS.title}> {`${data.firstName} ${data.lastName}`}<br/></div>
 					{data.address}<br/><br/>
 					<a href={"mailto:" + data.email1}>{data.email1}</a><br/>
@@ -118,7 +118,7 @@ function CustomerDetailsTabs (props) {
 	    	<Row>
 	    		<Col md={5} lg={5} style={{padding:10}}>
 						<Row style={{width:500}}>
-							<SurveyNotes />
+							<SurveyNotesList notes={data.survey.notes}/>
 						</Row>	    		
 	    		</Col>
 	    		<Col md={7} lg={7}>
