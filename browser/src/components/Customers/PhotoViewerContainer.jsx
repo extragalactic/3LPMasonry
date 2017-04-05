@@ -5,6 +5,7 @@ import Divider from 'material-ui/Divider';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from './WarningMessage';
+import LoadingPopup from './LoadingPopup';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -19,20 +20,45 @@ class PhotoViewerContainer extends React.Component {
 	constructor(props) {
 		super(props);	
     this.renderPhotoViewer = this.renderPhotoViewer.bind(this);
+
+    this.state = {
+      isLoading: false,
+      numFilesToLoad: 0
+    };
 	}
  
+ 	onLoadComplete() {
+ 		let isLoading = this.state.isLoading; 
+ 		let numFilesToLoad = this.state.numFilesToLoad;
+
+ 		numFilesToLoad--;
+ 		if(numFilesToLoad <= 0) {
+			isLoading = false;
+ 		}
+    this.setState({
+      isLoading: isLoading,
+      numFilesToLoad: numFilesToLoad
+    }); 		
+ 	}
+
   onFileSelected = (e) => {
+  	console.log(e.target.files);
+  	const fileTypeRegex = /(.jpg|.jpeg|.png|.gif)/g;
+
+    this.setState({
+      isLoading: true,
+      numFilesToLoad: e.target.files.length
+    });
+
     filter(
 	      e.target.files,
-	      file => file.type.match(this.props.fileTypeRegex) !== null, // Note: need fileTypeRegex 
+	      file => file.type.match(fileTypeRegex) !== null
     	)
 	    .forEach(
-	        (file) => {
+	        (file, index) => {
 	          const reader = new FileReader();
-	          reader.onload = this.props.onFileLoad;
 	          reader.readAsDataURL(file);
 	          setTimeout(() => {
-	            //this.state.images.push({ original: reader.result });
 	            this.props.addSurveyPhoto({
 	              variables: {
 	                heading: 'OnlineEstimateTest',
@@ -40,12 +66,11 @@ class PhotoViewerContainer extends React.Component {
 	                orginalBase64: reader.result,
 	                timestamp: new Date(),
 	                custid: this.props.id,
-	                user: JSON.parse(localStorage.getItem('profile')).user_id
-	                //user: this.props.id,
+	                //user: JSON.parse(localStorage.getItem('profile')).user_id
+	                user: 'office_upload',
 	              },
-	            })
-	            .then((img) => {
-	              this.forceUpdate();
+	            }).then( () => {
+	            	this.onLoadComplete();
 	            });
 	          }, 1000);
 	        },
@@ -53,8 +78,6 @@ class PhotoViewerContainer extends React.Component {
   }
 
   renderPhotoViewer() {
-  	 console.log();
-
 		if (this.props.photos && this.props.photos.length > 0) {
 			return (
 				<div>
@@ -83,11 +106,15 @@ class PhotoViewerContainer extends React.Component {
           <input
             multiple
             type="file"
+            accept=".jpg, .jpeg, .png, .gif"
             style={styleCSS.uploadInput}
-            onChange={(img, i) => this.onFileSelected(img, i)}
+            onChange={this.onFileSelected}
           />
-        </Row>	
-			</div>		
+        </Row>
+        {this.state.isLoading &&
+       		<LoadingPopup message="Uploading images to server..."/>	
+       	}
+			</div>
 		);
 	}
 }

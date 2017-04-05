@@ -7,6 +7,7 @@ import Dimensions from 'react-dimensions';
 
 import { CustomerDataList, customerFieldNames } from './CustomerDataList';
 
+
 import styles from 'style-loader!css-loader!fixed-data-table/dist/fixed-data-table.css';
 import styleCSS from '../../styles/customerTableStyles';
 
@@ -16,7 +17,7 @@ const SEARCHABLE_COLUMNS = [fields.FIRST_NAME, fields.LAST_NAME, fields.ADDRESS,
 const ROW_HEIGHT = 70;
 const HEADER_HEIGHT =50;
 const columnWidths = {
-  name: 110,
+  name: 150,
   address: 180,
   phone: 110,
   email: 200,
@@ -125,11 +126,18 @@ class _CustomersTable extends React.Component {
 
     return (
       <div style={styleCSS.tableStyle} >
-        <input style={styleCSS.inputBox}
-          onChange={this.onFilterChange}
-          placeholder="Enter Search Text"
-        />
-        <br />
+        <div style={{display:'inlineBlock'}}>
+          <div style={styleCSS.title}>
+            <span>Customer List</span>
+          </div>        
+          <div>
+            <input style={styleCSS.inputBox}
+              onChange={this.onFilterChange}
+              placeholder="Enter Search Text"
+            />
+            <br />
+          </div>
+        </div>
 
         <Table
           rowHeight={ ROW_HEIGHT }
@@ -146,15 +154,8 @@ class _CustomersTable extends React.Component {
           {...this.props}
         >
           <Column
-            header={<HeaderCell title={"First Name"}></HeaderCell>}
-            cell={<TextCell data={filteredDataList} col={fields.FIRST_NAME} activeRow={activeRow} />}
-            width={columnWidths.name}
-            fixed={true}
-          />
-
-          <Column
-            header={<HeaderCell title={"Last Name"}></HeaderCell>}
-            cell={<TextCell data={filteredDataList} col={fields.LAST_NAME} activeRow={activeRow} />}
+            header={<HeaderCell title={"Name"}></HeaderCell>}
+            cell={<TextCell data={filteredDataList} col={fields.FULL_NAME} activeRow={activeRow} />}
             width={columnWidths.name}
             fixed={true}
           />
