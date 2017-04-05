@@ -161,8 +161,8 @@ class _CustomerDetails extends React.Component {
 }
 
 const CustomerDetails = compose(
-   graphql( getCustomer, { options: ({ id }) => ({ variables: { id: id }}) } ),	
-   graphql(addSurveyPhoto, { name: 'addSurveyPhoto' }),
+   graphql( getCustomer, { options: ({ id }) => ({ variables: { id: id }, pollInterval: 1000}) } ),	
+   graphql( addSurveyPhoto, { name: 'addSurveyPhoto' }),
  )( _CustomerDetails );
 
 export default CustomerDetails;

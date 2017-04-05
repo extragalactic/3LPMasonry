@@ -15,7 +15,7 @@ class ProjectNotes extends React.Component {
 					<div style={styleCSS.title}>Project Notes</div>
 				</Row>	
 				<Row>				
-					<div>{`View and add/delete notes...`}</div>
+					<div>{`View and add/delete general notes.`}</div>
 				</Row>	
 			</div>
 		);

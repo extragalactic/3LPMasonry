@@ -41,6 +41,7 @@ class PhotoViewerContainer extends React.Component {
 	                timestamp: new Date(),
 	                custid: this.props.id,
 	                user: JSON.parse(localStorage.getItem('profile')).user_id
+	                //user: this.props.id,
 	              },
 	            })
 	            .then((img) => {
