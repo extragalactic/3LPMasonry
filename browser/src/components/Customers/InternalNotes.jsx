@@ -5,23 +5,23 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 "use strict;"
 
-ProjectNotes.propTypes = {
+InternalNotes.propTypes = {
 	notes: React.PropTypes.array.isRequired,
 };
 
-function ProjectNotes (props) {
+function InternalNotes (props) {
 	return (
 		<div>
 				<div style={styleCSS.surveyNotes}>
 					<Row>
-						<div style={styleCSS.surveyNotesTitle}>Project Notes</div>
+						<div style={styleCSS.surveyNotesTitle}>Internal Notes</div>
 					</Row>
 					{ props.notes.length === 0 &&
 						<Row><div>There are no notes for this project.</div></Row>
 					}
 					{ props.notes.map( (note)=> {		
 						return (
-							<Row style={styleCSS.surveyNote}>	
+							<Row style={styleCSS.surveyNote} key={note._id}>	
 								<Col>
 									<Row><div style={styleCSS.surveyNoteTitle}>{note.user.name} says:</div></Row>
 									<Row><div>{note.text}</div><br /></Row>
@@ -35,4 +35,4 @@ function ProjectNotes (props) {
 
 }
 
-export default ProjectNotes;
+export default InternalNotes;

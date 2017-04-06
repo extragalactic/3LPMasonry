@@ -61,7 +61,12 @@ const customerDetailsStyles = {
 		fontSize: 11,
 		fontStyle: 'italic',
 		marginBottom:3
-	},		
+	},
+	surveyNoteHeading: {
+		fontSize: 15,
+		fontWeight: 'bold',
+		fontVariant: 'small-caps',
+	},	
 	statusMessage: {
 		fontSize: 22,
 		fontVariant: 'small-caps',

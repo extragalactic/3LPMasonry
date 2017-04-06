@@ -13,9 +13,9 @@ import PhotoViewerContainer from './PhotoViewerContainer';
 import WarningMessage from './WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
-import ProjectNotes from './ProjectNotes';
+import InternalNotes from './InternalNotes';
 import SurveyNotes from './SurveyNotes';
-import EstimatesContainer from './EstimatesContainer';
+import Estimates from './Estimates';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -108,7 +108,7 @@ function CustomerDetailsTabs (props) {
 					<br/>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row>
-							<ProjectNotes notes={data.notes}/>
+							<InternalNotes notes={data.notes}/>
 						</Row>
 					</Paper>
 					</Col>
@@ -143,7 +143,7 @@ function CustomerDetailsTabs (props) {
 				</Row>
 	    </Tab>	
 	    <Tab label="Estimates"  style={styleCSS.tabsBar}>
-	    	<EstimatesContainer />
+	    	<Estimates />
 	    </Tab>	    
 
 	  </Tabs>
