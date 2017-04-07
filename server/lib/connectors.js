@@ -299,6 +299,7 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
+      console.log(args)
       const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.newCustomers = user.newCustomers.map((customer) => {
@@ -375,8 +376,8 @@ class DeleteAppointment {
 class GetUser {
   constructor() {
     this.getUser = (args) => {
-      if (id) {
-        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      if (args.id) {
+        if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
           const user = UsersModel.findOne({ _id: args.id }, (error, data) => data);
           return user;
         }
@@ -515,6 +516,7 @@ class GetSurveyLocalPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
+      console.log(args);
       if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
         const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
@@ -627,7 +629,7 @@ class GetFinishedSurvey {
 
 class GetFinishedSurveyQuery {
   constructor() {
-    this.getFinishedSurvey = (args) => {
+    this.getFinishedSurveyQuery = (args) => {
       const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
@@ -746,8 +748,15 @@ class GetMyCustomers {
         inprogress: [],
         surveycomplete: [],
         myestimates: [],
+        estimatequeue: [], 
       };
       if (args.id) {
+        QueueModel.find()
+          .then((q) => {
+            q.forEach((customer) => output.estimatequeue.push(customer))
+            
+          })
+
         if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
           return UsersModel.findOne({ _id: args.id })
            .then((user) => {
