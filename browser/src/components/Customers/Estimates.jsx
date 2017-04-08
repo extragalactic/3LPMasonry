@@ -4,12 +4,11 @@ import { graphql, compose } from 'react-apollo';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
 
 function Estimates (props) {
 	return (
 		<div>
-			Estimates
+
 		</div>
 	);
 

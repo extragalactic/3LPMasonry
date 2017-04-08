@@ -1,3 +1,6 @@
+
+// ToDo: this CSS file is super messy and requires a redesign!
+
 const customerDetailsStyles = {
 	detailsPage: {
 		marginTop: 10,
@@ -66,7 +69,13 @@ const customerDetailsStyles = {
 		fontSize: 15,
 		fontWeight: 'bold',
 		fontVariant: 'small-caps',
-	},	
+	},
+	newNoteDialog: {
+		width: 650
+	},
+	newNoteTextField: {
+		width: 400
+	},
 	statusMessage: {
 		fontSize: 22,
 		fontVariant: 'small-caps',

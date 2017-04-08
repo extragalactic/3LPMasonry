@@ -6,8 +6,8 @@ import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import { filter } from 'lodash';
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import PhotoViewerContainer from './PhotoViewerContainer';
 import WarningMessage from './WarningMessage';
@@ -19,7 +19,6 @@ import Estimates from './Estimates';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
 
 CustomerDetailsTabs.propTypes = {
 	id: React.PropTypes.string.isRequired,
@@ -52,6 +51,7 @@ function CustomerDetailsTabs (props) {
 	return (
 
 	  <Tabs>
+	  	{/* ------------ CUSTOMER DATA ------------ */}
 	    <Tab label="Customer Data" style={styleCSS.tabsBar}>
 	    	<Row>
 					<Col md={5} lg={5} style={{padding:10}}> 
@@ -79,31 +79,6 @@ function CustomerDetailsTabs (props) {
 							<div>{`Estimator: ...`}</div>
 						}
 						<br/>
-
-						{(data.estimatePDF && data.estimatePDF.length>0) && 
-							<Row>
-								<Col xs={6} md={6} lg={6}>
-									<Row>
-										<div>
-											<FlatButton 
-												label="View Estimate PDF" 
-												primary={true} 
-												target="_blank"
-	   										href={data.estimatePDF}
-	   									/>
-										</div>
-									</Row>
-								</Col>
-								<Col xs={6} md={6} lg={6}>
-									<Row>								
-										<div>
-											<AcceptEstimateButton />
-										</div>
-										<br />
-									</Row>										
-								</Col>
-							</Row>
-						}
 					</Paper>
 					<br/>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
@@ -120,7 +95,7 @@ function CustomerDetailsTabs (props) {
 					</Col>
 				</Row>
 	    </Tab>	
-
+	  	{/* ------------ SURVEY PHOTOS & NOTES ------------ */}
 	    <Tab label="Survey Photos & Notes"  style={styleCSS.tabsBar}>
 	    	<Row>
 	    		<Col md={5} lg={5} style={{padding:10}}>
@@ -142,8 +117,34 @@ function CustomerDetailsTabs (props) {
 					</Col>
 				</Row>
 	    </Tab>	
+	  	{/* ------------ ESTIMATES ------------ */}	    
 	    <Tab label="Estimates"  style={styleCSS.tabsBar}>
-	    	<Estimates />
+				<Paper style={styleCSS.paperStyleLarge} zDepth={2}>	    	
+					{(data.estimatePDF && data.estimatePDF.length>0) && 
+						<Row>
+							<Col xs={6} md={6} lg={6}>
+								<Row>
+									<div>
+										<FlatButton 
+											label="View Estimate PDF" 
+											primary={true} 
+											target="_blank"
+	 										href={data.estimatePDF}
+	 									/>
+									</div>
+								</Row>
+							</Col>
+							<Col xs={6} md={6} lg={6}>
+								<Row>								
+									<div>
+										<AcceptEstimateButton />
+									</div>
+									<br />
+								</Row>										
+							</Col>
+						</Row>
+					}
+				</Paper>  	
 	    </Tab>	    
 
 	  </Tabs>

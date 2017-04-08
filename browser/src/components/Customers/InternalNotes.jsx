@@ -1,9 +1,11 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import FlatButton from 'material-ui/FlatButton';
 
+import NoteItem from './NoteItem';
+import AddNewNote from './AddNewNote';
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
 
 InternalNotes.propTypes = {
 	notes: React.PropTypes.array.isRequired,
@@ -23,16 +25,17 @@ function InternalNotes (props) {
 						return (
 							<Row style={styleCSS.surveyNote} key={note._id}>	
 								<Col>
-									<Row><div style={styleCSS.surveyNoteTitle}>{note.user.name} says:</div></Row>
-									<Row><div>{note.text}</div><br /></Row>
+									<NoteItem note={note}/>
 								</Col>
 							</Row>
 							)
 					})}
+					<Row>
+						<AddNewNote />
+					</Row>
 				</div>
 		</div>
 	);
-
 }
 
 export default InternalNotes;
