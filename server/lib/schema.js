@@ -50,6 +50,7 @@ const typeDefinitions = `
    inprogress: [assignedCustomers]
    surveycomplete: [assignedCustomers]
    myestimates: [assignedCustomers]
+   estimatequeue: [assignedCustomers]
  }
 
   type User {
