@@ -825,24 +825,78 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
+
+
       const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
           cust.estimate.prices.forEach((price) => {
-            prices.push([price.description, `$${price.price}`]);
-          });
-        });
+            if(price.length === 1 ){
+              prices.push([price[0].description, `$${price[0].price}`]);
+            }
+            if(price.length > 1) {
+              if(price.length === 2) {
+                prices.push([price[0].description, `$${price[0].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[1].description, `$${price[1].price}`]);
+                prices.push(['', '']);
+
+               }
+              if(price.length === 3) {
+                prices.push([price[0].description, `$${price[0].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[1].description, `$${price[1].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[2].description, `$${price[2].price}`]);
+                prices.push(['', '']);
+
+              }
+              if(price.length === 4) {
+                prices.push([price[0].description, `$${price[0].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[1].description, `$${price[1].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[2].description, `$${price[2].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[3].description, `$${price[3].price}`]);
+                prices.push(['', '']);
+
+
+              }
+              if(price.length === 5) {
+                prices.push([price[0].description, `$${price[0].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[1].description, `$${price[1].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[2].description, `$${price[2].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[3].description, `$${price[3].price}`]);
+                prices.push(['OR', '']);
+                prices.push([price[4].description, `$${price[4].price}`]);
+                prices.push(['', '']);
+
+              }
+            
+            }
+
+            //prices.push([price.description, `$${price.price}`]);
+          })
+         
+        }).then(() =>  console.log(prices))
+
+      
       return setTimeout(() => {
-        const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
-        const total = pricesArray.reduce((acc, val) => acc + val, 0);
-        const hst = (total / 100) * 13;
-        const Total = numeral(total + hst).format('$0,0.00');
-        const HST = numeral(hst).format('$0,0.00');
-        prices.push(['HST', HST]);
-        prices.push(['Total', Total]);
+        //const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
+        //const total = pricesArray.reduce((acc, val) => acc + val, 0);
+        //const hst = (total / 100) * 13;
+        //const Total = numeral(total + hst).format('$0,0.00');
+        //const HST = numeral(hst).format('$0,0.00');
+        //prices.push(['HST', HST]);
+        //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
+            pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
@@ -855,13 +909,15 @@ class GeneratePDFEstimate {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
+
+          
            return setTimeout(() => {
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
              if (!args.preview) {
                sendEmailEstimatetoCustomer(customer);
              }
              return true;
-           }, 2000);
+           }, 2000);  
          });
       }, 1000);
     };
