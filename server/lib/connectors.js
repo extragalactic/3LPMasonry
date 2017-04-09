@@ -299,6 +299,7 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
+      console.log(args)
       const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.newCustomers = user.newCustomers.map((customer) => {
@@ -357,6 +358,19 @@ class AddNotes {
     };
   }
 }
+
+class DeleteNotes {
+  constructor() {
+    this.deleteNotes = (args) => {
+     return CustomersModel.findOne({_id: args.custid})
+         .then((customer) => {
+           customer.notes.splice(args.index, 1)
+           customer.save();
+           return true;
+         })
+    };
+  }
+}
 class DeleteAppointment {
   constructor() {
     this.deleteAppointment = (args) => {
@@ -375,8 +389,8 @@ class DeleteAppointment {
 class GetUser {
   constructor() {
     this.getUser = (args) => {
-      if (id) {
-        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      if (args.id) {
+        if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
           const user = UsersModel.findOne({ _id: args.id }, (error, data) => data);
           return user;
         }
@@ -515,6 +529,7 @@ class GetSurveyLocalPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
+      console.log(args);
       if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
         const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
@@ -586,9 +601,10 @@ class SelectSurveyPhoto {
 class GetFinishedSurvey {
   constructor() {
     this.getFinishedSurvey = (args) => {
-      const output = [];
+     const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
+         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -627,10 +643,11 @@ class GetFinishedSurvey {
 
 class GetFinishedSurveyQuery {
   constructor() {
-    this.getFinishedSurvey = (args) => {
+    this.getFinishedSurveyQuery = (args) => {
       const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
+         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -670,6 +687,8 @@ class GetFinishedSurveyQuery {
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
+      console.log(args);
+      /*
       PricingModel.findOne({ description: args.description })
          .then((data) => {
            if (!data) {
@@ -680,14 +699,15 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
+          */
+
       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
-            customer.estimate.prices.push({
-              description: args.description,
-              price: args.price,
-            });
+            customer.estimate.prices.push(args.price);
             customer.save();
           });
+
+         
     };
   }
  }
@@ -746,8 +766,15 @@ class GetMyCustomers {
         inprogress: [],
         surveycomplete: [],
         myestimates: [],
+        estimatequeue: [], 
       };
       if (args.id) {
+        QueueModel.find()
+          .then((q) => {
+            q.forEach((customer) => output.estimatequeue.push(customer))
+            
+          })
+
         if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
           return UsersModel.findOne({ _id: args.id })
            .then((user) => {
@@ -863,6 +890,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  DeleteNotes,
   GetSurveyLocalPhotos,
   DeletePrice,
   AddGeneric,

@@ -50,6 +50,7 @@ const typeDefinitions = `
    inprogress: [assignedCustomers]
    surveycomplete: [assignedCustomers]
    myestimates: [assignedCustomers]
+   estimatequeue: [assignedCustomers]
  }
 
   type User {
@@ -243,6 +244,14 @@ type EstimateResults {
   photos: [String]
 }
 
+input PriceInput {
+  description: String
+  price:  Int
+}
+
+input PriceInputArray {
+  price: [PriceInput]
+}
 input SurveyorInput {
   firstName: String
   lastName: String
@@ -330,7 +339,7 @@ type Query {
     status: String
   ): [Customers]
   getQueue:[Queue]
-  customer(id: String!):Customers
+  customer(id: String):Customers
   address(searchTerm:String!):[Address]
   users(filter: String):[User]
   user(id: String):User
@@ -353,7 +362,7 @@ type Mutation {
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
-  addPricing(custid: String, description: String, price: Int): Estimate
+  addPricing(custid: String, price: [PriceInput]): Boolean
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
   toggleSurveyReady(custid: String, userid: String, online: Boolean): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]
@@ -384,8 +393,9 @@ type Mutation {
     calid: String
     ):Appointment
   getNotes(id:String):[notes]
-  getUser(id: String):User
   addNotes(note: notesInput ):[notes]
+  deleteNotes(custid: String, index: Int): Boolean
+  getUser(id: String):User
   getAppointmentsforDay(
     date: String, 
     userid: String
