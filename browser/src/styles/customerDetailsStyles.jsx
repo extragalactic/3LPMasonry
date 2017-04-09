@@ -55,26 +55,49 @@ const customerDetailsStyles = {
 		marginBottom: 10
 	},	
 	surveyNote: {
-		margin: 13,
+		marginTop: 5,
+		marginRight: 13,
+		width: 370
 	},	
 	surveyNoteTitle: {
 		fontStyle: 'italic',
+		width: '100%',
+		marginLeft: 10,
+		marginTop: 5
+	},	
+	surveyNoteText: {
+		width: '100%',
+		marginLeft: 10		
 	},	
 	surveyNoteTimestamp: {
 		fontSize: 11,
 		fontStyle: 'italic',
-		marginBottom:3
+		marginBottom:3,
+		marginLeft: 10
 	},
 	surveyNoteHeading: {
 		fontSize: 15,
+		marginLeft: 10,
 		fontWeight: 'bold',
 		fontVariant: 'small-caps',
+	},
+	surveyNoteTitle: {
+		fontStyle: 'italic',
+		width: '100%',
+		marginLeft: 10,
+		marginTop: 5
 	},
 	newNoteDialog: {
 		width: 650
 	},
 	newNoteTextField: {
 		width: 400
+	},
+	noteItemSelected: {
+		backgroundColor: '#eee'
+	},
+	noteItemDeselected: {
+		backgroundColor: '#fff'
 	},
 	statusMessage: {
 		fontSize: 22,
@@ -95,7 +118,7 @@ const customerDetailsStyles = {
 	},
 	tabsBar: {
 		backgroundColor: '#eee',
-		fontSize:20,
+		fontSize: 19,
 	},
 	italicData: {
 		fontStyle: 'italic',

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Tab, Tabs } from 'material-ui/Tabs';
-import Slider from 'material-ui/Slider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import { filter } from 'lodash';
@@ -83,7 +81,7 @@ function CustomerDetailsTabs (props) {
 					<br/>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row>
-							<InternalNotes notes={data.notes}/>
+							<InternalNotes notes={data.notes} id={props.id}/>
 						</Row>
 					</Paper>
 					</Col>

@@ -106,6 +106,7 @@ class PhotoViewerContainer extends React.Component {
           <input
             multiple
             type="file"
+						size="160"
             accept=".jpg, .jpeg, .png, .gif"
             style={styleCSS.uploadInput}
             onChange={this.onFileSelected}

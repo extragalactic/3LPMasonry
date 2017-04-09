@@ -44,6 +44,11 @@ const addNotes = gql `
   }
 }`;
 
+const deleteNotes = gql `
+  mutation deleteNotes($custid: String, $index: Int){
+    deleteNotes(custid: $custid, index: $index)
+ }`;
+
 const getSurveyPhotos = gql`
   mutation getSurveyImaged($id: String){
   getSurveyPhotos(id: $id) {
@@ -101,6 +106,7 @@ export {
   getImageBase64,
   getCustomer,
   addNotes,
+  deleteNotes,
   getSurveyPhotos,
   addGenerics,
   toggleSurveyReady,

@@ -26,7 +26,7 @@ function SurveyNotes (props) {
 									<Row><div style={styleCSS.surveyNoteHeading}>{note.heading.toLowerCase()}</div></Row>
 									<Row><div style={styleCSS.surveyNoteTitle}>{note.user} says:</div></Row>
 									<Row><div style={styleCSS.surveyNoteTimestamp}>({note.timestamp})</div></Row>
-									<Row><div>{note.text}</div></Row>
+									<Row><div style={styleCSS.surveyNoteText}>{note.text}</div></Row>
 								</Col>
 							</Row>
 							)

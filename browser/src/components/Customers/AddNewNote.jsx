@@ -1,6 +1,4 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
-import { addNotes } from '../../graphql/mutations';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
@@ -8,11 +6,18 @@ import TextField from 'material-ui/TextField';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 
-class _AddNewNote extends React.Component {
+class AddNewNote extends React.Component {
+  static propTypes = {
+  	id: React.PropTypes.string.isRequired,    
+    submitNewNote: React.PropTypes.func.isRequired,
+  };
+  
   constructor(props) {
     super(props);
+
     this.state = {
       open: false,
+      noteText: ''
     };
   }
 
@@ -24,7 +29,25 @@ class _AddNewNote extends React.Component {
     this.setState({open: false});
   };
 
+  onChange = (e) => {
+    this.setState({
+      noteText: e.target.value
+    })
+  }
+
   onSubmit = () => {
+    const storage = JSON.parse(localStorage.getItem('profile'));
+    const name = storage.name;
+    const userid = storage.user_id;
+
+    this.props.submitNewNote({
+      variables: {
+        createdAt: 'office',
+        text: this.state.noteText,
+        custid: this.props.id,
+        userid: userid,
+        name: name,
+      }});
     this.setState({open: false});
   }
 
@@ -58,15 +81,13 @@ class _AddNewNote extends React.Component {
             multiLine={true}
             rows={2}
             rowsMax={4}
+            value={this.state.noteText}
+            onChange={this.onChange}
           />
         </Dialog>
       </div>
     );
   }
 }
-
-const AddNewNote = compose(
-  graphql( addNotes, { name: 'addNotes', createAt: 'office', text: 'text goes here', user: {name: 'name', _id: '42'} })
- )( _AddNewNote );
 
 export default AddNewNote;
