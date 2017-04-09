@@ -144,6 +144,10 @@ const resolveFunctions = {
       const notes = new ctx.constructor.AddNotes();
       return notes.addNotes(args);
     },
+    deleteNotes(_, args, ctx) {
+      const notes = new ctx.constructor.DeleteNotes();
+      return notes.deleteNotes(args);
+    },
     deleteAppointment(_, args, ctx) {
       const appointment = new ctx.constructor.DeleteAppointment();
       return appointment.deleteAppointment(args);
