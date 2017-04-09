@@ -87,10 +87,12 @@ const CustomerSchema = new mongoose.Schema({
     }],
   },
   estimate: {
-    prices: [{
+    prices: [[
+    {
       description: String,
       price: Number,
-    }],
+    }
+    ]],
     photos: [String],
     pdf: String,
   },
@@ -102,3 +104,9 @@ const CustomerSchema = new mongoose.Schema({
 const CustomersModel = mongoose.model('customers', CustomerSchema);
 
 module.exports = CustomersModel;
+/*
+  description: String,
+      price: Number,
+*/
+
+
