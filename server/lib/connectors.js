@@ -358,6 +358,19 @@ class AddNotes {
     };
   }
 }
+
+class DeleteNotes {
+  constructor() {
+    this.deleteNotes = (args) => {
+     return CustomersModel.findOne({_id: args.custid})
+         .then((customer) => {
+           customer.notes.splice(args.index, 1)
+           customer.save();
+           return true;
+         })
+    };
+  }
+}
 class DeleteAppointment {
   constructor() {
     this.deleteAppointment = (args) => {
@@ -588,9 +601,10 @@ class SelectSurveyPhoto {
 class GetFinishedSurvey {
   constructor() {
     this.getFinishedSurvey = (args) => {
-      const output = [];
+     const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
+         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -633,6 +647,7 @@ class GetFinishedSurveyQuery {
       const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
+         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -672,6 +687,8 @@ class GetFinishedSurveyQuery {
 class AddPricing {
   constructor() {
     this.addPricing = (args) => {
+      console.log(args);
+      /*
       PricingModel.findOne({ description: args.description })
          .then((data) => {
            if (!data) {
@@ -682,14 +699,15 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
+          */
+
       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
-            customer.estimate.prices.push({
-              description: args.description,
-              price: args.price,
-            });
+            customer.estimate.prices.push(args.price);
             customer.save();
           });
+
+         
     };
   }
  }
@@ -872,6 +890,7 @@ class AddGeneric {
 }
 
 module.exports = {
+  DeleteNotes,
   GetSurveyLocalPhotos,
   DeletePrice,
   AddGeneric,
