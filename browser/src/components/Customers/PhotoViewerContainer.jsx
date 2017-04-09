@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { filter } from 'lodash';
 import Divider from 'material-ui/Divider';
+import Paper from 'material-ui/Paper';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from './WarningMessage';
@@ -11,7 +12,7 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class PhotoViewerContainer extends React.Component {
 	static propTypes = {	
-		id: React.PropTypes.string.isRequired,
+		custid: React.PropTypes.string.isRequired,
 		photos: React.PropTypes.array.isRequired,
 		photoData: React.PropTypes.array.isRequired,
 		addSurveyPhoto: React.PropTypes.func.isRequired,
@@ -65,13 +66,18 @@ class PhotoViewerContainer extends React.Component {
 	                description: 'OnlineEstimateTest',
 	                orginalBase64: reader.result,
 	                timestamp: new Date(),
-	                custid: this.props.id,
+	                custid: this.props.custid,
 	                //user: JSON.parse(localStorage.getItem('profile')).user_id
 	                user: 'office_upload',
 	              },
-	            }).then( () => {
+							 }).then( () => {
 	            	this.onLoadComplete();
-	            });
+	            }).catch( () => {
+								this.setState({
+									isLoading: false,
+									numFilesToLoad: 0
+								}); 
+	            }); 
 	          }, 1000);
 	        },
 	    );
@@ -99,19 +105,23 @@ class PhotoViewerContainer extends React.Component {
 			<div>
 				{this.renderPhotoViewer()}
 				<br />
-				<Row style={{marginTop:10, marginBottom:5}}>
-					<div style={styleCSS.subtitle}>Upload a New Photo</div>
-				</Row>
-				<Row>
-          <input
-            multiple
-            type="file"
-						size="160"
-            accept=".jpg, .jpeg, .png, .gif"
-            style={styleCSS.uploadInput}
-            onChange={this.onFileSelected}
-          />
-        </Row>
+				<div style={{width: 280}}>
+					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
+						<Row style={{marginLeft:15, marginTop:10, marginBottom:5}}>
+							<div style={styleCSS.subtitle}>Upload a New Photo</div>
+						</Row>
+						<Row style={{marginLeft:15}}>
+							<input
+								multiple
+								type="file"
+								size="160"
+								accept=".jpg, .jpeg, .png, .gif"
+								style={styleCSS.uploadInput}
+								onChange={this.onFileSelected}
+							/>
+						</Row>
+					</Paper>
+				</div>
         {this.state.isLoading &&
        		<LoadingPopup message="Uploading images to server..."/>	
        	}

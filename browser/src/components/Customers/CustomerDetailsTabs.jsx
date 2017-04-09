@@ -19,7 +19,7 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 
 CustomerDetailsTabs.propTypes = {
-	id: React.PropTypes.string.isRequired,
+	custid: React.PropTypes.string.isRequired,
 	data: React.PropTypes.object.isRequired,
 	photos: React.PropTypes.array.isRequired,
 	photoData: React.PropTypes.array.isRequired,
@@ -81,7 +81,7 @@ function CustomerDetailsTabs (props) {
 					<br/>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row>
-							<InternalNotes notes={data.notes} id={props.id}/>
+							<InternalNotes notes={data.notes} custid={props.custid}/>
 						</Row>
 					</Paper>
 					</Col>
@@ -106,7 +106,7 @@ function CustomerDetailsTabs (props) {
 	    		<Col md={7} lg={7}>
 						<Row style={styleCSS.photoViewer}>
 							<PhotoViewerContainer 
-								id={props.id}
+								custid={props.custid}
 								photos={props.photos}  
 								photoData={props.photoData}
 								addSurveyPhoto={props.addSurveyPhoto}

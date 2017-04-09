@@ -99,6 +99,9 @@ const customerDetailsStyles = {
 	noteItemDeselected: {
 		backgroundColor: '#fff'
 	},
+	noteItemMarked: {
+		backgroundColor: '#eaa'
+	},	
 	statusMessage: {
 		fontSize: 22,
 		fontVariant: 'small-caps',

@@ -8,7 +8,7 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class AddNewNote extends React.Component {
   static propTypes = {
-  	id: React.PropTypes.string.isRequired,    
+  	custid: React.PropTypes.string.isRequired,    
     submitNewNote: React.PropTypes.func.isRequired,
   };
   
@@ -44,7 +44,7 @@ class AddNewNote extends React.Component {
       variables: {
         createdAt: 'office',
         text: this.state.noteText,
-        custid: this.props.id,
+        custid: this.props.custid,
         userid: userid,
         name: name,
       }});
