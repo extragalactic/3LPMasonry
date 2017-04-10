@@ -106,6 +106,7 @@ export {
   getImageBase64,
   getCustomer,
   addNotes,
+  deleteNotes,
   getSurveyPhotos,
   addGenerics,
   toggleSurveyReady,

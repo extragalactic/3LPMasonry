@@ -1,28 +1,25 @@
 import React from 'react';
 import { Tab, Tabs } from 'material-ui/Tabs';
-import Slider from 'material-ui/Slider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import WarningIcon from 'material-ui/svg-icons/alert/warning';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import { filter } from 'lodash';
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import PhotoViewerContainer from './PhotoViewerContainer';
 import WarningMessage from './WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
-import ProjectNotes from './ProjectNotes';
+import InternalNotes from './InternalNotes';
 import SurveyNotes from './SurveyNotes';
-import EstimatesContainer from './EstimatesContainer';
+import Estimates from './Estimates';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
 
 CustomerDetailsTabs.propTypes = {
-	id: React.PropTypes.string.isRequired,
+	custid: React.PropTypes.string.isRequired,
 	data: React.PropTypes.object.isRequired,
 	photos: React.PropTypes.array.isRequired,
 	photoData: React.PropTypes.array.isRequired,
@@ -52,6 +49,7 @@ function CustomerDetailsTabs (props) {
 	return (
 
 	  <Tabs>
+	  	{/* ------------ CUSTOMER DATA ------------ */}
 	    <Tab label="Customer Data" style={styleCSS.tabsBar}>
 	    	<Row>
 					<Col md={5} lg={5} style={{padding:10}}> 
@@ -79,36 +77,11 @@ function CustomerDetailsTabs (props) {
 							<div>{`Estimator: ...`}</div>
 						}
 						<br/>
-
-						{(data.estimatePDF && data.estimatePDF.length>0) && 
-							<Row>
-								<Col xs={6} md={6} lg={6}>
-									<Row>
-										<div>
-											<FlatButton 
-												label="View Estimate PDF" 
-												primary={true} 
-												target="_blank"
-	   										href={data.estimatePDF}
-	   									/>
-										</div>
-									</Row>
-								</Col>
-								<Col xs={6} md={6} lg={6}>
-									<Row>								
-										<div>
-											<AcceptEstimateButton />
-										</div>
-										<br />
-									</Row>										
-								</Col>
-							</Row>
-						}
 					</Paper>
 					<br/>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row>
-							<ProjectNotes notes={data.notes}/>
+							<InternalNotes notes={data.notes} custid={props.custid}/>
 						</Row>
 					</Paper>
 					</Col>
@@ -120,7 +93,7 @@ function CustomerDetailsTabs (props) {
 					</Col>
 				</Row>
 	    </Tab>	
-
+	  	{/* ------------ SURVEY PHOTOS & NOTES ------------ */}
 	    <Tab label="Survey Photos & Notes"  style={styleCSS.tabsBar}>
 	    	<Row>
 	    		<Col md={5} lg={5} style={{padding:10}}>
@@ -133,7 +106,7 @@ function CustomerDetailsTabs (props) {
 	    		<Col md={7} lg={7}>
 						<Row style={styleCSS.photoViewer}>
 							<PhotoViewerContainer 
-								id={props.id}
+								custid={props.custid}
 								photos={props.photos}  
 								photoData={props.photoData}
 								addSurveyPhoto={props.addSurveyPhoto}
@@ -142,8 +115,34 @@ function CustomerDetailsTabs (props) {
 					</Col>
 				</Row>
 	    </Tab>	
+	  	{/* ------------ ESTIMATES ------------ */}	    
 	    <Tab label="Estimates"  style={styleCSS.tabsBar}>
-	    	<EstimatesContainer />
+				<Paper style={styleCSS.paperStyleLarge} zDepth={2}>	    	
+					{(data.estimatePDF && data.estimatePDF.length>0) && 
+						<Row>
+							<Col xs={6} md={6} lg={6}>
+								<Row>
+									<div>
+										<FlatButton 
+											label="View Estimate PDF" 
+											primary={true} 
+											target="_blank"
+	 										href={data.estimatePDF}
+	 									/>
+									</div>
+								</Row>
+							</Col>
+							<Col xs={6} md={6} lg={6}>
+								<Row>								
+									<div>
+										<AcceptEstimateButton />
+									</div>
+									<br />
+								</Row>										
+							</Col>
+						</Row>
+					}
+				</Paper>  	
 	    </Tab>	    
 
 	  </Tabs>

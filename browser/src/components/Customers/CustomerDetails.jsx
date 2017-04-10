@@ -15,7 +15,6 @@ import { getCustomer } from '../../graphql/queries';
 import { addSurveyPhoto } from '../../graphql/mutations';
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
 
 _CustomerDetails.propTypes = {
 	id: React.PropTypes.string.isRequired
@@ -33,7 +32,7 @@ function _CustomerDetails (props) {
     );
   }
 	const data = props.data.customer;
-	console.log('Customer ID: ' + props.data.customer.id);
+	//console.log('Customer ID: ' + props.data.customer.id);
 
 	// build the array of photos for the PhotoViewer
  	const photos = data.survey.photos.map(photo => {
@@ -84,7 +83,7 @@ function _CustomerDetails (props) {
 				<Row>
 					<Col md={12} lg={12} style={{padding:10}}>
 							<CustomerDetailsTabs 
-								id={props.id}
+								custid={props.id}
 								data={data}
 								photos={photos}
 								photoData={photoData}

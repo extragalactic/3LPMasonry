@@ -20,7 +20,7 @@ function _CustomersContainer (props) {
         customers={props.data.customers}
       />
       {/* This is a hack to initialize the Google map streetview, so that it can go fullscreen on Chrome */}
-      <LocationMap lat={0} lon={0} mapWidth={1} mapHeight={1} />
+      <LocationMap lat={43.6425} lon={-79.3892} mapWidth={1} mapHeight={1} />
     </div>
   );
 }
