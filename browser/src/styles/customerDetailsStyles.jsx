@@ -1,3 +1,6 @@
+
+// ToDo: this CSS file is super messy and requires a redesign!
+
 const customerDetailsStyles = {
 	detailsPage: {
 		marginTop: 10,
@@ -6,11 +9,33 @@ const customerDetailsStyles = {
 		fontFamily: 'Verdana',		
 	},
 	title: {
-		fontSize: 22
+		fontSize: 22,
 	},	
 	subtitle: {
 		fontSize: 18,
 	},
+	titleName: {
+		fontSize: 18,
+		marginTop: 3,
+		marginRight: 0,
+		paddingTop: 2,
+		paddingBottom: 3,
+		paddingLeft: 7,
+		paddingRight: 8,		
+		backgroundColor: '#fff'
+	},
+	paperStyleLarge: {
+	  padding: 10,
+	  backgroundColor: '#fff',
+	  color: '#000',
+	},
+	paperStyleSmall: {
+	  marginTop: 8,
+	  marginRight: 8,
+	  padding: 1,
+	  backgroundColor: '#fff',
+	  color: '#000',
+	},	
 	photoViewer: {
 		width: 550,
 		marginTop: 20,
@@ -21,14 +46,70 @@ const customerDetailsStyles = {
 		marginTop: 10,
 		paddingLeft: 15
 	},
-	statusMessage: {
-		fontSize: 18,
+	surveyNotes: {
+		marginTop: 0,
+		paddingLeft: 15
+	},	
+	surveyNotesTitle: {
+		fontSize: 22,
+		marginBottom: 10
+	},	
+	surveyNote: {
+		marginTop: 5,
+		marginRight: 13,
+		width: 370
+	},	
+	surveyNoteTitle: {
+		fontStyle: 'italic',
+		width: '100%',
+		marginLeft: 10,
+		marginTop: 5
+	},	
+	surveyNoteText: {
+		width: '100%',
+		marginLeft: 10		
+	},	
+	surveyNoteTimestamp: {
+		fontSize: 11,
+		fontStyle: 'italic',
+		marginBottom:3,
+		marginLeft: 10
+	},
+	surveyNoteHeading: {
+		fontSize: 15,
+		marginLeft: 10,
+		fontWeight: 'bold',
 		fontVariant: 'small-caps',
-		paddingTop: 13
+	},
+	surveyNoteTitle: {
+		fontStyle: 'italic',
+		width: '100%',
+		marginLeft: 10,
+		marginTop: 5
+	},
+	newNoteDialog: {
+		width: 650
+	},
+	newNoteTextField: {
+		width: 400
+	},
+	noteItemSelected: {
+		backgroundColor: '#eee'
+	},
+	noteItemDeselected: {
+		backgroundColor: '#fff'
+	},
+	noteItemMarked: {
+		backgroundColor: '#eaa'
+	},	
+	statusMessage: {
+		fontSize: 22,
+		fontVariant: 'small-caps',
+		marginTop: 10,
+		marginLeft: 3
 	},
 	statusBar: {
 		backgroundColor: '#ddd',
-		padding: 0,
 	},
 	googleMapsContainer: {
 		marginTop: 15,
@@ -39,8 +120,8 @@ const customerDetailsStyles = {
 		height: 280
 	},
 	tabsBar: {
-		backgroundColor: '#fff',
-		fontSize:20		
+		backgroundColor: '#eee',
+		fontSize: 19,
 	},
 	italicData: {
 		fontStyle: 'italic',
@@ -49,7 +130,8 @@ const customerDetailsStyles = {
 	},
 	uploadInput: {
 		cursor: 'pointer',
-	}
+	},
+
 };
 
 export default customerDetailsStyles;

@@ -550,7 +550,6 @@ class ToggleSurveyReady {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
-            console.log('pingTrue', customer.status)
             sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
@@ -710,7 +709,7 @@ class AddPricing {
             customer.estimate.prices.push(args.price);
             customer.save();
           });
-    
+
     };
   }
  }
@@ -828,7 +827,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-    const generics = args.generics;
+      const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
@@ -897,7 +896,7 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-           //pdfMakeEstimate(customer, generics, prices, null, args.text);
+            pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
@@ -911,7 +910,6 @@ class GeneratePDFEstimate {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
-
           
            return setTimeout(() => {
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);

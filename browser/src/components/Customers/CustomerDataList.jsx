@@ -6,6 +6,7 @@ const SURVEY_TYPES = ["On-site", "Online"];
 
 const customerFieldNames = {
 	ID: 'id',
+	FULL_NAME: 'fullName',
 	FIRST_NAME: 'firstName',
 	LAST_NAME: 'lastName',
 	ADDRESS: 'address',
@@ -47,6 +48,8 @@ class CustomerDataList {
 		case fields.WPHONE:
 		case fields.HPHONE:
 			return this.data[index][col];
+		case fields.FULL_NAME:
+			return `${this.data[index]['firstName']} ${this.data[index]['lastName']}` 			
 		case fields.EMAIL1NOTIFY:
 		case fields.EMAIL2NOTIFY:
 			return this.data[index][col] ? 'Yes':'No';
