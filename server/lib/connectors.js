@@ -546,14 +546,18 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
+      console.log(args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
-           // sendPushtoEstimators(customer);
+            console.log('pingTrue', customer.status)
+            sendPushtoEstimators(customer);
             addCustomertoQueue(customer);
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
+            console.log('pingFalse', customer.status)
+
             removeCustomerfromQueue(customer);
             customer.status = 3;
             customer.surveyReadyforPrice = false;
@@ -699,15 +703,14 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
-          */
-
-      CustomersModel.findOne({ _id: args.custid })
+        */
+      
+       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             customer.estimate.prices.push(args.price);
             customer.save();
           });
-
-         
+    
     };
   }
  }
@@ -825,9 +828,7 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-
-
-      const generics = args.generics;
+    const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
@@ -896,12 +897,13 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-            pdfMakeEstimate(customer, generics, prices, null, args.text);
+           //pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
            });
+           console.log(photos)
            const base64Images = [];
            photos.forEach((photo) => {
              PhotosModel.findOne({ docID: photo.docID })

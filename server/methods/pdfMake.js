@@ -6,16 +6,18 @@ import AWS from 'aws-sdk';
 
 const s3 = new AWS.S3({ region: 'us-east-2' });
 
+
 import CustomerModel from '../lib/CustomerModel';
 
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
+  console.log(generics)
   const genericText = {};
   // TEST VALUE (remove)
 
   const IMAGE_MAX_WIDTH = 730;
   const IMAGE_MAX_HEIGHT = 270;
-
+  console.log(surveyPhotos)
 
   genericText.waterTest = {
     text: { stack: [
@@ -379,7 +381,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     ],
 
     content: { stack: [
-      { image: path.join(__dirname, '../../assets/images/3lplogo.png'),
+      { image: path.join(__dirname, '../../assets/images/tlplogo.jpg'),
         width: 325,
         height: 325,
         alignment: 'center',
