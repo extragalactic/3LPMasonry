@@ -226,7 +226,7 @@ type FinishedSurveyPhotos {
 
 type Estimate {
   photos: [SurveyPhotos]
-  pricing: [SurveyPricing]
+  prices: [[Price]]
 }
 
 type SurveyPricing {
@@ -237,6 +237,9 @@ type SurveyPricing {
 type Price {
   description: String
   price:  Int
+}
+type PriceArray {
+  price: [Price]
 }
 
 type EstimateResults {
@@ -297,9 +300,10 @@ input generics {
  watertest: Boolean
  concreteSteps:Boolean
  concreteCare: Boolean
- refacingSlice: Boolean
+ refacingSlices: Boolean
  refacingComplete: Boolean
  coping: Boolean
+ chimney: Boolean
  flagstone: Boolean
  flashing: Boolean
  fwarranty: Boolean

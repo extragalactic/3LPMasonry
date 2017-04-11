@@ -546,6 +546,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
+      console.log(args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
@@ -554,6 +555,8 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
+            console.log('pingFalse', customer.status)
+
             removeCustomerfromQueue(customer);
             customer.status = 3;
             customer.surveyReadyforPrice = false;
@@ -699,15 +702,14 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
-          */
-
-      CustomersModel.findOne({ _id: args.custid })
+        */
+      
+       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             customer.estimate.prices.push(args.price);
             customer.save();
           });
 
-         
     };
   }
  }
@@ -825,8 +827,6 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-
-
       const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
@@ -902,6 +902,7 @@ class GeneratePDFEstimate {
                return img;
              }
            });
+           console.log(photos)
            const base64Images = [];
            photos.forEach((photo) => {
              PhotosModel.findOne({ docID: photo.docID })
@@ -909,7 +910,6 @@ class GeneratePDFEstimate {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
-
           
            return setTimeout(() => {
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
