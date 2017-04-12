@@ -717,13 +717,17 @@ class AddPricing {
 
 class DeletePrice {
   constructor() {
-    this.deletePrice = (args) => {
+    this.deletePrice = (args) => {     
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          customer.estimate.prices.splice(args.index, 1);
+          customer.estimate.prices[args.index0].splice([args.index1], 1) 
+           if(customer.estimate.prices[args.index0].length === 0) {
+              customer.estimate.prices.splice(args.index0, 1)
+           }
           customer.save();
         });
       return true;
+  
     };
   }
  }

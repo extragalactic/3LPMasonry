@@ -130,9 +130,9 @@ query{
         caption
         selected
       }
-      prices {
-      description
-      price
+     prices {
+        description
+        price
       }
     }
     surveyor {
