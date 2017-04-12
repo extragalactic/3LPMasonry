@@ -11,13 +11,13 @@ import CustomerModel from '../lib/CustomerModel';
 
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
-  console.log(generics)
+
   const genericText = {};
   // TEST VALUE (remove)
 
   const IMAGE_MAX_WIDTH = 730;
   const IMAGE_MAX_HEIGHT = 270;
-  console.log(surveyPhotos)
+
 
   genericText.waterTest = {
     text: { stack: [
@@ -510,6 +510,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 
   // Generate the list of site photos
   function createSitePhotos(photos) {
+    console.log('photos', photos)
     return (
     { stack: [
         { text: '', pageBreak: 'before' },
