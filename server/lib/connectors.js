@@ -2,6 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import request from 'request';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import numeral from 'numeral';
@@ -896,28 +897,35 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-            pdfMakeEstimate(customer, generics, prices, null, args.text);
+           //console.log('photoCustomer', customer)
+           // pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
            });
-           console.log(photos)
+           
            const base64Images = [];
            photos.forEach((photo) => {
+
+           request(photo.photo).pipe(fs.createWriteStream('./test.jpg'))
+
+
+
              PhotosModel.findOne({ docID: photo.docID })
                .then((p) => {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
-          
            return setTimeout(() => {
+            console.log("B", base64Images)
+
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
              if (!args.preview) {
                sendEmailEstimatetoCustomer(customer);
              }
              return true;
-           }, 2000);  
+           }, 8000);  
          });
       }, 1000);
     };

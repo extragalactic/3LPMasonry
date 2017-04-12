@@ -100,7 +100,7 @@
     "redux-devtools-extension": "^2.13.0",
     "redux-form": "^6.2.0",
     "redux-form-material-ui": "^4.1.0",
-    "request": "^2.78.0",
+    "request": "^2.81.0",
     "restler": "^3.4.0",
     "s3-uploader": "^2.0.3",
     "sharp": "^0.17.1",
