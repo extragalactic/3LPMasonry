@@ -130,7 +130,7 @@ query{
         caption
         selected
       }
-      pricing {
+     prices {
         description
         price
       }

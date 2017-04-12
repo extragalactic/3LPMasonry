@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CustomerDetails from './CustomerDetails';
 
 // the default user for testing the Details page (perhaps use localStorage to remember the last customer id?)
-const DEFAULT_CUSTOMER_ID = "58deb4ee184654537bea0096"; 
+const DEFAULT_CUSTOMER_ID = "58ed230e6d1fa416844c6abd"; 
 
 class _CustomerDetailsContainer extends React.Component {
   constructor(props) {

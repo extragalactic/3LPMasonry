@@ -2,6 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import request from 'request';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import numeral from 'numeral';
@@ -546,6 +547,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
+      console.log(args)
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
@@ -554,6 +556,8 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
+            console.log('pingFalse', customer.status)
+
             removeCustomerfromQueue(customer);
             customer.status = 3;
             customer.surveyReadyforPrice = false;
@@ -699,28 +703,31 @@ class AddPricing {
              newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
            }
          });
-          */
-
-      CustomersModel.findOne({ _id: args.custid })
+        */
+      
+       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             customer.estimate.prices.push(args.price);
             customer.save();
           });
 
-         
     };
   }
  }
 
 class DeletePrice {
   constructor() {
-    this.deletePrice = (args) => {
+    this.deletePrice = (args) => {     
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          customer.estimate.prices.splice(args.index, 1);
+          customer.estimate.prices[args.index0].splice([args.index1], 1) 
+           if(customer.estimate.prices[args.index0].length === 0) {
+              customer.estimate.prices.splice(args.index0, 1)
+           }
           customer.save();
         });
       return true;
+  
     };
   }
  }
@@ -825,8 +832,6 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-
-
       const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
@@ -896,12 +901,12 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-            pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
            });
+
            const base64Images = [];
            photos.forEach((photo) => {
              PhotosModel.findOne({ docID: photo.docID })
@@ -910,14 +915,15 @@ class GeneratePDFEstimate {
                });
            });
 
-          
            return setTimeout(() => {
+            console.log("B", base64Images)
+
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
              if (!args.preview) {
                sendEmailEstimatetoCustomer(customer);
              }
              return true;
-           }, 2000);  
+           }, 8000);  
          });
       }, 1000);
     };

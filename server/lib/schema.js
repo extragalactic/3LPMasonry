@@ -226,7 +226,7 @@ type FinishedSurveyPhotos {
 
 type Estimate {
   photos: [SurveyPhotos]
-  pricing: [SurveyPricing]
+  prices: [[Price]]
 }
 
 type SurveyPricing {
@@ -237,6 +237,9 @@ type SurveyPricing {
 type Price {
   description: String
   price:  Int
+}
+type PriceArray {
+  price: [Price]
 }
 
 type EstimateResults {
@@ -297,9 +300,10 @@ input generics {
  watertest: Boolean
  concreteSteps:Boolean
  concreteCare: Boolean
- refacingSlice: Boolean
+ refacingSlices: Boolean
  refacingComplete: Boolean
  coping: Boolean
+ chimney: Boolean
  flagstone: Boolean
  flashing: Boolean
  fwarranty: Boolean
@@ -355,7 +359,7 @@ type Query {
 
 }
 type Mutation {
-  deletePrice(custid: String, index: Int) : Boolean
+  deletePrice(custid: String, index0: Int, index1: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): Boolean
