@@ -896,7 +896,7 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-            pdfMakeEstimate(customer, generics, prices, null, args.text);
+            //pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
