@@ -22,7 +22,10 @@ class AddNewNote extends React.Component {
   }
 
   onOpen = () => {
-    this.setState({open: true});
+    this.setState({
+      open: true,
+      noteText: ''
+    });
   };
 
   onClose = () => {

@@ -8,7 +8,7 @@ import { filter } from 'lodash';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import PhotoViewerContainer from './PhotoViewerContainer';
-import WarningMessage from './WarningMessage';
+import WarningMessage from '../Utils/WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
 import InternalNotes from './InternalNotes';
@@ -117,10 +117,13 @@ function CustomerDetailsTabs (props) {
 	    </Tab>	
 	  	{/* ------------ ESTIMATES ------------ */}	    
 	    <Tab label="Estimates"  style={styleCSS.tabsBar}>
+	    	<div style={{marginTop:10}}>
 				<Paper style={styleCSS.paperStyleLarge} zDepth={2}>	    	
-					{(data.estimatePDF && data.estimatePDF.length>0) && 
+					{(data.estimatePDF && data.estimatePDF.length>0) ? 
 						<Row>
-							<Col xs={6} md={6} lg={6}>
+							<Col xs={5} md={5} lg={5}>
+							</Col>
+							<Col xs={7} md={7} lg={7}>
 								<Row>
 									<div>
 										<FlatButton 
@@ -131,18 +134,18 @@ function CustomerDetailsTabs (props) {
 	 									/>
 									</div>
 								</Row>
-							</Col>
-							<Col xs={6} md={6} lg={6}>
 								<Row>								
 									<div>
 										<AcceptEstimateButton />
 									</div>
 									<br />
-								</Row>										
+								</Row>									
 							</Col>
 						</Row>
+						: <div><WarningMessage message='This customer does not have an estimate yet.'/></div>
 					}
-				</Paper>  	
+				</Paper>
+				</div>
 	    </Tab>	    
 
 	  </Tabs>

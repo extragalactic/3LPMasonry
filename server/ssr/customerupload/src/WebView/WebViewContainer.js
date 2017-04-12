@@ -16,6 +16,9 @@ import '../carousel.css';
 import NotesModal from '../Notes/NotesModal';
 import HandbookModal from '../Handbook/HanbookModal';
 import ThankYouModal from '../ThankYou/ThankYouModal';
+// this file should likely live elsewhere as a shared resources between server & browser
+// import LoadingPopup from '../../../../../browser/src/components/Customers/LoadingPopup'; 
+import LoadingPopup from './LoadingPopup'; 
 
 const styles = {
   paperStyle: {
@@ -58,37 +61,63 @@ class WebViewContainer extends React.Component {
       handbookModal: false,
       notesText: '',
       thankYouModal: false,
+      isLoading: false,
+      numFilesToLoad: 0,     
     };
   }
+
+  onLoadComplete = () => {
+    let isLoading = this.state.isLoading; 
+    let numFilesToLoad = this.state.numFilesToLoad;
+
+    numFilesToLoad--;
+    if(numFilesToLoad <= 0) {
+      isLoading = false;
+    }
+    this.setState({
+      isLoading: isLoading,
+      numFilesToLoad: numFilesToLoad
+    });     
+  }
+
+
   onInputChange = (e) => {
+    this.setState({
+      isLoading: true,
+      numFilesToLoad: e.target.files.length
+    });
+
     filter(
             e.target.files,
             file => file.type.match(this.props.fileTypeRegex) !== null,
-        )
-            .forEach(
-                (file) => {
-                  const reader = new FileReader();
-                  reader.onload = this.props.onFileLoad;
-                  reader.readAsDataURL(file);
-                  setTimeout(() => {
-                    this.state.images.push({ original: reader.result });
-                    this.props.addSurveyPhoto({
-                      variables: {
-                        heading: 'OnlineEstimate',
-                        description: 'OnlineEstimate',
-                        orginalBase64: reader.result,
-                        timestamp: new Date(),
-                        custid: location.pathname.split('/')[2],
-                      },
-                    })
-                    .then((img) => {
-                      this.forceUpdate();
-                    });
-                  }, 1000);
-                },
-            );
+          )
+          .forEach(
+              (file) => {
+                const reader = new FileReader();
+                reader.onload = this.props.onFileLoad;
+                reader.readAsDataURL(file);
+                setTimeout(() => {
+                  this.state.images.push({ original: reader.result });
+                  this.props.addSurveyPhoto({
+                    variables: {
+                      heading: 'OnlineEstimate',
+                      description: 'OnlineEstimate',
+                      orginalBase64: reader.result,
+                      timestamp: new Date(),
+                      custid: location.pathname.split('/')[2],
+                    },
+                  }).then( () => {
+                    this.onLoadComplete();
+                  }).catch( () => {
+                    this.setState({
+                      isLoading: false,
+                      numFilesToLoad: 0
+                    }); 
+                  }); 
+                }, 1000);
+              },
+          );
   }
-
 
   onChangeNotes = (notesText) => {
     this.setState({
@@ -199,6 +228,9 @@ class WebViewContainer extends React.Component {
               isOpen={this.state.thankYouModal}
             />
           </div>
+          {this.state.isLoading &&
+            <LoadingPopup message="Uploading images to server..."/> 
+          }  
         </div>
       </MuiThemeProvider>
     );

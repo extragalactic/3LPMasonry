@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
+// *** work in progress *** 
 
 function Estimates (props) {
 	return (
