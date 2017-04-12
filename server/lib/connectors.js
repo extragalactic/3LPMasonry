@@ -897,26 +897,20 @@ class GeneratePDFEstimate {
         //prices.push(['Total', Total]);
         return CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-           //console.log('photoCustomer', customer)
-           // pdfMakeEstimate(customer, generics, prices, null, args.text);
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
            });
-           
+
            const base64Images = [];
            photos.forEach((photo) => {
-
-           request(photo.photo).pipe(fs.createWriteStream('./test.jpg'))
-
-
-
              PhotosModel.findOne({ docID: photo.docID })
                .then((p) => {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
+
            return setTimeout(() => {
             console.log("B", base64Images)
 
