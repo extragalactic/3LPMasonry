@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 
 import PhotoViewer from './PhotoViewer';
-import WarningMessage from './WarningMessage';
+import WarningMessage from '../Utils/WarningMessage';
 import LoadingPopup from './LoadingPopup';
 
 import styleCSS from '../../styles/customerDetailsStyles';
@@ -105,7 +105,7 @@ class PhotoViewerContainer extends React.Component {
 			<div>
 				{this.renderPhotoViewer()}
 				<br />
-				<div style={{width: 280}}>
+				<div style={{width: 340}}>
 					<Paper style={styleCSS.paperStyleLarge} zDepth={2}>
 						<Row style={{marginLeft:15, marginTop:10, marginBottom:5}}>
 							<div style={styleCSS.subtitle}>Upload a New Photo</div>
@@ -120,6 +120,7 @@ class PhotoViewerContainer extends React.Component {
 								onChange={this.onFileSelected}
 							/>
 						</Row>
+						<br/>
 					</Paper>
 				</div>
         {this.state.isLoading &&
