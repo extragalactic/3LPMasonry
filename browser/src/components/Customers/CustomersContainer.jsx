@@ -14,6 +14,7 @@ function _CustomersContainer (props) {
       <WobblySpinner diameter={200} />
     );
   }
+  console.log('DATA: ' + props.data);
   return (
     <div>
       <CustomersTable
