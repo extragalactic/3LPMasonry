@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import Estimates from './Estimates';
 import styleCSS from '../../styles/customerDetailsStyles';
 
-"use strict;"
+// *** work in progress *** 
 
 function EstimatesContainer (props) {
 	return (

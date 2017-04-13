@@ -131,7 +131,12 @@ const customerDetailsStyles = {
 	uploadInput: {
 		cursor: 'pointer',
 	},
-
+	warningMessage: {
+		fontSize: 17,
+		fontFamily: 'Verdana',
+		marginTop:18, 
+		marginLeft:10,
+	}
 };
 
 export default customerDetailsStyles;

@@ -32,7 +32,6 @@ function _CustomerDetails (props) {
     );
   }
 	const data = props.data.customer;
-	//console.log('Customer ID: ' + props.data.customer.id);
 
 	// build the array of photos for the PhotoViewer
  	const photos = data.survey.photos.map(photo => {
@@ -76,7 +75,10 @@ function _CustomerDetails (props) {
 						</Paper>
 					</Col>
 					<Col>
-						<div style={styleCSS.statusMessage}> {`status: ${CUSTOMER_STATUS[data.status]} `}</div>
+						{CUSTOMER_STATUS[data.status] 
+							? <div style={styleCSS.statusMessage}> {`status: ${CUSTOMER_STATUS[data.status]} `}</div>
+							: <div style={styleCSS.statusMessage}> (no status)</div>
+						}
 					</Col> 
 				</Row>
 
