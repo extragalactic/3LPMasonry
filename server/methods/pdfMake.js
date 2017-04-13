@@ -6,10 +6,12 @@ import AWS from 'aws-sdk';
 
 const s3 = new AWS.S3({ region: 'us-east-2' });
 
+
 import CustomerModel from '../lib/CustomerModel';
 
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
+
   const genericText = {};
   // TEST VALUE (remove)
 
@@ -379,7 +381,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     ],
 
     content: { stack: [
-      { image: path.join(__dirname, '../../assets/images/3lplogo.png'),
+      { image: path.join(__dirname, '../../assets/images/tlplogo.jpg'),
         width: 325,
         height: 325,
         alignment: 'center',
@@ -508,6 +510,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 
   // Generate the list of site photos
   function createSitePhotos(photos) {
+    console.log('photos', photos)
     return (
     { stack: [
         { text: '', pageBreak: 'before' },

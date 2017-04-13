@@ -130,10 +130,6 @@ query{
         caption
         selected
       }
-      pricing {
-        description
-        price
-      }
     }
     surveyor {
       id

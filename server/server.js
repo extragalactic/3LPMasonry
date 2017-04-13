@@ -29,7 +29,7 @@ const ssl = {
 
 const app = express();
 dotenv.config();
-//console.log(process.env);
+console.log(process.env);
 
 if (process.env.PROD === 'false') {
   console.log('hotload');
@@ -91,6 +91,7 @@ app.get('/getcustomer/:id', (req, res) => {
             res.send(data);
           });
 });
+app.get('/onlinestatus', (req, res) => res.status(200).send('status'));
 
 app.post('/saveimage', bodyParser.json(), (req, res) => {
   CustomersModel.findOne({ _id: req.body.id })

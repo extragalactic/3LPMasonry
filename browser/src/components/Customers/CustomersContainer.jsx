@@ -9,11 +9,17 @@ import { getAllCustomers } from '../../graphql/queries';
 
 function _CustomersContainer (props) {
 
-  if (props.data.loading) {
+  if(props.data.loading) {
     return (
       <WobblySpinner diameter={200} />
     );
   }
+  if(!props.data.customers) {
+    return (
+      <div><WarningMessage message='There has been an error loading the customer data. Please contact the website admin.' /></div>
+    );
+  }
+
   return (
     <div>
       <CustomersTable
