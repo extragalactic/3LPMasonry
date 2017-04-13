@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import CustomerDetails from './CustomerDetails';
 
-// the default user for testing the Details page (perhaps use localStorage to remember the last customer id?)
-const DEFAULT_CUSTOMER_ID = "58ed230e6d1fa416844c6abd"; 
+// a flag to assist with development testing
+const _TEST_USER = true;
 
 class _CustomerDetailsContainer extends React.Component {
   constructor(props) {
@@ -15,12 +16,20 @@ class _CustomerDetailsContainer extends React.Component {
     console.log('ID = ' + this.props.userID);
   }
 
-  render() {    
+  render() { 
+    let custID = this.props.userID;
+
+    if(typeof this.props.userID != 'string') {
+      if(_TEST_USER) {
+        custID = "58deb4ee184654537bea0096";
+      } else {
+        browserHistory.push('customers');
+      } 
+    }
+
     return (
       <div>
-        <CustomerDetails
-          id={typeof this.props.userID === 'string'? this.props.userID : DEFAULT_CUSTOMER_ID}
-        />
+         <CustomerDetails id={custID} />
       </div>
     );
   }
@@ -29,7 +38,6 @@ class _CustomerDetailsContainer extends React.Component {
 const mapStateToProps = state => ({
   userID: state.currentCustomer,
 });
-
 
 const CustomerDetailsContainer = connect( mapStateToProps )( _CustomerDetailsContainer );
 

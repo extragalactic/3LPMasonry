@@ -28,6 +28,7 @@ class CustomerDetailsForm extends Component {
       .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
       .focus();                // on TextField
   }
+
   render() {
     const { handleSubmit } = this.props;
     return (

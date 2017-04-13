@@ -91,7 +91,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <AppBar
-        title="Three Litte Pigs Masonry"
+        title={<img src="./src/assets/images/3LP-header-bar.png"/>}
         style={headerStyle}
         titleStyle={titleStyle}
         iconElementRight={this.state.logged ?
@@ -106,7 +106,3 @@ export default class Header extends React.Component {
     );
   }
 }
-
-/*
-   
-*/

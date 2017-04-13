@@ -14,6 +14,7 @@ import GenericsContainer from './components/Generics/GenericsContainer';
 import CustomersContainer from './components/Customers/CustomersContainer';
 import CustomerUploadContainer from './components/customerUpload/customerUploadContainer';
 import CustomerDetailsContainer from './components/Customers/CustomerDetailsContainer';
+import StreetViewContainer from './components/Maps/StreetViewContainer';
 
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
@@ -36,7 +37,8 @@ export default (
       <Route path="/generics" component={GenericsContainer} />
       <Route path="/customers" component={CustomersContainer} />
       <Route path="/maps" component={MapsTest} />
-      <Route path="/details" component={CustomerDetailsContainer} />      
+      <Route path="/details" component={CustomerDetailsContainer} />    
+      <Route path="/streetview/:id" component={StreetViewContainer} />
     </Route>
   </Route>
   );

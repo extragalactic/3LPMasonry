@@ -47,8 +47,6 @@ class NoteItem extends React.Component {
 
 	render() {
 		const note = this.props.note;
-		
-		 
 		let backStyle = {};
 		
 		if(this.state.active===0) {
@@ -66,7 +64,7 @@ class NoteItem extends React.Component {
 						onMouseLeave={this.onMouseLeave}
 						style={{minHeight: 55}}
 						>
-						<Col md={11} lg={11} style={ backStyle }>						
+						<Col md={11} lg={11} style={backStyle}>						
 							<Row><div style={styleCSS.surveyNoteTitle}>{note.user.name} says:</div></Row>
 							<Row><div style={styleCSS.surveyNoteText}>{note.text}</div><br /></Row>
 						</Col>
@@ -86,6 +84,3 @@ class NoteItem extends React.Component {
 }
 
 export default NoteItem;
-
-/* style={this.state.active ? styleCSS.noteItemSelected : styleCSS.noteItemDeselected}
-*/

@@ -4,7 +4,6 @@ import ImageGallery from 'react-image-gallery';
 import styleCSS from '../../styles/customerDetailsStyles';
 import styles from 'style-loader!css-loader!react-image-gallery/styles/css/image-gallery.css';
 
-"use strict;"
 
 class PhotoViewer extends React.Component {
   static propTypes = {  
