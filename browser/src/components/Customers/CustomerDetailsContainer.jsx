@@ -7,7 +7,9 @@ import CustomerDetails from './CustomerDetails';
 // the default user for testing the Details page (perhaps use localStorage to remember the last customer id?)
 const DEFAULT_CUSTOMER_ID = "58ed230e6d1fa416844c6abd"; 
 
-const _TEST_USER = true;
+// a flag to assist with development testing
+const _TEST_USER = false;
+
 
 
 class _CustomerDetailsContainer extends React.Component {
@@ -17,17 +19,19 @@ class _CustomerDetailsContainer extends React.Component {
 
   componentDidMount() {
     console.log('ID = ' + this.props.userID);
+
+    if(typeof this.props.userID != 'string' && !_TEST_USER) {
+       browserHistory.push('customers');
+    }
   }
 
   render() { 
-    let custID = this.props.userID;
+    let custID = "";
 
     if(typeof this.props.userID != 'string') {
-      if(_TEST_USER) {
-        custID = "58deb4ee184654537bea0096";
-      } else {
-        browserHistory.push('customers');
-      } 
+      custID = "58deb4ee184654537bea0096";
+    } else {
+      custID = this.props.userID;
     }
 
     return (
