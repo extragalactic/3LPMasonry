@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
+
 const CustomerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -88,14 +89,52 @@ const CustomerSchema = new mongoose.Schema({
   },
   estimate: {
     prices: [[
-    {
-      description: String,
-      price: Number,
-    }
+      {
+        description: String,
+        price: 0,
+      },
     ]],
     photos: [String],
     pdf: String,
   },
+  pricing: [[
+    {
+      description: String,
+      price: 0,
+    },
+  ]],
+  prices: [
+    {
+      description: String,
+      amount: Number,
+      numOptions: Number,
+      option1: {
+        enabled: Boolean,
+        description: String,
+        amount: Number,
+      },
+      option2: {
+        enabled: Boolean,
+        description: String,
+        amount: Number,
+      },
+      option3: {
+        enabled: Boolean,
+        description: String,
+        amount: Number,
+      },
+      option4: {
+        enabled: Boolean,
+        description: String,
+        amount: Number,
+      },
+      option5: {
+        enabled: Boolean,
+        description: String,
+        amount: Number,
+      },
+    },
+  ],
   estimatePDF: String,
   surveyReadyforPrice: { type: Boolean, default: false },
   estimateQueueId: String,
@@ -104,9 +143,4 @@ const CustomerSchema = new mongoose.Schema({
 const CustomersModel = mongoose.model('customers', CustomerSchema);
 
 module.exports = CustomersModel;
-/*
-  description: String,
-      price: Number,
-*/
-
 

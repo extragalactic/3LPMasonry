@@ -99,7 +99,6 @@ const resolveFunctions = {
         estimator,
         status }, ctx) {
       const updateCustomer = new ctx.constructor.UpdateCustomer();
-      console.log(notes);
       return updateCustomer.updateCustomer({
         id,
         firstName,
@@ -180,6 +179,10 @@ const resolveFunctions = {
       const photos = new ctx.constructor.SelectSurveyPhoto();
       return photos.selectSurveyPhoto(args);
     },
+    addPrice(_, args, ctx) {
+      const estimate = new ctx.constructor.AddPrice();
+      return estimate.addPrice(args);
+    },
     addPricing(_, args, ctx) {
       const estimate = new ctx.constructor.AddPricing();
       return estimate.addPricing(args);
@@ -187,6 +190,14 @@ const resolveFunctions = {
     deletePrice(_, args, ctx) {
       const estimate = new ctx.constructor.DeletePrice();
       return estimate.deletePrice(args);
+    },
+    editPriceDescription(_, args, ctx) {
+      const estimate = new ctx.constructor.EditPriceDescription();
+      return estimate.editPriceDescription(args);
+    },
+    editPriceAmount(_, args, ctx) {
+      const estimate = new ctx.constructor.EditPriceAmount();
+      return estimate.editPriceAmount(args);
     },
     getFinishedSurvey(_, args, ctx) {
       const survey = new ctx.constructor.GetFinishedSurvey();

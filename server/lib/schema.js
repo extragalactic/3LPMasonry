@@ -14,6 +14,8 @@ const typeDefinitions = `
     survey: Surveys
     estimator: String
     status: String
+    pricing: [[Price]]
+    prices: [PricingType]
     email1Notification: Boolean
     email2Notification: Boolean
     cellNotification: Boolean
@@ -25,6 +27,25 @@ const typeDefinitions = `
     estimatePDF: String
     surveyReadyforPrice: Boolean
 }
+
+
+type PriceOptionsType {
+  enabled: Boolean
+  description: String
+  amount: Int
+}
+
+type PricingType {
+  description: String
+  amount: Int
+  numOptions: Int 
+  option1: PriceOptionsType
+  option2: PriceOptionsType
+  option3: PriceOptionsType
+  option4: PriceOptionsType
+  option5: PriceOptionsType
+}
+
   type Queue {
     id: String
     firstName: String
@@ -327,6 +348,24 @@ input generics {
  warrantyAsStated: Boolean
  existingConcrete: Boolean
 }
+
+input PriceOptions {
+  enabled: Boolean
+  description: String
+  amount: Int
+}
+
+input PricingInput {
+  description: String
+  amount: Int
+  numOptions: Int 
+  option1: PriceOptions
+  option2: PriceOptions
+  option3: PriceOptions
+  option4: PriceOptions
+  option5: PriceOptions
+}
+
 type Query {
   customers(
     firstName:String, 
@@ -359,7 +398,10 @@ type Query {
 
 }
 type Mutation {
-  deletePrice(custid: String, index0: Int, index1: Int) : Boolean
+  deletePrice(custid: String, index: Int, Option: String) : Boolean
+  addPrice(custid: String, price: PricingInput): Boolean
+  editPriceDescription(custid: String, index: Int, option: String, text: String) : Boolean
+  editPriceAmount(custid: String, index: Int, option: String, amount: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): Boolean
