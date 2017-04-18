@@ -510,7 +510,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 
   // Generate the list of site photos
   function createSitePhotos(photos) {
-    console.log('photos', photos)
+   // console.log('photos', photos)
     return (
     { stack: [
         { text: '', pageBreak: 'before' },

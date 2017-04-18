@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const PricingSchema = new mongoose.Schema({
-    prices: [[
+  prices: [[
     {
       description: String,
       price: Number,
-    }
-    ]]
+    },
+  ]],
 });
 
 const PricingModel = mongoose.model('prices', PricingSchema);
