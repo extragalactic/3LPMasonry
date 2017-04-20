@@ -27,6 +27,10 @@ const customerTableStyles= {
     marginBottom: 10,
     fontSize: 16,
   },
+	spinnerInset: {
+		marginTop: 15,
+		marginLeft: 15
+	}
 };
 
 export default customerTableStyles;

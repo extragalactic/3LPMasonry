@@ -27,6 +27,7 @@ const requireAuth = (nextState, replace) => {
 export default (
   <Route path="/" >
     <Route path={'/customerupload/:id'} component={CustomerUploadContainer} />
+    <Route path="/streetview/:id" component={StreetViewContainer} />    
     <Route path={'/app'} component={App} auth={auth} >
       <IndexRedirect to="/home" />
       <Route path="/confirm" component={CustomerConfirmation} />
@@ -37,8 +38,7 @@ export default (
       <Route path="/generics" component={GenericsContainer} />
       <Route path="/customers" component={CustomersContainer} />
       <Route path="/maps" component={MapsTest} />
-      <Route path="/details" component={CustomerDetailsContainer} />    
-      <Route path="/streetview/:id" component={StreetViewContainer} />
+      <Route path="/details" component={CustomerDetailsContainer} />
     </Route>
   </Route>
   );
