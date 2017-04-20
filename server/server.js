@@ -143,7 +143,7 @@ app.use(timeout('10s'));
 const options = { 
                   user: process.env.DB_USER,
                   pass: process.env.DB_PASS,
-                  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 100000 } }, 
+                  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 200000 } }, 
                   replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 100000 } } 
               }; 
 

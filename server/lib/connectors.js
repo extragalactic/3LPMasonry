@@ -19,6 +19,7 @@ import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
+import saveDescription from '../methods/saveDescription';
 
 
 sharp.concurrency(1);
@@ -685,23 +686,9 @@ class GetFinishedSurveyQuery {
   }
  }
 
-class AddPricing {
+class AddPricing {   //NO LONGER IN USE!
   constructor() {
     this.addPricing = (args) => {
-      console.log(args);
-      /*
-      PricingModel.findOne({ description: args.description })
-         .then((data) => {
-           if (!data) {
-             const newPrice = new PricingModel({
-               description: args.description,
-               price: args.price,
-             });
-             newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
-           }
-         });
-        */
-
       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.pricing) {
@@ -717,6 +704,24 @@ class AddPricing {
 class AddPrice {
   constructor() {
     this.addPrice = (args) => {
+     if(args.price.description){
+      saveDescription(args.price.description, args.price.amount);
+      if(args.price.option1.description){
+        saveDescription(args.price.option1.description, args.price.option1.amount);
+      }
+     if(args.price.option2.description){
+        saveDescription(args.price.option2.description, args.price.option2.amount);
+      }
+     if(args.price.option3.description){
+        saveDescription(args.price.option3.description, args.price.option3.amount);
+      }
+      if(args.price.option4.description){
+        saveDescription(args.price.option4.description, args.price.option4.amount);
+      }
+      if(args.price.option5.description){
+        saveDescription(args.price.option5.description, args.price.option5.amount);
+      }
+
       CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.prices) {
@@ -725,6 +730,8 @@ class AddPrice {
             customer.prices.push(args.price);
             customer.save();
           });
+
+     }
     };
   }
  }
