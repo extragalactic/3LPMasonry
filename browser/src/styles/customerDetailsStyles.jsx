@@ -136,6 +136,10 @@ const customerDetailsStyles = {
 		fontFamily: 'Verdana',
 		marginTop:18, 
 		marginLeft:10,
+	},
+	spinnerInset: {
+		marginTop: 15,
+		marginLeft: 15
 	}
 };
 
