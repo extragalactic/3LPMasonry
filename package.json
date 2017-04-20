@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tape -r babel-register spec/setup.js",
-    "start": "nodemon server/server.js --exec babel-node",
-    "lint": "eslint . --fix",
-    "postinstall": "rndebugger-open"
+    "start": "nodemon server/server.js --exec babel-node --ignore 'browser/*'",
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -41,6 +40,7 @@
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "casual": "^1.5.6",
+    "connect-timeout": "^1.8.0",
     "cors": "^2.8.1",
     "crypto": "0.0.3",
     "dotenv": "^2.0.0",

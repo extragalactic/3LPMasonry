@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
+import timeout from 'connect-timeout'
 import https from 'https';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -42,11 +43,6 @@ if (process.env.PROD === 'false') {
   }));
   app.use(webpackHotLoading(compiler));
 }
-
-const cred = {
-  user: process.env.DB_USER,
-  pass: process.env.DB_PASS,
-};
 
 Mongoose.Promise = global.Promise;
 
@@ -142,10 +138,20 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
-Mongoose.connect(process.env.DB_HOST, cred);
-Mongoose.connection.on('connected', () => {
-  setTimeout(() => {
+app.use(timeout('10s'));
+
+const options = { 
+                  user: process.env.DB_USER,
+                  pass: process.env.DB_PASS,
+                  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 200000 } }, 
+                  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 100000 } } 
+              }; 
+
+Mongoose.connect(process.env.DB_HOST, options);
+const conn = Mongoose.connection;             
+conn.on('error', console.error.bind(console, 'connection error:'));  
+conn.once('open', () => {
     app.listen(app.get('port'));
     https.createServer(ssl, app).listen(443);
-  }, 1000);
 });
+

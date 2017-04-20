@@ -11,7 +11,6 @@ import CustomerModel from '../lib/CustomerModel';
 
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
-
   const genericText = {};
   // TEST VALUE (remove)
 
@@ -510,7 +509,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 
   // Generate the list of site photos
   function createSitePhotos(photos) {
-    console.log('photos', photos)
+   // console.log('photos', photos)
     return (
     { stack: [
         { text: '', pageBreak: 'before' },
@@ -553,9 +552,9 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
         Body: res,
       };
       s3.upload(params, (err, res) => {
-         console.log(res);
-         console.log(err);
-        CustomerModel.findOne({_id: customer._id})
+        console.log(res);
+        console.log(err);
+        CustomerModel.findOne({ _id: customer._id })
           .then((customer) => {
             customer.estimatePDF = res.Location;
             customer.save();
@@ -567,6 +566,4 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 };
 
 export default pdfMakeEstimate;
-
-
 

@@ -19,6 +19,7 @@ import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
+import saveDescription from '../methods/saveDescription';
 
 
 sharp.concurrency(1);
@@ -41,7 +42,6 @@ class GetQueue {
     };
   }
 }
-
 
 class Customers {
   constructor() {
@@ -300,7 +300,7 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
-      console.log(args)
+      console.log(args);
       const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.newCustomers = user.newCustomers.map((customer) => {
@@ -362,14 +362,12 @@ class AddNotes {
 
 class DeleteNotes {
   constructor() {
-    this.deleteNotes = (args) => {
-     return CustomersModel.findOne({_id: args.custid})
+    this.deleteNotes = args => CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
-           customer.notes.splice(args.index, 1)
+           customer.notes.splice(args.index, 1);
            customer.save();
            return true;
-         })
-    };
+         });
   }
 }
 class DeleteAppointment {
@@ -547,7 +545,7 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      console.log(args)
+      console.log(args);
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
@@ -556,7 +554,7 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
-            console.log('pingFalse', customer.status)
+            console.log('pingFalse', customer.status);
 
             removeCustomerfromQueue(customer);
             customer.status = 3;
@@ -605,7 +603,7 @@ class SelectSurveyPhoto {
 class GetFinishedSurvey {
   constructor() {
     this.getFinishedSurvey = (args) => {
-     const output = [];
+      const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
          // console.log(customer)
@@ -688,49 +686,113 @@ class GetFinishedSurveyQuery {
   }
  }
 
-class AddPricing {
+class AddPricing {   //NO LONGER IN USE!
   constructor() {
     this.addPricing = (args) => {
-      console.log(args);
-      /*
-      PricingModel.findOne({ description: args.description })
-         .then((data) => {
-           if (!data) {
-             const newPrice = new PricingModel({
-               description: args.description,
-               price: args.price,
-             });
-             newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
-           }
-         });
-        */
-      
-       CustomersModel.findOne({ _id: args.custid })
+      CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
-            customer.estimate.prices.push(args.price);
+            if (!customer.pricing) {
+              customer.pricing = [];
+            }
+            customer.pricing.push(args.price);
+            customer.save();
+          });
+    };
+  }
+ }
+
+class AddPrice {
+  constructor() {
+    this.addPrice = (args) => {
+     if(args.price.description){
+      saveDescription(args.price.description, args.price.amount);
+      if(args.price.option1.description){
+        saveDescription(args.price.option1.description, args.price.option1.amount);
+      }
+     if(args.price.option2.description){
+        saveDescription(args.price.option2.description, args.price.option2.amount);
+      }
+     if(args.price.option3.description){
+        saveDescription(args.price.option3.description, args.price.option3.amount);
+      }
+      if(args.price.option4.description){
+        saveDescription(args.price.option4.description, args.price.option4.amount);
+      }
+      if(args.price.option5.description){
+        saveDescription(args.price.option5.description, args.price.option5.amount);
+      }
+
+      CustomersModel.findOne({ _id: args.custid })
+          .then((customer) => {
+            if (!customer.prices) {
+              customer.prices = [];
+            }
+            customer.prices.push(args.price);
             customer.save();
           });
 
+     }
     };
   }
  }
 
 class DeletePrice {
   constructor() {
-    this.deletePrice = (args) => {     
+    this.deletePrice = (args) => {
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
-          customer.estimate.prices[args.index0].splice([args.index1], 1) 
-           if(customer.estimate.prices[args.index0].length === 0) {
-              customer.estimate.prices.splice(args.index0, 1)
-           }
+          if (args.Option === 'option0') {
+            if (!customer.prices[args.index].option1.description) {
+              customer.prices.splice(args.index, 1);
+            }
+          }
+
+          if (args.Option !== 'option0') {
+            customer.prices[args.index][args.Option].description = null;
+            customer.prices[args.index][args.Option].amount = null;
+          }
+
           customer.save();
         });
       return true;
-  
     };
   }
  }
+
+class EditPriceDescription {
+  constructor() {
+    this.editPriceDescription = (args) => {
+      CustomersModel.findById(args.custid)
+      .then((customer) => {
+        if (args.option === 'option0') {
+          customer.prices[args.index].description = args.text;
+        }
+        if (args.option !== 'option0') {
+          customer.prices[args.index][args.option].description = args.text;
+        }
+        customer.save();
+      });
+    };
+  }
+}
+
+class EditPriceAmount {
+  constructor() {
+    this.editPriceAmount = (args) => {
+      CustomersModel.findById(args.custid)
+      .then((customer) => {
+        if (args.option === 'option0') {
+          customer.prices[args.index].amount = args.amount;
+        }
+        if (args.option !== 'option0') {
+          customer.prices[args.index][args.option].description = args.amount;
+        }
+        customer.save();
+      });
+    };
+  }
+ }
+
 
 class AcceptEstimate {
   constructor() {
@@ -773,14 +835,13 @@ class GetMyCustomers {
         inprogress: [],
         surveycomplete: [],
         myestimates: [],
-        estimatequeue: [], 
+        estimatequeue: [],
       };
       if (args.id) {
         QueueModel.find()
           .then((q) => {
-            q.forEach((customer) => output.estimatequeue.push(customer))
-            
-          })
+            q.forEach(customer => output.estimatequeue.push(customer));
+          });
 
         if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
           return UsersModel.findOne({ _id: args.id })
@@ -836,77 +897,38 @@ class GeneratePDFEstimate {
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
         .then((cust) => {
-          cust.estimate.prices.forEach((price) => {
-            if(price.length === 1 ){
-              prices.push([price[0].description, `$${price[0].price}`]);
+          cust.prices.forEach((price, index) => {
+            prices.push([price.description, `$${price.amount} +HST`]);
+            if (price.option1.description) {
+              prices.push(['OR', '']);
+              prices.push([price.option1.description, `$${price.option1.amount} +HST`]);
             }
-            if(price.length > 1) {
-              if(price.length === 2) {
-                prices.push([price[0].description, `$${price[0].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[1].description, `$${price[1].price}`]);
-                prices.push(['', '']);
-
-               }
-              if(price.length === 3) {
-                prices.push([price[0].description, `$${price[0].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[1].description, `$${price[1].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[2].description, `$${price[2].price}`]);
-                prices.push(['', '']);
-
-              }
-              if(price.length === 4) {
-                prices.push([price[0].description, `$${price[0].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[1].description, `$${price[1].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[2].description, `$${price[2].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[3].description, `$${price[3].price}`]);
-                prices.push(['', '']);
-
-
-              }
-              if(price.length === 5) {
-                prices.push([price[0].description, `$${price[0].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[1].description, `$${price[1].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[2].description, `$${price[2].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[3].description, `$${price[3].price}`]);
-                prices.push(['OR', '']);
-                prices.push([price[4].description, `$${price[4].price}`]);
-                prices.push(['', '']);
-
-              }
-            
+            if (price.option2.description) {
+              prices.push(['OR', '']);
+              prices.push([price.option2.description, `$${price.option2.amount} +HST`]);
             }
+            if (price.option3.description) {
+              prices.push(['OR', '']);
+              prices.push([price.option3.description, `$${price.option3.amount} +HST`]);
+            }
+            if (price.option4.description) {
+              prices.push(['OR', '']);
+              prices.push([price.option4.description, `$${price.option4.amount} +HST`]);
+            }
+            if (price.option5.description) {
+              prices.push(['OR', '']);
+              prices.push([price.option5.description, `$${price.option5.amount} +HST`]);
+            }
+          });
+        }).then(() => console.log(prices));
 
-            //prices.push([price.description, `$${price.price}`]);
-          })
-         
-        }).then(() =>  console.log(prices))
-
-      
-      return setTimeout(() => {
-        //const pricesArray = prices.map(price => parseInt(price[1].slice(1)));
-        //const total = pricesArray.reduce((acc, val) => acc + val, 0);
-        //const hst = (total / 100) * 13;
-        //const Total = numeral(total + hst).format('$0,0.00');
-        //const HST = numeral(hst).format('$0,0.00');
-        //prices.push(['HST', HST]);
-        //prices.push(['Total', Total]);
-        return CustomersModel.findOne({ _id: args.custid })
+      return setTimeout(() => CustomersModel.findOne({ _id: args.custid })
          .then((customer) => {
            const photos = customer.survey.photos.filter((img) => {
              if (img.selected) {
                return img;
              }
            });
-
            const base64Images = [];
            photos.forEach((photo) => {
              PhotosModel.findOne({ docID: photo.docID })
@@ -916,16 +938,13 @@ class GeneratePDFEstimate {
            });
 
            return setTimeout(() => {
-            console.log("B", base64Images)
-
              pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
              if (!args.preview) {
                sendEmailEstimatetoCustomer(customer);
              }
              return true;
-           }, 8000);  
-         });
-      }, 1000);
+           }, 8000);
+         }), 1000);
     };
   }
 }
@@ -952,6 +971,9 @@ class AddGeneric {
 }
 
 module.exports = {
+  AddPrice,
+  EditPriceAmount,
+  EditPriceDescription,
   DeleteNotes,
   GetSurveyLocalPhotos,
   DeletePrice,

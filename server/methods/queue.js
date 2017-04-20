@@ -30,6 +30,12 @@ const addCustomertoQueue = (customer) => {
 const removeCustomerfromQueue = (customer) => {
   QueueModel.findByIdAndRemove(customer.estimateQueueId)
     .then(data => console.log(data)).catch(err => console.error(err));
+
+  CustomerModel.findOne({ _id: customer.id })
+  .then((customer) => {
+    customer.estimateQueueId = '';
+    customer.save();
+  });
 };
 
 export { addCustomertoQueue, removeCustomerfromQueue };
