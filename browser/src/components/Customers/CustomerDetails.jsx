@@ -28,7 +28,9 @@ function _CustomerDetails (props) {
 
   if (props.data.loading) {
     return (
-      <WobblySpinner diameter={200} />
+			<div style={styleCSS.spinnerInset}>
+      	<WobblySpinner diameter={200} />
+			</div>
     );
   }
 	const data = props.data.customer;

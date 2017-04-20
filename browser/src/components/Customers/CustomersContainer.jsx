@@ -5,13 +5,15 @@ import LocationMap from '../Maps/LocationMap';
 
 import CustomersTable from './customersTable';
 import { getAllCustomers } from '../../graphql/queries';
-
+import styleCSS from '../../styles/customerDetailsStyles';
 
 function _CustomersContainer (props) {
 
   if(props.data.loading) {
     return (
-      <WobblySpinner diameter={200} />
+      <div style={styleCSS.spinnerInset}> 
+        <WobblySpinner diameter={200} />
+      </div>
     );
   }
   if(!props.data.customers) {
