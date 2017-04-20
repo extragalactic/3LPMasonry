@@ -23,7 +23,7 @@ const setMapsLocation = (args) => {
           const streetViewUrl = `https://maps.googleapis.com/maps/api/streetview?size=600x300&location=${location}&heading=151.78&pitch=-0.76&key=${process.env.GOOGLE_API_KEY}`;
           axios.get(streetViewUrl).then((data) => {
             customer.streetViewUrl = data.config.url;
-            //customer.streetViewData = data.data;
+            // customer.streetViewData = data.data;
             customer.save();
           });
         });
