@@ -32,20 +32,7 @@ class _StreetView extends React.Component {
 	componentDidUpdate() {
 		google.maps.event.trigger(this.panorama,'resize');
 	}
-	/*
-				<Row style={{marginTop:15}}>
-					<Col xs={12}>
-						<Row center="xs">
-							<Col xs={6}>
-								<div>
-									<div id="pano"/>
-									<WobblySpinner diameter={200} />
-								</div>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-*/
+
 	render() {
 	  if (this.props.data.loading) {
 	    return (
@@ -102,10 +89,11 @@ const StreetView = compose(
 
 module.exports = Dimensions({
   getHeight: function(element) {
-    return window.innerHeight - 200;
+		var heightOffset = 20;
+    return window.innerHeight - heightOffset;
   },
   getWidth: function(element) {
-    var widthOffset = 17;
+    var widthOffset = 10;
     return window.innerWidth - widthOffset;
   }
 })(StreetView);
