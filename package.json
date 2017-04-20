@@ -6,7 +6,8 @@
   "scripts": {
     "test": "tape -r babel-register spec/setup.js",
     "start": "nodemon server/server.js --exec babel-node",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "postinstall": "rndebugger-open"
   },
   "repository": {
     "type": "git",
