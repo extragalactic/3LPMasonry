@@ -398,6 +398,7 @@ type Query {
 
 }
 type Mutation {
+  getCustomerPhoto(custid: String, docID: String): SurveyPhotos
   searchCustomer(searchTerm: String): [Customers]
   deletePrice(custid: String, index: Int, Option: String): Boolean
   addPrice(custid: String, price: PricingInput): Boolean
