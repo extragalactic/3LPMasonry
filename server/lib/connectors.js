@@ -970,7 +970,32 @@ class AddGeneric {
   }
 }
 
+class SearchCustomer {
+  constructor() {
+    this.searchCustomer = (args) => {
+     return CustomersModel.find()
+         .then((customers) => {
+          return customers.filter((customer) => {
+            if( (_.includes(customer.firstName, args.searchTerm)) 
+              || (_.includes(customer.lastName, args.searchTerm)) 
+              || (_.includes(customer.address, args.searchTerm))   
+              || (_.includes(customer.email1, args.searchTerm))
+              || (_.includes(customer.email2, args.searchTerm))
+              || (_.includes(customer.cphone, args.searchTerm))
+              || (_.includes(customer.hphone, args.searchTerm))
+              || (_.includes(customer.wphone, args.searchTerm))
+              ){
+              return customer;
+            }
+          })
+
+         })
+    };
+  }
+}
+
 module.exports = {
+  SearchCustomer,
   AddPrice,
   EditPriceAmount,
   EditPriceDescription,
