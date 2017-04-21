@@ -56,7 +56,6 @@ export default class AddressAutocomplete extends Component {
         value={this.state.value}
         onChange={this._handleChange}
         placeholder=''
-        fullWidth
       />
     )
   }
