@@ -1,6 +1,6 @@
 import { grey50 } from 'material-ui/styles/colors';
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
@@ -20,8 +20,9 @@ const styles = {
   },
 };
 
-class CustomerDispatchFormRootComp extends React.Component {
+class _CustomerDispatchFormRootComp extends React.Component {
   handleSubmit = (values) => {
+  values.address = this.props.autoComplete
     this.props.updateDispatch({ variables: {
       dispatch: values,
       id: this.props.currentCustomer,
@@ -55,8 +56,6 @@ const getSurveyorsCustomers = gql`
      }
   }`;
 
-const CustomerDispatchFormQuery = graphql(getSurveyorsCustomers)(CustomerDispatchFormRootComp);
-
 const updateDispatchInfo = gql`
   mutation updateDispatchInfo($dispatch:updateDispatch, $id:String) {
   updateDispatchInfo(dispatch:$dispatch, id: $id){
@@ -66,12 +65,18 @@ const updateDispatchInfo = gql`
   }
 }`;
 
-const mapStateToProps = state => ({
+const mapCustomerStateToProps = state => ({
   currentCustomer: state.currentCustomer,
 });
 
-const _CustomerDispatchFormRoot = graphql(updateDispatchInfo, { name: 'updateDispatch' })(CustomerDispatchFormQuery);
-
-const CustomerDispatchFormRoot = connect(mapStateToProps)(_CustomerDispatchFormRoot);
+const mapAutoCompleteStateToProps = state => ({
+  autoComplete: state.autoComplete,
+});
+const CustomerDispatchFormRoot = compose(
+   connect(mapCustomerStateToProps, null),
+   connect(mapAutoCompleteStateToProps, null),
+   graphql(updateDispatchInfo, { name: 'updateDispatch' }),
+   graphql(getSurveyorsCustomers)
+)(_CustomerDispatchFormRootComp);
 
 export default CustomerDispatchFormRoot;

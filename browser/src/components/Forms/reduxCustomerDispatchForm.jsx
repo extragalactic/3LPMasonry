@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import { AutoComplete, SelectField, Checkbox, Toggle as toggle } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
@@ -13,6 +14,7 @@ import { graphql, compose } from 'react-apollo';
 import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
 
+import AddressAutocomplete from './AddressAutocomplete';
 
 import { searchAddress } from '../../graphql/queries';
 import { getCustomer, addNotes } from '../../graphql/mutations';
@@ -79,6 +81,7 @@ class CustomerDispatchFormComp extends Component {
       notes: '',
       editorState: EditorState.createEmpty(),
       snackBar: false,
+
     };
     this.onChange = editorState => this.setState({ editorState });
     this.focus = () => this.refs.notes.focus();
@@ -87,10 +90,6 @@ class CustomerDispatchFormComp extends Component {
   }
 
   componentDidMount() {
-    this.refs.name            // the Field
-        .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-        .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-        .focus();                // on TextField
   }
   onChangeNotes = (notes, text) => {
    // console.log(notes)
@@ -171,6 +170,11 @@ class CustomerDispatchFormComp extends Component {
     this.setState({ notes: '' });
   };
 
+  handleAutoCompleteInputChange = (value) => {
+   const address = `${value.street_number}, ${value.route}, ${value.locality}, ${value.administrative_area_level_1}`
+   this.props.saveAutoComplete(address);
+  }
+
   render() {
     const actions = [
       <FlatButton
@@ -191,14 +195,14 @@ class CustomerDispatchFormComp extends Component {
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <Field
+            <AddressAutocomplete
               name="address"
-              component={AutoComplete}
-              hintText="Address"
-              ref="name" withRef
-              dataSource={this.state.data}
-              onUpdateInput={this.handleUpdateInput}
-            />
+              hintText="Address"   
+              floatingLabelText="Address"
+              onChange={this.handleAutoCompleteInputChange}
+
+        
+          />
           </div>
           <div style={toggleStyles.block}>
             <Toggle
@@ -349,7 +353,17 @@ CustomerDispatchFormComp = reduxForm({
   form: 'customerdispatch',
 })(CustomerDispatchFormComp);
 
+const mapActionSaveAddress = dispatch => ({
+  saveAutoComplete(autoComplete) {
+    dispatch({ type: 'SAVE_ADDRESS', payload: autoComplete });
+  },
+});
+
+const mapStateToProps = state => ({
+  autoComplete: state.autoComplete,
+});
 const CustomerDispatchForm = compose(
+   connect(mapStateToProps, mapActionSaveAddress),
    graphql(searchAddress, { options: { variables: { searchTerm: '' } } }),
    graphql(getCustomer, { name: 'getCustomer' }),
   graphql(addNotes, { name: 'addNotes' }),
