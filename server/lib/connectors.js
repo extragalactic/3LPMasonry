@@ -993,8 +993,26 @@ class SearchCustomer {
     };
   }
 }
+class GetCustomerPhoto {
+  constructor() {
+    this.getCustomerPhoto = (args) => {
+      let image = {}
+      return CustomersModel.findOne({_id: args.custid })
+        .then((customer) => {
+          customer.survey.photos.forEach((photo) => {
+            if(photo.docID === args.docID){
+              image = photo;
+            }
+          })
+      })
+      .then(() => image)
+    };
+  }
+}
+
 
 module.exports = {
+  GetCustomerPhoto,
   SearchCustomer,
   AddPrice,
   EditPriceAmount,
