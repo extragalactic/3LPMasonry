@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import WobblySpinner from "react-wobbly-spinner";
 import Dimensions from 'react-dimensions';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import WarningMessage from '../Utils/WarningMessage';
 import { getCustomer } from '../../graphql/queries';
@@ -31,14 +32,35 @@ class _StreetView extends React.Component {
 	componentDidUpdate() {
 		google.maps.event.trigger(this.panorama,'resize');
 	}
-
+	/*
+				<Row style={{marginTop:15}}>
+					<Col xs={12}>
+						<Row center="xs">
+							<Col xs={6}>
+								<div>
+									<div id="pano"/>
+									<WobblySpinner diameter={200} />
+								</div>
+							</Col>
+						</Row>
+					</Col>
+				</Row>
+*/
 	render() {
 	  if (this.props.data.loading) {
 	    return (
-	    	<div>
-	    		<div id="pano"/>
-	      	<WobblySpinner diameter={200} />
-	      </div>
+				<Row style={{marginTop:15}}>
+					<Col xs={12}>
+						<Row center="xs">
+							<Col xs={6}>
+								<div>
+									<div id="pano"/>
+									<WobblySpinner diameter={200} />
+								</div>
+							</Col>
+						</Row>
+					</Col>
+				</Row>
 	    );
 	  }
 
@@ -62,9 +84,13 @@ class _StreetView extends React.Component {
 	  const {containerWidth, containerHeight, ...props} = this.props;
 
 		return (
-			<div>
-				<div id="pano" style={{width: containerWidth, height: containerHeight}} />
-			</div>
+			<Row><Col>
+				<Row><Col>			
+					<div>
+						<div id="pano" style={{width: containerWidth, height: containerHeight}} />
+					</div>
+				</Col></Row>
+			</Col></Row>
 		);
 	}
 }
@@ -76,10 +102,11 @@ const StreetView = compose(
 
 module.exports = Dimensions({
   getHeight: function(element) {
-    return window.innerHeight - 200;
+		var heightOffset = 20;
+    return window.innerHeight - heightOffset;
   },
   getWidth: function(element) {
-    var widthOffset = 17;
+    var widthOffset = 10;
     return window.innerWidth - widthOffset;
   }
 })(StreetView);
