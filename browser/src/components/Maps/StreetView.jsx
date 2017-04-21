@@ -102,10 +102,11 @@ const StreetView = compose(
 
 module.exports = Dimensions({
   getHeight: function(element) {
-    return window.innerHeight - 200;
+		var heightOffset = 20;
+    return window.innerHeight - heightOffset;
   },
   getWidth: function(element) {
-    var widthOffset = 17;
+    var widthOffset = 10;
     return window.innerWidth - widthOffset;
   }
 })(StreetView);
