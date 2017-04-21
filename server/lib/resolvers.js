@@ -167,6 +167,10 @@ const resolveFunctions = {
       const photo = new ctx.constructor.GetSurveyPhotos();
       return photo.getSurveyPhotos(args);
     },
+   getCustomerPhoto(_, args, ctx) {
+      const photo = new ctx.constructor.GetCustomerPhoto();
+      return photo.getCustomerPhoto(args);
+    },  
     getSurveyLocalPhotos(_, args, ctx) {
       const photo = new ctx.constructor.GetSurveyLocalPhotos();
       return photo.getSurveyLocalPhotos(args);
@@ -223,6 +227,10 @@ const resolveFunctions = {
       const generic = new ctx.constructor.AddGeneric();
       return generic.addGeneric(args);
     },
+    searchCustomer(_, args, ctx) {
+      const customer = new ctx.constructor.SearchCustomer();
+      return customer.searchCustomer(args);
+    }
   },
 };
 module.exports = resolveFunctions;
