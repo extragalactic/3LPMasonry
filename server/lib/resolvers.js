@@ -223,6 +223,10 @@ const resolveFunctions = {
       const generic = new ctx.constructor.AddGeneric();
       return generic.addGeneric(args);
     },
+    searchCustomer(_, args, ctx) {
+      const customer = new ctx.constructor.SearchCustomer();
+      return customer.searchCustomer(args);
+    }
   },
 };
 module.exports = resolveFunctions;
