@@ -970,7 +970,50 @@ class AddGeneric {
   }
 }
 
+class SearchCustomer {
+  constructor() {
+    this.searchCustomer = (args) => {
+     return CustomersModel.find()
+         .then((customers) => {
+          return customers.filter((customer) => {
+            if( (_.includes(customer.firstName, args.searchTerm)) 
+              || (_.includes(customer.lastName, args.searchTerm)) 
+              || (_.includes(customer.address, args.searchTerm))   
+              || (_.includes(customer.email1, args.searchTerm))
+              || (_.includes(customer.email2, args.searchTerm))
+              || (_.includes(customer.cphone, args.searchTerm))
+              || (_.includes(customer.hphone, args.searchTerm))
+              || (_.includes(customer.wphone, args.searchTerm))
+              ){
+              return customer;
+            }
+          })
+
+         })
+    };
+  }
+}
+class GetCustomerPhoto {
+  constructor() {
+    this.getCustomerPhoto = (args) => {
+      let image = {}
+      return CustomersModel.findOne({_id: args.custid })
+        .then((customer) => {
+          customer.survey.photos.forEach((photo) => {
+            if(photo.docID === args.docID){
+              image = photo;
+            }
+          })
+      })
+      .then(() => image)
+    };
+  }
+}
+
+
 module.exports = {
+  GetCustomerPhoto,
+  SearchCustomer,
   AddPrice,
   EditPriceAmount,
   EditPriceDescription,

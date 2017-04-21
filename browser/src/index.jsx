@@ -9,6 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import routes from './routes';
 import { customerReducer } from './reducers/currentCustomer';
+import { autoCompleteReducer } from './reducers/autoCompleteAddress';
 
 if (module.hot) {
   module.hot.accept();
@@ -33,6 +34,7 @@ const store = createStore(combineReducers({
     form: formReducer,
     currentCustomer: customerReducer,
     apollo: client.reducer(),
+    autoComplete: autoCompleteReducer,
   }), composeWithDevTools(
   applyMiddleware(client.middleware()),
   // other store enhancers if any

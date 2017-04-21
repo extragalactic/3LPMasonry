@@ -102,6 +102,23 @@ const addSurveyPhoto = gql`
     )
   }`;
 
+const getSinglePhoto = gql `
+  mutation getSurveyPhoto($custid: String, $docID: String){
+  getCustomerPhoto(custid: $custid, docID: $docID){
+    docID
+    selected
+    user
+    thumb
+    thumbURL
+    photo
+    caption
+    localfile
+    description
+    orginalBase64
+    editedlBase64
+  }
+}`;
+
 export {
   getImageBase64,
   getCustomer,
