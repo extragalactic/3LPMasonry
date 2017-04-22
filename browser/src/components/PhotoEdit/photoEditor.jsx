@@ -1,6 +1,7 @@
 import React from 'react';
 import { SketchField, Tools } from 'react-sketch';
 import { graphql, compose } from 'react-apollo';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import {
     AppBar,
@@ -27,7 +28,7 @@ import DownloadIcon from 'material-ui/svg-icons/file/file-download';
 import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
 import ZoomOutIcon from 'material-ui/svg-icons/action/zoom-out';
 
-import { getSurveyPhotos, addSurveyPhoto } from '../../graphql/mutations';
+import { getSinglePhoto, getSurveyPhotos, addSurveyPhoto } from '../../graphql/mutations';
 
 // const sketch = Sketch.SketchField.prototype;
 // window.sketch = sketch;
@@ -41,8 +42,13 @@ class _PhotoEditor extends React.Component {
     super();
     this.state = {
       isSaving: false,
-      photos: [],
+      tool: Tools.Pencil,
+      lineColor: 'red'
     };
+    this.colourRGB = {'red':'#f00', 'black':'#000', 'yellow':'#ff0'};
+
+    this.onSelectTool = this.onSelectTool.bind(this);
+    this.onSelectColor = this.onSelectColor.bind(this);
   }
 
   componentDidMount() {
@@ -96,19 +102,62 @@ class _PhotoEditor extends React.Component {
     });    
   }
 
+  onSelectTool(event, index, value) {
+    console.log(value);
+    this.setState({
+      tool: value
+    });
+  }
+
+  onSelectColor(event, index, value) {
+    console.log(value);     
+    this.setState({
+      lineColor: value
+    });   
+  }
+
   render() {
     return (
-      <div>
-        <SketchField
-          name='sketch'
-          ref={(c) => this.sketch = c}
-          width="1024px"
-          height="768px"
-          tool={Tools.Pencil}
-          color="black"
-          lineWidth={3}
-        />
-      </div>
+      <Row style={{marginLeft:10}}>
+      <Col>
+        <Row>
+          <Col>
+            <div>
+              <SketchField
+                name='sketch'
+                ref={(c) => this.sketch = c}
+                width="800px"
+                height="600px"
+                tool={this.state.tool}
+                lineColor={this.state.lineColor}
+                lineWidth={3}
+              />
+            </div>
+          </Col>
+        </Row>
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <Row>
+          <Col>
+            <label htmlFor='tool'>Edit Tool</label><br/>
+            <SelectField ref='tool' value={this.state.tool} onChange={this.onSelectTool}>
+              <MenuItem value={Tools.Pencil} primaryText="Pencil"/>
+              <MenuItem value={Tools.Line} primaryText="Line"/>
+              <MenuItem value={Tools.Rectangle} primaryText="Rectangle"/>
+              <MenuItem value={Tools.Select} primaryText="Select"/>              
+            </SelectField>
+          </Col>
+          <Col>
+            <label htmlFor='color'>Colour</label><br/>
+            <SelectField ref='color' value={this.state.lineColor} onChange={this.onSelectColor}>
+              <MenuItem value={'red'} primaryText="Red"/>
+              <MenuItem value={'black'} primaryText="Black"/>
+              <MenuItem value={'yellow'} primaryText="Yellow"/>
+            </SelectField>
+          </Col>             
+        </Row>
+        </MuiThemeProvider>  
+      </Col>
+      </Row>
     );
   }
 }
@@ -116,6 +165,7 @@ class _PhotoEditor extends React.Component {
 const PhotoEditor = compose(
    graphql(addSurveyPhoto, { name: 'addSurveyPhoto' }),
    graphql(getSurveyPhotos, { name: 'getSurveyPhotos' }),
+   graphql(getSinglePhoto, { name: 'getSinglePhoto' }),
 )(_PhotoEditor);
 
 export default PhotoEditor;
