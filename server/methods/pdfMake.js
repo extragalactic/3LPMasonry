@@ -375,7 +375,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
 
     footer: [
       horizontalLine(),
-      { text: 'Three Little Pigs Masonry 14845 YongeSt., Unit6-Suite322, Aurora, ON, L4G 6H8', alignment: 'center' },
+      { text: 'Three Little Pigs Masonry 14845 YongeSt., Unit6-Suite 322, Aurora, ON, L4G 6H8', alignment: 'center' },
       { text: '905-508-0500  416-595-0100', alignment: 'center' },
     ],
 
