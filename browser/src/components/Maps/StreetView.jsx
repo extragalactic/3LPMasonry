@@ -32,20 +32,7 @@ class _StreetView extends React.Component {
 	componentDidUpdate() {
 		google.maps.event.trigger(this.panorama,'resize');
 	}
-	/*
-				<Row style={{marginTop:15}}>
-					<Col xs={12}>
-						<Row center="xs">
-							<Col xs={6}>
-								<div>
-									<div id="pano"/>
-									<WobblySpinner diameter={200} />
-								</div>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-*/
+
 	render() {
 	  if (this.props.data.loading) {
 	    return (
@@ -55,7 +42,7 @@ class _StreetView extends React.Component {
 							<Col xs={6}>
 								<div>
 									<div id="pano"/>
-									<WobblySpinner diameter={200} />
+									{/* <WobblySpinner diameter={200} /> */}
 								</div>
 							</Col>
 						</Row>

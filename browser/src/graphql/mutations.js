@@ -114,8 +114,6 @@ const getSinglePhoto = gql `
     caption
     localfile
     description
-    orginalBase64
-    editedlBase64
   }
 }`;
 
@@ -128,4 +126,5 @@ export {
   addGenerics,
   toggleSurveyReady,
   addSurveyPhoto,
+  getSinglePhoto,
 };
