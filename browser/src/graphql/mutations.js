@@ -114,12 +114,11 @@ const getSinglePhoto = gql `
     caption
     localfile
     description
-    orginalBase64
-    editedlBase64
   }
 }`;
 
 export {
+  getSinglePhoto,
   getImageBase64,
   getCustomer,
   addNotes,
