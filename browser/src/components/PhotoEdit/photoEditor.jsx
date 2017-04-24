@@ -198,6 +198,7 @@ class _PhotoEditor extends React.Component {
                 name='sketch'
                 ref={(c) => this.sketch = c}
                 width={this.props.containerWidth + "px"}
+                height={this.props.containerWidth/2 + "px"}
                 tool={this.state.tool}
                 lineColor={this.state.lineColor}
                 lineWidth={3}
