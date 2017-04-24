@@ -127,4 +127,5 @@ export {
   addGenerics,
   toggleSurveyReady,
   addSurveyPhoto,
+  getSinglePhoto,
 };
