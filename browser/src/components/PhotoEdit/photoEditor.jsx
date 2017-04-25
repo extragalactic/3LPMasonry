@@ -72,6 +72,7 @@ class _PhotoEditor extends React.Component {
     this.onRedo = this.onRedo.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onSketchChange = this.onSketchChange.bind(this);
+    this.saveAnnotatedPhoto = this.saveAnnotatedPhoto.bind(this);
   }
 
   componentDidMount() {
@@ -127,6 +128,7 @@ class _PhotoEditor extends React.Component {
     }).then( () => {
       this.onSaveComplete();
     }).catch( () => {
+      console.log('error: could not save');
       this.setState({
         isSaving: false,
       }); 
@@ -251,7 +253,14 @@ class _PhotoEditor extends React.Component {
               iconStyle={styles.iconButton}>
               <ClearIcon />
             </IconButton>
-          </Col>          
+          </Col> 
+          <Col>
+            <IconButton
+              onTouchTap={this.saveAnnotatedPhoto}
+              iconStyle={styles.iconButton}>
+              <SaveIcon />
+            </IconButton>
+          </Col>                   
         </Row>
         </div>
         </MuiThemeProvider>  
