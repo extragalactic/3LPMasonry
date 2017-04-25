@@ -118,6 +118,7 @@ const getSinglePhoto = gql `
 }`;
 
 export {
+  getSinglePhoto,
   getImageBase64,
   getCustomer,
   addNotes,
@@ -126,5 +127,4 @@ export {
   addGenerics,
   toggleSurveyReady,
   addSurveyPhoto,
-  getSinglePhoto,
 };

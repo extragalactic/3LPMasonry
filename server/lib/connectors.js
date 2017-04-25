@@ -802,7 +802,8 @@ class AcceptEstimate {
         .then((customer) => {
           UsersModel.findOne({ _id: args.userid })
             .then((user) => {
-              user.estimates.push({
+             if(!_.includes(user.estimates, args.custid)){
+               user.estimates.push({
                 id: customer._id,
                 firstName: customer.firstName,
                 lastName: customer.lastName,
@@ -815,6 +816,7 @@ class AcceptEstimate {
                 status: 0,
               });
               user.save();
+             }
             });
           customer.estimator = args.userid;
           removeCustomerfromQueue(customer);
