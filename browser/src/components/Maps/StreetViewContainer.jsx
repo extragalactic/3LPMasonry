@@ -6,14 +6,13 @@ StreetViewContainer.propTypes = {
 	params: React.PropTypes.object.isRequired,
 };
 
-function StreetViewContainer (props) {
-
+function StreetViewContainer(props) {
 	const custid = props.params.id;
 
 	const style = {
-		marginLeft:  12, 
-		marginBottom: 10, 
-		marginTop: 5
+		marginLeft: 12,
+		marginBottom: 10,
+		marginTop: 5,
 	};
 
 	return (

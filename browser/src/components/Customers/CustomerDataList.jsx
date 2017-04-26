@@ -1,8 +1,8 @@
 
 // Wrapper class for customer data array of objects
-"use strict;"
-const CUSTOMER_STATUS = ["new customer", "customer called, pending call back", "survey scheduled", "survey in progress", "estimate in queue", "estimate accepted", "estimate sent"];
-const SURVEY_TYPES = ["On-site", "Online"];
+
+const CUSTOMER_STATUS = ['new customer', 'customer called, pending call back', 'survey scheduled', 'survey in progress', 'estimate in queue', 'estimate accepted', 'estimate sent'];
+const SURVEY_TYPES = ['On-site', 'Online'];
 
 const customerFieldNames = {
 	ID: 'id',
@@ -20,7 +20,7 @@ const customerFieldNames = {
 	STATUS: 'status',
 	SURVEYOR_NAME: 'surveyorName',
 	SURVEY_TYPE: 'surveyType',
-	ESTIMATOR_NAME: 'estimatorName'
+	ESTIMATOR_NAME: 'estimatorName',
 };
 
 class CustomerDataList {
@@ -37,7 +37,7 @@ class CustomerDataList {
 	// (so that the data structure appears flat). Also maps enum values to strings.
 	getDataAt(index, col) {
 		const fields = customerFieldNames;
-		switch(col) {
+		switch (col) {
 		case fields.ID:
 		case fields.FIRST_NAME:
 		case fields.LAST_NAME:
@@ -49,12 +49,12 @@ class CustomerDataList {
 		case fields.HPHONE:
 			return this.data[index][col];
 		case fields.FULL_NAME:
-			return `${this.data[index]['firstName']} ${this.data[index]['lastName']}` 			
+			return `${this.data[index].firstName} ${this.data[index].lastName}`;
 		case fields.EMAIL1NOTIFY:
 		case fields.EMAIL2NOTIFY:
-			return this.data[index][col] ? 'Yes':'No';
+			return this.data[index][col] ? 'Yes' : 'No';
 		case fields.STATUS:
-			return CUSTOMER_STATUS[ this.data[index][col] ];
+			return CUSTOMER_STATUS[this.data[index][col]];
 		case fields.SURVEY_TYPE:
 			return SURVEY_TYPES[0];  // <==== this is a placeholder value
 		case fields.SURVEYOR_NAME:

@@ -8,17 +8,17 @@ class LoadingPopup extends React.Component {
 	}
 
 	render() {
-    return (
-	      <div>
-	        <Dialog
-	          title={this.props.message}
-	          modal={false}
-	          open={true}
-	        >
-	        	<LinearProgress mode="indeterminate" />
-	        </Dialog>
-	      </div>
-    );
-  }
+		return (
+			<div>
+				<Dialog
+					title={this.props.message}
+					modal={false}
+					open
+				>
+					<LinearProgress mode="indeterminate" />
+				</Dialog>
+			</div>
+		);
+	}
 }
 export default LoadingPopup;

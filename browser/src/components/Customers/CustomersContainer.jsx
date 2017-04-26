@@ -6,36 +6,40 @@ import LocationMap from '../Maps/LocationMap';
 import CustomersTable from './customersTable';
 import { getAllCustomers } from '../../graphql/queries';
 import styleCSS from '../../styles/customerDetailsStyles';
+import WarningMessage from '../Utils/WarningMessage';
 
-function _CustomersContainer (props) {
+_CustomersContainer.propTypes = {
+	data: React.PropTypes.object.isRequired,
+};
 
-  if(props.data.loading) {
-    return (
-      <div style={styleCSS.spinnerInset}> 
-        <WobblySpinner diameter={200} />
-      </div>
-    );
-  }
-  if(!props.data.customers) {
-    return (
-      <div><WarningMessage message='There has been an error loading the customer data. Please contact the website admin.' /></div>
-    );
-  }
+function _CustomersContainer(props) {
+	if (props.data.loading) {
+		return (
+			<div style={styleCSS.spinnerInset}>
+				<WobblySpinner diameter={200} />
+			</div>
+		);
+	}
+	if (!props.data.customers) {
+		return (
+			<div><WarningMessage message="There has been an error loading the customer data. Please contact the website admin." /></div>
+		);
+	}
 
-  return (
-    <div>
-      <CustomersTable
-        customers={props.data.customers}
-      />
-      {/* This is a hack to initialize the Google map streetview, so that it can go fullscreen on Chrome */}
-      <LocationMap lat={43.6425} lon={-79.3892} mapWidth={1} mapHeight={1} />
-    </div>
-  );
+	return (
+		<div>
+			<CustomersTable
+				customers={props.data.customers}
+			/>
+			{/* This is a hack to initialize the Google map streetview, so that it can go fullscreen on Chrome */}
+			<LocationMap lat={43.6425} lon={-79.3892} mapWidth={1} mapHeight={1} />
+		</div>
+	);
 }
 
 
 const CustomersContainer = compose(
-   graphql(getAllCustomers),
+	graphql(getAllCustomers),
  )(_CustomersContainer);
 
 export default CustomersContainer;
