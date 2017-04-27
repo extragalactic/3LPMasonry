@@ -415,6 +415,7 @@ type Mutation {
   toggleSurveyReady(custid: String, userid: String, online: Boolean): Customers
   getSurveyPhotos( id: String ): [SurveyPhotosArray]
   getSurveyLocalPhotos( id: String ): [SurveyPhotosArray]
+  deleteSurveyNote(custid: String, index: Int) : Boolean
   addSurveyNotes(
     custid: String,
     userid: String,

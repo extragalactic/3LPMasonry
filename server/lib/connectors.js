@@ -974,46 +974,52 @@ class AddGeneric {
 
 class SearchCustomer {
   constructor() {
-    this.searchCustomer = (args) => {
-     return CustomersModel.find()
-         .then((customers) => {
-          return customers.filter((customer) => {
-            if( (_.includes(customer.firstName, args.searchTerm)) 
-              || (_.includes(customer.lastName, args.searchTerm)) 
-              || (_.includes(customer.address, args.searchTerm))   
+    this.searchCustomer = args => CustomersModel.find()
+         .then(customers => customers.filter((customer) => {
+           if ((_.includes(customer.firstName, args.searchTerm))
+              || (_.includes(customer.lastName, args.searchTerm))
+              || (_.includes(customer.address, args.searchTerm))
               || (_.includes(customer.email1, args.searchTerm))
               || (_.includes(customer.email2, args.searchTerm))
               || (_.includes(customer.cphone, args.searchTerm))
               || (_.includes(customer.hphone, args.searchTerm))
               || (_.includes(customer.wphone, args.searchTerm))
-              ){
-              return customer;
-            }
-          })
-
-         })
-    };
+              ) { return customer; }
+           return false;
+         }),
+      );
   }
 }
 class GetCustomerPhoto {
   constructor() {
     this.getCustomerPhoto = (args) => {
-      let image = {}
-      return CustomersModel.findOne({_id: args.custid })
+      let image = {};
+      return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.photos.forEach((photo) => {
-            if(photo.docID === args.docID){
+            if (photo.docID === args.docID) {
               image = photo;
             }
-          })
-      })
-      .then(() => image)
+          });
+        })
+      .then(() => image);
     };
   }
 }
-
+class DeleteSurveyNote {
+  constructor() {
+    this.deleteSurveyNote = args =>
+      CustomersModel.findOne({ _id: args.custid })
+       .then((customer) => {
+         customer.survey.notes.splice(args.index, 1);
+         customer.save();
+         return true;
+       });
+  }
+}
 
 module.exports = {
+  DeleteSurveyNote,
   GetCustomerPhoto,
   SearchCustomer,
   AddPrice,
