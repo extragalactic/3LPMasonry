@@ -117,7 +117,18 @@ const getSinglePhoto = gql `
   }
 }`;
 
+const submitCustomer = gql `
+  mutation submitCustomer($id: String){
+  submitCustomer(id: $id){
+    id
+  }
+}`;
+
 export {
+<<<<<<< HEAD
+  submitCustomer,
+=======
+>>>>>>> 6c776892a9aa38c6e467937deb256ee7cda5b7d2
   getSinglePhoto,
   getImageBase64,
   getCustomer,

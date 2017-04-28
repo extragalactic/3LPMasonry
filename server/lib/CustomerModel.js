@@ -138,6 +138,7 @@ const CustomerSchema = new mongoose.Schema({
   estimatePDF: String,
   surveyReadyforPrice: { type: Boolean, default: false },
   estimateQueueId: String,
+  surveyType: Number,
 });
 
 const CustomersModel = mongoose.model('customers', CustomerSchema);

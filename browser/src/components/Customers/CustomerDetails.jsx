@@ -34,7 +34,6 @@ function _CustomerDetails (props) {
     );
   }
 	const data = props.data.customer;
-
 	// build the array of photos for the PhotoViewer
  	const photos = data.survey.photos.map(photo => {
 		return (
