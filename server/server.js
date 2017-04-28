@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
-import timeout from 'connect-timeout';
+import timeout from 'connect-timeout'
 import https from 'https';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -30,7 +30,11 @@ const ssl = {
 
 const app = express();
 dotenv.config();
+console.log(process.env);
+
 if (process.env.PROD === 'false') {
+  console.log('hotload');
+  console.log('dev');
   const compiler = webpack(config);
   app.use(webpackMiddleWare(compiler, {
     publicPath: '/dist/',
@@ -96,6 +100,9 @@ app.post('/saveimage', bodyParser.json(), (req, res) => {
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
+app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
+
+
 app.use(express.static(path.join(__dirname, '../customerupload/build/static')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/css')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/media')));
@@ -103,7 +110,7 @@ app.use(express.static(path.join(__dirname, '../customerupload/build')));
 
 app.get('/upload/:userid', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerupload/build/index.html'));
-
+});
 app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
 
 const imageOptions = {
@@ -123,24 +130,27 @@ app.get('/email', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerfacing/index.html'));
 });
 
+app.get('/estimate', (req, res) => {
+  res.sendFile(path.join(__dirname, './ssr/pesdk/survey.html'));
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
 app.use(timeout('10s'));
 
-const options = {
-  user: process.env.DB_USER,
-  pass: process.env.DB_PASS,
-  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 200000 } },
-  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 100000 } },
-};
+const options = { 
+                  user: process.env.DB_USER,
+                  pass: process.env.DB_PASS,
+                  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 200000 } }, 
+                  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 100000 } } 
+              }; 
 
 Mongoose.connect(process.env.DB_HOST, options);
-const conn = Mongoose.connection;
-conn.on('error', console.error.bind(console, 'connection error:'));
+const conn = Mongoose.connection;             
+conn.on('error', console.error.bind(console, 'connection error:'));  
 conn.once('open', () => {
   app.listen(app.get('port'));
   https.createServer(ssl, app).listen(443);
 });
-
