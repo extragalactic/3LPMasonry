@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
-import timeout from 'connect-timeout'
+import timeout from 'connect-timeout';
 import https from 'https';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -100,7 +100,7 @@ app.post('/saveimage', bodyParser.json(), (req, res) => {
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
-app.use(express.static(path.join(__dirname, './ssr/pesdk/')));
+
 
 
 app.use(express.static(path.join(__dirname, '../customerupload/build/static')));
@@ -111,7 +111,6 @@ app.use(express.static(path.join(__dirname, '../customerupload/build')));
 app.get('/upload/:userid', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerupload/build/index.html'));
 });
-app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
 
 const imageOptions = {
   index: false,
