@@ -300,7 +300,6 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
-      console.log(args);
       const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.newCustomers = user.newCustomers.map((customer) => {
@@ -400,13 +399,14 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
-      const payload = {
-        heading: args.heading,
-        description: args.description,
-        text: args.text,
-        timestamp: args.timestamp,
-        user: args.user,
-      };
+      if (args.text !== '') {
+        const payload = {
+          heading: args.heading,
+          description: args.description,
+          text: args.text,
+          timestamp: args.timestamp,
+          user: args.user,
+        };
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
@@ -422,8 +422,9 @@ class AddSurveyNotes {
                }
                return customer;
              });
-             user.save();
+             user.save(); 
            });
+      }
       }
     };
   }
@@ -528,7 +529,6 @@ class GetSurveyLocalPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
-      console.log(args);
       if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
         const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
@@ -545,7 +545,6 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      console.log(args);
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
@@ -554,7 +553,6 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
-            console.log('pingFalse', customer.status);
 
             removeCustomerfromQueue(customer);
             customer.status = 3;
@@ -567,7 +565,7 @@ class ToggleSurveyReady {
          .then((user) => {
            user.newCustomers = user.newCustomers.map((customer) => {
              if (customer.id === args.custid) {
-               if (customer.status === 3) {
+               if (customer.status <= 3) {
                  customer.status = 4;
                } else if (customer.status === 4) {
                  customer.status = 3;
