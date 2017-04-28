@@ -26,6 +26,7 @@ const typeDefinitions = `
     estimate: Estimate
     estimatePDF: String
     surveyReadyforPrice: Boolean
+    surveyType: Int
 }
 
 

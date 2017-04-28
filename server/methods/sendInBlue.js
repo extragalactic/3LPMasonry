@@ -4,7 +4,7 @@ const sendEmailSurveytoCustomer = (args) => {
   const emailData = { id: 2,
     to: args.email,
     bcc: 'outgoingtlpmail@gmail.com',
-    attr: { CUSTOMER: args.data.firstName, LINK: `tlpm.ca/upload/${args.data.id}` },
+    attr: { CUSTOMER: args.customer.firstName, LINK: `tlpm.ca/upload/${args.customer.id}` },
   };
   client.send_transactional_template(emailData).on('complete', (data) => {
     console.log(data);

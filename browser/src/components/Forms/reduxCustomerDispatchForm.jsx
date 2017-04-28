@@ -53,14 +53,6 @@ const paperStyle = {
   backgroundColor: grey50,
 };
 
-const buttonStyle = {
-  marginLeft: 90,
-};
-const dialogStyle = {
-  width: 600,
-  position: 'absolute',
-  marginRight: 500,
-};
 const editorStyle = {
   color: 'black',
   fontFamily: '\'Helvetica\', sans-serif',
@@ -84,16 +76,10 @@ class CustomerDispatchFormComp extends Component {
 
     };
     this.onChange = editorState => this.setState({ editorState });
-    this.focus = () => this.refs.notes.focus();
-
-        
+    this.focus = () => this.refs.notes.focus();  
   }
-
-  componentDidMount() {
-  }
+ 
   onChangeNotes = (notes, text) => {
-   // console.log(notes)
-    console.log('text', text)
     this.setState({
       notes: text
     })
@@ -200,8 +186,6 @@ class CustomerDispatchFormComp extends Component {
               hintText="Address"   
               floatingLabelText="Address"
               onChange={this.handleAutoCompleteInputChange}
-
-        
           />
           </div>
           <div style={toggleStyles.block}>
@@ -288,7 +272,7 @@ class CustomerDispatchFormComp extends Component {
             <Field
               name="survey"
               component={toggle}
-              label="Send Survey Form"
+              label="Online Estimate"
               labelPosition="right"
               style={toggleStyles.toggle}
             />
@@ -320,12 +304,12 @@ class CustomerDispatchFormComp extends Component {
               <TextField
                 onChange={this.onChangeNotes}
                 value={this.state.notes}
-                placeholder="Add some notes..."                
+                placeholder="Add some notes..."            
                 ref="notes"                
                 multiLine
                 underlineShow={false}
                 name={'notes'}
-                textareaStyle={{color:'black'}}
+                textareaStyle={{ color: 'black' }}
                 fullWidth
 
               />

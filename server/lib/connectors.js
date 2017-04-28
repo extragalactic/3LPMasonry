@@ -2,10 +2,8 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import request from 'request';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
-import numeral from 'numeral';
 import AWS from 'aws-sdk';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
@@ -203,7 +201,6 @@ class UpdateCustomer {
 class UpdateUser {
   constructor() {
     this.updateUser = (args) => {
-     // console.log(args);
       const id = args.id;
       delete args.id;
       const User = UsersModel.findOneAndUpdate({ _id: id }, args)
@@ -239,59 +236,61 @@ class SubmitCustomer {
   constructor() {
     this.submitCustomer = (args) => {
       const Customer = CustomersModel.findOne({ _id: args.id })
-             .then((data) => {
-               const surveyor = !data.surveyor.id;
-               const survey = !data.sendSurvey;
+             .then((customer) => {
+
+               console.log (args)
+               const surveyor = !customer.surveyor.id;
+               console.log(surveyor)
+               const survey = !customer.sendSurvey;
                const inquriy = survey && surveyor;
                // does customer want online estmate? send to prefered mode of contact
-               if (data.sendSurvey === true) {
-                 if (data.cellNotification) {
-                   sendSMStoCustomer({ number: data.cphone, data });
+               if (customer.sendSurvey === true) {
+                 if (customer.cellNotification) {
+                   sendSMStoCustomer({ number: customer.cphone, customer });
                  }
-                 if (data.homeNotification) {
-                   sendSMStoCustomer({ number: data.hphone, data });
+                 if (customer.homeNotification) {
+                   sendSMStoCustomer({ number: customer.hphone, customer });
                  }
-                 if (data.workNotification) {
-                   sendSMStoCustomer({ number: data.wphone, data });
+                 if (customer.workNotification) {
+                   sendSMStoCustomer({ number: customer.wphone, customer });
                  }
-                 if (data.email1Notification) {
-                   sendEmailSurveytoCustomer({ email: data.email1, data });
+                 if (customer.email1Notification) {
+                   sendEmailSurveytoCustomer({ email: customer.email1, customer });
                  }
-                 if (data.email2Notification) {
-                   sendEmailSurveytoCustomer({ email: data.email2, data });
+                 if (customer.email2Notification) {
+                   sendEmailSurveytoCustomer({ email: customer.email2, customer });
                  }
-                 data.status = 1;
-                 // addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
-                 // sendPushtoEstimators(data);
-                 data.save();
+                 customer.surveyType = 0;
+                 customer.status = 1;
+                 customer.save();
                }
                if (!surveyor) {
-                 sendSMStoSurveyor(data);
-                 UsersModel.findOne({ _id: data.surveyor.id })
+                 sendSMStoSurveyor(customer);
+                 UsersModel.findOne({ _id: customer.surveyor.id })
                          .then((user) => {
                            user.newCustomers.push({
-                             id: data._id,
-                             firstName: data.firstName,
-                             lastName: data.lastName,
-                             email1: data.email1,
-                             email2: data.email2,
-                             cphone: data.cphone,
-                             hphone: data.hphone,
-                             wphone: data.wphone,
-                             address: data.address,
+                             id: customer._id,
+                             firstName: customer.firstName,
+                             lastName: customer.lastName,
+                             email1: customer.email1,
+                             email2: customer.email2,
+                             cphone: customer.cphone,
+                             hphone: customer.hphone,
+                             wphone: customer.wphone,
+                             address: customer.address,
                              status: 0,
                            });
                            user.save();
                          });
-                 data.status = 3;
-                 data.save();
+                 customer.surveyType = 1;
+                 customer.status = 3;
+                 customer.save();
                }
                if (inquriy) {
-                 data.status = 0;
-                 data.save();
+                 customer.status = 0;
+                 customer.save();
                }
-               // setMapsLocation(data);
-               return data;
+               return customer;
              });
       return Customer;
     };
