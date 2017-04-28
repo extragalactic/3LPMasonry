@@ -103,7 +103,7 @@ app.use(express.static(path.join(__dirname, '../customerupload/build')));
 
 app.get('/upload/:userid', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerupload/build/index.html'));
-});
+
 app.use('/email', express.static(path.join(__dirname, '../customerfacing/')));
 
 const imageOptions = {
