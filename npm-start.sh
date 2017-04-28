@@ -3,7 +3,7 @@ sudo pm2 stop --interpreter babel-node server/server.js
 sudo npm install babel-cli sharp webpack nodemon
 sudo npm install
 sudo webpack
-cd server/ssr/customerupload
+cd customerupload
 sudo yarn
 sudo yarn build
 cd ../../..
