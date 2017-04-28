@@ -238,9 +238,7 @@ class SubmitCustomer {
       const Customer = CustomersModel.findOne({ _id: args.id })
              .then((customer) => {
 
-               console.log (args)
                const surveyor = !customer.surveyor.id;
-               console.log(surveyor)
                const survey = !customer.sendSurvey;
                const inquriy = survey && surveyor;
                // does customer want online estmate? send to prefered mode of contact
