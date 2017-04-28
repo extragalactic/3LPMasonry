@@ -147,6 +147,10 @@ const resolveFunctions = {
       const notes = new ctx.constructor.DeleteNotes();
       return notes.deleteNotes(args);
     },
+    deleteSurveyNote(_, args, ctx) {
+      const notes = new ctx.constructor.DeleteSurveyNote();
+      return notes.deleteSurveyNote(args);
+    },
     deleteAppointment(_, args, ctx) {
       const appointment = new ctx.constructor.DeleteAppointment();
       return appointment.deleteAppointment(args);
@@ -167,10 +171,10 @@ const resolveFunctions = {
       const photo = new ctx.constructor.GetSurveyPhotos();
       return photo.getSurveyPhotos(args);
     },
-   getCustomerPhoto(_, args, ctx) {
+    getCustomerPhoto(_, args, ctx) {
       const photo = new ctx.constructor.GetCustomerPhoto();
       return photo.getCustomerPhoto(args);
-    },  
+    },
     getSurveyLocalPhotos(_, args, ctx) {
       const photo = new ctx.constructor.GetSurveyLocalPhotos();
       return photo.getSurveyLocalPhotos(args);

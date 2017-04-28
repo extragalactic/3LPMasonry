@@ -22,6 +22,7 @@ const getCustomer = gql `
     hphone
     wphone
     address
+    surveyType
     coordinates {
       latitude
       longitude
@@ -116,6 +117,7 @@ query{
     email2Notification
     email1Notification
     sendSurvey
+    surveyType
     estimate{
       photos {
         heading

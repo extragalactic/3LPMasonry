@@ -114,12 +114,19 @@ const getSinglePhoto = gql `
     caption
     localfile
     description
-    orginalBase64
-    editedlBase64
+  }
+}`;
+
+const submitCustomer = gql `
+  mutation submitCustomer($id: String){
+  submitCustomer(id: $id){
+    id
   }
 }`;
 
 export {
+  submitCustomer,
+  getSinglePhoto,
   getImageBase64,
   getCustomer,
   addNotes,

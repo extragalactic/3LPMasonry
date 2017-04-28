@@ -3,7 +3,8 @@ const sendEmailSurveytoCustomer = (args) => {
   const client = new Mailin('https://api.sendinblue.com/v2.0', process.env.MAILIN, 5000);
   const emailData = { id: 2,
     to: args.email,
-    attr: { CUSTOMER: args.data.firstName, LINK: `tlpm.ca/upload/${args.data.id}` },
+    bcc: 'outgoingtlpmail@gmail.com',
+    attr: { CUSTOMER: args.customer.firstName, LINK: `tlpm.ca/upload/${args.customer.id}` },
   };
   client.send_transactional_template(emailData).on('complete', (data) => {
     console.log(data);
@@ -15,7 +16,7 @@ const sendEmailEstimatetoCustomer = (customer) => {
   const client = new Mailin('https://api.sendinblue.com/v2.0', process.env.MAILIN, 5000);
   const emailData = { id: 3,
     to: customer.email1 ? customer.email1 : customer.email2,
-    cc: 'j@jonathonfritz.com',
+    bcc: 'outgoingtlpmail@gmail.com',
     attr: { CUSTOMER: customer.firstName, LINK: `3lpm.s3.ca-central-1.amazonaws.com/${customer._id}/${customer.firstName}${customer.lastName}Estimate.pdf` },
   };
   client.send_transactional_template(emailData).on('complete', (data) => {

@@ -2,12 +2,12 @@ import React from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 import FlatButton from 'material-ui/FlatButton';
 import ExpandTransition from 'material-ui/internal/ExpandTransition';
-
+import { connect } from 'react-redux';
 import CustomerDetailsFormRoot from './CustomerDetailsFormRoot';
 import CustomerDispatchFormRoot from './CustomerDispatchFormRoot';
 import CustomerConfirmation from './CustomerConfirmation';
 
-class newCustomerForm extends React.Component {
+class _newCustomerForm extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +35,7 @@ class newCustomerForm extends React.Component {
         );
       case 2:
         return (
-          <CustomerConfirmation next={this.handleNext} prev={this.handlePrev} />
+          <CustomerConfirmation next={this.handleNext} prev={this.handlePrev} custid={this.props.currentCustomer} />
         );
       default:
         return 'You\'re a long way from home sonny jim!';
@@ -71,8 +71,6 @@ class newCustomerForm extends React.Component {
   renderContent() {
     const { finished, stepIndex } = this.state;
     const contentStyle = { margin: '0 16px', overflow: 'hidden' };
-    const hide = { display: 'none' };
-
     if (finished) {
       return (
         <div style={contentStyle}>
@@ -106,7 +104,6 @@ class newCustomerForm extends React.Component {
     );
   }
 
-
   render() {
     const { loading, stepIndex } = this.state;
 
@@ -130,5 +127,11 @@ class newCustomerForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  currentCustomer: state.currentCustomer,
+});
+
+const newCustomerForm = connect(mapStateToProps)(_newCustomerForm);
 
 export default newCustomerForm;

@@ -76,7 +76,7 @@ const CustomerDispatchFormRoot = compose(
    connect(mapCustomerStateToProps, null),
    connect(mapAutoCompleteStateToProps, null),
    graphql(updateDispatchInfo, { name: 'updateDispatch' }),
-   graphql(getSurveyorsCustomers)
+   graphql(getSurveyorsCustomers),
 )(_CustomerDispatchFormRootComp);
 
 export default CustomerDispatchFormRoot;
