@@ -2,10 +2,8 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import request from 'request';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
-import numeral from 'numeral';
 import AWS from 'aws-sdk';
 import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
@@ -203,7 +201,6 @@ class UpdateCustomer {
 class UpdateUser {
   constructor() {
     this.updateUser = (args) => {
-     // console.log(args);
       const id = args.id;
       delete args.id;
       const User = UsersModel.findOneAndUpdate({ _id: id }, args)
@@ -239,59 +236,59 @@ class SubmitCustomer {
   constructor() {
     this.submitCustomer = (args) => {
       const Customer = CustomersModel.findOne({ _id: args.id })
-             .then((data) => {
-               const surveyor = !data.surveyor.id;
-               const survey = !data.sendSurvey;
+             .then((customer) => {
+
+               const surveyor = !customer.surveyor.id;
+               const survey = !customer.sendSurvey;
                const inquriy = survey && surveyor;
                // does customer want online estmate? send to prefered mode of contact
-               if (data.sendSurvey === true) {
-                 if (data.cellNotification) {
-                   sendSMStoCustomer({ number: data.cphone, data });
+               if (customer.sendSurvey === true) {
+                 if (customer.cellNotification) {
+                   sendSMStoCustomer({ number: customer.cphone, customer });
                  }
-                 if (data.homeNotification) {
-                   sendSMStoCustomer({ number: data.hphone, data });
+                 if (customer.homeNotification) {
+                   sendSMStoCustomer({ number: customer.hphone, customer });
                  }
-                 if (data.workNotification) {
-                   sendSMStoCustomer({ number: data.wphone, data });
+                 if (customer.workNotification) {
+                   sendSMStoCustomer({ number: customer.wphone, customer });
                  }
-                 if (data.email1Notification) {
-                   sendEmailSurveytoCustomer({ email: data.email1, data });
+                 if (customer.email1Notification) {
+                   sendEmailSurveytoCustomer({ email: customer.email1, customer });
                  }
-                 if (data.email2Notification) {
-                   sendEmailSurveytoCustomer({ email: data.email2, data });
+                 if (customer.email2Notification) {
+                   sendEmailSurveytoCustomer({ email: customer.email2, customer });
                  }
-                 data.status = 1;
-                 // addCustomertoQueue(data);  // this is now initiated via toggle survey via cutomer upload app
-                 // sendPushtoEstimators(data);
-                 data.save();
+                 customer.surveyType = 0;
+                 customer.status = 1;
+                 customer.save();
                }
                if (!surveyor) {
-                 sendSMStoSurveyor(data);
-                 UsersModel.findOne({ _id: data.surveyor.id })
+                 sendSMStoSurveyor(customer);
+                 UsersModel.findOne({ _id: customer.surveyor.id })
                          .then((user) => {
                            user.newCustomers.push({
-                             id: data._id,
-                             firstName: data.firstName,
-                             lastName: data.lastName,
-                             email1: data.email1,
-                             email2: data.email2,
-                             cphone: data.cphone,
-                             hphone: data.hphone,
-                             wphone: data.wphone,
-                             address: data.address,
+                             id: customer._id,
+                             firstName: customer.firstName,
+                             lastName: customer.lastName,
+                             email1: customer.email1,
+                             email2: customer.email2,
+                             cphone: customer.cphone,
+                             hphone: customer.hphone,
+                             wphone: customer.wphone,
+                             address: customer.address,
                              status: 0,
                            });
                            user.save();
                          });
-                 data.status = 3;
-                 data.save();
+                 customer.surveyType = 1;
+                 customer.status = 3;
+                 customer.save();
                }
                if (inquriy) {
-                 data.status = 0;
-                 data.save();
+                 customer.status = 0;
+                 customer.save();
                }
-               // setMapsLocation(data);
-               return data;
+               return customer;
              });
       return Customer;
     };
@@ -300,7 +297,6 @@ class SubmitCustomer {
 class SubmitFollowup {
   constructor() {
     this.submitFollowup = (args) => {
-      console.log(args);
       const status = args.description === 'Followup' ? 1 : 2;
       UsersModel.findOne({ _id: args.userid }).then((user) => {
         user.newCustomers = user.newCustomers.map((customer) => {
@@ -400,13 +396,14 @@ class GetUser {
 class AddSurveyNotes {
   constructor() {
     this.addSurveyNotes = (args) => {
-      const payload = {
-        heading: args.heading,
-        description: args.description,
-        text: args.text,
-        timestamp: args.timestamp,
-        user: args.user,
-      };
+      if (args.text !== '') {
+        const payload = {
+          heading: args.heading,
+          description: args.description,
+          text: args.text,
+          timestamp: args.timestamp,
+          user: args.user,
+        };
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
@@ -422,8 +419,9 @@ class AddSurveyNotes {
                }
                return customer;
              });
-             user.save();
+             user.save(); 
            });
+      }
       }
     };
   }
@@ -528,7 +526,6 @@ class GetSurveyLocalPhotos {
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
-      console.log(args);
       if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
         const Messages = CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
@@ -545,7 +542,6 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      console.log(args);
       CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           if (customer.status <= 3) {
@@ -554,7 +550,6 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
-            console.log('pingFalse', customer.status);
 
             removeCustomerfromQueue(customer);
             customer.status = 3;
@@ -567,7 +562,7 @@ class ToggleSurveyReady {
          .then((user) => {
            user.newCustomers = user.newCustomers.map((customer) => {
              if (customer.id === args.custid) {
-               if (customer.status === 3) {
+               if (customer.status <= 3) {
                  customer.status = 4;
                } else if (customer.status === 4) {
                  customer.status = 3;
@@ -802,7 +797,8 @@ class AcceptEstimate {
         .then((customer) => {
           UsersModel.findOne({ _id: args.userid })
             .then((user) => {
-              user.estimates.push({
+             if(!_.includes(user.estimates, args.custid)){
+               user.estimates.push({
                 id: customer._id,
                 firstName: customer.firstName,
                 lastName: customer.lastName,
@@ -815,6 +811,7 @@ class AcceptEstimate {
                 status: 0,
               });
               user.save();
+             }
             });
           customer.estimator = args.userid;
           removeCustomerfromQueue(customer);
@@ -972,46 +969,52 @@ class AddGeneric {
 
 class SearchCustomer {
   constructor() {
-    this.searchCustomer = (args) => {
-     return CustomersModel.find()
-         .then((customers) => {
-          return customers.filter((customer) => {
-            if( (_.includes(customer.firstName, args.searchTerm)) 
-              || (_.includes(customer.lastName, args.searchTerm)) 
-              || (_.includes(customer.address, args.searchTerm))   
+    this.searchCustomer = args => CustomersModel.find()
+         .then(customers => customers.filter((customer) => {
+           if ((_.includes(customer.firstName, args.searchTerm))
+              || (_.includes(customer.lastName, args.searchTerm))
+              || (_.includes(customer.address, args.searchTerm))
               || (_.includes(customer.email1, args.searchTerm))
               || (_.includes(customer.email2, args.searchTerm))
               || (_.includes(customer.cphone, args.searchTerm))
               || (_.includes(customer.hphone, args.searchTerm))
               || (_.includes(customer.wphone, args.searchTerm))
-              ){
-              return customer;
-            }
-          })
-
-         })
-    };
+              ) { return customer; }
+           return false;
+         }),
+      );
   }
 }
 class GetCustomerPhoto {
   constructor() {
     this.getCustomerPhoto = (args) => {
-      let image = {}
-      return CustomersModel.findOne({_id: args.custid })
+      let image = {};
+      return CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.photos.forEach((photo) => {
-            if(photo.docID === args.docID){
+            if (photo.docID === args.docID) {
               image = photo;
             }
-          })
-      })
-      .then(() => image)
+          });
+        })
+      .then(() => image);
     };
   }
 }
-
+class DeleteSurveyNote {
+  constructor() {
+    this.deleteSurveyNote = args =>
+      CustomersModel.findOne({ _id: args.custid })
+       .then((customer) => {
+         customer.survey.notes.splice(args.index, 1);
+         customer.save();
+         return true;
+       });
+  }
+}
 
 module.exports = {
+  DeleteSurveyNote,
   GetCustomerPhoto,
   SearchCustomer,
   AddPrice,

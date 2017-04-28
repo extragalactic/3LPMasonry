@@ -24,7 +24,7 @@ const sendSMStoCustomer = (args) => {
   client.sendMessage({
     to: args.number,
     from: '+16474902780',
-    body: `Hello ${args.data.firstName} click on the link to upload photos http://tlpm.ca:8080/upload/${args.data.id}`,
+    body: `Hello ${args.data.firstName} click on the link to upload photos https://tlpm.ca/upload/${args.data.id}`,
   }, (err, res) => {
     if (err) {
       console.log(err);
