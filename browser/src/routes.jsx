@@ -19,30 +19,30 @@ import StreetViewContainer from './components/Maps/StreetViewContainer';
 const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
 const requireAuth = (nextState, replace) => {
-	if (!auth.loggedIn()) {
-		replace({ pathname: '/home' });
-	}
+  if (!auth.loggedIn()) {
+    replace({ pathname: '/home' });
+  }
 };
 
 export default (
-	<Route path="/" >
-		<Route path={'/customerupload/:id'} component={CustomerUploadContainer} />
-		<Route path="/streetview/:id" component={StreetViewContainer} />
-		<Route path="/photoedit/:custid/:index" component={PhotoEditor} />
-		<Route path={'/app'} component={App} auth={auth} >
-			<IndexRedirect to="/home" />
-			<Route path="/confirm" component={CustomerConfirmation} />
-			<Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth} />
-			<Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth} />
-			<Route path="/home" component={HomePage} />
-			<Route path="/generics" component={GenericsContainer} />
-			<Route path="/customers" component={CustomersContainer} />
-			<Route path="/maps" component={MapsTest} />
-			<Route path="/details" component={CustomerDetailsContainer} />
-		</Route>
-	</Route>
-	);
+  <Route path="/" >
+    <Route path={'/customerupload/:id'} component={CustomerUploadContainer} />
+    <Route path="/streetview/:id" component={StreetViewContainer} />
+    <Route path="/photoedit/:custid/:docID" component={PhotoEditor} />
+    <Route path={'/app'} component={App} auth={auth} >
+      <IndexRedirect to="/home" />
+      <Route path="/confirm" component={CustomerConfirmation} />
+      <Route path="/admin" component={userAdminPanel} onEnter={requireAuth} auth={auth} />
+      <Route path="/newcustomer" component={newCustomerForm} onEnter={requireAuth} auth={auth} />
+      <Route path="/home" component={HomePage} />
+      <Route path="/generics" component={GenericsContainer} />
+      <Route path="/customers" component={CustomersContainer} />
+      <Route path="/maps" component={MapsTest} />
+      <Route path="/details" component={CustomerDetailsContainer} />
+    </Route>
+  </Route>
+  );
 
 if (module.hot) {
-	module.hot.accept();
+  module.hot.accept();
 }

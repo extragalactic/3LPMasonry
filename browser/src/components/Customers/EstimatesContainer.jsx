@@ -7,11 +7,11 @@ import styleCSS from '../../styles/customerDetailsStyles';
 // *** work in progress ***
 
 function EstimatesContainer(props) {
-	return (
-		<div>
-			<Estimates />
-		</div>
-	);
+  return (
+    <div>
+      <Estimates />
+    </div>
+  );
 }
 
 export default EstimatesContainer;

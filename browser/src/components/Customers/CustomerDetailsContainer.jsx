@@ -10,36 +10,36 @@ const DEFAULT_CUSTOMER_ID = '58deb4ee184654537bea0096';
 const _TEST_USER = false;
 
 class _CustomerDetailsContainer extends React.Component {
-	static propTypes = {
-		//userID: React.PropTypes.object.isRequired,
-	}
-	componentDidMount() {
-		console.log('ID = ' + this.props.userID);
+  static propTypes = {
+    // userID: React.PropTypes.object.isRequired,
+  }
+  componentDidMount() {
+    console.log('ID = ' + this.props.userID);
 
-		if (typeof this.props.userID !== 'string' && !_TEST_USER) {
-			browserHistory.push('customers');
-		}
-	}
+    if (typeof this.props.userID !== 'string' && !_TEST_USER) {
+      browserHistory.push('customers');
+    }
+  }
 
-	render() {
-		let custID = '';
+  render() {
+    let custID = '';
 
-		if (typeof this.props.userID !== 'string') {
-			custID = DEFAULT_CUSTOMER_ID;
-		} else {
-			custID = this.props.userID;
-		}
+    if (typeof this.props.userID !== 'string') {
+      custID = DEFAULT_CUSTOMER_ID;
+    } else {
+      custID = this.props.userID;
+    }
 
-		return (
-			<div>
-				<CustomerDetails id={custID} />
-			</div>
-		);
-	}
+    return (
+      <div>
+        <CustomerDetails id={custID} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-	userID: state.currentCustomer,
+  userID: state.currentCustomer,
 });
 
 const CustomerDetailsContainer = connect(mapStateToProps)(_CustomerDetailsContainer);
