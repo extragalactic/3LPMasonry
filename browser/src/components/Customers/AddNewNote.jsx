@@ -8,34 +8,34 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class AddNewNote extends React.Component {
   static propTypes = {
-  	custid: React.PropTypes.string.isRequired,    
+    custid: React.PropTypes.string.isRequired,    
     submitNewNote: React.PropTypes.func.isRequired,
   };
-  
+
   constructor(props) {
     super(props);
 
     this.state = {
       open: false,
-      noteText: ''
+      noteText: '',
     };
   }
 
   onOpen = () => {
     this.setState({
       open: true,
-      noteText: ''
+      noteText: '',
     });
   };
 
   onClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   onChange = (e) => {
     this.setState({
-      noteText: e.target.value
-    })
+      noteText: e.target.value,
+    });
   }
 
   onSubmit = () => {
@@ -50,38 +50,40 @@ class AddNewNote extends React.Component {
         custid: this.props.custid,
         userid: userid,
         name: name,
-      }});
-    this.setState({open: false});
+      } });
+    this.setState({ open: false });
   }
 
   render() {
     const actions = [
       <FlatButton
         label="Cancel"
-        secondary={true}
+        secondary
         onTouchTap={this.onClose}
       />,
       <FlatButton
         label="Add Note"
-        primary={true}
-        keyboardFocused={true}
+        primary
+        keyboardFocused
         onTouchTap={this.onSubmit}
       />
     ];
 
     return (
       <div>
-        <FlatButton label="Add New Note" primary={true} onTouchTap={this.onOpen} />
-        <Dialog style={styleCSS.newNoteDialog}
+        <FlatButton label="Add New Note" primary onTouchTap={this.onOpen} />
+        <Dialog
+          style={styleCSS.newNoteDialog}
           title="New Note"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.onClose}
         >
-          <TextField style={styleCSS.newNoteTextField}
+          <TextField
+            style={styleCSS.newNoteTextField}
             hintText="Enter your text here."
-            multiLine={true}
+            multiLine
             rows={2}
             rowsMax={4}
             value={this.state.noteText}

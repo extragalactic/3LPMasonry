@@ -1,4 +1,4 @@
-const customerTableStyles= {
+const customerTableStyles = {
   tableStyle: {
     margin: 10,
   },
@@ -7,30 +7,30 @@ const customerTableStyles= {
     fontFamily: 'Verdana',
     marginRight: 15,
     marginLeft: 5,
-    float:'left'    
+    float: 'left',
   },
   cellStyle: {
     fontSize: 14,
     fontFamily: 'Verdana',
     cursor: 'pointer',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   headerCellStyle: {
     fontSize: 15,
-    fontFamily: 'Verdana',  
+    fontFamily: 'Verdana',
   },
   cellHighlight: {
-    backgroundColor: '#fafad2'
+    backgroundColor: '#fafad2',
   },
   inputBox: {
     padding: 5,
     marginBottom: 10,
     fontSize: 16,
   },
-	spinnerInset: {
-		marginTop: 15,
-		marginLeft: 15
-	}
+  spinnerInset: {
+    marginTop: 15,
+    marginLeft: 15,
+  },
 };
 
 export default customerTableStyles;

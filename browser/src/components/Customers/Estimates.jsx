@@ -7,12 +7,11 @@ import styleCSS from '../../styles/customerDetailsStyles';
 // *** work in progress *** 
 
 function Estimates (props) {
-	return (
-		<div>
+  return (
+    <div>
 
-		</div>
-	);
-
+    </div>
+  );
 }
 /*
 const Estimates = compose(
