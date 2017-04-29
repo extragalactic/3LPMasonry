@@ -409,7 +409,7 @@ type Mutation {
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): Boolean
   getEstimateResults(custid: String): EstimateResults 
-  acceptEstimate(userid: String, custid: String): Customers
+  acceptEstimate(userid: String, custid: String, estimator: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
   addPricing(custid: String, price: [PriceInput]): Boolean
   selectSurveyPhoto(custid: String, index: String): [SurveyPhotosArray]
