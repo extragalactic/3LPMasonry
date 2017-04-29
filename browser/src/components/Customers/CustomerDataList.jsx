@@ -58,9 +58,9 @@ class CustomerDataList {
       case fields.SURVEY_TYPE:
         return SURVEY_TYPES[this.data[index][col]];
       case fields.SURVEYOR_NAME:
-        return this.data[index].surveyor.firstName;
+        return `${this.data[index].surveyor.firstName} ${this.data[index].surveyor.lastName}`;
       case fields.ESTIMATOR_NAME:
-        return this.data[index].estimate.firstName;
+        return `${this.data[index].estimate.firstName} ${this.data[index].estimate.lastName}`;
       default:
         return this.data[index][col];
     }
