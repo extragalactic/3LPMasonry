@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
 
-
 const CustomerSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,

@@ -100,9 +100,6 @@ app.post('/saveimage', bodyParser.json(), (req, res) => {
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
-
-
-
 app.use(express.static(path.join(__dirname, '../customerupload/build/static')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/css')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/media')));
