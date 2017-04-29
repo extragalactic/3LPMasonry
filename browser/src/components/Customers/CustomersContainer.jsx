@@ -6,19 +6,23 @@ import LocationMap from '../Maps/LocationMap';
 import CustomersTable from './customersTable';
 import { getAllCustomers } from '../../graphql/queries';
 import styleCSS from '../../styles/customerDetailsStyles';
+import WarningMessage from '../Utils/WarningMessage';
 
-function _CustomersContainer (props) {
+_CustomersContainer.propTypes = {
+  data: React.PropTypes.object.isRequired,
+};
 
-  if(props.data.loading) {
+function _CustomersContainer(props) {
+  if (props.data.loading) {
     return (
-      <div style={styleCSS.spinnerInset}> 
+      <div style={styleCSS.spinnerInset}>
         <WobblySpinner diameter={200} />
       </div>
     );
   }
-  if(!props.data.customers) {
+  if (!props.data.customers) {
     return (
-      <div><WarningMessage message='There has been an error loading the customer data. Please contact the website admin.' /></div>
+      <div><WarningMessage message="There has been an error loading the customer data. Please contact the website admin." /></div>
     );
   }
 
@@ -35,7 +39,7 @@ function _CustomersContainer (props) {
 
 
 const CustomersContainer = compose(
-   graphql(getAllCustomers),
+  graphql(getAllCustomers),
  )(_CustomersContainer);
 
 export default CustomersContainer;

@@ -27,8 +27,8 @@ const requireAuth = (nextState, replace) => {
 export default (
   <Route path="/" >
     <Route path={'/customerupload/:id'} component={CustomerUploadContainer} />
-    <Route path="/streetview/:id" component={StreetViewContainer} /> 
-    <Route path="/photoedit/:custid/:index" component={PhotoEditor} />   
+    <Route path="/streetview/:id" component={StreetViewContainer} />
+    <Route path="/photoedit/:custid/:docID" component={PhotoEditor} />
     <Route path={'/app'} component={App} auth={auth} >
       <IndexRedirect to="/home" />
       <Route path="/confirm" component={CustomerConfirmation} />
