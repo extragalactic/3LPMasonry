@@ -102,31 +102,7 @@ const addSurveyPhoto = gql`
     )
   }`;
 
-const getSinglePhoto = gql `
-  mutation getSurveyPhoto($custid: String, $docID: String){
-  getCustomerPhoto(custid: $custid, docID: $docID){
-    docID
-    selected
-    user
-    thumb
-    thumbURL
-    photo
-    caption
-    localfile
-    description
-  }
-}`;
-
-const submitCustomer = gql `
-  mutation submitCustomer($id: String){
-  submitCustomer(id: $id){
-    id
-  }
-}`;
-
 export {
-  submitCustomer,
-  getSinglePhoto,
   getImageBase64,
   getCustomer,
   addNotes,

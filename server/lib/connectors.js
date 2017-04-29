@@ -237,7 +237,6 @@ class SubmitCustomer {
     this.submitCustomer = (args) => {
       const Customer = CustomersModel.findOne({ _id: args.id })
              .then((customer) => {
-
                const surveyor = !customer.surveyor.id;
                const survey = !customer.sendSurvey;
                const inquriy = survey && surveyor;
@@ -404,13 +403,13 @@ class AddSurveyNotes {
           timestamp: args.timestamp,
           user: args.user,
         };
-      CustomersModel.findOne({ _id: args.custid })
+        CustomersModel.findOne({ _id: args.custid })
         .then((customer) => {
           customer.survey.notes.push(payload);
           customer.save();
         });
-      if (!args.online) {
-        UsersModel.findOne({ _id: args.userid })
+        if (!args.online) {
+          UsersModel.findOne({ _id: args.userid })
            .then((user) => {
              user.newCustomers = user.newCustomers.map((customer) => {
                if (customer.id === args.custid) {
@@ -419,9 +418,9 @@ class AddSurveyNotes {
                }
                return customer;
              });
-             user.save(); 
+             user.save();
            });
-      }
+        }
       }
     };
   }
@@ -550,7 +549,6 @@ class ToggleSurveyReady {
             customer.status = 4;
             customer.surveyReadyforPrice = true;
           } else {
-
             removeCustomerfromQueue(customer);
             customer.status = 3;
             customer.surveyReadyforPrice = false;
@@ -681,7 +679,7 @@ class GetFinishedSurveyQuery {
   }
  }
 
-class AddPricing {   //NO LONGER IN USE!
+class AddPricing {   // NO LONGER IN USE!
   constructor() {
     this.addPricing = (args) => {
       CustomersModel.findOne({ _id: args.custid })
@@ -699,25 +697,25 @@ class AddPricing {   //NO LONGER IN USE!
 class AddPrice {
   constructor() {
     this.addPrice = (args) => {
-     if(args.price.description){
-      saveDescription(args.price.description, args.price.amount);
-      if(args.price.option1.description){
-        saveDescription(args.price.option1.description, args.price.option1.amount);
-      }
-     if(args.price.option2.description){
-        saveDescription(args.price.option2.description, args.price.option2.amount);
-      }
-     if(args.price.option3.description){
-        saveDescription(args.price.option3.description, args.price.option3.amount);
-      }
-      if(args.price.option4.description){
-        saveDescription(args.price.option4.description, args.price.option4.amount);
-      }
-      if(args.price.option5.description){
-        saveDescription(args.price.option5.description, args.price.option5.amount);
-      }
+      if (args.price.description) {
+        saveDescription(args.price.description, args.price.amount);
+        if (args.price.option1.description) {
+          saveDescription(args.price.option1.description, args.price.option1.amount);
+        }
+        if (args.price.option2.description) {
+          saveDescription(args.price.option2.description, args.price.option2.amount);
+        }
+        if (args.price.option3.description) {
+          saveDescription(args.price.option3.description, args.price.option3.amount);
+        }
+        if (args.price.option4.description) {
+          saveDescription(args.price.option4.description, args.price.option4.amount);
+        }
+        if (args.price.option5.description) {
+          saveDescription(args.price.option5.description, args.price.option5.amount);
+        }
 
-      CustomersModel.findOne({ _id: args.custid })
+        CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.prices) {
               customer.prices = [];
@@ -725,8 +723,7 @@ class AddPrice {
             customer.prices.push(args.price);
             customer.save();
           });
-
-     }
+      }
     };
   }
  }
@@ -788,7 +785,6 @@ class EditPriceAmount {
   }
  }
 
-
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
@@ -813,7 +809,7 @@ class AcceptEstimate {
               user.save();
              }
             });
-          customer.estimator = args.userid;
+          customer.estimator = args.estimator;
           removeCustomerfromQueue(customer);
           customer.save();
           return customer;
