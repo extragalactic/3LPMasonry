@@ -399,6 +399,7 @@ type Query {
 
 }
 type Mutation {
+  checkConnection: Boolean
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
   searchCustomer(searchTerm: String): [Customers]
   deletePrice(custid: String, index: Int, Option: String): Boolean
