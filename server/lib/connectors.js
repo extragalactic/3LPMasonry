@@ -1009,7 +1009,14 @@ class DeleteSurveyNote {
   }
 }
 
+class CheckConnection {
+  constructor() {
+    this.checkConnection = () => true;
+  }
+}
+
 module.exports = {
+  CheckConnection,
   DeleteSurveyNote,
   GetCustomerPhoto,
   SearchCustomer,

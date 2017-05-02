@@ -234,7 +234,11 @@ const resolveFunctions = {
     searchCustomer(_, args, ctx) {
       const customer = new ctx.constructor.SearchCustomer();
       return customer.searchCustomer(args);
-    }
+    },
+    checkConnection(_, __, ctx) {
+      const connection = new ctx.constructor.CheckConnection();
+      return connection.checkConnection();
+    },
   },
 };
 module.exports = resolveFunctions;
