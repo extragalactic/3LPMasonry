@@ -17,8 +17,8 @@ import styleCSS from '../../styles/customerDetailsStyles';
 CustomerDetailsTabs.propTypes = {
   custid: React.PropTypes.string.isRequired,
   data: React.PropTypes.object.isRequired,
-  photos: React.PropTypes.array.isRequired,
-  photoData: React.PropTypes.array.isRequired,
+  photos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  photoData: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   addSurveyPhoto: React.PropTypes.func.isRequired,
 };
 
@@ -68,14 +68,14 @@ function CustomerDetailsTabs(props) {
               <div>{`Survey Type: ${SURVEY_TYPES[0]} `}</div>
               <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
               {data.estimator !== null &&
-                <div>{'Estimator: ...'}</div>
+                <div>{`Estimator: ${data.estimator}`}</div>
               }
               <br />
             </Paper>
             <br />
             <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
               <Row>
-                <InternalNotes notes={data.notes} custid={props.custid}/>
+                <InternalNotes notes={data.notes} custid={props.custid} />
               </Row>
             </Paper>
           </Col>
