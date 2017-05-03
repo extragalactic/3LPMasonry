@@ -68,6 +68,7 @@ const customerDetailsStyles = {
     fontStyle: 'italic',
     marginBottom: 3,
     marginLeft: 10,
+    color: '#aaa',
   },
   surveyNoteHeading: {
     fontSize: 15,
@@ -80,6 +81,7 @@ const customerDetailsStyles = {
     width: '100%',
     marginLeft: 10,
     marginTop: 5,
+    color: '#aaa',
   },
   newNoteDialog: {
     width: 650,

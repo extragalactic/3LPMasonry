@@ -8,7 +8,7 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class AddNewNote extends React.Component {
   static propTypes = {
-    custid: React.PropTypes.string.isRequired,    
+    custid: React.PropTypes.string.isRequired,
     submitNewNote: React.PropTypes.func.isRequired,
   };
 
@@ -40,16 +40,16 @@ class AddNewNote extends React.Component {
 
   onSubmit = () => {
     const storage = JSON.parse(localStorage.getItem('profile'));
-    const name = storage.name;
-    const userid = storage.user_id;
+    const name = storage.name ? storage.name : 'user';
+    const userid = storage.user_id ? storage.user_id : 'user';
 
     this.props.submitNewNote({
       variables: {
         createdAt: 'office',
         text: this.state.noteText,
         custid: this.props.custid,
-        userid: userid,
-        name: name,
+        userid,
+        name,
       } });
     this.setState({ open: false });
   }
@@ -66,7 +66,7 @@ class AddNewNote extends React.Component {
         primary
         keyboardFocused
         onTouchTap={this.onSubmit}
-      />
+      />,
     ];
 
     return (

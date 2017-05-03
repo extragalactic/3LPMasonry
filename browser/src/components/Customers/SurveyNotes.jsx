@@ -4,7 +4,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 SurveyNotes.propTypes = {
-  notes: React.PropTypes.array.isRequired,
+  notes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
 function SurveyNotes(props) {
@@ -21,10 +21,9 @@ function SurveyNotes(props) {
           return (
             <Row style={styleCSS.surveyNote} key={note.timestamp}>
               <Col>
-                <Row><div style={styleCSS.surveyNoteHeading}>{note.heading.toLowerCase()}</div></Row>
                 <Row><div style={styleCSS.surveyNoteTitle}>{note.user} says:</div></Row>
-                <Row><div style={styleCSS.surveyNoteTimestamp}>({note.timestamp})</div></Row>
-                <Row><div style={styleCSS.surveyNoteText}>{note.text}</div></Row>
+                <Row><div style={styleCSS.surveyNoteTimestamp}>({note.timestamp.slice(0, note.timestamp.indexOf('T'))})</div></Row>
+                <Row><span style={styleCSS.surveyNoteText}> {`${note.heading.toLowerCase()}: ${note.text}`}</span></Row>
               </Col>
             </Row>
           );

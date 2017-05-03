@@ -7,8 +7,8 @@ import styles from 'style-loader!css-loader!react-image-gallery/styles/css/image
 
 class PhotoViewer extends React.Component {
   static propTypes = {
-    photos: React.PropTypes.array.isRequired,
-    photoData: React.PropTypes.array.isRequired,
+    photos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    photoData: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   };
 
   constructor(props) {

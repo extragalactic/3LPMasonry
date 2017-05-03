@@ -1,4 +1,3 @@
-
 // Wrapper class for customer data array of objects
 
 const CUSTOMER_STATUS = ['new customer', 'customer called, pending call back', 'survey scheduled', 'survey in progress', 'estimate in queue', 'estimate accepted', 'estimate sent'];
@@ -33,8 +32,8 @@ class CustomerDataList {
     return this.data.length;
   }
 
-  // This function provides a mapping from the nested customer object to a unique set of 'col' identifiers
-  // (so that the data structure appears flat). Also maps enum values to strings.
+  // This function provides a mapping from the nested customers object to a unique set of 'col' identifiers
+  // (so that the data structure appears flat). Also maps enum values to strings, and checks for null values.
   getDataAt(index, col) {
     const fields = customerFieldNames;
     switch (col) {
@@ -47,22 +46,40 @@ class CustomerDataList {
       case fields.CPHONE:
       case fields.WPHONE:
       case fields.HPHONE:
-        return this.data[index][col];
-      case fields.FULL_NAME:
-        return `${this.data[index].firstName} ${this.data[index].lastName}`;
+        return this.data[index][col] ? this.data[index][col] : '';
+      case fields.FULL_NAME: {
+        let fullName = '';
+        if (this.data[index].firstName) {
+          fullName += this.data[index].firstName;
+        }
+        if (this.data[index].lastName) {
+          fullName += ' ';
+          fullName += this.data[index].lastName;
+        }
+        return fullName;
+      }
       case fields.EMAIL1NOTIFY:
       case fields.EMAIL2NOTIFY:
         return this.data[index][col] ? 'Yes' : 'No';
       case fields.STATUS:
-        return CUSTOMER_STATUS[this.data[index][col]];
+        return (this.data[index][col] && CUSTOMER_STATUS[this.data[index][col]]) ? CUSTOMER_STATUS[this.data[index][col]] : '';
       case fields.SURVEY_TYPE:
-        return SURVEY_TYPES[this.data[index][col]];
-      case fields.SURVEYOR_NAME:
-        return `${this.data[index].surveyor.firstName} ${this.data[index].surveyor.lastName}`;
+        return (this.data[index][col] && SURVEY_TYPES[this.data[index][col]]) ? SURVEY_TYPES[this.data[index][col]] : '';
+      case fields.SURVEYOR_NAME: {
+        let surveyorName = '';
+        if (this.data[index].surveyor.firstName) {
+          surveyorName += this.data[index].surveyor.firstName;
+        }
+        if (this.data[index].surveyor.lastName) {
+          surveyorName += ' ';
+          surveyorName += this.data[index].surveyor.lastName;
+        }
+        return surveyorName;
+      }
       case fields.ESTIMATOR_NAME:
-        return `${this.data[index].estimate.firstName} ${this.data[index].estimate.lastName}`;
+        return this.data[index].estimator ? this.data[index].estimator : '';
       default:
-        return this.data[index][col];
+        return this.data[index][col] ? this.data[index][col] : '';
     }
   }
 }
