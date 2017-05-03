@@ -47,7 +47,6 @@ class _CustomerUploadContainer extends React.Component {
   componentDidMount() {
   }
   onInputChange = (e) => {
-    const that = this;
     filter(
             e.target.files,
             file => file.type.match(this.props.fileTypeRegex) !== null,
@@ -59,17 +58,16 @@ class _CustomerUploadContainer extends React.Component {
                   reader.readAsDataURL(file);
                   setTimeout(() => {
                     this.props.addSurveyPhoto({
-                    variables: {
-                      heading: 'Online Estimate',
-                      description: 'Online Estimate',
-                      orginalBase64: reader.result,
-                      timestamp: new Date(),
-                      custid: this.props.router.location.pathname.split('/')[2],
-                      user: getUserID(),
-                    },
-                  });
+                      variables: {
+                        heading: 'Online Estimate',
+                        description: 'Online Estimate',
+                        orginalBase64: reader.result,
+                        timestamp: new Date(),
+                        custid: this.props.router.location.pathname.split('/')[2],
+                        user: getUserID(),
+                      },
+                    });
                   }, 2000);
-              
                 },
             );
   }
