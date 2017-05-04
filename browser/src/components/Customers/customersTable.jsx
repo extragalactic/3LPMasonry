@@ -15,10 +15,10 @@ const SEARCHABLE_COLUMNS = [fields.FIRST_NAME, fields.LAST_NAME, fields.ADDRESS,
 const ROW_HEIGHT = 70;
 const HEADER_HEIGHT = 50;
 const columnWidths = {
-  name: 150,
+  name: 160,
   address: 180,
-  phone: 110,
-  email: 200,
+  phone: 130,
+  email: 220,
   emailNotify: 80,
   status: 130,
   surveyType: 70,
