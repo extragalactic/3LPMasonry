@@ -33,12 +33,12 @@ const typeDefinitions = `
 type PriceOptionsType {
   enabled: Boolean
   description: String
-  amount: Int
+  amount: String
 }
 
 type PricingType {
   description: String
-  amount: Int
+  amount: String
   numOptions: Int 
   option1: PriceOptionsType
   option2: PriceOptionsType
@@ -353,12 +353,12 @@ input generics {
 input PriceOptions {
   enabled: Boolean
   description: String
-  amount: Int
+  amount: String
 }
 
 input PricingInput {
   description: String
-  amount: Int
+  amount: String
   numOptions: Int 
   option1: PriceOptions
   option2: PriceOptions
