@@ -105,32 +105,32 @@ const CustomerSchema = new mongoose.Schema({
   prices: [
     {
       description: String,
-      amount: Number,
-      numOptions: Number,
+      amount: String,
+      numOptions: String,
       option1: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option2: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option3: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option4: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option5: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
     },
   ],
