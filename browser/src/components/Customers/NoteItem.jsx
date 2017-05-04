@@ -70,7 +70,7 @@ class NoteItem extends React.Component {
           </Col>
           <Col md={1} lg={1} style={backStyle}>
             <div>
-              {this.state.active>0 &&
+              {this.state.active > 0 &&
                 <IconButton tooltip="Delete" style={{ marginLeft: -15, marginTop: -5 }}>
                   <ActionDeleteForever onClick={this.onDelete} color={'#777'} style={{ width: 30, height: 30 }} />
                 </IconButton>

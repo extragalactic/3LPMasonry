@@ -9,10 +9,12 @@ import { addNotes, deleteNotes } from '../../graphql/mutations';
 
 _InternalNotes.propTypes = {
   custid: React.PropTypes.string.isRequired,
-  notes: React.PropTypes.array.isRequired,
+  notes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  addNotes: React.PropTypes.func.isRequired,
+  deleteNotes: React.PropTypes.func.isRequired,
 };
 
-function _InternalNotes (props) {
+function _InternalNotes(props) {
   return (
     <div>
       <div style={styleCSS.surveyNotes}>

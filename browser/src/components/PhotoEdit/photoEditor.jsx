@@ -6,7 +6,6 @@ import Dimensions from 'react-dimensions';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import UndoIcon from 'material-ui/svg-icons/content/undo';
-import RedoIcon from 'material-ui/svg-icons/content/redo';
 import ClearIcon from 'material-ui/svg-icons/action/delete';
 import SaveIcon from 'material-ui/svg-icons/content/save';
 import {
@@ -29,8 +28,15 @@ import WarningMessage from '../Utils/WarningMessage';
 
 const styles = {
   dropdownTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontFamily: 'Verdana',
+  },
+  iconButton: {
+    width: 60,
+    height: 60,
+  },
+  icon: {
+    paddingRight: 20,
   },
 };
 const options = {
@@ -52,7 +58,7 @@ class _PhotoEditor extends React.Component {
       isLoaded: false,
       isSaving: false,
       imageWidth: this.props.containerWidth,
-      imageHeight: 600,
+      imageSizeRatio: 1.33,
       canUndo: false,
       canRedo: false,
       tool: Tools.Pencil,
@@ -67,7 +73,6 @@ class _PhotoEditor extends React.Component {
     this.onSelectTool = this.onSelectTool.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
     this.onUndo = this.onUndo.bind(this);
-    this.onRedo = this.onRedo.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onSketchChange = this.onSketchChange.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -90,13 +95,28 @@ class _PhotoEditor extends React.Component {
       },
     }).then((data) => {
       this.photoData = data.data.getCustomerPhoto;
-      const photoURL = this.photoData.photo;
-      if (photoURL) {
-        this.sketch.setBackgroundFromDataUrl(photoURL, options);
-      } else {
-        this.isValidImage = false;
-      }
-      this.setState({ isLoaded: true });
+      let photoURL = this.photoData.photo;
+      photoURL = 'http://192.168.1.76:8080/images/PerseusA.jpg';
+
+      // First load the background image into an Image object so we can retrieve the width/height
+      // which is used to calculate the image size ratio, so that the image keeps aspect ratio when
+      // sizing it to match the screen width using Dimensions.
+      // Hopefully the first image load will be buffered by the browser/device.
+      const img = new Image();
+      img.onload = () => {
+        const newImageRatio = img.width / img.height;
+        this.setState({
+          imageSizeRatio: newImageRatio,
+        }, () => {
+          if (photoURL) {
+            this.sketch.setBackgroundFromDataUrl(photoURL, options);
+          } else {
+            this.isValidImage = false;
+          }
+          this.setState({ isLoaded: true });
+        });
+      };
+      img.src = photoURL;
     }).catch(() => {
       this.isValidImage = false;
       this.setState({ isLoaded: true });
@@ -111,14 +131,12 @@ class _PhotoEditor extends React.Component {
   }
 
   onSelectTool(event, index, value) {
-    console.log(value);
     this.setState({
       tool: value,
     });
   }
 
   onSelectColor(event, index, value) {
-    console.log(value);
     this.setState({
       lineColor: value,
     });
@@ -132,17 +150,9 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  onRedo() {
-    this.sketch.redo();
-    this.setState({
-      canUndo: this.sketch.canUndo(),
-      canRedo: this.sketch.canRedo(),
-    });
-  }
-
   onClear() {
     this.sketch.clear();
-    this.sketch.setBackgroundFromDataUrl(this.photoData.photo, options);    
+    this.sketch.setBackgroundFromDataUrl(this.photoData.photo, options);
     this.setState({
       canUndo: this.sketch.canUndo(),
       canRedo: this.sketch.canRedo(),
@@ -161,6 +171,11 @@ class _PhotoEditor extends React.Component {
     this.setState({
       isSaving: true,
     });
+    console.log('saving...');
+
+    const userProfile = JSON.parse(localStorage.getItem('profile'));
+    const userID = userProfile && userProfile.user_id ? userProfile.user_id : 'photo_edit';
+    console.log('userID = ' + userID);
 
     this.props.addSurveyPhoto({
       variables: {
@@ -169,7 +184,7 @@ class _PhotoEditor extends React.Component {
         orginalBase64: this.sketch.toDataURL(),
         timestamp: new Date(),
         custid: this.custID,
-        user: JSON.parse(localStorage.getItem('profile')).user_id,
+        user: userID,
       },
     }).then(() => {
       this.onSaveComplete();
@@ -198,13 +213,14 @@ class _PhotoEditor extends React.Component {
                   name="sketch"
                   ref={(c) => { this.sketch = c; }}
                   width={`${this.props.containerWidth}px`}
-                  height={`${this.props.containerWidth / 2}px`}
+                  height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
                   tool={this.state.tool}
                   lineColor={this.state.lineColor}
                   lineWidth={3}
                   onChange={this.onSketchChange}
                 />
               </div>
+              <br />
             </Col>
           </Row>
           <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -214,10 +230,9 @@ class _PhotoEditor extends React.Component {
                   <label htmlFor="tool" style={styles.dropdownTitle}>Edit Tool</label><br />
                   <SelectField ref="tool" value={this.state.tool} onChange={this.onSelectTool}>
                     <MenuItem value={Tools.Pencil} primaryText="Pencil" />
-                    <MenuItem value={Tools.Line} primaryText="Line" />
+                    <MenuItem value={Tools.Arrow} primaryText="Arrow" />
                     <MenuItem value={Tools.Rectangle} primaryText="Rectangle" />
                     <MenuItem value={Tools.TextField} primaryText="Text" />
-                    <MenuItem value={Tools.Select} primaryText="Move" />
                   </SelectField>
                 </Col>
                 <Col>
@@ -230,25 +245,17 @@ class _PhotoEditor extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col style={styles.icon}>
                   <IconButton
                     onTouchTap={this.onUndo}
                     iconStyle={styles.iconButton}
+                    style={styles.icon}
                     disabled={!this.state.canUndo}
                   >
                     <UndoIcon />
                   </IconButton>
                 </Col>
-                <Col>
-                  <IconButton
-                    onTouchTap={this.onRedo}
-                    iconStyle={styles.iconButton}
-                    disabled={!this.state.canRedo}
-                  >
-                    <RedoIcon />
-                  </IconButton>
-                </Col>
-                <Col>
+                <Col style={styles.icon}>
                   <IconButton
                     onTouchTap={this.onClear}
                     iconStyle={styles.iconButton}
@@ -256,10 +263,11 @@ class _PhotoEditor extends React.Component {
                     <ClearIcon />
                   </IconButton>
                 </Col>
-                <Col>
+                <Col style={styles.icon}>
                   <IconButton
                     onTouchTap={this.onSave}
                     iconStyle={styles.iconButton}
+                    style={styles.icon}
                   >
                     <SaveIcon />
                   </IconButton>
