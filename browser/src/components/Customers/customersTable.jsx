@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Table, Column, Cell } from 'fixed-data-table-2';
@@ -33,10 +34,10 @@ const TextCell = ({ rowIndex, data, col, activeRow = -1, ...props }) => (
   </Cell>
 );
 TextCell.propTypes = {
-  rowIndex: React.PropTypes.number,
-  data: React.PropTypes.object.isRequired,
-  col: React.PropTypes.string.isRequired,
-  activeRow: React.PropTypes.number.isRequired,
+  rowIndex: PropTypes.number,
+  data: PropTypes.object.isRequired,
+  col: PropTypes.string.isRequired,
+  activeRow: PropTypes.number.isRequired,
 };
 TextCell.defaultProps = {
   rowIndex: 0,
@@ -49,7 +50,7 @@ const HeaderCell = ({ title }) => (
   </Cell>
 );
 HeaderCell.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 
@@ -71,10 +72,10 @@ class DataListWrapper {
 
 class _CustomersTable extends React.Component {
   static propTypes = {
-    customers: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    saveCustomerID: React.PropTypes.func.isRequired,
-    containerHeight: React.PropTypes.number.isRequired,
-    containerWidth: React.PropTypes.number.isRequired,
+    customers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    saveCustomerID: PropTypes.func.isRequired,
+    containerHeight: PropTypes.number.isRequired,
+    containerWidth: PropTypes.number.isRequired,
   };
 
   constructor(props) {

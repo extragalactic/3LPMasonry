@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class LocationMap extends React.Component {
   static propTypes = {
-    lat: React.PropTypes.number.isRequired,
-    lon: React.PropTypes.number.isRequired,
-    mapWidth: React.PropTypes.number.isRequired,
-    mapHeight: React.PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired,
+    mapWidth: PropTypes.number.isRequired,
+    mapHeight: PropTypes.number.isRequired,
   }
 
   componentDidMount() {

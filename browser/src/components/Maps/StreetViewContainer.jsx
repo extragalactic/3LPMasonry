@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import StreetView from './StreetView';
 
 StreetViewContainer.propTypes = {
-  params: React.PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
 };
 
 function StreetViewContainer(props) {

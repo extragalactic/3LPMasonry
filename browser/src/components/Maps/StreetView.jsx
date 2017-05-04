@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import Dimensions from 'react-dimensions';
 import { Row, Col } from 'react-flexbox-grid';
@@ -9,10 +10,10 @@ import { getCustomer } from '../../graphql/queries';
 
 class _StreetView extends React.Component {
   static propTypes = {
-    id: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object.isRequired,
-    containerWidth: React.PropTypes.number.isRequired,
-    containerHeight: React.PropTypes.number.isRequired,
+    // id: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
+    containerWidth: PropTypes.number.isRequired,
+    containerHeight: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -31,7 +32,7 @@ class _StreetView extends React.Component {
   }
 
   componentDidUpdate() {
-    google.maps.event.trigger(this.panorama,'resize');
+    google.maps.event.trigger(this.panorama, 'resize');
   }
 
   render() {
@@ -89,11 +90,11 @@ const StreetView = compose(
  )(_StreetView);
 
 module.exports = Dimensions({
-  getHeight: function (element) {
+  getHeight() {
     const heightOffset = 20;
     return window.innerHeight - heightOffset;
   },
-  getWidth: function (element) {
+  getWidth() {
     const widthOffset = 10;
     return window.innerWidth - widthOffset;
   },
