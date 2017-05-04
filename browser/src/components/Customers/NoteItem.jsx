@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 import IconButton from 'material-ui/IconButton';
 import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
@@ -8,10 +9,10 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class NoteItem extends React.Component {
   static propTypes = {
-    note: React.PropTypes.object.isRequired,
-    custid: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired,
-    deleteNote: React.PropTypes.func.isRequired,
+    note: PropTypes.object.isRequired,
+    custid: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    deleteNote: PropTypes.func.isRequired,
   };
   constructor(props) {
     super(props);

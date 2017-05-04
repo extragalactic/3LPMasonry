@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
 SurveyNotes.propTypes = {
-  notes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 function SurveyNotes(props) {

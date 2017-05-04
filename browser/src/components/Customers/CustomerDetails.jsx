@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import WobblySpinner from 'react-wobbly-spinner';
 import { browserHistory } from 'react-router';
@@ -15,9 +16,9 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 
 _CustomerDetails.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  data: React.PropTypes.object.isRequired,
-  addSurveyPhoto: React.PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  addSurveyPhoto: PropTypes.func.isRequired,
 };
 
 function _CustomerDetails(props) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import WobblySpinner from "react-wobbly-spinner";
 import LocationMap from '../Maps/LocationMap';
@@ -9,7 +10,7 @@ import styleCSS from '../../styles/customerDetailsStyles';
 import WarningMessage from '../Utils/WarningMessage';
 
 _CustomersContainer.propTypes = {
-  data: React.PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 function _CustomersContainer(props) {

@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
 import WarningIcon from 'material-ui/svg-icons/alert/warning';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
 WarningMessage.propTypes = {
-  message: React.PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 function WarningMessage(props) {

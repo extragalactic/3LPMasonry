@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from 'react-flexbox-grid';
 import { filter } from 'lodash';
 import Paper from 'material-ui/Paper';
@@ -11,10 +12,10 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class PhotoViewerContainer extends React.Component {
   static propTypes = {
-    custid: React.PropTypes.string.isRequired,
-    photos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    photoData: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    addSurveyPhoto: React.PropTypes.func.isRequired,
+    custid: PropTypes.string.isRequired,
+    photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    photoData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    addSurveyPhoto: PropTypes.func.isRequired,
   };
 
   constructor(props) {
