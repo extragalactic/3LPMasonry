@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from 'react-flexbox-grid';
 import { filter } from 'lodash';
 import Paper from 'material-ui/Paper';
@@ -11,10 +12,10 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class PhotoViewerContainer extends React.Component {
   static propTypes = {
-    custid: React.PropTypes.string.isRequired,
-    photos: React.PropTypes.array.isRequired,
-    photoData: React.PropTypes.array.isRequired,
-    addSurveyPhoto: React.PropTypes.func.isRequired,
+    custid: PropTypes.string.isRequired,
+    photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    photoData: PropTypes.arrayOf(PropTypes.object).isRequired,
+    addSurveyPhoto: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -36,26 +37,33 @@ class PhotoViewerContainer extends React.Component {
       isLoading = false;
     }
     this.setState({
-      isLoading: isLoading,
-      numFilesToLoad: numFilesToLoad,
+      isLoading,
+      numFilesToLoad,
     });
   }
 
   onFileSelected = (e) => {
-    console.log(e.target.files);
-    const fileTypeRegex = /(.jpg|.jpeg|.png|.gif)/g;
+    // console.log(e.target.files);
+    if (e.target.files.length === 0) {
+      return;
+    }
 
     this.setState({
       isLoading: true,
       numFilesToLoad: e.target.files.length,
     });
 
+    const userProfile = JSON.parse(localStorage.getItem('profile'));
+    const userID = userProfile && userProfile.user_id ? userProfile.user_id : 'office_upload';
+
+    const fileTypeRegex = /(.jpg|.jpeg|.png|.gif)/g;
+
     filter(
         e.target.files,
         file => file.type.match(fileTypeRegex) !== null,
       )
       .forEach(
-          (file, index) => {
+          (file /* ,index */) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             setTimeout(() => {
@@ -66,8 +74,7 @@ class PhotoViewerContainer extends React.Component {
                   orginalBase64: reader.result,
                   timestamp: new Date(),
                   custid: this.props.custid,
-                  // user: JSON.parse(localStorage.getItem('profile')).user_id
-                  user: 'office_upload',
+                  user: userID,
                 },
               }).then(() => {
                 this.onLoadComplete();

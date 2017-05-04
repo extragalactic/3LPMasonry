@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import LinearProgress from 'material-ui/LinearProgress';
 
 class LoadingPopup extends React.Component {
   static propTypes = {
-    message: React.PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
   }
 
   render() {

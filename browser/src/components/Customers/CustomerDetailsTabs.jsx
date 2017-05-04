@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Row, Col } from 'react-flexbox-grid';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,11 +16,11 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 
 CustomerDetailsTabs.propTypes = {
-  custid: React.PropTypes.string.isRequired,
-  data: React.PropTypes.object.isRequired,
-  photos: React.PropTypes.array.isRequired,
-  photoData: React.PropTypes.array.isRequired,
-  addSurveyPhoto: React.PropTypes.func.isRequired,
+  custid: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  photoData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addSurveyPhoto: PropTypes.func.isRequired,
 };
 
 function CustomerDetailsTabs(props) {
@@ -68,14 +69,14 @@ function CustomerDetailsTabs(props) {
               <div>{`Survey Type: ${SURVEY_TYPES[0]} `}</div>
               <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
               {data.estimator !== null &&
-                <div>{'Estimator: ...'}</div>
+                <div>{`Estimator: ${data.estimator}`}</div>
               }
               <br />
             </Paper>
             <br />
             <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
               <Row>
-                <InternalNotes notes={data.notes} custid={props.custid}/>
+                <InternalNotes notes={data.notes} custid={props.custid} />
               </Row>
             </Paper>
           </Col>

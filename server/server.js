@@ -137,6 +137,12 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.use(timeout('10s'));
 
 const options = { 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Table, Column, Cell } from 'fixed-data-table-2';
@@ -26,18 +27,32 @@ const columnWidths = {
 
 const TextCell = ({ rowIndex, data, col, activeRow = -1, ...props }) => (
   <Cell
-    style={rowIndex === activeRow ? { ...styleCSS.cellStyle, ...styleCSS.cellHighlight } : styleCSS.cellStyle }
+    style={rowIndex === activeRow ? { ...styleCSS.cellStyle, ...styleCSS.cellHighlight } : styleCSS.cellStyle}
     {...props}
   >
     {data.getDataAt(rowIndex, col)}
   </Cell>
 );
+TextCell.propTypes = {
+  rowIndex: PropTypes.number,
+  data: PropTypes.object.isRequired,
+  col: PropTypes.string.isRequired,
+  activeRow: PropTypes.number.isRequired,
+};
+TextCell.defaultProps = {
+  rowIndex: 0,
+};
 
-const HeaderCell = ({ title, ...props }) => (
+
+const HeaderCell = ({ title }) => (
   <Cell style={styleCSS.headerCellStyle}>
     {title}
   </Cell>
 );
+HeaderCell.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
 
 class DataListWrapper {
   constructor(data, indexMap) {
@@ -57,7 +72,10 @@ class DataListWrapper {
 
 class _CustomersTable extends React.Component {
   static propTypes = {
-    customers: React.PropTypes.array.isRequired,
+    customers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    saveCustomerID: PropTypes.func.isRequired,
+    containerHeight: PropTypes.number.isRequired,
+    containerWidth: PropTypes.number.isRequired,
   };
 
   constructor(props) {
@@ -118,7 +136,7 @@ class _CustomersTable extends React.Component {
     const { filteredDataList } = this.state;
     const { activeRow } = this.state;
     // the following props are passed in via react-dimensions
-    const {containerHeight, containerWidth, ...props} = this.props;
+    const { containerHeight, containerWidth } = this.props;
 
     return (
       <div style={styleCSS.tableStyle} >
@@ -151,80 +169,80 @@ class _CustomersTable extends React.Component {
           {...this.props}
         >
           <Column
-            header={<HeaderCell title={'Name'}></HeaderCell>}
+            header={<HeaderCell title={'Name'} />}
             cell={<TextCell data={filteredDataList} col={fields.FULL_NAME} activeRow={activeRow} />}
             width={columnWidths.name}
             fixed
           />
 
           <Column
-            header={<HeaderCell title={'Status'}></HeaderCell>}
+            header={<HeaderCell title={'Status'} />}
             cell={<TextCell data={filteredDataList} col={fields.STATUS} activeRow={activeRow} />}
             width={columnWidths.status}
           />
 
           <Column
-            header={<HeaderCell title={'Address'}></HeaderCell>}
+            header={<HeaderCell title={'Address'} />}
             cell={<TextCell data={filteredDataList} col={fields.ADDRESS} activeRow={activeRow} />}
             width={columnWidths.address}
           />
 
           <Column
-            header={<HeaderCell title={'Email 1'}></HeaderCell>}
+            header={<HeaderCell title={'Email 1'} />}
             cell={<TextCell data={filteredDataList} col={fields.EMAIL1} activeRow={activeRow} />}
             width={columnWidths.email}
           />
 
           <Column
-            header={<HeaderCell title={'Email 1 Notify'}></HeaderCell>}            
+            header={<HeaderCell title={'Email 1 Notify'} />}         
             cell={<TextCell data={filteredDataList} col={fields.EMAIL1NOTIFY} activeRow={activeRow} />}
             width={columnWidths.emailNotify}
           />
 
           <Column
-            header={<HeaderCell title={'Email 2'}></HeaderCell>}
+            header={<HeaderCell title={'Email 2'} />}
             cell={<TextCell data={filteredDataList} col={fields.EMAIL2} activeRow={activeRow} />}
             width={columnWidths.email}
           />
 
           <Column
-            header={<HeaderCell title={'Email 2 Notify'}></HeaderCell>}
+            header={<HeaderCell title={'Email 2 Notify'} />}
             cell={<TextCell data={filteredDataList} col={fields.EMAIL2NOTIFY} activeRow={activeRow} />}
             width={columnWidths.emailNotify}
           />
 
           <Column
-            header={<HeaderCell title={'Cell Phone'}></HeaderCell>}
+            header={<HeaderCell title={'Cell Phone'} />}
             cell={<TextCell data={filteredDataList} col={fields.CPHONE} activeRow={activeRow} />}
             width={columnWidths.phone}
           />
 
           <Column
-            header={<HeaderCell title={'Work Phone'}></HeaderCell>}
+            header={<HeaderCell title={'Work Phone'} />}
             cell={<TextCell data={filteredDataList} col={fields.WPHONE} activeRow={activeRow} />}
             width={columnWidths.phone}
           />
 
           <Column
-            header={<HeaderCell title={'Home Phone'}></HeaderCell>}
+            header={<HeaderCell title={'Home Phone'} />}
             cell={<TextCell data={filteredDataList} col={fields.HPHONE} activeRow={activeRow} />}
             width={columnWidths.phone}
           />
 
           <Column
-            header={<HeaderCell title={'Survey Type'}></HeaderCell>}
+            header={<HeaderCell title={'Survey Type'} />}
             cell={<TextCell data={filteredDataList} col={fields.SURVEY_TYPE} activeRow={activeRow} />}
             width={columnWidths.surveyType}
           />
 
           <Column
-            header={<HeaderCell title={'Surveyor Name'}></HeaderCell>}
+            header={<HeaderCell title={'Surveyor Name'} />}
             cell={<TextCell data={filteredDataList} col={fields.SURVEYOR_NAME} activeRow={activeRow} />}
             width={columnWidths.name}
           />
 
           <Column
-            header={<HeaderCell title={'Estimator Name'}></HeaderCell>}
+            header={<HeaderCell title={'Estimator Name'} />}
             cell={<TextCell data={filteredDataList} col={fields.ESTIMATOR_NAME} activeRow={activeRow} />}
             width={columnWidths.name}
           />
@@ -242,10 +260,10 @@ const mapActionsToProps = dispatch => ({
 const CustomersTable = connect(null, mapActionsToProps)(_CustomersTable);
 
 module.exports = Dimensions({
-  getHeight: function(element) {
+  getHeight() {
     return window.innerHeight - 200;
   },
-  getWidth: function(element) {
+  getWidth() {
     const widthOffset = 40;
     return window.innerWidth - widthOffset;
   },

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'react-flexbox-grid';
 
@@ -8,11 +9,13 @@ import styleCSS from '../../styles/customerDetailsStyles';
 import { addNotes, deleteNotes } from '../../graphql/mutations';
 
 _InternalNotes.propTypes = {
-  custid: React.PropTypes.string.isRequired,
-  notes: React.PropTypes.array.isRequired,
+  custid: PropTypes.string.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addNotes: PropTypes.func.isRequired,
+  deleteNotes: PropTypes.func.isRequired,
 };
 
-function _InternalNotes (props) {
+function _InternalNotes(props) {
   return (
     <div>
       <div style={styleCSS.surveyNotes}>
