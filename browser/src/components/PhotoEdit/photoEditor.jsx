@@ -18,6 +18,7 @@ import {
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
 
+
 const styles = {
   dropdownTitle: {
     fontSize: 18,
@@ -83,6 +84,7 @@ class _PhotoEditor extends React.Component {
 
   componentDidMount() {
     if (!(this.props.params.custid && this.props.params.docID)) {
+      /* eslint-disable react/no-did-mount-set-state */
       this.setState({ isLoaded: true });
       return;
     }
@@ -230,8 +232,8 @@ class _PhotoEditor extends React.Component {
             <div>
               <Row>
                 <Col xs >
-                  <label htmlFor="tool" style={styles.dropdownTitle}>Edit Tool:</label><br />
-                  <SelectField ref="tool" value={this.state.tool} onChange={this.onSelectTool} style={styles.dropdown}>
+                  <label htmlFor={this.tool} style={styles.dropdownTitle}>Edit Tool:</label><br />
+                  <SelectField ref={(c) => { this.tool = c; }} value={this.state.tool} onChange={this.onSelectTool} style={styles.dropdown}>
                     <MenuItem style={styles.menuItem} value={Tools.Pencil} primaryText="Pencil" />
                     <MenuItem style={styles.menuItem} value={Tools.Arrow} primaryText="Arrow" />
                     <MenuItem style={styles.menuItem} value={Tools.Rectangle} primaryText="Rectangle" />
@@ -239,8 +241,8 @@ class _PhotoEditor extends React.Component {
                   </SelectField>
                 </Col>
                 <Col xs >
-                  <label htmlFor="color" style={styles.dropdownTitle}>Colour:</label><br />
-                  <SelectField ref="color" value={this.state.lineColor} onChange={this.onSelectColor} style={styles.dropdown}>
+                  <label htmlFor={this.color} style={styles.dropdownTitle}>Colour:</label><br />
+                  <SelectField ref={(c) => { this.color = c; }} value={this.state.lineColor} onChange={this.onSelectColor} style={styles.dropdown}>
                     <MenuItem style={styles.menuItem} value={'red'} primaryText="Red" />
                     <MenuItem style={styles.menuItem} value={'yellow'} primaryText="Yellow" />
                     <MenuItem style={styles.menuItem} value={'black'} primaryText="Black" />

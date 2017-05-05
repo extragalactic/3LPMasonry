@@ -10,6 +10,7 @@ import LoadingPopup from './LoadingPopup';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
+
 class PhotoViewerContainer extends React.Component {
   static propTypes = {
     custid: PropTypes.string.isRequired,
@@ -43,7 +44,6 @@ class PhotoViewerContainer extends React.Component {
   }
 
   onFileSelected = (e) => {
-    // console.log(e.target.files);
     if (e.target.files.length === 0) {
       return;
     }
