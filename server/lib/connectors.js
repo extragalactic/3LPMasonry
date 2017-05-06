@@ -832,6 +832,8 @@ class GetMyCustomers {
         surveycomplete: [],
         myestimates: [],
         estimatequeue: [],
+        estimatefollowup: [],
+        estimatesent: [],
       };
       if (args.id) {
         QueueModel.find()
@@ -863,6 +865,12 @@ class GetMyCustomers {
                if (customer.status === 0) {
                  output.myestimates.push(customer);
                }
+               if (customer.status === 1) {
+                 output.estimatefollowup.push(customer);
+               }
+               if (customer.status === 2) {
+                 output.estimatesent.push(customer);
+               }
              });
            }).then(() => output);
         }
@@ -889,6 +897,8 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
+        console.log(args)
+
       const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
@@ -934,9 +944,21 @@ class GeneratePDFEstimate {
            });
            const url = `${customer._id}/${customer.firstName}${customer.lastName}${moment().format('ddddMMMMDoYYYYmmss')}Estimate.pdf`;
            return setTimeout(() => {
-            pdfMakeEstimate(customer, generics, prices, base64Images, args.text, args.preview, url);
+             pdfMakeEstimate(customer, generics, prices, base64Images, args.text, args.preview, url);
              if (!args.preview) {
                sendEmailEstimatetoCustomer(customer, url);
+                 UsersModel.findOne({_id: args.user})
+                   .then(user => {
+                     user.estimates.map((u) => {
+                       if (u.id === args.custid){
+                         u.status = 2;
+                         return u;
+                       }
+                       return u;
+                     })
+                     user.save();
+                   });
+
              }
              return true;
            }, 8000);
