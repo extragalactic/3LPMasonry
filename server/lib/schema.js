@@ -84,6 +84,9 @@ type PricingType {
    surveycomplete: [assignedCustomers]
    myestimates: [assignedCustomers]
    estimatequeue: [assignedCustomers]
+   estimatefollowup: [assignedCustomers]
+   estimatesent: [assignedCustomers]
+
  }
 
   type User {
@@ -419,7 +422,7 @@ type Mutation {
   editPriceAmount(custid: String, index: Int, option: String, amount: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean): Boolean
+  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): Boolean
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String, estimator: String): Customers
   getFinishedSurvey(id: String): [FinishedSurvey]
