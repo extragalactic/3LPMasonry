@@ -27,9 +27,20 @@ const typeDefinitions = `
     estimatePDF: String
     surveyReadyforPrice: Boolean
     surveyType: Int
+    previewHistory: [previewHistory]
+    estimateHistory: [estimateHistory]
 }
 
-
+type previewHistory {
+    url: String
+    estimator: String
+    timestamp: String
+  }
+type estimateHistory {
+    url: String
+    estimator: String
+    timestamp: String
+  }
 type PriceOptionsType {
   enabled: Boolean
   description: String

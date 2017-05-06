@@ -2,6 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import moment from 'moment';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import AWS from 'aws-sdk';
@@ -339,18 +340,20 @@ class GetAppointments {
 class AddNotes {
   constructor() {
     this.addNotes = (args) => {
-      const payload = {
-        _id: randomstring.generate(7),
-        text: args.note.text,
-        user: args.note.user,
-        createdAt: args.note.createdAt,
-      };
-      CustomersModel.findOne({ _id: args.note.custid })
+      if (args.note.text !== '') {
+        const payload = {
+          _id: randomstring.generate(7),
+          text: args.note.text,
+          user: args.note.user,
+          createdAt: args.note.createdAt,
+        };
+        CustomersModel.findOne({ _id: args.note.custid })
         .then((customer) => {
           customer.notes.push(payload);
           customer.save();
           return customer;
         });
+      }
     };
   }
 }
@@ -929,11 +932,11 @@ class GeneratePDFEstimate {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
-
+           const url = `${customer._id}/${customer.firstName}${customer.lastName}${moment().format('ddddMMMMDoYYYYmmss')}Estimate.pdf`;
            return setTimeout(() => {
-             pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
+            pdfMakeEstimate(customer, generics, prices, base64Images, args.text, args.preview, url);
              if (!args.preview) {
-               sendEmailEstimatetoCustomer(customer);
+               sendEmailEstimatetoCustomer(customer, url);
              }
              return true;
            }, 8000);
