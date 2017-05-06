@@ -3,14 +3,11 @@ import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
 import AWS from 'aws-sdk';
+import CustomerModel from '../lib/CustomerModel';
 
 const s3 = new AWS.S3({ region: 'us-east-2' });
 
-
-import CustomerModel from '../lib/CustomerModel';
-
-
-const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
+const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText, preview, url) => {
   const genericText = {};
   // TEST VALUE (remove)
 
@@ -545,7 +542,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     fs.readFile(`documents/${customer.firstName}${customer.lastName}Estimate.pdf`, {}, (err, res) => {
       const params = {
         Bucket: '3lpm',
-        Key: `${customer._id}/${customer.firstName}${customer.lastName}Estimate.pdf`,
+        Key: url,
         Expires: 60,
         ACL: 'public-read',
         ContentType: 'application/pdf',
@@ -557,12 +554,26 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
         CustomerModel.findOne({ _id: customer._id })
           .then((customer) => {
             customer.estimatePDF = res.Location;
+            if (preview) {
+              customer.previewHistory.push({
+                url: res.Location,
+                timestamp: moment().format('dddd, MMMM, Do, YYYY, mm:ss'),
+                estimator: customer.estimator,
+              });
+            } else {
+              customer.estimateHistory.push({
+                url: res.Location,
+                timestamp: moment().format('dddd, MMMM, Do, YYYY, mm:ss'),
+                estimator: customer.estimator,
+                preview,
+              });
+            }
             customer.save();
           });
+        return res.Location;
       });
     });
-  }, 1000);
-  return true;
+  }, 2000);
 };
 
 export default pdfMakeEstimate;

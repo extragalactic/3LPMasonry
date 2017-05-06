@@ -43,6 +43,16 @@ const CustomerSchema = new mongoose.Schema({
     latitude: String,
     longitude: String,
   },
+  estimateHistory: [{
+    url: String,
+    estimator: String,
+    timestamp: String,
+  }],
+  previewHistory: [{
+    url: String,
+    estimator: String,
+    timestamp: String,
+  }],
   survey: {
     notes: [{
       heading: String,
