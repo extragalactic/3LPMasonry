@@ -70,6 +70,7 @@ const CustomerSchema = new mongoose.Schema({
       editedlBase64: String,
       orginalURL: String,
       thumbURL: String,
+      ETag: String,
       thumb: String,
       photo: String,
       caption: String,

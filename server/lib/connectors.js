@@ -19,7 +19,8 @@ import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../metho
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
-
+import { AwsUtil } from '../methods/aws';
+import EstimateActions from '../actionClasses/estimateClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -493,12 +494,15 @@ class AddSurveyPhoto {
             Body: buffer,
           };
           s3.upload(s3Params, (err, res) => {
-            console.log(res);
+            console.log('res', res);
             console.log(err);
-          });
+            payload.ETag = res.ETag.replace(/['"]+/g, '');
+            console.log(payload)
+            customer.survey.photos.push(payload);
+            customer.save();
+        });
 
-          customer.survey.photos.push(payload);
-          customer.save();
+       
           const photo = new PhotosModel({
             base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
@@ -1039,8 +1043,18 @@ class CheckConnection {
     this.checkConnection = () => true;
   }
 }
+class CreateDocument {
+  constructor() {
+    this.createDocument = (args) => {
+      console.log(args);
+      const estimateActions = new EstimateActions(args.custid);
+      estimateActions.generatePDF();
+    };
+  }
+}
 
 module.exports = {
+  CreateDocument,
   CheckConnection,
   DeleteSurveyNote,
   GetCustomerPhoto,
