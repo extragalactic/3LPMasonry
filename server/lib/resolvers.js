@@ -239,6 +239,10 @@ const resolveFunctions = {
       const connection = new ctx.constructor.CheckConnection();
       return connection.checkConnection();
     },
+    createDocument(_, args, ctx) {
+      const doc = new ctx.constructor.CreateDocument();
+      return doc.createDocument(args);
+    },
   },
 };
 module.exports = resolveFunctions;
