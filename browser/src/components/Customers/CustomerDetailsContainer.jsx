@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -11,7 +12,7 @@ const _TEST_USER = false;
 
 class _CustomerDetailsContainer extends React.Component {
   static propTypes = {
-    // userID: React.PropTypes.object.isRequired,
+    // userID: PropTypes.object.isRequired,
   }
   componentDidMount() {
     console.log('ID = ' + this.props.userID);

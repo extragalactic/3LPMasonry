@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
@@ -8,8 +9,8 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 class AddNewNote extends React.Component {
   static propTypes = {
-    custid: React.PropTypes.string.isRequired,
-    submitNewNote: React.PropTypes.func.isRequired,
+    custid: PropTypes.string.isRequired,
+    submitNewNote: PropTypes.func.isRequired,
   };
 
   constructor(props) {

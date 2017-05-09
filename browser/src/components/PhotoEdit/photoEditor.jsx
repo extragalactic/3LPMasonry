@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SketchField, Tools } from 'react-sketch';
 import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'react-flexbox-grid';
@@ -47,10 +48,10 @@ const options = {
 
 class _PhotoEditor extends React.Component {
   static propTypes = {
-    params: React.PropTypes.object.isRequired,
-    addSurveyPhoto: React.PropTypes.func.isRequired,
-    getSinglePhoto: React.PropTypes.func.isRequired,
-    containerWidth: React.PropTypes.number.isRequired,
+    params: PropTypes.object.isRequired,
+    addSurveyPhoto: PropTypes.func.isRequired,
+    getSinglePhoto: PropTypes.func.isRequired,
+    containerWidth: PropTypes.number.isRequired,
   };
   constructor(props) {
     super(props);
@@ -86,17 +87,18 @@ class _PhotoEditor extends React.Component {
 
     this.isValidImage = true;
     this.custID = this.props.params.custid;
-    const docID = 'WVVHUZrulkKi';
+    this.docID = this.props.params.docID;
+    // this.custID = '5903eb3c0149230ce904439a';
+    // this.docID = 'IFjCKx1TH4ub';
 
     this.props.getSinglePhoto({
       variables: {
         custid: this.custID,
-        docID,
+        docID: this.docID,
       },
     }).then((data) => {
       this.photoData = data.data.getCustomerPhoto;
-      let photoURL = this.photoData.photo;
-      photoURL = 'http://192.168.1.76:8080/images/PerseusA.jpg';
+      const photoURL = this.photoData.photo;
 
       // First load the background image into an Image object so we can retrieve the width/height
       // which is used to calculate the image size ratio, so that the image keeps aspect ratio when
@@ -124,7 +126,7 @@ class _PhotoEditor extends React.Component {
   }
 
   onSaveComplete() {
-    console.log('save completed');
+    // console.log('save completed');
     this.setState({
       isSaving: false,
     });
@@ -171,11 +173,12 @@ class _PhotoEditor extends React.Component {
     this.setState({
       isSaving: true,
     });
-    console.log('saving...');
+    // console.log('Saving...');
+    // console.log('CustID = ' + this.custID);
 
     const userProfile = JSON.parse(localStorage.getItem('profile'));
     const userID = userProfile && userProfile.user_id ? userProfile.user_id : 'photo_edit';
-    console.log('userID = ' + userID);
+    // console.log('userID = ' + userID);
 
     this.props.addSurveyPhoto({
       variables: {

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
+import moment from 'moment';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import AWS from 'aws-sdk';
@@ -18,7 +19,8 @@ import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../metho
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
-
+import { AwsUtil } from '../methods/aws';
+import EstimateActions from '../actionClasses/estimateClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -339,18 +341,20 @@ class GetAppointments {
 class AddNotes {
   constructor() {
     this.addNotes = (args) => {
-      const payload = {
-        _id: randomstring.generate(7),
-        text: args.note.text,
-        user: args.note.user,
-        createdAt: args.note.createdAt,
-      };
-      CustomersModel.findOne({ _id: args.note.custid })
+      if (args.note.text !== '') {
+        const payload = {
+          _id: randomstring.generate(7),
+          text: args.note.text,
+          user: args.note.user,
+          createdAt: args.note.createdAt,
+        };
+        CustomersModel.findOne({ _id: args.note.custid })
         .then((customer) => {
           customer.notes.push(payload);
           customer.save();
           return customer;
         });
+      }
     };
   }
 }
@@ -490,12 +494,15 @@ class AddSurveyPhoto {
             Body: buffer,
           };
           s3.upload(s3Params, (err, res) => {
-            console.log(res);
+            console.log('res', res);
             console.log(err);
-          });
+            payload.ETag = res.ETag.replace(/['"]+/g, '');
+            console.log(payload)
+            customer.survey.photos.push(payload);
+            customer.save();
+        });
 
-          customer.survey.photos.push(payload);
-          customer.save();
+       
           const photo = new PhotosModel({
             base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
@@ -829,6 +836,8 @@ class GetMyCustomers {
         surveycomplete: [],
         myestimates: [],
         estimatequeue: [],
+        estimatefollowup: [],
+        estimatesent: [],
       };
       if (args.id) {
         QueueModel.find()
@@ -860,6 +869,12 @@ class GetMyCustomers {
                if (customer.status === 0) {
                  output.myestimates.push(customer);
                }
+               if (customer.status === 1) {
+                 output.estimatefollowup.push(customer);
+               }
+               if (customer.status === 2) {
+                 output.estimatesent.push(customer);
+               }
              });
            }).then(() => output);
         }
@@ -886,6 +901,8 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
+        console.log(args)
+
       const generics = args.generics;
       const prices = [];
       CustomersModel.findOne({ _id: args.custid })
@@ -929,11 +946,23 @@ class GeneratePDFEstimate {
                  base64Images.push({ caption: photo.caption, photo: p.base64 });
                });
            });
-
+           const url = `${customer._id}/${customer.firstName}${customer.lastName}${moment().format('ddddMMMMDoYYYYmmss')}Estimate.pdf`;
            return setTimeout(() => {
-             pdfMakeEstimate(customer, generics, prices, base64Images, args.text);
+             pdfMakeEstimate(customer, generics, prices, base64Images, args.text, args.preview, url);
              if (!args.preview) {
-               sendEmailEstimatetoCustomer(customer);
+               sendEmailEstimatetoCustomer(customer, url);
+                 UsersModel.findOne({_id: args.user})
+                   .then(user => {
+                     user.estimates.map((u) => {
+                       if (u.id === args.custid){
+                         u.status = 2;
+                         return u;
+                       }
+                       return u;
+                     })
+                     user.save();
+                   });
+
              }
              return true;
            }, 8000);
@@ -1014,8 +1043,18 @@ class CheckConnection {
     this.checkConnection = () => true;
   }
 }
+class CreateDocument {
+  constructor() {
+    this.createDocument = (args) => {
+      console.log(args);
+      const estimateActions = new EstimateActions(args.custid);
+      estimateActions.generatePDF();
+    };
+  }
+}
 
 module.exports = {
+  CreateDocument,
   CheckConnection,
   DeleteSurveyNote,
   GetCustomerPhoto,

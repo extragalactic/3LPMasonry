@@ -43,6 +43,16 @@ const CustomerSchema = new mongoose.Schema({
     latitude: String,
     longitude: String,
   },
+  estimateHistory: [{
+    url: String,
+    estimator: String,
+    timestamp: String,
+  }],
+  previewHistory: [{
+    url: String,
+    estimator: String,
+    timestamp: String,
+  }],
   survey: {
     notes: [{
       heading: String,
@@ -60,6 +70,7 @@ const CustomerSchema = new mongoose.Schema({
       editedlBase64: String,
       orginalURL: String,
       thumbURL: String,
+      ETag: String,
       thumb: String,
       photo: String,
       caption: String,
@@ -105,32 +116,32 @@ const CustomerSchema = new mongoose.Schema({
   prices: [
     {
       description: String,
-      amount: Number,
-      numOptions: Number,
+      amount: String,
+      numOptions: String,
       option1: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option2: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option3: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option4: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
       option5: {
         enabled: Boolean,
         description: String,
-        amount: Number,
+        amount: String,
       },
     },
   ],

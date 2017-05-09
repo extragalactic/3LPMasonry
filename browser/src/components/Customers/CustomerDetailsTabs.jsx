@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Row, Col } from 'react-flexbox-grid';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,11 +16,11 @@ import styleCSS from '../../styles/customerDetailsStyles';
 
 
 CustomerDetailsTabs.propTypes = {
-  custid: React.PropTypes.string.isRequired,
-  data: React.PropTypes.object.isRequired,
-  photos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  photoData: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  addSurveyPhoto: React.PropTypes.func.isRequired,
+  custid: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  photoData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addSurveyPhoto: PropTypes.func.isRequired,
 };
 
 function CustomerDetailsTabs(props) {
