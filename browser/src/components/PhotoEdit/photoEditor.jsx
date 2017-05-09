@@ -10,34 +10,37 @@ import UndoIcon from 'material-ui/svg-icons/content/undo';
 import ClearIcon from 'material-ui/svg-icons/action/delete';
 import SaveIcon from 'material-ui/svg-icons/content/save';
 import {
-    AppBar,
-    Card,
-    CardText,
-    CardHeader,
     IconButton,
-    GridList,
-    GridTile,
     MenuItem,
-    Slider,
     SelectField,
-    Toggle,
-    ToolbarSeparator
 } from 'material-ui';
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
 
+
 const styles = {
   dropdownTitle: {
     fontSize: 18,
     fontFamily: 'Verdana',
+    color: '#777',
   },
   iconButton: {
-    width: 60,
-    height: 60,
+    width: 75,
+    height: 75,
   },
   icon: {
-    paddingRight: 20,
+    paddingRight: 30,
+  },
+  dropdown: {
+    width: 200,
+    height: 40,
+    fontSize: 25,
+    padding: 8,
+  },
+  menuItem: {
+    fontSize: 25,
+    padding: 5,
   },
 };
 const options = {
@@ -81,6 +84,7 @@ class _PhotoEditor extends React.Component {
 
   componentDidMount() {
     if (!(this.props.params.custid && this.props.params.docID)) {
+      /* eslint-disable react/no-did-mount-set-state */
       this.setState({ isLoaded: true });
       return;
     }
@@ -125,13 +129,6 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  onSaveComplete() {
-    // console.log('save completed');
-    this.setState({
-      isSaving: false,
-    });
-  }
-
   onSelectTool(event, index, value) {
     this.setState({
       tool: value,
@@ -148,7 +145,7 @@ class _PhotoEditor extends React.Component {
     this.sketch.undo();
     this.setState({
       canUndo: this.sketch.canUndo(),
-      canRedo: this.sketch.canRedo(),
+      // canRedo: this.sketch.canRedo(),
     });
   }
 
@@ -157,7 +154,7 @@ class _PhotoEditor extends React.Component {
     this.sketch.setBackgroundFromDataUrl(this.photoData.photo, options);
     this.setState({
       canUndo: this.sketch.canUndo(),
-      canRedo: this.sketch.canRedo(),
+      // canRedo: this.sketch.canRedo(),
     });
   }
 
@@ -169,15 +166,20 @@ class _PhotoEditor extends React.Component {
     }
   }
 
+  onSaveComplete() {
+    this.setState({
+      isSaving: false,
+    });
+  }
+
   onSave() {
     this.setState({
       isSaving: true,
     });
-    // console.log('Saving...');
-    // console.log('CustID = ' + this.custID);
-
     const userProfile = JSON.parse(localStorage.getItem('profile'));
     const userID = userProfile && userProfile.user_id ? userProfile.user_id : 'photo_edit';
+    // console.log('Saving...');
+    // console.log('CustID = ' + this.custID);
     // console.log('userID = ' + userID);
 
     this.props.addSurveyPhoto({
@@ -229,51 +231,55 @@ class _PhotoEditor extends React.Component {
           <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
               <Row>
-                <Col>
-                  <label htmlFor="tool" style={styles.dropdownTitle}>Edit Tool</label><br />
-                  <SelectField ref="tool" value={this.state.tool} onChange={this.onSelectTool}>
-                    <MenuItem value={Tools.Pencil} primaryText="Pencil" />
-                    <MenuItem value={Tools.Arrow} primaryText="Arrow" />
-                    <MenuItem value={Tools.Rectangle} primaryText="Rectangle" />
-                    <MenuItem value={Tools.TextField} primaryText="Text" />
+                <Col xs >
+                  <label htmlFor={this.tool} style={styles.dropdownTitle}>Edit Tool:</label><br />
+                  <SelectField ref={(c) => { this.tool = c; }} value={this.state.tool} onChange={this.onSelectTool} style={styles.dropdown}>
+                    <MenuItem style={styles.menuItem} value={Tools.Pencil} primaryText="Pencil" />
+                    <MenuItem style={styles.menuItem} value={Tools.Arrow} primaryText="Arrow" />
+                    <MenuItem style={styles.menuItem} value={Tools.Rectangle} primaryText="Rectangle" />
+                    <MenuItem style={styles.menuItem} value={Tools.TextField} primaryText="Text" />
                   </SelectField>
                 </Col>
-                <Col>
-                  <label htmlFor="color" style={styles.dropdownTitle}>Colour</label><br />
-                  <SelectField ref="color" value={this.state.lineColor} onChange={this.onSelectColor}>
-                    <MenuItem value={'red'} primaryText="Red" />
-                    <MenuItem value={'yellow'} primaryText="Yellow" />
-                    <MenuItem value={'black'} primaryText="Black" />
+                <Col xs >
+                  <label htmlFor={this.color} style={styles.dropdownTitle}>Colour:</label><br />
+                  <SelectField ref={(c) => { this.color = c; }} value={this.state.lineColor} onChange={this.onSelectColor} style={styles.dropdown}>
+                    <MenuItem style={styles.menuItem} value={'red'} primaryText="Red" />
+                    <MenuItem style={styles.menuItem} value={'yellow'} primaryText="Yellow" />
+                    <MenuItem style={styles.menuItem} value={'black'} primaryText="Black" />
                   </SelectField>
                 </Col>
               </Row>
               <Row>
-                <Col style={styles.icon}>
-                  <IconButton
-                    onTouchTap={this.onUndo}
-                    iconStyle={styles.iconButton}
-                    style={styles.icon}
-                    disabled={!this.state.canUndo}
-                  >
-                    <UndoIcon />
-                  </IconButton>
-                </Col>
-                <Col style={styles.icon}>
-                  <IconButton
-                    onTouchTap={this.onClear}
-                    iconStyle={styles.iconButton}
-                  >
-                    <ClearIcon />
-                  </IconButton>
-                </Col>
-                <Col style={styles.icon}>
-                  <IconButton
-                    onTouchTap={this.onSave}
-                    iconStyle={styles.iconButton}
-                    style={styles.icon}
-                  >
-                    <SaveIcon />
-                  </IconButton>
+                <Col xs={12}>
+                  <Row around="xs">
+                    <Col xs={3} style={styles.icon}>
+                      <IconButton
+                        onTouchTap={this.onUndo}
+                        iconStyle={styles.iconButton}
+                        style={styles.icon}
+                        disabled={!this.state.canUndo}
+                      >
+                        <UndoIcon />
+                      </IconButton>
+                    </Col>
+                    <Col xs={3} style={styles.icon}>
+                      <IconButton
+                        onTouchTap={this.onClear}
+                        iconStyle={styles.iconButton}
+                      >
+                        <ClearIcon />
+                      </IconButton>
+                    </Col>
+                    <Col xs={3} style={styles.icon}>
+                      <IconButton
+                        onTouchTap={this.onSave}
+                        iconStyle={styles.iconButton}
+                        style={styles.icon}
+                      >
+                        <SaveIcon />
+                      </IconButton>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </div>

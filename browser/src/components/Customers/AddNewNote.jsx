@@ -6,7 +6,6 @@ import TextField from 'material-ui/TextField';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
-
 class AddNewNote extends React.Component {
   static propTypes = {
     custid: PropTypes.string.isRequired,

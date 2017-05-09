@@ -36,26 +36,22 @@ function _CustomerDetails(props) {
   const data = props.data.customer;
 
   // build the array of photos for the PhotoViewer
-  const photos = data.survey.photos.map((photo) => {
-    return (
+  const photos = data.survey.photos.map(photo => (
     {
       original: photo.photo,
       thumbnail: photo.thumb,
       description: photo.caption,
     }
-    );
-  });
+  ));
 
   // build supplementary data array for photos
-  const photoData = data.survey.photos.map((photo) => {
-    return (
+  const photoData = data.survey.photos.map(photo => (
     {
       title: photo.heading,
       text: photo.description,
       timestamp: photo.timestamp,
     }
-    );
-  });
+  ));
 
   return (
     <div style={styleCSS.detailsPage}>
