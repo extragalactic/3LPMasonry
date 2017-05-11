@@ -12,15 +12,13 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
-import pdfMakeEstimate from '../methods/pdfMake';
 import { sendPushtoEstimators } from '../methods/oneSignal';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
-import { sendEmailSurveytoCustomer, sendEmailEstimatetoCustomer } from '../methods/sendInBlue';
+import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
-import { AwsUtil } from '../methods/aws';
-import EstimateActions from '../actionClasses/estimateClass';
+import EstimateActions from '../helpers/estimateClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -114,7 +112,6 @@ class Address {
     this.findAddress = ({ searchTerm }) => {
       const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${searchTerm}&types=geocode&components=country:ca&language=en&key=AIzaSyCRy96pXXmdiU4coVd23pxdBWeLmC8oIn0`;
       const address = axios.get(url).then(data => data.data.predictions.map(prediction => ({ description: prediction.description }))).catch((error) => {
-        console.log(error);
       });
       return address;
     };
@@ -606,7 +603,6 @@ class GetFinishedSurvey {
       const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
-         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -649,7 +645,6 @@ class GetFinishedSurveyQuery {
       const output = [];
       return CustomersModel.findOne({ _id: args.id })
         .then((customer) => {
-         // console.log(customer)
           const results = customer.survey.photos.concat(customer.survey.notes);
           const headings = _.uniq(results.map(heading => heading.heading));
           headings.forEach((heading) => {
@@ -901,75 +896,18 @@ class GetEstimateResults {
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
-        console.log(args)
-
-      const generics = args.generics;
-      const prices = [];
-      CustomersModel.findOne({ _id: args.custid })
-        .then((cust) => {
-          cust.prices.forEach((price, index) => {
-            prices.push([price.description, `$${price.amount} +HST`]);
-            if (price.option1.description) {
-              prices.push(['OR', '']);
-              prices.push([price.option1.description, `$${price.option1.amount} +HST`]);
-            }
-            if (price.option2.description) {
-              prices.push(['OR', '']);
-              prices.push([price.option2.description, `$${price.option2.amount} +HST`]);
-            }
-            if (price.option3.description) {
-              prices.push(['OR', '']);
-              prices.push([price.option3.description, `$${price.option3.amount} +HST`]);
-            }
-            if (price.option4.description) {
-              prices.push(['OR', '']);
-              prices.push([price.option4.description, `$${price.option4.amount} +HST`]);
-            }
-            if (price.option5.description) {
-              prices.push(['OR', '']);
-              prices.push([price.option5.description, `$${price.option5.amount} +HST`]);
-            }
+      return CustomersModel.findOne({ _id: args.custid })
+        .then((customer => {
+          const estimateActions = new EstimateActions(customer, args.generics, args.text, args.preview);
+          return estimateActions.generatePDF()
+          .then((pdfUrl) => { 
+            return { pdfUrl };
           });
-        }).then(() => console.log(prices));
-
-      return setTimeout(() => CustomersModel.findOne({ _id: args.custid })
-         .then((customer) => {
-           const photos = customer.survey.photos.filter((img) => {
-             if (img.selected) {
-               return img;
-             }
-           });
-           const base64Images = [];
-           photos.forEach((photo) => {
-             PhotosModel.findOne({ docID: photo.docID })
-               .then((p) => {
-                 base64Images.push({ caption: photo.caption, photo: p.base64 });
-               });
-           });
-           const url = `${customer._id}/${customer.firstName}${customer.lastName}${moment().format('ddddMMMMDoYYYYmmss')}Estimate.pdf`;
-           return setTimeout(() => {
-             pdfMakeEstimate(customer, generics, prices, base64Images, args.text, args.preview, url);
-             if (!args.preview) {
-               sendEmailEstimatetoCustomer(customer, url);
-                 UsersModel.findOne({_id: args.user})
-                   .then(user => {
-                     user.estimates.map((u) => {
-                       if (u.id === args.custid){
-                         u.status = 2;
-                         return u;
-                       }
-                       return u;
-                     })
-                     user.save();
-                   });
-
-             }
-             return true;
-           }, 8000);
-         }), 1000);
+        }));
     };
   }
 }
+
 
 class GetImageBase64 {
   constructor() {
@@ -1046,6 +984,7 @@ class CheckConnection {
 class CreateDocument {
   constructor() {
     this.createDocument = (args) => {
+
       console.log(args);
       const estimateActions = new EstimateActions(args.custid);
       estimateActions.generatePDF();

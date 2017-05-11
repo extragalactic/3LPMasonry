@@ -113,6 +113,9 @@ type notesUser {
   _id: String
   name: String
 }
+type pdfUrl {
+  pdfUrl: String
+}
 
  type notes {
    _id: String
@@ -422,7 +425,7 @@ type Mutation {
   editPriceAmount(custid: String, index: Int, option: String, amount: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): Boolean
+  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): pdfUrl
   createDocument(custid: String): estimateHistory
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String, estimator: String): Customers
