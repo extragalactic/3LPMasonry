@@ -21,7 +21,7 @@ import WarningMessage from '../Utils/WarningMessage';
 
 const styles = {
   dropdownTitle: {
-    fontSize: 18,
+    fontSize: 24,
     fontFamily: 'Verdana',
     color: '#777',
   },
@@ -31,15 +31,17 @@ const styles = {
   },
   icon: {
     paddingRight: 30,
+    minWidth: 150,
+    minHeight: 150,
   },
   dropdown: {
     width: 200,
     height: 40,
-    fontSize: 25,
+    fontSize: 26,
     padding: 8,
   },
   menuItem: {
-    fontSize: 25,
+    fontSize: 26,
     padding: 5,
   },
 };
@@ -67,8 +69,10 @@ class _PhotoEditor extends React.Component {
       canRedo: false,
       tool: Tools.Pencil,
       lineColor: 'red',
+      fontSize: 'medium',
     };
     this.colourRGB = { red: '#f00', black: '#000', yellow: '#ff0' };
+    this.fontSizes = { small: 14, medium: 18, large: 24 };
     this.custID = '';
     this.photoIndex = 0;
     this.photoData = {};
@@ -138,6 +142,12 @@ class _PhotoEditor extends React.Component {
   onSelectColor(event, index, value) {
     this.setState({
       lineColor: value,
+    });
+  }
+
+  onSelectFontSize(event, index, value) {
+    this.setState({
+      fontSize: value,
     });
   }
 
@@ -222,6 +232,7 @@ class _PhotoEditor extends React.Component {
                   tool={this.state.tool}
                   lineColor={this.state.lineColor}
                   lineWidth={3}
+                  fontSize={this.fontSizes[this.state.fontSize]}
                   onChange={this.onSketchChange}
                 />
               </div>
@@ -248,6 +259,14 @@ class _PhotoEditor extends React.Component {
                     <MenuItem style={styles.menuItem} value={'black'} primaryText="Black" />
                   </SelectField>
                 </Col>
+                <Col xs >
+                  <label htmlFor={this.textsize} style={styles.dropdownTitle}>Text Size:</label><br />
+                  <SelectField ref={(c) => { this.textsize = c; }} value={this.state.fontSize} onChange={this.onSelectFontSize} style={styles.dropdown}>
+                    <MenuItem style={styles.menuItem} value={'small'} primaryText="Small" />
+                    <MenuItem style={styles.menuItem} value={'medium'} primaryText="Medium" />
+                    <MenuItem style={styles.menuItem} value={'large'} primaryText="Large" />
+                  </SelectField>
+                </Col>
               </Row>
               <Row>
                 <Col xs={12}>
@@ -266,6 +285,7 @@ class _PhotoEditor extends React.Component {
                       <IconButton
                         onTouchTap={this.onClear}
                         iconStyle={styles.iconButton}
+                        style={styles.icon}
                       >
                         <ClearIcon />
                       </IconButton>
