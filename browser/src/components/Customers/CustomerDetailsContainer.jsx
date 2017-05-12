@@ -12,20 +12,21 @@ const _TEST_USER = false;
 
 class _CustomerDetailsContainer extends React.Component {
   static propTypes = {
-    // userID: PropTypes.object.isRequired,
+    userID: PropTypes.oneOfType([
+      PropTypes.string.isRequired,
+      PropTypes.object.isRequired,
+    ]).isRequired,
   }
   componentDidMount() {
-    console.log('ID = ' + this.props.userID);
-
-    if (typeof this.props.userID !== 'string' && !_TEST_USER) {
+    // console.log('ID = ' + this.props.userID);
+    if ((typeof this.props.userID !== 'string' || this.props.userID === '') && !_TEST_USER) {
       browserHistory.push('customers');
     }
   }
 
   render() {
     let custID = '';
-
-    if (typeof this.props.userID !== 'string') {
+    if (typeof this.props.userID !== 'string' && _TEST_USER) {
       custID = DEFAULT_CUSTOMER_ID;
     } else {
       custID = this.props.userID;

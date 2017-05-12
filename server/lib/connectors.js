@@ -20,6 +20,7 @@ import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateClass';
 
+
 sharp.concurrency(1);
 dotenv.config();
 
@@ -986,6 +987,7 @@ class CheckConnection {
 class CreateDocument {
   constructor() {
     this.createDocument = (args) => {
+      console.log(args);
       const estimateActions = new EstimateActions(args.custid);
       estimateActions.generatePDF();
     };

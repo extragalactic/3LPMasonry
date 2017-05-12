@@ -9,16 +9,17 @@ import styles from 'style-loader!css-loader!fixed-data-table/dist/fixed-data-tab
 import { CustomerDataList, customerFieldNames } from './CustomerDataList';
 import styleCSS from '../../styles/customerTableStyles';
 
+/* eslint-env browser */
 
 const fields = customerFieldNames;
 const SEARCHABLE_COLUMNS = [fields.FIRST_NAME, fields.LAST_NAME, fields.ADDRESS, fields.STATUS, fields.EMAIL1, fields.EMAIL2, fields.WPHONE, fields.CPHONE, fields.HPHONE, fields.SURVEY_TYPE, fields.SURVEYOR_NAME, fields.ESTIMATOR_NAME];
 const ROW_HEIGHT = 70;
 const HEADER_HEIGHT = 50;
 const columnWidths = {
-  name: 150,
+  name: 160,
   address: 180,
-  phone: 110,
-  email: 200,
+  phone: 130,
+  email: 220,
   emailNotify: 80,
   status: 130,
   surveyType: 70,

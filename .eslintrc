@@ -8,5 +8,9 @@
     "no-underscore-dangle": 0,
     "max-len": 0
   },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "babel-eslint"
 }

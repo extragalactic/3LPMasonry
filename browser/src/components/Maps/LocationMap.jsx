@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* global google */
+
 class LocationMap extends React.Component {
   static propTypes = {
     lat: PropTypes.number.isRequired,
@@ -38,6 +40,7 @@ class LocationMap extends React.Component {
       <div>
         <div>
           <div id="map" style={{ width: this.props.mapWidth, height: this.props.mapHeight }} />
+          <br />
         </div>
         <div>
           <div id="pano" style={{ width: this.props.mapWidth, height: this.props.mapHeight }} />

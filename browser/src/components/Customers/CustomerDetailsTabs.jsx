@@ -51,9 +51,9 @@ function CustomerDetailsTabs(props) {
             <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
               <div style={styleCSS.title}> {`${data.firstName} ${data.lastName}`}<br /></div>
               {data.address}<br /><br />
-              <a href={"mailto:" + data.email1}>{data.email1}</a><br />
+              <a href={`mailto:${data.email1}`}>{data.email1}</a><br />
               {data.email2 &&
-                <div><a href={"mailto:" + data.email2}>{data.email2}</a><br /></div>
+                <div><a href={`mailto:${data.email2}`}>{data.email2}</a><br /></div>
               }
               <br />
               {data.wphone &&
