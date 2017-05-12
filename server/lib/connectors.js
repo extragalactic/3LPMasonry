@@ -901,13 +901,15 @@ class GeneratePDFEstimate {
           const estimateActions = new EstimateActions(customer, args.generics, args.text, args.preview);
           return estimateActions.generatePDF()
           .then((pdfUrl) => { 
+            if (!args.preview) {
+              estimateActions.sendPdftoCustomer(pdfUrl);
+            }
             return { pdfUrl };
           });
         }));
     };
   }
 }
-
 
 class GetImageBase64 {
   constructor() {
@@ -984,8 +986,6 @@ class CheckConnection {
 class CreateDocument {
   constructor() {
     this.createDocument = (args) => {
-
-      console.log(args);
       const estimateActions = new EstimateActions(args.custid);
       estimateActions.generatePDF();
     };

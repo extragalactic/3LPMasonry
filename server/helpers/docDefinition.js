@@ -3,12 +3,7 @@ import moment from 'moment';
 
 const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) => {
   const returnPromise = new Promise((resolve, reject) => {
-
-
-  //console.log('PHOTOS', surveyPhotos)
   const genericText = {};
-  // TEST VALUE (remove)
-
   const IMAGE_MAX_WIDTH = 730;
   const IMAGE_MAX_HEIGHT = 270;
 
@@ -385,17 +380,14 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
      { text: `Prepared for ${customer.firstName} ${customer.lastName}`, alignment: 'center', bold: true, style: 'subheading' },
      { text: `${customer.address}`, alignment: 'center' },
      { text: `${moment().format('dddd, MMMM Do YYYY')}`, alignment: 'center' },
-
      { text: 'Our Thanks', style: 'heading', id: 'startOfContent' },
      { text: 'Three Little Pigs Masonry would like to thank you for the opportunity to quote on your project. Why choose Three Little Pigs Masonry? Since 2004, Three Little Pigs Masonry has grown to become a trusted name in masonry and concrete throughout the GTA. With over 40 years experience and with actual masonry and concrete experts at the helm, your satisfaction is our main priority. \n\n Three Little Pigs Masonry will not leave your property until you are completely satisfied and our warranties reflect our confidence in our ability to provide the best in masonry and concrete. \n', style: 'textSection' },
-
      { text: '\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n\n', bold: true },
      { text: 'Additional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n\n', bold: true },
      { text: 'If you wish to proceed with your estimate, please respond to this email or contact Barbara at (416)595-0100 EXT 102 \n\n' },
-     { text: 'Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416)595-0100 extension 106.' },
-
+     { text: 'Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416)595-0100 extension 106.', pageBreak: 'after' },
+     { text: 'Your Estimate Details:', style: 'details' },
       writeGenericText(generics, genericText),
-
       { stack: [
        { text: 'Pricing Summary', alignment: 'center', style: 'heading' },
         { table: { widths: [400, 100],
@@ -424,6 +416,9 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
     },
 
     styles: {
+      details: {
+        fontSize: 18,
+      },
       header: {
         fontSize: 32,
         bold: true,

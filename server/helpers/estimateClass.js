@@ -3,6 +3,7 @@ import PDFMake from 'pdfmake';
 import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
+import tz from 'moment-timezone';
 import CustomersModel from '../lib/CustomerModel';
 import pdfMakeEstimate from './docDefinition';
 import PhotosModel from '../lib/PhotosModel';
@@ -16,6 +17,7 @@ class EstimateActions {
     this.images = [];
     this.prices = [];
     this.s3 = new AWS.S3({ region: 'us-east-2' });
+    this.url = `${this.customer._id}/${this.customer.firstName}${this.customer.lastName}${moment().tz('America/New_York').format('ddddMMMMDoYYYYhmmssa')}Estimate.pdf`;
   }
   getPrices() {
     const prices = new Promise((resolve, reject) => {
@@ -78,9 +80,7 @@ class EstimateActions {
     return images;
   }
 
-
   generatePDF() {
-    const url = `${this.customer._id}/${this.customer.firstName}${this.customer.lastName}${moment().format('ddddMMMMDoYYYYmmss')}Estimate.pdf`;
     const fonts = {
       Roboto: {
         normal: path.join(__dirname, '../../assets/fonts/Roboto-Regular.ttf'),
@@ -107,7 +107,7 @@ class EstimateActions {
                 fs.readFile('documents/temp.pdf', {}, (err, res) => {
                   const params = {
                     Bucket: '3lpm',
-                    Key: url,
+                    Key: this.url,
                     Expires: 60,
                     ACL: 'public-read',
                     ContentType: 'application/pdf',
@@ -120,13 +120,13 @@ class EstimateActions {
                         if (this.preview) {
                           customer.previewHistory.push({
                             url: res.Location,
-                            timestamp: moment().format('dddd, MMMM, Do, YYYY, mm:ss'),
+                            timestamp: moment().tz('America/New_York').format('ddddMMMMDoYYYY h:mm:ss a'),
                             estimator: customer.estimator,
                           });
                         } else {
                          customer.estimateHistory.push({
                            url: res.Location,
-                           timestamp: moment().format('dddd, MMMM, Do, YYYY, mm:ss'),
+                           timestamp: moment().tz('America/New_York').format('ddddMMMMDoYYYY h:mm:ss a'),
                            estimator: customer.estimator,
                            preview: this.preview,
                          });
@@ -136,15 +136,28 @@ class EstimateActions {
                     resolve(res.Location);
                   });
                 });
-              }, 1000);
+              }, 3000);
             });
          });
      });
     });
 
-
     return pdfUrl;
   }
+
+  sendPdftoCustomer(url) {
+    require('../../node_modules/mailin-api-node-js/V2.0/mailin');
+    const client = new Mailin('https://api.sendinblue.com/v2.0', process.env.MAILIN, 5000);
+      const emailData = { id: 3,
+        to: this.customer.email1 ? this.customer.email1 : this.customer.email2,
+        bcc: 'outgoingtlpmail@gmail.com',
+        attr: { CUSTOMER: this.customer.firstName, LINK: url.split('//').pop() },
+      };
+      client.send_transactional_template(emailData).on('complete', (data) => {
+        console.log(data);
+      });
+  }
+
   get pdfUrl() {
     return this.generatePDF();
   }
