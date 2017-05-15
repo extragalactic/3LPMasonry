@@ -18,7 +18,8 @@ import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
-import EstimateActions from '../helpers/estimateClass';
+import EstimateActions from '../helpers/estimateCreationClass';
+import CustomerStatus from '../helpers/customerStatusClass';
 
 
 sharp.concurrency(1);
@@ -499,8 +500,6 @@ class AddSurveyPhoto {
             customer.survey.photos.push(payload);
             customer.save();
         });
-
-       
           const photo = new PhotosModel({
             base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
@@ -791,32 +790,8 @@ class EditPriceAmount {
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
-      removeCustomerfromQueue(args.custid);
-      return CustomersModel.findOne({ _id: args.custid })
-        .then((customer) => {
-          UsersModel.findOne({ _id: args.userid })
-            .then((user) => {
-             if(!_.includes(user.estimates, args.custid)){
-               user.estimates.push({
-                id: customer._id,
-                firstName: customer.firstName,
-                lastName: customer.lastName,
-                email1: customer.email1,
-                email2: customer.email2,
-                hphone: customer.hphone,
-                cphone: customer.cphone,
-                wphone: customer.wphone,
-                address: customer.address,
-                status: 0,
-              });
-              user.save();
-             }
-            });
-          customer.estimator = args.estimator;
-          removeCustomerfromQueue(customer);
-          customer.save();
-          return customer;
-        });
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.acceptEstimate();
     };
   }
  }
