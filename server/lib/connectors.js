@@ -57,8 +57,12 @@ class Customer {
     this.findCustomer = ({ id }) => {
       if (id) {
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
-          const customer = CustomersModel.findOne({ _id: id }, (error, data) => data);
-          return customer;
+          return CustomersModel.findOne({ _id: id })
+            .then((cust) => {
+              const customer = cust;
+              customer.notes = customer.notes.reverse();
+              return customer;
+            });
         }
       }
     };
