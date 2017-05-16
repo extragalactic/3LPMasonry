@@ -19,6 +19,7 @@ class EstimateActions {
     this.s3 = new AWS.S3({ region: 'us-east-2' });
     this.url = `${this.customer._id}/${this.customer.firstName}${this.customer.lastName}${moment().tz('America/New_York').format('ddddMMMMDoYYYYhmmssa')}Estimate.pdf`;
   }
+  
   getPrices() {
     const prices = new Promise((resolve, reject) => {
       CustomersModel.findOne({ _id: this.customer._id })
