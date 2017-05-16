@@ -5,12 +5,14 @@ import fs from 'fs';
 import moment from 'moment';
 import tz from 'moment-timezone';
 import CustomersModel from '../lib/CustomerModel';
+import UsersModel from '../lib/UserModel';
 import pdfMakeEstimate from './docDefinition';
 import PhotosModel from '../lib/PhotosModel';
 
 class EstimateActions {
-  constructor(customer, generics, text, preview) {
+  constructor(customer, userid, generics, text, preview) {
     this.customer = customer;
+    this.userid = userid;
     this.preview = preview;
     this.text = text;
     this.generics = generics;
@@ -80,7 +82,24 @@ class EstimateActions {
     });
     return images;
   }
-
+  setStatus() {
+    CustomersModel.findOne({_id: this.customer.id})
+     .then((customer) => {
+       customer.status = 2;
+       customer.save();
+     });
+    UsersModel.findOne({_id: this.userid})
+     .then((user) => {
+       user.estimates = user.estimates.map((est) => {
+          if (est.id == this.customer._id) {
+           est.status = 2;
+           return est;
+         }
+         return est;
+       });
+       user.save();
+     });
+  }
   generatePDF() {
     const fonts = {
       Roboto: {
@@ -147,6 +166,7 @@ class EstimateActions {
   }
 
   sendPdftoCustomer(url) {
+    this.setStatus();
     require('../../node_modules/mailin-api-node-js/V2.0/mailin');
     const client = new Mailin('https://api.sendinblue.com/v2.0', process.env.MAILIN, 5000);
       const emailData = { id: 3,

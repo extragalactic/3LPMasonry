@@ -243,6 +243,10 @@ const resolveFunctions = {
       const doc = new ctx.constructor.CreateDocument();
       return doc.createDocument(args);
     },
+    toggleNoReply(_, args, ctx) {
+      const estimate = new ctx.constructor.ToggleNoReply();
+      return estimate.toggleNoReply(args);
+    },
   },
 };
 module.exports = resolveFunctions;

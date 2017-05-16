@@ -71,7 +71,7 @@ class CustomerStatus {
                     res = true;
                 }
               });
-          resolve(res)
+          resolve(res);
 
            });
     });
@@ -81,7 +81,6 @@ class CustomerStatus {
   acceptEstimate() {
     this.checkifExist()
     .then((results) => {
-      console.log('check', results)
       if (!results) {
         this.addCustomertoUserList();
         this.removeCustomerfromQueue();
@@ -90,6 +89,41 @@ class CustomerStatus {
         this.removeCustomerfromQueue();
       }
     });
+  }
+  toggleStatus() {
+    const status = new Promise((resolve, reject) => {
+     let currentStatus = false;
+      CustomersModel.findOne({ _id: this.customer })
+      .then((customer) => {
+      if (customer.status == 0) {
+        customer.status = 1;
+        currentStatus = true;
+      } else if (customer.status == 1 || customer.status === 2) {
+        customer.status = 0;
+        currentStatus = false;
+      }
+      resolve(currentStatus);
+      customer.save();
+    });
+
+    })
+
+    UsersModel.findOne({ _id: this.user })
+     .then((user) => {
+       user.estimates = user.estimates.map((est) => {
+          if (est.id == this.customer) {
+          if(est.status == 0 ){
+            est.status = 1;
+          } else if (est.status == 1 || est.status == 2) {
+            est.status = 0;
+          }
+           return est;
+         }
+         return est;
+       });
+       user.save();
+     });
+     return status;
   }
 }
 

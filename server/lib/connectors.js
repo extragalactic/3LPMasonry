@@ -874,7 +874,7 @@ class GeneratePDFEstimate {
     this.generatePDFEstimate = (args) => {
       return CustomersModel.findOne({ _id: args.custid })
         .then((customer => {
-          const estimateActions = new EstimateActions(customer, args.generics, args.text, args.preview);
+          const estimateActions = new EstimateActions(customer, args.user, args.generics, args.text, args.preview);
           return estimateActions.generatePDF()
           .then((pdfUrl) => { 
             if (!args.preview) {
@@ -962,14 +962,23 @@ class CheckConnection {
 class CreateDocument {
   constructor() {
     this.createDocument = (args) => {
-      console.log(args);
       const estimateActions = new EstimateActions(args.custid);
       estimateActions.generatePDF();
     };
   }
 }
+class ToggleNoReply {
+  constructor() {
+    this.toggleNoReply = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      return customerStatus.toggleStatus()
+      .then(res => res);
+    };
+  }
+}
 
 module.exports = {
+  ToggleNoReply,
   CreateDocument,
   CheckConnection,
   DeleteSurveyNote,
