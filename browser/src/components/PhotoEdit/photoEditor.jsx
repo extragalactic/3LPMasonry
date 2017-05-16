@@ -9,6 +9,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import UndoIcon from 'material-ui/svg-icons/content/undo';
 import ClearIcon from 'material-ui/svg-icons/action/delete';
 import SaveIcon from 'material-ui/svg-icons/content/save';
+import Paper from 'material-ui/Paper';
 import {
     IconButton,
     MenuItem,
@@ -17,7 +18,7 @@ import {
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
-
+import styleCSS from '../../styles/customerDetailsStyles';
 
 const styles = {
   dropdownTitle: {
@@ -35,7 +36,7 @@ const styles = {
     minHeight: 150,
   },
   dropdown: {
-    width: 200,
+    width: 180,
     height: 40,
     fontSize: 26,
     padding: 8,
@@ -80,6 +81,7 @@ class _PhotoEditor extends React.Component {
 
     this.onSelectTool = this.onSelectTool.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
+    this.onSelectFontSize = this.onSelectFontSize.bind(this);
     this.onUndo = this.onUndo.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onSketchChange = this.onSketchChange.bind(this);
@@ -180,6 +182,8 @@ class _PhotoEditor extends React.Component {
     this.setState({
       isSaving: false,
     });
+    // send a message back to RN to close the editing window
+    window.postMessage();
   }
 
   onSave() {
@@ -241,67 +245,72 @@ class _PhotoEditor extends React.Component {
           </Row>
           <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
-              <Row>
-                <Col xs >
-                  <label htmlFor={this.tool} style={styles.dropdownTitle}>Edit Tool:</label><br />
-                  <SelectField ref={(c) => { this.tool = c; }} value={this.state.tool} onChange={this.onSelectTool} style={styles.dropdown}>
-                    <MenuItem style={styles.menuItem} value={Tools.Pencil} primaryText="Pencil" />
-                    <MenuItem style={styles.menuItem} value={Tools.Arrow} primaryText="Arrow" />
-                    <MenuItem style={styles.menuItem} value={Tools.Rectangle} primaryText="Rectangle" />
-                    <MenuItem style={styles.menuItem} value={Tools.TextField} primaryText="Text" />
-                  </SelectField>
-                </Col>
-                <Col xs >
-                  <label htmlFor={this.color} style={styles.dropdownTitle}>Colour:</label><br />
-                  <SelectField ref={(c) => { this.color = c; }} value={this.state.lineColor} onChange={this.onSelectColor} style={styles.dropdown}>
-                    <MenuItem style={styles.menuItem} value={'red'} primaryText="Red" />
-                    <MenuItem style={styles.menuItem} value={'yellow'} primaryText="Yellow" />
-                    <MenuItem style={styles.menuItem} value={'black'} primaryText="Black" />
-                  </SelectField>
-                </Col>
-                <Col xs >
-                  <label htmlFor={this.textsize} style={styles.dropdownTitle}>Text Size:</label><br />
-                  <SelectField ref={(c) => { this.textsize = c; }} value={this.state.fontSize} onChange={this.onSelectFontSize} style={styles.dropdown}>
-                    <MenuItem style={styles.menuItem} value={'small'} primaryText="Small" />
-                    <MenuItem style={styles.menuItem} value={'medium'} primaryText="Medium" />
-                    <MenuItem style={styles.menuItem} value={'large'} primaryText="Large" />
-                  </SelectField>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12}>
-                  <Row around="xs">
-                    <Col xs={3} style={styles.icon}>
-                      <IconButton
-                        onTouchTap={this.onUndo}
-                        iconStyle={styles.iconButton}
-                        style={styles.icon}
-                        disabled={!this.state.canUndo}
-                      >
-                        <UndoIcon />
-                      </IconButton>
-                    </Col>
-                    <Col xs={3} style={styles.icon}>
-                      <IconButton
-                        onTouchTap={this.onClear}
-                        iconStyle={styles.iconButton}
-                        style={styles.icon}
-                      >
-                        <ClearIcon />
-                      </IconButton>
-                    </Col>
-                    <Col xs={3} style={styles.icon}>
-                      <IconButton
-                        onTouchTap={this.onSave}
-                        iconStyle={styles.iconButton}
-                        style={styles.icon}
-                      >
-                        <SaveIcon />
-                      </IconButton>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
+              <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
+                <Row>
+                  <Col xs >
+                    <label htmlFor={this.tool} style={styles.dropdownTitle}>Edit Tool:</label><br />
+                    <SelectField ref={(c) => { this.tool = c; }} value={this.state.tool} onChange={this.onSelectTool} style={styles.dropdown}>
+                      <MenuItem style={styles.menuItem} value={Tools.Pencil} primaryText="Pencil" />
+                      <MenuItem style={styles.menuItem} value={Tools.Arrow} primaryText="Arrow" />
+                      <MenuItem style={styles.menuItem} value={Tools.Rectangle} primaryText="Rectangle" />
+                      <MenuItem style={styles.menuItem} value={Tools.TextField} primaryText="Text" />
+                    </SelectField>
+                  </Col>
+                  <Col xs >
+                    <label htmlFor={this.color} style={styles.dropdownTitle}>Colour:</label><br />
+                    <SelectField ref={(c) => { this.color = c; }} value={this.state.lineColor} onChange={this.onSelectColor} style={styles.dropdown}>
+                      <MenuItem style={styles.menuItem} value={'red'} primaryText="Red" />
+                      <MenuItem style={styles.menuItem} value={'yellow'} primaryText="Yellow" />
+                      <MenuItem style={styles.menuItem} value={'black'} primaryText="Black" />
+                    </SelectField>
+                  </Col>
+                  <Col xs >
+                    <label htmlFor={this.textsize} style={styles.dropdownTitle}>Text Size:</label><br />
+                    <SelectField ref={(c) => { this.textsize = c; }} value={this.state.fontSize} onChange={this.onSelectFontSize} style={styles.dropdown}>
+                      <MenuItem style={styles.menuItem} value={'small'} primaryText="Small" />
+                      <MenuItem style={styles.menuItem} value={'medium'} primaryText="Medium" />
+                      <MenuItem style={styles.menuItem} value={'large'} primaryText="Large" />
+                    </SelectField>
+                  </Col>
+                </Row>
+              </Paper>
+              <br />
+              <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
+                <Row>
+                  <Col xs={12}>
+                    <Row around="xs">
+                      <Col xs={3} style={styles.icon}>
+                        <IconButton
+                          onTouchTap={this.onUndo}
+                          iconStyle={styles.iconButton}
+                          style={styles.icon}
+                          disabled={!this.state.canUndo}
+                        >
+                          <UndoIcon />
+                        </IconButton>
+                      </Col>
+                      <Col xs={3} style={styles.icon}>
+                        <IconButton
+                          onTouchTap={this.onClear}
+                          iconStyle={styles.iconButton}
+                          style={styles.icon}
+                        >
+                          <ClearIcon />
+                        </IconButton>
+                      </Col>
+                      <Col xs={3} style={styles.icon}>
+                        <IconButton
+                          onTouchTap={this.onSave}
+                          iconStyle={styles.iconButton}
+                          style={styles.icon}
+                        >
+                          <SaveIcon />
+                        </IconButton>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Paper>
             </div>
           </MuiThemeProvider>
         </Col>

@@ -86,7 +86,7 @@ type PricingType {
    estimatequeue: [assignedCustomers]
    estimatefollowup: [assignedCustomers]
    estimatesent: [assignedCustomers]
-
+   estimatefollowup: [assignedCustomers]
  }
 
   type User {
@@ -112,6 +112,9 @@ type PricingType {
 type notesUser {
   _id: String
   name: String
+}
+type pdfUrl {
+  pdfUrl: String
 }
 
  type notes {
@@ -421,8 +424,9 @@ type Mutation {
   editPriceDescription(custid: String, index: Int, option: String, text: String): Boolean
   editPriceAmount(custid: String, index: Int, option: String, amount: Int) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
+  toggleNoReply(custid: String, userid: String): Boolean
   getImageBase64(docID: String): base64Photo
-  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): Boolean
+  generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): pdfUrl
   createDocument(custid: String): estimateHistory
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String, estimator: String): Customers

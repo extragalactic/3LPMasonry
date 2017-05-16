@@ -22,3 +22,4 @@ browser/src/assets/cred/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 documents
+*.pdf
