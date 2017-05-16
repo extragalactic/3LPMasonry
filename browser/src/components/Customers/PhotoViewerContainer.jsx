@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row } from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
 import { filter } from 'lodash';
 import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
+import ImageAddAPhoto from 'material-ui/svg-icons/image/add-a-photo';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from '../Utils/WarningMessage';
@@ -108,26 +110,52 @@ class PhotoViewerContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.renderPhotoViewer()}
-        <br />
-        <div style={{ width: 340 }}>
-          <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
-            <Row style={{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>
-              <div style={styleCSS.subtitle}>Upload a New Photo</div>
+        <Row>
+          {this.renderPhotoViewer()}
+        </Row>
+        <Row style={{ marginTop: 20 }}>
+          <Col xs={12}>
+            <Row start="xs">
+              <Col xs={4}>
+                <div style={{ width: 260 }}>
+                  <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
+                    <Row style={{ marginLeft: 15, marginTop: 10, marginBottom: 5 }}>
+                      <Col>
+                        <ImageAddAPhoto color={'#000'} style={{ width: 50, height: 50 }} />
+                      </Col>
+                      <Col>
+                        <Row style={{ marginLeft: 5, marginTop: 5 }}>
+                          <Col xs={8}>
+                            <div style={styleCSS.subtitle}>Upload New Photos</div>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                    <Row style={{ marginLeft: 30 }}>
+                      <FlatButton
+                        primary
+                        containerElement="label"
+                        label="select files"
+                      >
+                        <input
+                          id="files"
+                          multiple
+                          type="file"
+                          size="160"
+                          accept=".jpg, .jpeg, .png, .gif"
+                          style={styleCSS.uploadInput}
+                          onChange={this.onFileSelected}
+                        />
+                      </FlatButton>
+                    </Row>
+                    <br />
+                  </Paper>
+                </div>
+              </Col>
             </Row>
-            <Row style={{ marginLeft: 15 }}>
-              <input
-                multiple
-                type="file"
-                size="160"
-                accept=".jpg, .jpeg, .png, .gif"
-                style={styleCSS.uploadInput}
-                onChange={this.onFileSelected}
-              />
-            </Row>
-            <br />
-          </Paper>
-        </div>
+          </Col>
+        </Row>
+
         {this.state.isLoading &&
         <LoadingPopup message="Uploading images to server..." />
         }

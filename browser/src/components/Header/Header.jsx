@@ -14,6 +14,7 @@ const auth = new AuthService(auth0id.auth0id, auth0id.domain);
 
 const headerStyle = {
   backgroundColor: grey800,
+  zIndex: 0,
 };
 
 const titleStyle = {
