@@ -48,6 +48,7 @@ const customerDetailsStyles = {
   },
   surveyNotes: {
     marginTop: 0,
+    marginBottom: 15,
     paddingLeft: 15,
   },
   surveyNotesTitle: {
@@ -126,6 +127,7 @@ const customerDetailsStyles = {
   },
   uploadInput: {
     cursor: 'pointer',
+    display: 'none',
   },
   warningMessage: {
     fontSize: 17,
@@ -134,8 +136,7 @@ const customerDetailsStyles = {
     marginLeft: 10,
   },
   spinnerInset: {
-    marginTop: 15,
-    marginLeft: 15,
+    marginTop: 25,
   },
 };
 

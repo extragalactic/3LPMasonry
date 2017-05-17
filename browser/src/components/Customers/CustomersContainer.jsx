@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import WobblySpinner from 'react-wobbly-spinner';
-import LocationMap from '../Maps/LocationMap';
+import { Row, Col } from 'react-flexbox-grid';
 
+import LocationMap from '../Maps/LocationMap';
 import CustomersTable from './customersTable';
 import { getAllCustomers } from '../../graphql/queries';
 import styleCSS from '../../styles/customerDetailsStyles';
@@ -16,9 +17,13 @@ _CustomersContainer.propTypes = {
 function _CustomersContainer(props) {
   if (props.data.loading) {
     return (
-      <div style={styleCSS.spinnerInset}>
-        <WobblySpinner diameter={200} />
-      </div>
+      <Row center="xs">
+        <Col xs={4}>
+          <div style={styleCSS.spinnerInset}>
+            <WobblySpinner diameter={200} />
+          </div>
+        </Col>
+      </Row>
     );
   }
   if (!props.data.customers) {

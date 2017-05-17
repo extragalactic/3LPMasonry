@@ -8,15 +8,16 @@ const footerStyle = {
   bottom: 0,
   backgroundColor: grey900,
   color: grey100,
-  zIndex: 100
+  zIndex: 100,
+  fontFamily: 'Verdana',
 };
 
 const Foot = () => (
   <Footer style={footerStyle} size="mini">
     <FooterSection type="bottom">
       <FooterLinkList>
-          Copyright 2017 Three Little Pigs Masonry
-          </FooterLinkList>
+       Copyright 2017 Three Little Pigs Masonry
+      </FooterLinkList>
     </FooterSection>
   </Footer>
 );
