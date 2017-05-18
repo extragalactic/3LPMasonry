@@ -21,7 +21,6 @@ import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateCreationClass';
 import CustomerStatus from '../helpers/customerStatusClass';
 
-
 sharp.concurrency(1);
 dotenv.config();
 
