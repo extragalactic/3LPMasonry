@@ -6,7 +6,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import Dimensions from 'react-dimensions';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
@@ -19,6 +19,9 @@ import Crop32Icon from 'material-ui/svg-icons/image/crop-3-2'; // rectangle
 import TextFieldsIcon from 'material-ui/svg-icons/editor/text-fields'; // textfield
 import CallMadeIcon from 'material-ui/svg-icons/communication/call-made'; // arrow
 import LensIcon from 'material-ui/svg-icons/image/lens'; // colour swatch
+import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
+import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
+import ZoomOutIcon from 'material-ui/svg-icons/action/zoom-out';
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
@@ -48,7 +51,6 @@ class _PhotoEditor extends React.Component {
       imageWidth: this.props.containerWidth,
       imageSizeRatio: 1.33,
       canUndo: false,
-      canRedo: false,
       tool: Tools.Pencil,
       lineColor: 'red',
       fontSize: 'medium',
@@ -65,6 +67,8 @@ class _PhotoEditor extends React.Component {
         title: 'Actions',
         buttonStyle: buttonStyles.NORMAL,
         icons: [
+          { label: 'ZoomIn', type: ZoomInIcon },
+          { label: 'ZoomOut', type: ZoomOutIcon },
           { label: 'Undo', type: UndoIcon },
           { label: 'Clear', type: ClearIcon },
           { label: 'Save', type: SaveIcon },
@@ -73,8 +77,9 @@ class _PhotoEditor extends React.Component {
       toolSelect: {
         title: 'Tools',
         buttonStyle: buttonStyles.RADIO,
-        radioSelected: [true, false, false, false],
+        radioSelected: [true, false, false, false, false],
         icons: [
+          { label: 'Pan', param: 'pan', type: PanToolIcon },
           { label: 'Pencil', param: 'pencil', type: EditIcon },
           { label: 'Arrow', param: 'arrow', type: CallMadeIcon },
           { label: 'Box', param: 'box', type: Crop32Icon },
@@ -105,21 +110,18 @@ class _PhotoEditor extends React.Component {
     // ToDo: The radioSelected vars should be a state var, merging functionality with the existing state vars
     // that determine which icon is selected. i.e. the IconBar is not yet properly using a stateful pattern.
     // I shouldn't have to manually set the true/false initial values in radioSelected.
-    // For the current implementation, this is ok for now.
+    // For the current implementation, this is ok though.
 
     this.onSelectTool = this.onSelectTool.bind(this);
     this.onSelectColor = this.onSelectColor.bind(this);
     this.onSelectFontSize = this.onSelectFontSize.bind(this);
-    this.onSelectTool2 = this.onSelectTool2.bind(this);
-    this.onSelectColor2 = this.onSelectColor2.bind(this);
-    this.onSelectFontSize2 = this.onSelectFontSize2.bind(this);
+    this.onZoomIn = this.onZoomIn.bind(this);
+    this.onZoomOut = this.onZoomOut.bind(this);
     this.onUndo = this.onUndo.bind(this);
     this.onClear = this.onClear.bind(this);
     this.onSketchChange = this.onSketchChange.bind(this);
     this.onSave = this.onSave.bind(this);
-    this.responsiveStyles = this.responsiveStyles.bind(this);
   }
-
 
   componentDidMount() {
     if (!(this.props.params.custid && this.props.params.docID)) {
@@ -148,13 +150,19 @@ class _PhotoEditor extends React.Component {
       // sizing it to match the screen width using Dimensions.
       // Hopefully the first image load will be buffered by the browser/device.
       const img = new Image();
+      img.crossOrigin = 'Anonymous';
       img.onload = () => {
         const newImageRatio = img.width / img.height;
         this.setState({
           imageSizeRatio: newImageRatio,
         }, () => {
           if (photoURL) {
-            this.sketch.setBackgroundFromDataUrl(photoURL, options);
+            this.sketch.setBaseImage(img);
+            // this.sketch.setBackgroundFromDataUrl(photoURL, options);
+            /* this.sketch.Image.fromURL(photoURL, (oImg) => {
+              oImg.set({ selectable: false });
+              this.sketch.add(oImg);
+            }); */
           } else {
             this.isValidImage = false;
           }
@@ -168,27 +176,12 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  onSelectTool(event, index, value) {
-    this.setState({
-      tool: value,
-    });
-  }
-
-  onSelectColor(event, index, value) {
-    this.setState({
-      lineColor: value,
-    });
-  }
-
-  onSelectFontSize(event, index, value) {
-    this.setState({
-      fontSize: value,
-    });
-  }
-
-  onSelectTool2(value) {
+  onSelectTool(value) {
     let tool;
     switch (value) {
+      case 'pan':
+        tool = Tools.Pan;
+        break;
       case 'pencil':
         tool = Tools.Pencil;
         break;
@@ -209,23 +202,30 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  onSelectColor2(value) {
+  onSelectColor(value) {
     this.setState({
       lineColor: value,
     });
   }
 
-  onSelectFontSize2(value) {
+  onSelectFontSize(value) {
     this.setState({
       fontSize: value,
     });
+  }
+
+  onZoomIn() {
+    this.sketch.zoom(1.25);
+  }
+
+  onZoomOut() {
+    this.sketch.zoom(0.8);
   }
 
   onUndo() {
     this.sketch.undo();
     this.setState({
       canUndo: this.sketch.canUndo(),
-      // canRedo: this.sketch.canRedo(),
     });
   }
 
@@ -234,7 +234,6 @@ class _PhotoEditor extends React.Component {
     this.sketch.setBackgroundFromDataUrl(this.photoData.photo, options);
     this.setState({
       canUndo: this.sketch.canUndo(),
-      // canRedo: this.sketch.canRedo(),
     });
   }
 
@@ -280,43 +279,6 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  responsiveStyles() {
-    return (
-/*
-    {
-      iconContainer: {
-        display: 'flex',
-        flex: 1,
-        alignContent: 'stretch',
-      },
-      icon: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-      },
-      iconButton: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-      },
-    }
-*/
-    {
-      iconContainer: {
-      },
-      icon: {
-        paddingRight: 10,
-        minWidth: this.width(18),
-        minHeight: this.width(18),
-      },
-      iconButton: {
-        width: this.width(9),
-        height: this.width(9),
-      },
-    }
-    );
-  }
-
   width = (percent) => {
     return this.props.containerWidth * (percent / 100);
   }
@@ -335,72 +297,83 @@ class _PhotoEditor extends React.Component {
     }
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Row style={{ marginLeft: 0, visibility: this.state.isLoaded ? 'visible' : 'hidden' }}>
-          <Col style={{ marginRight: 8 }}>
-            <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-              <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden' }}>
+          <Row>
+            <Col style={{ marginRight: 8 }}>
+              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+                <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div>
+                    <Col style={{ marginLeft: 15 }}>
+                      { /*
+                      <Row>
+                        <span style={styleCSS.title}>Photo Editor</span>
+                      </Row>
+                      */ }
+                      <Row>
+                        <FlatButton
+                          style={{ marginTop: 15, marginLeft: 5 }}
+                          labelStyle={{ fontSize: '150%' }}
+                          label="< Back"
+                          primary
+                          onTouchTap={this.returnToReactNative}
+                        />
+                      </Row>
+                    </Col>
+                  </div>
+                  <div>
+                    <IconBar
+                      iconGroupData={this.iconGroups.editorActions}
+                      iconWidth={this.width(8)}
+                      funcList={[this.onZoomIn, this.onZoomOut, this.onUndo, this.onClear, this.onSave]}
+                    />
+                  </div>
+                </Row>
+              </Paper>
+              <Row style={{ display: 'flex', justifyContent: 'center', paddingLeft: 3 }}>
                 <div>
-                  <RaisedButton
-                    style={{ marginTop: 10, marginLeft: 5 }}
-                    labelStyle={{ fontSize: '150%' }}
-                    label="Back"
-                    secondary
-                    onTouchTap={this.returnToReactNative}
+                  <SketchField
+                    name="sketch"
+                    ref={(c) => { this.sketch = c; }}
+                    width={`${this.props.containerWidth}px`}
+                    height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
+                    tool={this.state.tool}
+                    lineColor={this.state.lineColor}
+                    lineWidth={3}
+                    fontSize={this.fontSizes[this.state.fontSize]}
+                    onChange={this.onSketchChange}
                   />
                 </div>
-                <div>
-                  <IconBar
-                    iconGroupData={this.iconGroups.editorActions}
-                    iconWidth={this.width(9)}
-                    funcList={[this.onUndo, this.onClear, this.onSave]}
-                  />
-                </div>
               </Row>
-            </Paper>
-            <Row style={{ display: 'flex', justifyContent: 'center', paddingLeft: 3 }}>
-              <div>
-                <SketchField
-                  name="sketch"
-                  ref={(c) => { this.sketch = c; }}
-                  width={`${this.props.containerWidth}px`}
-                  height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
-                  tool={this.state.tool}
-                  lineColor={this.state.lineColor}
-                  lineWidth={3}
-                  fontSize={this.fontSizes[this.state.fontSize]}
-                  onChange={this.onSketchChange}
-                />
-              </div>
-            </Row>
-            <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-              <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                <IconBar
-                  iconGroupData={this.iconGroups.toolSelect}
-                  iconWidth={this.width(12)}
-                  funcList={[this.onSelectTool2]}
-                />
-              </Row>
-            </Paper>
-            <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-              <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <IconBar
-                    iconGroupData={this.iconGroups.colourSelect}
-                    iconWidth={this.width(9)}
-                    funcList={[this.onSelectColor2]}
+                    iconGroupData={this.iconGroups.toolSelect}
+                    iconWidth={this.width(11)}
+                    funcList={[this.onSelectTool]}
                   />
-                </Paper>
-                <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-                  <IconBar
-                    iconGroupData={this.iconGroups.fontSize}
-                    iconWidth={this.width(9)}
-                    funcList={[this.onSelectFontSize2]}
-                  />
-                </Paper>
-              </Row>
-            </Paper>
-          </Col>
-        </Row>
+                </Row>
+              </Paper>
+              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+                    <IconBar
+                      iconGroupData={this.iconGroups.colourSelect}
+                      iconWidth={this.width(9)}
+                      funcList={[this.onSelectColor]}
+                    />
+                  </Paper>
+                  <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+                    <IconBar
+                      iconGroupData={this.iconGroups.fontSize}
+                      iconWidth={this.width(9)}
+                      funcList={[this.onSelectFontSize]}
+                    />
+                  </Paper>
+                </Row>
+              </Paper>
+            </Col>
+          </Row>
+        </div>
       </MuiThemeProvider>
     );
   }

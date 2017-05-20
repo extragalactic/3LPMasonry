@@ -6,7 +6,7 @@ import { IconItem } from './IconItem';
 
 class IconBar extends React.Component {
   static propTypes = {
-    iconGroupData: PropTypes.string.isRequired,
+    iconGroupData: PropTypes.object.isRequired,
     iconWidth: PropTypes.number.isRequired,
     funcList: PropTypes.arrayOf(PropTypes.func).isRequired,
   };
@@ -29,6 +29,9 @@ class IconBar extends React.Component {
         paddingBottom: this.props.iconWidth / 12,
         marginLeft: this.props.iconWidth / 3,
         width: this.props.iconWidth + 20,
+        height: this.props.iconWidth + 20,
+        // minWidth: this.props.iconWidth + 20,
+        // minHeight: this.props.iconWidth,
         borderStyle: 'solid',
         borderWidth: 4,
         borderRadius: 10,
@@ -38,6 +41,8 @@ class IconBar extends React.Component {
         flex: 1,
         width: this.props.iconWidth,
         height: this.props.iconWidth,
+        // minWidth: this.props.iconWidth,
+        // minHeight: this.props.iconWidth,
         color: colour,
       },
     }
