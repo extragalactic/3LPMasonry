@@ -7,6 +7,7 @@ import Dimensions from 'react-dimensions';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
+import { IconButton } from 'material-ui';
 import Paper from 'material-ui/Paper';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
@@ -22,6 +23,7 @@ import LensIcon from 'material-ui/svg-icons/image/lens'; // colour swatch
 import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
 import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
 import ZoomOutIcon from 'material-ui/svg-icons/action/zoom-out';
+import KeyboardArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
@@ -51,7 +53,7 @@ class _PhotoEditor extends React.Component {
       imageWidth: this.props.containerWidth,
       imageSizeRatio: 1.33,
       canUndo: false,
-      tool: Tools.Pencil,
+      tool: Tools.Pan,
       lineColor: 'red',
       fontSize: 'medium',
     };
@@ -61,6 +63,7 @@ class _PhotoEditor extends React.Component {
     this.photoIndex = 0;
     this.photoData = {};
     this.isValidImage = false;
+    this.zoomLevel = 1;
 
     this.iconGroups = {
       editorActions: {
@@ -216,10 +219,14 @@ class _PhotoEditor extends React.Component {
 
   onZoomIn() {
     this.sketch.zoom(1.25);
+    this.zoomLevel += 1;
   }
 
   onZoomOut() {
-    this.sketch.zoom(0.8);
+    if (this.zoomLevel > 1) {
+      this.sketch.zoom(0.8);
+      this.zoomLevel -= 1;
+    }
   }
 
   onUndo() {
@@ -303,27 +310,26 @@ class _PhotoEditor extends React.Component {
               <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
                 <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
-                    <Col style={{ marginLeft: 15 }}>
+                    <Col style={{ marginLeft: 10, marginTop: -10 }}>
                       { /*
                       <Row>
                         <span style={styleCSS.title}>Photo Editor</span>
                       </Row>
                       */ }
                       <Row>
-                        <FlatButton
-                          style={{ marginTop: 15, marginLeft: 5 }}
-                          labelStyle={{ fontSize: '150%' }}
-                          label="< Back"
-                          primary
+                        <IconButton
                           onTouchTap={this.returnToReactNative}
-                        />
+                          iconStyle={{ width: this.width(12), height: this.width(15), color: '73D8FF' }}
+                        >
+                          <KeyboardArrowLeftIcon />
+                        </IconButton>
                       </Row>
                     </Col>
                   </div>
                   <div>
                     <IconBar
                       iconGroupData={this.iconGroups.editorActions}
-                      iconWidth={this.width(8)}
+                      iconWidth={this.width(7)}
                       funcList={[this.onZoomIn, this.onZoomOut, this.onUndo, this.onClear, this.onSave]}
                     />
                   </div>
@@ -348,7 +354,7 @@ class _PhotoEditor extends React.Component {
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <IconBar
                     iconGroupData={this.iconGroups.toolSelect}
-                    iconWidth={this.width(11)}
+                    iconWidth={this.width(10)}
                     funcList={[this.onSelectTool]}
                   />
                 </Row>

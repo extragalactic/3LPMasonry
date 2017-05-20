@@ -25,9 +25,9 @@ class IconBar extends React.Component {
     return (
     {
       iconContainer: {
-        paddingTop: this.props.iconWidth / 12,
-        paddingBottom: this.props.iconWidth / 12,
-        marginLeft: this.props.iconWidth / 3,
+        paddingTop: this.props.iconWidth / 15,
+        paddingBottom: this.props.iconWidth / 15,
+        marginLeft: this.props.iconWidth / 6,
         width: this.props.iconWidth + 20,
         height: this.props.iconWidth + 20,
         // minWidth: this.props.iconWidth + 20,
