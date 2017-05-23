@@ -323,13 +323,13 @@ class _PhotoEditor extends React.Component {
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden', width: this.props.containerWidth }}>
-          <Row>
-            <Col style={{ marginRight: 8 }}>
+        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden' }}>
+          <Row style={{ display: 'flex', justifyContent: 'center' }}>
+            <Col>
               <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
                 <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div>
-                    <Col style={{ marginLeft: 10, marginTop: -10 }}>
+                    <Col style={{ marginLeft: 0, marginTop: -10 }}>
                       { /*
                       <Row>
                         <span style={styleCSS.title}>Photo Editor</span>
@@ -346,7 +346,7 @@ class _PhotoEditor extends React.Component {
                       </Row>
                     </Col>
                   </div>
-                  <div>
+                  <div style={{ paddingTop: 10 }}>
                     <IconBar
                       iconGroupData={this.iconGroups.editorActions}
                       iconWidth={8}
