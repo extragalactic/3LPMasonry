@@ -4,11 +4,13 @@ import { SketchField, Tools } from 'react-sketch';
 import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'react-flexbox-grid';
 import Dimensions from 'react-dimensions';
+import Dialog from 'material-ui/Dialog';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { IconButton } from 'material-ui';
 import Paper from 'material-ui/Paper';
+// import TextField from 'material-ui/TextField';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
 import ClearIcon from 'material-ui/svg-icons/action/delete'; // clear
@@ -31,12 +33,6 @@ import styleCSS from '../../styles/customerDetailsStyles';
 import IconBar from '../Utils/IconBar';
 import { buttonStyles } from '../Utils/IconItem';
 
-const options = {
-  stretched: true,
-  stretchedX: false,
-  stretchedY: false,
-};
-
 
 class _PhotoEditor extends React.Component {
   static propTypes = {
@@ -52,6 +48,7 @@ class _PhotoEditor extends React.Component {
       isSaving: false,
       imageWidth: this.props.containerWidth,
       imageSizeRatio: 1.33,
+      openSaveConfirm: false,
       canUndo: false,
       tool: Tools.Pan,
       lineColor: 'red',
@@ -64,6 +61,7 @@ class _PhotoEditor extends React.Component {
     this.photoData = {};
     this.isValidImage = false;
     this.zoomLevel = 1;
+    this.baseImage = new Image();
 
     this.iconGroups = {
       editorActions: {
@@ -124,6 +122,8 @@ class _PhotoEditor extends React.Component {
     this.onClear = this.onClear.bind(this);
     this.onSketchChange = this.onSketchChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onOpenSaveConfirm = this.onOpenSaveConfirm.bind(this);
+    this.onCloseSaveConfirm = this.onCloseSaveConfirm.bind(this);
   }
 
   componentDidMount() {
@@ -148,31 +148,21 @@ class _PhotoEditor extends React.Component {
       this.photoData = data.data.getCustomerPhoto;
       const photoURL = this.photoData.photo;
 
-      // First load the background image into an Image object so we can retrieve the width/height
-      // which is used to calculate the image size ratio, so that the image keeps aspect ratio when
-      // sizing it to match the screen width using Dimensions.
-      // Hopefully the first image load will be buffered by the browser/device.
-      const img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.onload = () => {
-        const newImageRatio = img.width / img.height;
+      this.baseImage.crossOrigin = 'Anonymous';
+      this.baseImage.onload = () => {
+        const newImageRatio = this.baseImage.width / this.baseImage.height;
         this.setState({
           imageSizeRatio: newImageRatio,
         }, () => {
           if (photoURL) {
-            this.sketch.setBaseImage(img);
-            // this.sketch.setBackgroundFromDataUrl(photoURL, options);
-            /* this.sketch.Image.fromURL(photoURL, (oImg) => {
-              oImg.set({ selectable: false });
-              this.sketch.add(oImg);
-            }); */
+            this.sketch.setBaseImage(this.baseImage);
           } else {
             this.isValidImage = false;
           }
           this.setState({ isLoaded: true });
         });
       };
-      img.src = photoURL;
+      this.baseImage.src = photoURL;
     }).catch(() => {
       this.isValidImage = false;
       this.setState({ isLoaded: true });
@@ -227,6 +217,9 @@ class _PhotoEditor extends React.Component {
       this.sketch.zoom(0.8);
       this.zoomLevel -= 1;
     }
+    if (this.zoomLevel === 1) {
+      this.sketch.centerContent();
+    }
   }
 
   onUndo() {
@@ -238,7 +231,10 @@ class _PhotoEditor extends React.Component {
 
   onClear() {
     this.sketch.clear();
-    this.sketch.setBackgroundFromDataUrl(this.photoData.photo, options);
+    this.sketch.setBaseImage(this.baseImage);
+    this.sketch.centerContent();
+    this.zoomLevel = 1;
+
     this.setState({
       canUndo: this.sketch.canUndo(),
     });
@@ -286,8 +282,12 @@ class _PhotoEditor extends React.Component {
     });
   }
 
-  width = (percent) => {
-    return this.props.containerWidth * (percent / 100);
+  onOpenSaveConfirm() {
+    this.setState({ openSaveConfirm: true });
+  }
+
+  onCloseSaveConfirm() {
+    this.setState({ openSaveConfirm: false });
   }
 
   returnToReactNative = () => {
@@ -302,9 +302,28 @@ class _PhotoEditor extends React.Component {
         </MuiThemeProvider>
       );
     }
+    const backButtonStyle = {
+      width: '10vh',
+      height: '12vh',
+      color: '73D8FF',
+    };
+    const confirmSaveButtons = [
+      <FlatButton
+        label="Cancel"
+        secondary
+        onTouchTap={this.onCloseSaveConfirm}
+      />,
+      <FlatButton
+        label="Save"
+        primary
+        keyboardFocused
+        onTouchTap={this.onSave}
+      />,
+    ];
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden' }}>
+        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden', width: this.props.containerWidth }}>
           <Row>
             <Col style={{ marginRight: 8 }}>
               <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
@@ -319,7 +338,8 @@ class _PhotoEditor extends React.Component {
                       <Row>
                         <IconButton
                           onTouchTap={this.returnToReactNative}
-                          iconStyle={{ width: this.width(12), height: this.width(15), color: '73D8FF' }}
+                          iconStyle={backButtonStyle}
+                          style={backButtonStyle}
                         >
                           <KeyboardArrowLeftIcon />
                         </IconButton>
@@ -329,8 +349,8 @@ class _PhotoEditor extends React.Component {
                   <div>
                     <IconBar
                       iconGroupData={this.iconGroups.editorActions}
-                      iconWidth={this.width(7)}
-                      funcList={[this.onZoomIn, this.onZoomOut, this.onUndo, this.onClear, this.onSave]}
+                      iconWidth={8}
+                      funcList={[this.onZoomIn, this.onZoomOut, this.onUndo, this.onClear, this.onOpenSaveConfirm]}
                     />
                   </div>
                 </Row>
@@ -354,7 +374,7 @@ class _PhotoEditor extends React.Component {
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <IconBar
                     iconGroupData={this.iconGroups.toolSelect}
-                    iconWidth={this.width(10)}
+                    iconWidth={10.3}
                     funcList={[this.onSelectTool]}
                   />
                 </Row>
@@ -364,14 +384,14 @@ class _PhotoEditor extends React.Component {
                   <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
                     <IconBar
                       iconGroupData={this.iconGroups.colourSelect}
-                      iconWidth={this.width(9)}
+                      iconWidth={9}
                       funcList={[this.onSelectColor]}
                     />
                   </Paper>
                   <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
                     <IconBar
                       iconGroupData={this.iconGroups.fontSize}
-                      iconWidth={this.width(9)}
+                      iconWidth={9}
                       funcList={[this.onSelectFontSize]}
                     />
                   </Paper>
@@ -379,6 +399,15 @@ class _PhotoEditor extends React.Component {
               </Paper>
             </Col>
           </Row>
+          <Dialog
+            title="Save Image?"
+            actions={confirmSaveButtons}
+            modal={false}
+            open={this.state.openSaveConfirm}
+            onRequestClose={this.onCloseSaveConfirm}
+          >
+            This will keep a copy of the original image.
+          </Dialog>
         </div>
       </MuiThemeProvider>
     );

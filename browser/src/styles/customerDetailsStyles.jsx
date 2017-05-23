@@ -40,7 +40,8 @@ const customerDetailsStyles = {
     padding: 5,
     backgroundColor: '#fff',
     color: '#000',
-    marginRight: 5,
+    marginRight: 3,
+    marginLeft: 3,
   },
   photoViewer: {
     width: 550,

@@ -25,24 +25,22 @@ class IconBar extends React.Component {
     return (
     {
       iconContainer: {
-        paddingTop: this.props.iconWidth / 15,
-        paddingBottom: this.props.iconWidth / 15,
-        marginLeft: this.props.iconWidth / 6,
-        width: this.props.iconWidth + 20,
-        height: this.props.iconWidth + 20,
-        // minWidth: this.props.iconWidth + 20,
-        // minHeight: this.props.iconWidth,
         borderStyle: 'solid',
         borderWidth: 4,
         borderRadius: 10,
         borderColor: selected ? '#0f0' : '#fff',
+        width: `${this.props.iconWidth * 0.95}vh`,
+        height: `${this.props.iconWidth}vh`,
+        paddingTop: `${this.props.iconWidth / 20}vh`,
+        paddingBottom: `${this.props.iconWidth / 20}vh`,
+        marginLeft: `${this.props.iconWidth / 30}vh`,
       },
       iconButton: {
         flex: 1,
-        width: this.props.iconWidth,
-        height: this.props.iconWidth,
-        // minWidth: this.props.iconWidth,
-        // minHeight: this.props.iconWidth,
+        width: '100%',
+        height: '100%',
+        maxWidth: '100%',
+        maxHeight: '100%',
         color: colour,
       },
     }
@@ -70,6 +68,7 @@ class IconBar extends React.Component {
                   func={this.props.funcList[funcIndex]}
                   param={icon.param ? icon.param : null}
                   iconStyle={iconStyles.iconButton}
+                  style={iconStyles.iconButton}
                 />
               </div>
             );

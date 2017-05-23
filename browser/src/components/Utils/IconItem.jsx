@@ -32,6 +32,7 @@ function IconItem(props) {
     <IconButton
       onTouchTap={onClick}
       iconStyle={props.iconStyle}
+      style={props.iconStyle}
       disabled={false}
     >
       <IconType />
