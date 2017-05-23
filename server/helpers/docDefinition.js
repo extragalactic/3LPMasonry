@@ -385,8 +385,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
      { text: '\nPlease take time to review your estimate and the pictures attached. The pricing is based on the pictures provided from your site visit. \n\n', bold: true },
      { text: 'Additional work outside of the estimate will be assessed and discussed on-site with the customer. Additional charges may apply. \n\n', bold: true },
      { text: 'If you wish to proceed with your estimate, please respond to this email or contact Barbara at (416)595-0100 EXT 102 \n\n' },
-     { text: 'Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416)595-0100 extension 106.', pageBreak: 'after' },
-     { text: 'Your Estimate Details:', style: 'details' },
+     { text: 'Please feel free to call with any questions regarding this estimate. Darren Pryke, our chief estimator, can be reached at (416)595-0100 extension 106. \n\n\n\n\n'  },
       writeGenericText(generics, genericText),
       { stack: [
        { text: 'Pricing Summary', alignment: 'center', style: 'heading' },
@@ -465,6 +464,7 @@ const pdfMakeEstimate = (customer, generics, prices, surveyPhotos, customText) =
   function writeGenericText(selected, genericText) {
     return (
     [
+     { text: 'Your Estimate Details:', style: 'details'},
       selected.watertest ? genericText.waterTest.text : '',
       selected.sills ? genericText.stoneWindowSills.content : '',
       selected.pargeex ? genericText.repairGrindParge.content : '',
