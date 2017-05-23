@@ -422,7 +422,7 @@ type Mutation {
   deletePrice(custid: String, index: Int, Option: String): Boolean
   addPrice(custid: String, price: PricingInput): Boolean
   editPriceDescription(custid: String, index: Int, option: String, text: String): Boolean
-  editPriceAmount(custid: String, index: Int, option: String, amount: Int) : Boolean
+  editPriceAmount(custid: String, index: Int, option: String, amount: String) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   toggleNoReply(custid: String, userid: String): Boolean
   getImageBase64(docID: String): base64Photo
