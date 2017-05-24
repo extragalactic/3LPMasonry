@@ -427,8 +427,6 @@ type Query {
   getPrices: [Price]
   getEstimateResults(custid: String): EstimateResults
   getFinishedSurveyQuery(id: String): [FinishedSurvey]
-
-
 }
 type Mutation {
   checkConnection: Boolean
