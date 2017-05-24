@@ -66,7 +66,7 @@ function CustomerDetailsTabs(props) {
                 <div>H: {data.hphone}<br /></div>
               }
               <br />
-              <div>{`Survey Type: ${SURVEY_TYPES[0]} `}</div>
+              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]} `}</div>
               <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
               {data.estimator !== null &&
                 <div>{`Estimator: ${data.estimator}`}</div>

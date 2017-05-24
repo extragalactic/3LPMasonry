@@ -36,6 +36,13 @@ const customerDetailsStyles = {
     backgroundColor: '#fff',
     color: '#000',
   },
+  paperStyleWebView: {
+    padding: 5,
+    backgroundColor: '#fff',
+    color: '#000',
+    marginRight: 3,
+    marginLeft: 3,
+  },
   photoViewer: {
     width: 550,
     marginTop: 20,
