@@ -728,7 +728,7 @@ class AddPrice {
             customer.prices.push(args.price);
             customer.save();
           });
-           return args.price;
+        return args.price;
       }
     };
   }
