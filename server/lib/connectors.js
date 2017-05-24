@@ -723,11 +723,12 @@ class AddPrice {
         CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.prices) {
-              customer.prices = [];
+             customer.prices = [];
             }
             customer.prices.push(args.price);
             customer.save();
           });
+           return args.price;
       }
     };
   }
