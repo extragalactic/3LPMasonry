@@ -277,6 +277,21 @@ type Price {
   description: String
   price:  Int
 }
+
+type price {
+ description: String
+ amount: String
+}
+ 
+type Prices {
+  description: String
+  amount: String
+  option1: price
+  option2: price
+  option3: price
+  option4: price
+  option5: price 
+}
 type PriceArray {
   price: [Price]
 }
@@ -420,7 +435,7 @@ type Mutation {
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
   searchCustomer(searchTerm: String): [Customers]
   deletePrice(custid: String, index: Int, Option: String): Boolean
-  addPrice(custid: String, price: PricingInput): PricingType
+  addPrice(custid: String, price: PricingInput): Prices
   editPriceDescription(custid: String, index: Int, option: String, text: String): Boolean
   editPriceAmount(custid: String, index: Int, option: String, amount: String) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
