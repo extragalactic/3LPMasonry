@@ -10,7 +10,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { IconButton } from 'material-ui';
 import Paper from 'material-ui/Paper';
-// import TextField from 'material-ui/TextField';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
 import ClearIcon from 'material-ui/svg-icons/action/delete'; // clear
@@ -32,6 +31,7 @@ import WarningMessage from '../Utils/WarningMessage';
 import styleCSS from '../../styles/customerDetailsStyles';
 import IconBar from '../Utils/IconBar';
 import { buttonStyles } from '../Utils/IconItem';
+import PinchZoomPan from '../Utils/PinchZoomPan';
 
 
 class _PhotoEditor extends React.Component {
@@ -53,6 +53,7 @@ class _PhotoEditor extends React.Component {
       tool: Tools.Pan,
       lineColor: 'red',
       fontSize: 'medium',
+      pinchZoomPanToggle: false,
     };
     this.colourRGB = { red: '#f00', black: '#000', yellow: '#ff0' };
     this.fontSizes = { small: 14, medium: 20, large: 30 };
@@ -173,7 +174,7 @@ class _PhotoEditor extends React.Component {
     let tool;
     switch (value) {
       case 'pan':
-        tool = Tools.Pan;
+        tool = Tools.None;
         break;
       case 'pencil':
         tool = Tools.Pencil;
@@ -190,8 +191,10 @@ class _PhotoEditor extends React.Component {
       default:
         tool = Tools.Pencil;
     }
+    const pinchZoom = value === 'pan';
     this.setState({
       tool,
+      pinchZoomPanToggle: pinchZoom,
     });
   }
 
@@ -234,6 +237,7 @@ class _PhotoEditor extends React.Component {
     this.sketch.setBaseImage(this.baseImage);
     this.sketch.centerContent();
     this.zoomLevel = 1;
+    this.pinchpanzoom.reset();
 
     this.setState({
       canUndo: this.sketch.canUndo(),
@@ -357,20 +361,41 @@ class _PhotoEditor extends React.Component {
               </Paper>
               <Row style={{ display: 'flex', justifyContent: 'center', paddingLeft: 3 }}>
                 <div>
-                  <SketchField
-                    name="sketch"
-                    ref={(c) => { this.sketch = c; }}
-                    width={`${this.props.containerWidth}px`}
-                    height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
-                    tool={this.state.tool}
-                    lineColor={this.state.lineColor}
-                    lineWidth={3}
-                    fontSize={this.fontSizes[this.state.fontSize]}
-                    onChange={this.onSketchChange}
-                  />
+                  <PinchZoomPan
+                    width={this.props.containerWidth}
+                    height={this.props.containerWidth / this.state.imageSizeRatio}
+                    active={this.state.pinchZoomPanToggle}
+                    name="pinchpanzoom"
+                    ref={(c) => { this.pinchpanzoom = c; }}
+                  >
+                    {(x, y, scale) => (
+                      <SketchField
+                        style={this.state.pinchZoomPanToggle ?
+                        {
+                          pointerEvents: scale === 1 ? 'auto' : 'none',
+                          transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
+                          transformOrigin: '0 0',
+                        }
+                          :
+                        {
+                          transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
+                          transformOrigin: '0 0',
+                        }}
+                        name="sketch"
+                        ref={(c) => { this.sketch = c; }}
+                        width={`${this.props.containerWidth}px`}
+                        height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
+                        tool={this.state.tool}
+                        lineColor={this.state.lineColor}
+                        lineWidth={3}
+                        fontSize={this.fontSizes[this.state.fontSize]}
+                        onChange={this.onSketchChange}
+                      />
+                    )}
+                  </PinchZoomPan>
                 </div>
               </Row>
-              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
+              <Paper style={{ ...styleCSS.paperStyleWebView, marginTop: 0 }} zDepth={2}>
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
                   <IconBar
                     iconGroupData={this.iconGroups.toolSelect}
