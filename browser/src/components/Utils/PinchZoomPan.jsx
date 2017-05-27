@@ -11,11 +11,11 @@ const MAX_SCALE = 4;
 const SETTLE_RANGE = 0.001;
 const ADDITIONAL_LIMIT = 0.2;
 const DOUBLE_TAP_THRESHOLD = 300;
-const ANIMATION_SPEED = 0.04;
-const RESET_ANIMATION_SPEED = 0.08;
+const ANIMATION_SPEED = 0.02;
+const RESET_ANIMATION_SPEED = 0.04;
 const INITIAL_X = 0;
 const INITIAL_Y = 0;
-const INITIAL_SCALE = 1;
+let INITIAL_SCALE = 1.0;
 
 const settle = (val, target, range) => {
   const lowerRange = val > target - range && val < target;
@@ -26,7 +26,7 @@ const settle = (val, target, range) => {
 const inverse = (x) => x * -1;
 
 const getPointFromTouch = (touch, element) => {
-  const rect = element.getBoundingClientRect(); 
+  const rect = element.getBoundingClientRect();
   return {
     x: touch.clientX - rect.left,
     y: touch.clientY - rect.top,
@@ -45,10 +45,12 @@ const getDistanceBetweenPoints = (pointA, pointB) => (
 const between = (min, max, value) => Math.min(max, Math.max(min, value));
 
 class PinchZoomPan extends React.Component {
-  constructor() {
-    super(...arguments);
+  constructor(props) {
+    super(props);
     this.state = this.getInititalState();
+    this.logger = props.logger;
 
+    INITIAL_SCALE = props.initialScale;
     this.handleTouchStart = this.handleTouchStart.bind(this);
     this.handleTouchMove = this.handleTouchMove.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
@@ -92,7 +94,6 @@ class PinchZoomPan extends React.Component {
         this.animation = requestAnimationFrame(frame);
       });
     };
-
     this.animation = requestAnimationFrame(frame);
   }
 
@@ -120,14 +121,13 @@ class PinchZoomPan extends React.Component {
 
   handleTouchEnd(event) {
     if (event.touches.length > 0) return null;
-    
+
     if (this.state.scale > MAX_SCALE) return this.zoomTo(MAX_SCALE, this.lastMidpoint);
     if (this.state.scale < MIN_SCALE) return this.zoomTo(MIN_SCALE, this.lastMidpoint);
 
     if (this.lastTouchEnd && this.lastTouchEnd + DOUBLE_TAP_THRESHOLD > event.timeStamp) {
       this.reset();
     }
-
     this.lastTouchEnd = event.timeStamp;
   }
 
@@ -148,7 +148,7 @@ class PinchZoomPan extends React.Component {
       x: between(this.props.width - this.state.width, 0, nextX),
       y: between(this.props.height - this.state.height, 0, nextY),
     });
-    
+
     this.lastPanPoint = point;
   }
 
@@ -172,7 +172,7 @@ class PinchZoomPan extends React.Component {
     this.lastDistance = distance;
   }
 
-  zoom(scale, midpoint) {
+  zoom(scale = this.state.scale, midpoint = { x: this.state.x, y: this.state.y }) {
     const nextWidth = this.props.width * scale;
     const nextHeight = this.props.height * scale;
     const nextX = this.state.x + (inverse(midpoint.x * scale) * (nextWidth - this.state.width) / nextWidth);
@@ -189,8 +189,8 @@ class PinchZoomPan extends React.Component {
 
   render() {
     return (
-      <div 
-        ref={(ref) => this.container = ref}
+      <div
+        ref={(ref) => { this.container = ref; }}
         onTouchStart={this.props.active ? this.handleTouchStart : () => {}}
         onTouchMove={this.props.active ? this.handleTouchMove : () => {}}
         onTouchEnd={this.props.active ? this.handleTouchEnd : () => {}}
@@ -200,7 +200,7 @@ class PinchZoomPan extends React.Component {
           height: this.props.height,
         }}
       >
-        {this.props.children(this.state.x, this.state.y, this.state.scale)} 
+        {this.props.children(this.state.x, this.state.y, this.state.scale)}
       </div>
     );
   }
@@ -209,6 +209,7 @@ class PinchZoomPan extends React.Component {
 PinchZoomPan.propTypes = {
   children: React.PropTypes.func.isRequired,
   active: React.PropTypes.bool.isRequired,
+  initialScale: React.PropTypes.number.isRequired,
   width: React.PropTypes.number.isRequired,
   height: React.PropTypes.number.isRequired,
 };

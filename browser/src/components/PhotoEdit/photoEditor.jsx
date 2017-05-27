@@ -5,6 +5,7 @@ import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'react-flexbox-grid';
 import Dimensions from 'react-dimensions';
 import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
@@ -25,6 +26,7 @@ import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
 import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
 import ZoomOutIcon from 'material-ui/svg-icons/action/zoom-out';
 import KeyboardArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
@@ -33,13 +35,13 @@ import IconBar from '../Utils/IconBar';
 import { buttonStyles } from '../Utils/IconItem';
 import PinchZoomPan from '../Utils/PinchZoomPan';
 
-
 class _PhotoEditor extends React.Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
     addSurveyPhoto: PropTypes.func.isRequired,
     getSinglePhoto: PropTypes.func.isRequired,
     containerWidth: PropTypes.number.isRequired,
+    containerHeight: PropTypes.number.isRequired,
   };
   constructor(props) {
     super(props);
@@ -50,10 +52,11 @@ class _PhotoEditor extends React.Component {
       imageSizeRatio: 1.33,
       openSaveConfirm: false,
       canUndo: false,
-      tool: Tools.Pan,
+      tool: Tools.None,
+      pinchZoomPanToggle: true,
       lineColor: 'red',
       fontSize: 'medium',
-      pinchZoomPanToggle: false,
+      testlog: 'default',
     };
     this.colourRGB = { red: '#f00', black: '#000', yellow: '#ff0' };
     this.fontSizes = { small: 14, medium: 20, large: 30 };
@@ -68,9 +71,10 @@ class _PhotoEditor extends React.Component {
       editorActions: {
         title: 'Actions',
         buttonStyle: buttonStyles.NORMAL,
+        iconSize: 7,
         icons: [
-          { label: 'ZoomIn', type: ZoomInIcon },
-          { label: 'ZoomOut', type: ZoomOutIcon },
+          // { label: 'ZoomIn', type: ZoomInIcon },
+          // { label: 'ZoomOut', type: ZoomOutIcon },
           { label: 'Undo', type: UndoIcon },
           { label: 'Clear', type: ClearIcon },
           { label: 'Save', type: SaveIcon },
@@ -80,6 +84,7 @@ class _PhotoEditor extends React.Component {
         title: 'Tools',
         buttonStyle: buttonStyles.RADIO,
         radioSelected: [true, false, false, false, false],
+        iconSize: 9,
         icons: [
           { label: 'Pan', param: 'pan', type: PanToolIcon },
           { label: 'Pencil', param: 'pencil', type: EditIcon },
@@ -91,7 +96,8 @@ class _PhotoEditor extends React.Component {
       colourSelect: {
         title: 'Colour',
         buttonStyle: buttonStyles.RADIO,
-        radioSelected: [true, false, false],        
+        radioSelected: [true, false, false],
+        iconSize: 7,
         icons: [
           { label: 'Red', param: 'red', type: LensIcon, colour: '#f00' },
           { label: 'Yellow', param: 'yellow', type: LensIcon, colour: '#ff0' },
@@ -102,6 +108,7 @@ class _PhotoEditor extends React.Component {
         title: 'Text Size',
         buttonStyle: buttonStyles.RADIO,
         radioSelected: [false, true, false],
+        iconSize: 7,
         icons: [
           { label: 'Small', param: 'small', type: LooksOneIcon },
           { label: 'Medium', param: 'medium', type: LooksTwoIcon },
@@ -157,6 +164,11 @@ class _PhotoEditor extends React.Component {
         }, () => {
           if (photoURL) {
             this.sketch.setBaseImage(this.baseImage);
+            // this.pinchpanzoom.zoom(this.imageViewerHeight() / this.baseImage.height * this.state.imageSizeRatio + 1, { x: 0, y: 0 });
+            // this.pinchpanzoom.zoom(this.state.imageSizeRatio, { x: 0, y: 0 });
+
+            // this.pinchpanzoom.zoom(this.imageViewerHeight() / (this.props.containerWidth / this.state.imageSizeRatio), { x: 0, y: 0 });
+            this.pinchpanzoom.zoom();
           } else {
             this.isValidImage = false;
           }
@@ -226,6 +238,9 @@ class _PhotoEditor extends React.Component {
   }
 
   onUndo() {
+    if (!this.state.canUndo) {
+      return;
+    }
     this.sketch.undo();
     this.setState({
       canUndo: this.sketch.canUndo(),
@@ -237,6 +252,7 @@ class _PhotoEditor extends React.Component {
     this.sketch.setBaseImage(this.baseImage);
     this.sketch.centerContent();
     this.zoomLevel = 1;
+    this.pinchpanzoom.zoom(1.0);
     this.pinchpanzoom.reset();
 
     this.setState({
@@ -298,6 +314,22 @@ class _PhotoEditor extends React.Component {
     window.postMessage();
   }
 
+  width = (percent) => {
+    return this.props.containerWidth * (percent / 100);
+  }
+
+  imageViewerHeight = () => {
+    const viewerHeight = this.props.containerHeight - this.width(this.iconGroups.editorActions.iconSize) - 80;
+    return viewerHeight;
+  }
+
+  logger = (msg) => {
+    console.log(msg);
+    this.setState({
+      testlog: msg,
+    });
+  }
+
   render() {
     if (!this.isValidImage && this.state.isLoaded) {
       return (
@@ -307,10 +339,19 @@ class _PhotoEditor extends React.Component {
       );
     }
     const backButtonStyle = {
-      width: '10vh',
-      height: '12vh',
+      width: '9vh',
+      height: '10vh',
       color: '73D8FF',
     };
+    const mainPageStyle = {
+      visibility: this.state.isLoaded ? 'visible' : 'hidden',
+      backgroundColor: '#000',
+      borderStyle: 'solid',
+      borderWidth: 3,
+      borderRadius: 3,
+      borderColor: '#000',
+    };
+
     const confirmSaveButtons = [
       <FlatButton
         label="Cancel"
@@ -326,12 +367,11 @@ class _PhotoEditor extends React.Component {
     ];
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <div style={{ visibility: this.state.isLoaded ? 'visible' : 'hidden' }}>
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <div style={mainPageStyle}>
           <Row style={{ display: 'flex', justifyContent: 'center' }}>
             <Col>
-              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-                <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Row style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: '#fff' }}>
                   <div>
                     <Col style={{ marginLeft: 0, marginTop: -10 }}>
                       { /*
@@ -350,23 +390,25 @@ class _PhotoEditor extends React.Component {
                       </Row>
                     </Col>
                   </div>
-                  <div style={{ paddingTop: 10 }}>
+                  <div style={{ marginTop: 5, marginBottom: 5, paddingRight: 5 }}>
                     <IconBar
                       iconGroupData={this.iconGroups.editorActions}
-                      iconWidth={8}
-                      funcList={[this.onZoomIn, this.onZoomOut, this.onUndo, this.onClear, this.onOpenSaveConfirm]}
+                      iconWidth={this.iconGroups.editorActions.iconSize}
+                      funcList={[this.onUndo, this.onClear, this.onOpenSaveConfirm]}
                     />
                   </div>
                 </Row>
-              </Paper>
-              <Row style={{ display: 'flex', justifyContent: 'center', paddingLeft: 3 }}>
+              <Row style={{ display: 'flex', justifyContent: 'center', paddingLeft: 0 }}>
                 <div>
                   <PinchZoomPan
                     width={this.props.containerWidth}
-                    height={this.props.containerWidth / this.state.imageSizeRatio}
+                    height={this.imageViewerHeight()}
+                    // initialScale={this.imageViewerHeight() / this.baseImage.height}
+                    initialScale={1.0}
                     active={this.state.pinchZoomPanToggle}
                     name="pinchpanzoom"
                     ref={(c) => { this.pinchpanzoom = c; }}
+                    logger={this.logger}
                   >
                     {(x, y, scale) => (
                       <SketchField
@@ -395,35 +437,45 @@ class _PhotoEditor extends React.Component {
                   </PinchZoomPan>
                 </div>
               </Row>
-              <Paper style={{ ...styleCSS.paperStyleWebView, marginTop: 0 }} zDepth={2}>
-                <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                  <IconBar
-                    iconGroupData={this.iconGroups.toolSelect}
-                    iconWidth={10.3}
-                    funcList={[this.onSelectTool]}
+              <Row
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginTop: '-22vh',
+                  marginBottom: 10 }}
+              >
+                <IconBar
+                  iconGroupData={this.iconGroups.toolSelect}
+                  iconWidth={this.iconGroups.toolSelect.iconSize}
+                  funcList={[this.onSelectTool]}
+                />
+              </Row>
+              <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ borderRightStyle: 'solid', borderRightColor: '#999', borderRightWidth: 2, paddingRight: 4 }}>
+                  <IconBar  
+                    iconGroupData={this.iconGroups.colourSelect}
+                    iconWidth={this.iconGroups.colourSelect.iconSize}
+                    funcList={[this.onSelectColor]}
                   />
-                </Row>
-              </Paper>
-              <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-                <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-                    <IconBar
-                      iconGroupData={this.iconGroups.colourSelect}
-                      iconWidth={9}
-                      funcList={[this.onSelectColor]}
-                    />
-                  </Paper>
-                  <Paper style={styleCSS.paperStyleWebView} zDepth={2}>
-                    <IconBar
-                      iconGroupData={this.iconGroups.fontSize}
-                      iconWidth={9}
-                      funcList={[this.onSelectFontSize]}
-                    />
-                  </Paper>
-                </Row>
-              </Paper>
+                </div>
+                <div style={{ paddingLeft: 2 }}>
+                  <IconBar
+                    iconGroupData={this.iconGroups.fontSize}
+                    iconWidth={this.iconGroups.fontSize.iconSize}
+                    funcList={[this.onSelectFontSize]}
+                  />
+                </div>
+              </Row>
             </Col>
           </Row>
+          {/*
+          <Row>
+            <TextField
+              id="text-field-log"
+              value={this.state.testlog}
+            />
+          </Row>
+          */}
           <Dialog
             title="Save Image?"
             actions={confirmSaveButtons}
