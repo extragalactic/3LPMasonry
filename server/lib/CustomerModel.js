@@ -146,6 +146,7 @@ const CustomerSchema = new mongoose.Schema({
     },
   ],
   estimatePDF: String,
+  emailID: String,
   surveyReadyforPrice: { type: Boolean, default: false },
   estimateQueueId: String,
   surveyType: Number,

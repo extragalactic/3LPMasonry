@@ -8,7 +8,10 @@ const resolveFunctions = {
       const customer = new ctx.constructor.Customer();
       return customer.findCustomer(args);
     },
-
+    getStatus(_, args, ctx) {
+      const status = new ctx.constructor.GetStatus();
+      return status.getStatus(args);
+    },
     address(_, args, ctx) {
       const address = new ctx.constructor.Address();
       return address.findAddress(args);
