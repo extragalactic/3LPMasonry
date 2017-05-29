@@ -175,7 +175,11 @@ class EstimateActions {
         attr: { CUSTOMER: this.customer.firstName, LINK: url.split('//').pop() },
       };
       client.send_transactional_template(emailData).on('complete', (data) => {
-        console.log(data);
+        CustomersModel.findOne({ _id: this.customer._id })
+          .then((customer)=> {
+            customer.emailID = JSON.parse(data).data['message-id'];
+            customer.save();
+          });
       });
   }
 

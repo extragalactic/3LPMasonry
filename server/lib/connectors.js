@@ -20,6 +20,8 @@ import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateCreationClass';
 import CustomerStatus from '../helpers/customerStatusClass';
+import PricingClass from '../helpers/pricingClass';
+import SendInBlue from '../helpers/sendInBlueClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -723,11 +725,12 @@ class AddPrice {
         CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.prices) {
-              customer.prices = [];
+             customer.prices = [];
             }
             customer.prices.push(args.price);
             customer.save();
           });
+        return args.price;
       }
     };
   }
@@ -980,7 +983,20 @@ class ToggleNoReply {
   }
 }
 
+class GetStatus {
+  constructor() {
+    this.getStatus = (args) => {
+      return CustomersModel.findOne({ _id: args.custid })
+       .then((customer) => {
+         const status = new SendInBlue(null, customer.emailID);
+         return status.getEmailStatus().then((res) => (res));
+       });
+    };
+  }
+}
+
 module.exports = {
+  GetStatus,
   ToggleNoReply,
   CreateDocument,
   CheckConnection,
