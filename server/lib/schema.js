@@ -9,6 +9,7 @@ const typeDefinitions = `
     cphone: String
     wphone: String
     address: String
+    emailID: String
     notes: [notes]
     surveyor: Surveyor
     survey: Surveys
@@ -224,6 +225,11 @@ type SurveyNotes {
     user: String
 }
 
+type emailStatus {
+  clicks: String
+  views: String
+}
+
 type SurveyPhotos {
     heading: String
     description: String
@@ -424,7 +430,8 @@ type Query {
   getMessages(id: String): [notes]
   getFinishedSurvey(id: String): [FinishedSurvey]
   getMyCustomers(id: String): CustomerStatus
-  getPrices: [Price]
+  getPrices:[Price]
+  getStatus(custid: String): emailStatus
   getEstimateResults(custid: String): EstimateResults
   getFinishedSurveyQuery(id: String): [FinishedSurvey]
 }
