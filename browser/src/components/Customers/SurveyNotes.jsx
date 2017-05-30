@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-flexbox-grid';
+import { FormatTimestamp } from '../Utils/Utils';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -23,8 +24,8 @@ function SurveyNotes(props) {
             <Row style={styleCSS.surveyNote} key={note.timestamp}>
               <Col>
                 <Row><div style={styleCSS.surveyNoteTitle}>{note.user} says:</div></Row>
-                <Row><div style={styleCSS.surveyNoteTimestamp}>({note.timestamp.slice(0, note.timestamp.indexOf('T'))})</div></Row>
-                <Row><span style={styleCSS.surveyNoteText}> {`${note.heading.toLowerCase()}: ${note.text}`}</span></Row>
+                <Row><div style={styleCSS.surveyNoteTimestamp}>({FormatTimestamp(note.timestamp)})</div></Row>
+                <Row><span style={styleCSS.surveyNoteText}><b>{`${note.heading.toUpperCase()}:`}</b> {`${note.text}`}</span></Row>
               </Col>
             </Row>
           );
