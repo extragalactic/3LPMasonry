@@ -63,6 +63,7 @@ function _CustomerDetails(props) {
         <Row style={styleCSS.statusBar}>
           <Col>
             <IconButton
+              iconStyle={{ width: 35, height: 35, marginLeft: -5, marginTop: -5 }}
               tooltip="Back to customers list"
               tooltipPosition="top-right"
               tooltipStyles={{ fontSize: 16, color: '#fff' }}

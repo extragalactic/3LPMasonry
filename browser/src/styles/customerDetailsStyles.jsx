@@ -57,6 +57,7 @@ const customerDetailsStyles = {
     marginTop: 0,
     marginBottom: 15,
     paddingLeft: 15,
+    paddingRight: 10,
   },
   surveyNotesTitle: {
     fontSize: 22,
@@ -65,7 +66,7 @@ const customerDetailsStyles = {
   surveyNote: {
     marginTop: 5,
     marginRight: 13,
-    width: 370,
+    width: '100%',
   },
   surveyNoteText: {
     width: '100%',

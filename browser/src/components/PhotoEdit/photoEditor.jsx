@@ -20,7 +20,9 @@ import LooksThreeIcon from 'material-ui/svg-icons/image/looks-3'; // large font
 import EditIcon from 'material-ui/svg-icons/image/edit'; // pencil
 import Crop32Icon from 'material-ui/svg-icons/image/crop-3-2'; // rectangle
 import TextFieldsIcon from 'material-ui/svg-icons/editor/text-fields'; // textfield
-import CallMadeIcon from 'material-ui/svg-icons/communication/call-made'; // arrow
+import LineIcon from 'material-ui/svg-icons/content/remove'; // line
+// import CallMadeIcon from 'material-ui/svg-icons/communication/call-made'; // arrow
+import ArrowIcon from 'material-ui/svg-icons/navigation/arrow-forward'; // arrow
 import LensIcon from 'material-ui/svg-icons/image/lens'; // colour swatch
 import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
 import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
@@ -83,12 +85,13 @@ class _PhotoEditor extends React.Component {
       toolSelect: {
         title: 'Tools',
         buttonStyle: buttonStyles.RADIO,
-        radioSelected: [true, false, false, false, false],
-        iconSize: 9,
+        radioSelected: [true, false, false, false, false, false],
+        iconSize: 7,
         icons: [
           { label: 'Pan', param: 'pan', type: PanToolIcon },
           { label: 'Pencil', param: 'pencil', type: EditIcon },
-          { label: 'Arrow', param: 'arrow', type: CallMadeIcon },
+          { label: 'Line', param: 'line', type: LineIcon },
+          { label: 'Arrow', param: 'arrow', type: ArrowIcon },
           { label: 'Box', param: 'box', type: Crop32Icon },
           { label: 'Text', param: 'text', type: TextFieldsIcon },
         ],
@@ -190,6 +193,9 @@ class _PhotoEditor extends React.Component {
         break;
       case 'pencil':
         tool = Tools.Pencil;
+        break;
+      case 'line':
+        tool = Tools.Line;
         break;
       case 'arrow':
         tool = Tools.Arrow;
