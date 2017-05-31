@@ -25,15 +25,17 @@ function _InternalNotes(props) {
         { props.notes.length === 0 &&
           <Row><div>There are no notes for this project.</div></Row>
         }
-        { props.notes.map((note, index) => {
-          return (
-            <Row style={styleCSS.surveyNote} key={note._id}>
-              <Col>
-                <NoteItem note={note} custid={props.custid} deleteNote={props.deleteNotes} index={index} style={{ width: '100%' }} />
-              </Col>
-            </Row>
-          );
-        })}
+        { props.notes.filter(note => (note.text && note.text !== ''))
+          .map((note, index) => {
+            return (
+              <Row style={styleCSS.surveyNote} key={note._id}>
+                <Col>
+                  <NoteItem note={note} custid={props.custid} deleteNote={props.deleteNotes} index={index} style={{ width: '100%' }} />
+                </Col>
+              </Row>
+            );
+          })
+        }
         <Row>
           <AddNewNote submitNewNote={props.addNotes} custid={props.custid} />
         </Row>
