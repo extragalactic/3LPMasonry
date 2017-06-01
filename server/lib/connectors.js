@@ -762,13 +762,14 @@ class DeletePrice {
 class EditPriceDescription {
   constructor() {
     this.editPriceDescription = (args) => {
+      //console.log(args)
       CustomersModel.findById(args.custid)
       .then((customer) => {
         if (args.option === 'option0') {
-          customer.prices[args.index].description = args.text;
+          customer.prices[args.index] = { description: args.text, amount: customer.prices[args.index].amount };
         }
         if (args.option !== 'option0') {
-          customer.prices[args.index][args.option].description = args.text;
+          customer.prices[args.index][args.option] = {description: args.text, amount: customer.prices[args.index].amount};
         }
         customer.save();
       });
@@ -779,13 +780,18 @@ class EditPriceDescription {
 class EditPriceAmount {
   constructor() {
     this.editPriceAmount = (args) => {
+      console.log(args)
       CustomersModel.findById(args.custid)
       .then((customer) => {
+        console.log(customer.prices[args.index])
         if (args.option === 'option0') {
-          customer.prices[args.index].amount = args.amount;
-        }
+          customer.prices[args.index] = { description: customer.prices[args.index].description, amount: args.amount };
+
+  }
         if (args.option !== 'option0') {
-          customer.prices[args.index][args.option].description = args.amount;
+          customer.prices[args.index][args.option] = {description: customer.prices[args.index].description, amount: args.amount};
+
+
         }
         customer.save();
       });
@@ -994,8 +1000,24 @@ class GetStatus {
     };
   }
 }
+class SaveEstimatePDF {
+  constructor() {
+    this.saveEstimatePDF = (args) => {
+  return CustomersModel.findOne({_id : args.custid})
+     .then((customer) => {
+       const estimateActions = new EstimateActions(customer);
+       estimateActions.saveEstimatePreview(args.url);
+       return true;
+
+     })
+
+    }
+  
+ }
+}
 
 module.exports = {
+  SaveEstimatePDF,
   GetStatus,
   ToggleNoReply,
   CreateDocument,
