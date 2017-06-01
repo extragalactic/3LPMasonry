@@ -61,7 +61,7 @@ class _PhotoEditor extends React.Component {
       testlog: 'default',
     };
     this.colourRGB = { red: '#f00', black: '#000', yellow: '#ff0' };
-    this.fontSizes = { small: 14, medium: 20, large: 30 };
+    this.fontSizes = { small: 11, medium: 17, large: 26 };
     this.custID = '';
     this.photoIndex = 0;
     this.photoData = {};
@@ -169,7 +169,6 @@ class _PhotoEditor extends React.Component {
             this.sketch.setBaseImage(this.baseImage);
             // this.pinchpanzoom.zoom(this.imageViewerHeight() / this.baseImage.height * this.state.imageSizeRatio + 1, { x: 0, y: 0 });
             // this.pinchpanzoom.zoom(this.state.imageSizeRatio, { x: 0, y: 0 });
-
             // this.pinchpanzoom.zoom(this.imageViewerHeight() / (this.props.containerWidth / this.state.imageSizeRatio), { x: 0, y: 0 });
             this.pinchpanzoom.zoom();
           } else {
@@ -186,6 +185,9 @@ class _PhotoEditor extends React.Component {
   }
 
   onSelectTool(value) {
+    if (this.state.tool === Tools.TextField) {
+      this.sketch.deselectObjects();
+    }
     let tool;
     switch (value) {
       case 'pan':
@@ -325,7 +327,7 @@ class _PhotoEditor extends React.Component {
   }
 
   imageViewerHeight = () => {
-    const viewerHeight = this.props.containerHeight - this.width(this.iconGroups.editorActions.iconSize) - 80;
+    const viewerHeight = this.props.containerHeight - this.width(this.iconGroups.editorActions.iconSize) - 70;
     return viewerHeight;
   }
 
@@ -344,11 +346,7 @@ class _PhotoEditor extends React.Component {
         </MuiThemeProvider>
       );
     }
-    const backButtonStyle = {
-      width: '9vh',
-      height: '10vh',
-      color: '73D8FF',
-    };
+
     const mainPageStyle = {
       visibility: this.state.isLoaded ? 'visible' : 'hidden',
       backgroundColor: '#000',
@@ -356,6 +354,11 @@ class _PhotoEditor extends React.Component {
       borderWidth: 3,
       borderRadius: 3,
       borderColor: '#000',
+    };
+    const backButtonStyle = {
+      width: '9vh',
+      height: '10vh',
+      color: '73D8FF',
     };
 
     const confirmSaveButtons = [
@@ -447,7 +450,7 @@ class _PhotoEditor extends React.Component {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  marginTop: '-22vh',
+                  marginTop: '-19vh',
                   marginBottom: 10 }}
               >
                 <IconBar
@@ -458,7 +461,7 @@ class _PhotoEditor extends React.Component {
               </Row>
               <Row style={{ display: 'flex', justifyContent: 'center' }}>
                 <div style={{ borderRightStyle: 'solid', borderRightColor: '#999', borderRightWidth: 2, paddingRight: 4 }}>
-                  <IconBar  
+                  <IconBar
                     iconGroupData={this.iconGroups.colourSelect}
                     iconWidth={this.iconGroups.colourSelect.iconSize}
                     funcList={[this.onSelectColor]}
