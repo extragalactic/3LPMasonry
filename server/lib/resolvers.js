@@ -250,6 +250,10 @@ const resolveFunctions = {
       const estimate = new ctx.constructor.ToggleNoReply();
       return estimate.toggleNoReply(args);
     },
+    saveEstimatePDF(_, args, ctx) {
+      const pdf = new ctx.constructor.SaveEstimatePDF();
+      return pdf.saveEstimatePDF(args);
+    },
   },
 };
 module.exports = resolveFunctions;

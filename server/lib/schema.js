@@ -447,6 +447,7 @@ type Mutation {
   toggleNoReply(custid: String, userid: String): Boolean
   getImageBase64(docID: String): base64Photo
   generatePDFEstimate(custid: String, generics: generics, text: String, preview: Boolean, user: String): pdfUrl
+  saveEstimatePDF(custid: String, url: String): Boolean 
   createDocument(custid: String): estimateHistory
   getEstimateResults(custid: String): EstimateResults 
   acceptEstimate(userid: String, custid: String, estimator: String): Customers
