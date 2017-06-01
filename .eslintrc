@@ -7,7 +7,8 @@
     "react/jsx-indent": [2, 2],
     "arrow-body-style": ["error", "always"],
     "no-underscore-dangle": 0,
-    "max-len": 0
+    "max-len": 0,
+    "no-mixed-operators": ["error", {"allowSamePrecedence": true}]
   },
   "env": {
     "browser": true,

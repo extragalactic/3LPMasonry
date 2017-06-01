@@ -11,6 +11,7 @@ import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
 import InternalNotes from './InternalNotes';
 import SurveyNotes from './SurveyNotes';
+import { FormatPhoneNumber } from '../Utils/Utils';
 import { SURVEY_TYPES } from './CustomerDataList';
 import styleCSS from '../../styles/customerDetailsStyles';
 
@@ -66,10 +67,14 @@ function CustomerDetailsTabs(props) {
                 <div>H: {data.hphone}<br /></div>
               }
               <br />
-              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]} `}</div>
-              <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName} (mobile: ${data.surveyor.mobile})`}</div>
+              <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName}`}</div>
+              <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
+              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]}`}</div>
               {data.estimator !== null &&
-                <div>{`Estimator: ${data.estimator}`}</div>
+                [
+                  <br />,
+                  <div>{`Estimator: ${data.estimator}`}</div>,
+                ]
               }
               <br />
             </Paper>
@@ -93,7 +98,7 @@ function CustomerDetailsTabs(props) {
         <Row>
           <Col md={5} lg={5} style={{ padding: 10 }}>
             <Paper style={styleCSS.paperStyleLarge} zDepth={2}>
-              <Row style={{ width: 500 }}>
+              <Row style={{ width: '100%' }}>
                 <SurveyNotes notes={data.survey.notes} />
               </Row>
             </Paper>

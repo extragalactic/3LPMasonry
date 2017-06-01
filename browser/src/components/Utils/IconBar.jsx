@@ -25,14 +25,18 @@ class IconBar extends React.Component {
     return (
     {
       iconContainer: {
-        borderStyle: 'solid',
-        borderWidth: 4,
+        zIndex: 100,
+        borderStyle: selected ? 'solid' : 'solid',
+        borderWidth: 5,
         borderRadius: 10,
-        borderColor: selected ? '#0f0' : '#fff',
+        borderColor: selected ? '#0f0' : 'transparent',
+        backgroundColor: 'rgba(100,100,100,0.5)',
         width: `${this.props.iconWidth * 0.95}vh`,
         height: `${this.props.iconWidth}vh`,
-        paddingTop: `${this.props.iconWidth / 20}vh`,
-        paddingBottom: `${this.props.iconWidth / 20}vh`,
+        paddingTop: 0,
+        paddingBottom: 0,
+        // paddingTop: `${this.props.iconWidth / 30}vh`,
+        // paddingBottom: `${this.props.iconWidth / 30}vh`,
         marginLeft: `${this.props.iconWidth / 30}vh`,
       },
       iconButton: {
@@ -55,7 +59,7 @@ class IconBar extends React.Component {
             const iconType = icon.type;
             // if only a single callback function is provided for a group larger than one, use the same function for each icon
             const funcIndex = this.props.iconGroupData.icons.length === this.props.funcList.length ? index : 0;
-            const colour = icon.colour ? icon.colour : '#000';
+            const colour = icon.colour ? icon.colour : '#fff';
             const radioSelect = this.props.iconGroupData.radioSelected ? this.props.iconGroupData.radioSelected[index] : false;
             const iconStyles = this.iconStyles(colour, radioSelect);
             return (

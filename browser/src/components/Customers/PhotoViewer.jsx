@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImageGallery from 'react-image-gallery';
+import { FormatTimestamp } from '../Utils/Utils';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 import styles from 'style-loader!css-loader!react-image-gallery/styles/css/image-gallery.css';
@@ -59,7 +60,7 @@ class PhotoViewer extends React.Component {
           <span>{this.state.text}</span>
         </div>
         <div>
-          <span style={styleCSS.italicData}>{this.state.timestamp}</span>
+          <span style={styleCSS.italicData}>{FormatTimestamp(this.state.timestamp)}</span>
         </div>
       </div>
     );

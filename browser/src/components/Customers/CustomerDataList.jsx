@@ -1,4 +1,5 @@
 // Wrapper class for customer data array of objects
+import { FormatPhoneNumber } from '../Utils/Utils';
 
 const CUSTOMER_STATUS = ['new customer', 'customer called, pending call back', 'survey scheduled', 'survey in progress', 'estimate in queue', 'estimate accepted', 'estimate sent'];
 const SURVEY_TYPES = ['Online', 'On-site'];
@@ -43,10 +44,11 @@ class CustomerDataList {
       case fields.ADDRESS:
       case fields.EMAIL1:
       case fields.EMAIL2:
+        return this.data[index][col] ? this.data[index][col] : '';
       case fields.CPHONE:
       case fields.WPHONE:
       case fields.HPHONE:
-        return this.data[index][col] ? this.data[index][col] : '';
+        return this.data[index][col] ? FormatPhoneNumber(this.data[index][col]) : '';
       case fields.FULL_NAME: {
         let fullName = '';
         if (this.data[index].firstName) {

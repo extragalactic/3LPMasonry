@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 
 import CustomerDetails from './CustomerDetails';
 
-// the default user for testing the Details page (perhaps use localStorage to remember the last customer id?)
+// a default user for testing the Details page (perhaps use localStorage to remember the last customer id?)
 const DEFAULT_CUSTOMER_ID = '58deb4ee184654537bea0096';
 // a flag to assist with development testing
 const _TEST_USER = false;

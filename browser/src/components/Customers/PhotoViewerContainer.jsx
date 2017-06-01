@@ -8,7 +8,7 @@ import ImageAddAPhoto from 'material-ui/svg-icons/image/add-a-photo';
 
 import PhotoViewer from './PhotoViewer';
 import WarningMessage from '../Utils/WarningMessage';
-import LoadingPopup from './LoadingPopup';
+import LoadingPopup from '../Utils/LoadingPopup';
 
 import styleCSS from '../../styles/customerDetailsStyles';
 
