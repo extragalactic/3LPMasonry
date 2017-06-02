@@ -228,6 +228,7 @@ type SurveyNotes {
 type emailStatus {
   clicks: String
   views: String
+  delivery: String
 }
 
 type SurveyPhotos {
@@ -282,6 +283,7 @@ type SurveyPricing {
 type Price {
   description: String
   price:  Int
+  _id: String
 }
 
 type price {
@@ -439,9 +441,11 @@ type Mutation {
   checkConnection: Boolean
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
   searchCustomer(searchTerm: String): [Customers]
+  addPriceToHistory(description: String): Price
+  deletePriceFromHistory(id: String): Boolean
   deletePrice(custid: String, index: Int, Option: String): Boolean
   addPrice(custid: String, price: PricingInput): Prices
-  editPriceDescription(custid: String, index: Int, option: String, text: String): Boolean
+  editPriceDescription(custid: String, index: Int, option: String, text: String, amount: String): Boolean
   editPriceAmount(custid: String, index: Int, option: String, amount: String) : Boolean
   addGeneric(heading: String, paragraph: [String], bulletpoints: [String], warranty: String): Generic
   toggleNoReply(custid: String, userid: String): Boolean

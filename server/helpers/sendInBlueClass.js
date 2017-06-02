@@ -10,6 +10,7 @@ class SendInBlue {
       const obj = {};
       this.client.get_report({ message_id: this.mailid }).on('complete', (data) => {
         const report = JSON.parse(data).data;
+        console.log(report)
         report.forEach((item) => {
           if (obj.hasOwnProperty(item.event)) {
             obj[item.event]++;
@@ -17,7 +18,8 @@ class SendInBlue {
             obj[item.event] = 1;
           }
         });
-        resolve({ clicks: obj.clicks, views: obj.views });
+        console.log(obj)
+        resolve({ clicks: obj.clicks, views: obj.views, delivery: obj.delivery });
       });
     });
     return status;

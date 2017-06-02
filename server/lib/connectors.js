@@ -762,14 +762,14 @@ class DeletePrice {
 class EditPriceDescription {
   constructor() {
     this.editPriceDescription = (args) => {
-      //console.log(args)
+      console.log(args)
       CustomersModel.findById(args.custid)
       .then((customer) => {
         if (args.option === 'option0') {
-          customer.prices[args.index] = { description: args.text, amount: customer.prices[args.index].amount };
+          customer.prices[args.index] = { description: args.text, amount: args.amount };
         }
         if (args.option !== 'option0') {
-          customer.prices[args.index][args.option] = {description: args.text, amount: customer.prices[args.index].amount};
+          customer.prices[args.index][args.option] = {description: args.text, amount: args.amount};
         }
         customer.save();
       });
@@ -781,17 +781,14 @@ class EditPriceAmount {
   constructor() {
     this.editPriceAmount = (args) => {
       console.log(args)
-      CustomersModel.findById(args.custid)
+      CustomersModel.findOne({ id_: args.custid })
       .then((customer) => {
-        console.log(customer.prices[args.index])
-        if (args.option === 'option0') {
+      if (args.option === 'option0') {
           customer.prices[args.index] = { description: customer.prices[args.index].description, amount: args.amount };
 
   }
         if (args.option !== 'option0') {
           customer.prices[args.index][args.option] = {description: customer.prices[args.index].description, amount: args.amount};
-
-
         }
         customer.save();
       });
@@ -1008,15 +1005,36 @@ class SaveEstimatePDF {
        const estimateActions = new EstimateActions(customer);
        estimateActions.saveEstimatePreview(args.url);
        return true;
-
      })
 
     }
-  
- }
+  }
+}
+
+class AddPriceToHistory {
+  constructor() {
+    this.addPriceToHistory = (args) => {
+      const newPrice = new PricingModel({
+        description: args.description,
+      });
+      newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
+      return newPrice;
+
+    };
+  }
+}
+class DeletePriceFromHistory { 
+  constructor() {
+    this.deletePriceFromHistory = (args) => {
+      PricingModel.findByIdAndRemove(args.id)
+        .then(data => console.log(data)).catch(err => console.error(err));
+    };
+  }
 }
 
 module.exports = {
+  DeletePriceFromHistory,
+  AddPriceToHistory,
   SaveEstimatePDF,
   GetStatus,
   ToggleNoReply,
