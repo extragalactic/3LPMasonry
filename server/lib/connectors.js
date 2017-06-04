@@ -762,21 +762,13 @@ class DeletePrice {
 class EditPriceDescription {
   constructor() {
     this.editPriceDescription = (args) => {
-<<<<<<< HEAD
-=======
-      console.log(args)
->>>>>>> 720103d4c7b8393e8c33d5c531390d159862eb6f
       CustomersModel.findById(args.custid)
       .then((customer) => {
         if (args.option === 'option0') {
           customer.prices[args.index] = { description: args.text, amount: args.amount };
         }
         if (args.option !== 'option0') {
-<<<<<<< HEAD
           customer.prices[args.index][args.option] = { description: args.text, amount: args.amount };
-=======
-          customer.prices[args.index][args.option] = {description: args.text, amount: args.amount};
->>>>>>> 720103d4c7b8393e8c33d5c531390d159862eb6f
         }
         customer.save();
       });
@@ -787,24 +779,13 @@ class EditPriceDescription {
 class EditPriceAmount {
   constructor() {
     this.editPriceAmount = (args) => {
-<<<<<<< HEAD
-      CustomersModel.findOne({ id_: args.custid })
-      .then((customer) => {
-        if (args.option === 'option0') {
-=======
-      console.log(args)
       CustomersModel.findOne({ id_: args.custid })
       .then((customer) => {
       if (args.option === 'option0') {
->>>>>>> 720103d4c7b8393e8c33d5c531390d159862eb6f
           customer.prices[args.index] = { description: customer.prices[args.index].description, amount: args.amount };
         }
         if (args.option !== 'option0') {
-<<<<<<< HEAD
           customer.prices[args.index][args.option] = { description: customer.prices[args.index].description, amount: args.amount };
-=======
-          customer.prices[args.index][args.option] = {description: customer.prices[args.index].description, amount: args.amount};
->>>>>>> 720103d4c7b8393e8c33d5c531390d159862eb6f
         }
         customer.save();
       });
