@@ -137,13 +137,7 @@ class EstimateActions {
                     CustomersModel.findOne({ _id: this.customer._id })
                       .then((customer) => {
                         customer.estimatePDF = res.Location;
-                        if (this.preview) {
-                          customer.previewHistory.push({
-                            url: res.Location,
-                            timestamp: moment().tz('America/New_York').format('ddddMMMMDoYYYY h:mm:ss a'),
-                            estimator: customer.estimator,
-                          });
-                        } else {
+                        if (!this.preview) {
                          customer.estimateHistory.push({
                            url: res.Location,
                            timestamp: moment().tz('America/New_York').format('ddddMMMMDoYYYY h:mm:ss a'),
@@ -181,6 +175,18 @@ class EstimateActions {
             customer.save();
           });
       });
+  }
+
+  saveEstimatePreview(url) {
+    CustomersModel.findOne({ _id: this.customer._id })
+     .then((customer) => {
+       customer.previewHistory.push({
+         url,
+         timestamp: moment().tz('America/New_York').format('ddddMMMMDoYYYY h:mm:ss a'),
+         estimator: customer.estimator,
+       });
+       customer.save();
+     });
   }
 
   get pdfUrl() {
