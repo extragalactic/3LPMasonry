@@ -250,6 +250,18 @@ const resolveFunctions = {
       const estimate = new ctx.constructor.ToggleNoReply();
       return estimate.toggleNoReply(args);
     },
+    saveEstimatePDF(_, args, ctx) {
+      const pdf = new ctx.constructor.SaveEstimatePDF();
+      return pdf.saveEstimatePDF(args);
+    },
+    addPriceToHistory(_, args, ctx) {
+      const price = new ctx.constructor.AddPriceToHistory();
+      return price.addPriceToHistory(args);
+    },
+     deletePriceFromHistory(_, args, ctx) {
+      const price = new ctx.constructor.DeletePriceFromHistory();
+      return price.deletePriceFromHistory(args);
+    },
   },
 };
 module.exports = resolveFunctions;

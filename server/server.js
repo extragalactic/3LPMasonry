@@ -100,14 +100,10 @@ app.post('/saveimage', bodyParser.json(), (req, res) => {
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, '../browser/')));
-
-
-
 app.use(express.static(path.join(__dirname, '../customerupload/build/static')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/css')));
 app.use(express.static(path.join(__dirname, '../customerupload/build/static/media')));
 app.use(express.static(path.join(__dirname, '../customerupload/build')));
-
 app.get('/upload/:userid', (req, res) => {
   res.sendFile(path.join(__dirname, '../customerupload/build/index.html'));
 });
@@ -145,16 +141,15 @@ app.use((req, res, next) => {
 
 app.use(timeout('10s'));
 
-const options = { 
-                  user: process.env.DB_USER,
-                  pass: process.env.DB_PASS,
-                  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 800000 } }, 
-                  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 800000 } } 
-              }; 
+const options = {
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS,
+  server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 800000 } },
+  replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 800000 } } };
 
 Mongoose.connect(process.env.DB_HOST, options);
 const conn = Mongoose.connection;             
-conn.on('error', console.error.bind(console, 'connection error:'));  
+conn.on('error', console.error.bind(console, 'connection error:'));
 conn.once('open', () => {
   app.listen(app.get('port'));
   https.createServer(ssl, app).listen(443);
