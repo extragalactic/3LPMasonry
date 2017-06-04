@@ -262,7 +262,7 @@ const resolveFunctions = {
       const price = new ctx.constructor.DeletePriceFromHistory();
       return price.deletePriceFromHistory(args);
     },
-      setCustomerStatus(_, args, ctx) {
+     setCustomerStatus(_, args, ctx) {
       const price = new ctx.constructor.SetCustomerStatus();
       return price.setCustomerStatus(args);
     },
@@ -278,6 +278,7 @@ const resolveFunctions = {
       const price = new ctx.constructor.DeleteCustomerfromSurveyor();
       return price.deleteCustomerfromSurveyor(args);
     },
+
   },
 };
 module.exports = resolveFunctions;
