@@ -58,23 +58,23 @@ function CustomerDetailsTabs(props) {
               }
               <br />
               {data.wphone &&
-                <div>W: {data.wphone}<br /></div>
+                <div>W: {FormatPhoneNumber(data.wphone)}<br /></div>
               }
               {data.cphone &&
-                <div>C: {data.cphone}<br /></div>
+                <div>C: {FormatPhoneNumber(data.cphone)}<br /></div>
               }
               {data.hphone &&
-                <div>H: {data.hphone}<br /></div>
+                <div>H: {FormatPhoneNumber(data.hphone)}<br /></div>
               }
               <br />
               <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName}`}</div>
               <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
               <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]}`}</div>
               {data.estimator !== null &&
-                [
-                  <br />,
-                  <div>{`Estimator: ${data.estimator}`}</div>,
-                ]
+                <div>
+                  <br />
+                  <div>{`Estimator: ${data.estimator}`}</div>
+                </div>
               }
               <br />
             </Paper>

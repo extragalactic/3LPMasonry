@@ -37,7 +37,6 @@ class NoteItem extends React.Component {
     this.setState({
       active: 2,
     });
-
     this.props.deleteNote({
       variables: {
         custid: this.props.custid,
