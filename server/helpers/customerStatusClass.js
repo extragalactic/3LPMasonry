@@ -8,7 +8,6 @@ class CustomerStatus {
     this.customer = customer;
     this.user = user;
   }
-
   setEstimatorName() {
     UsersModel.findOne({ _id: this.user })
      .then((user) => {
@@ -19,7 +18,6 @@ class CustomerStatus {
           });
      });
   }
-
   getCustomer() {
     const customerObj = new Promise((resolve, reject) => {
       CustomersModel.findOne({ _id: this.customer })
@@ -68,11 +66,10 @@ class CustomerStatus {
              let res = false;
               user.estimates.forEach((estimate) => {
                 if (estimate.id === this.customer) {
-                    res = true;
+                  res = true;
                 }
               });
-          resolve(res);
-
+             resolve(res);
            });
     });
     return results;
@@ -111,9 +108,9 @@ class CustomerStatus {
     UsersModel.findOne({ _id: this.user })
      .then((user) => {
        user.estimates = user.estimates.map((est) => {
-          if (est.id == this.customer) {
-          if(est.status == 0 ){
-            est.status = 1;
+         if (est.id == this.customer) {
+           if (est.status == 0 ){
+             est.status = 1;
           } else if (est.status == 1 || est.status == 2) {
             est.status = 0;
           }
@@ -124,6 +121,88 @@ class CustomerStatus {
        user.save();
      });
      return status;
+  }
+
+  setStatusSurveyor(status) {
+    UsersModel.findOne({ _id: this.user })
+       .then((user) => {
+          user.newCustomers = user.newCustomers.map((cust) => {
+            if(cust.id === this.customer){
+              cust.status = status;
+              return cust;
+            }
+            return cust;
+          })
+          user.save();
+       });
+      CustomersModel.findOne({_id: this.customer})
+        .then((customer) => {
+          customer.status = status;
+          customer.save();
+        });
+  }
+  getEstimateStatus(status) {
+    if (status === 0) {
+      return 6;
+    }
+    if (status === 1) {
+      return 7;
+    }
+    if (status === 2) {
+      return 8;
+    }
+  }
+
+  setStatusEstimator(status) {
+    UsersModel.findOne({ _id: this.user })
+       .then((user) => {
+          user.estimates = user.estimates.map((cust) => {
+            if(cust.id === this.customer) {
+              cust.status = status;
+              return cust;
+            }
+            return cust;
+          })
+          user.save();
+       });
+      CustomersModel.findOne({ _id: this.customer })
+        .then((customer) => {
+         customer.status = this.getEstimateStatus(status);
+          customer.save();
+        });
+  }
+
+  dispatchCustomertoSurveyor() {
+    CustomersModel.findOne({ _id: this.customer })
+       .then((customer) => {
+         UsersModel.findOne({ _id: this.user })
+          .then((user) => {
+            user.newCustomers.push({
+              id: customer._id,
+              firstName: customer.firstName,
+              lastName: customer.lastName,
+              email1: customer.email1,
+              email2: customer.email2,
+              cphone: customer.cphone,
+              hphone: customer.hphone,
+              wphone: customer.wphone,
+              address: customer.address,
+              status: 0,
+            });
+            user.save();
+          });
+       });
+  }
+  deleteCustomerfromSurveyor(){
+    UsersModel.findOne({ _id: this.user })
+      .then((user) => {
+          user.newCustomers.forEach((customer, index) => {
+            if (customer.id === this.customer) {
+              user.newCustomers.splice(index, 1);
+              user.save();
+            }
+          });
+      });
   }
 }
 

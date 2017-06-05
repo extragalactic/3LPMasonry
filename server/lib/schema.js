@@ -438,8 +438,13 @@ type Query {
   getFinishedSurveyQuery(id: String): [FinishedSurvey]
 }
 type Mutation {
+  deleteSurveyPhoto(custid: String, index: Int): Boolean
+  deleteCustomerfromSurveyor(custid: String, userid: String): Boolean
+  dispatchCustomertoUser(custid: String, userid: String): Boolean
   checkConnection: Boolean
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
+  setCustomerStatus(custid: String, userid: String, status: Int): Boolean
+  setCustomerStatusEstimator(custid: String, userid: String, status: Int): Boolean
   searchCustomer(searchTerm: String): [Customers]
   addPriceToHistory(description: String): Price
   deletePriceFromHistory(id: String): Boolean
