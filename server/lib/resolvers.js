@@ -264,11 +264,11 @@ const resolveFunctions = {
     },
     setCustomerStatus(_, args, ctx) {
       const price = new ctx.constructor.SetCustomerStatus();
-      return price.setCustomerStatus(args);
+      return price.setCustomerStatus(args.status);
     },
     setCustomerStatusEstimator(_, args, ctx) {
       const price = new ctx.constructor.SetCustomerStatusEstimator();
-      return price.setCustomerStatusEstimator(args);
+      return price.setCustomerStatusEstimator(args.status);
     },
     dispatchCustomertoUser(_, args, ctx) {
       const price = new ctx.constructor.DispatchCustomertoUser();
@@ -282,6 +282,7 @@ const resolveFunctions = {
       const price = new ctx.constructor.DeleteCustomerfromSurveyor();
       return price.deleteCustomerfromSurveyor(args);
     },
+
   },
 };
 module.exports = resolveFunctions;
