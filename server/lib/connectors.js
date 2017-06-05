@@ -997,14 +997,13 @@ class GetStatus {
 class SaveEstimatePDF {
   constructor() {
     this.saveEstimatePDF = (args) => {
-  return CustomersModel.findOne({_id : args.custid})
-     .then((customer) => {
-       const estimateActions = new EstimateActions(customer);
-       estimateActions.saveEstimatePreview(args.url);
-       return true;
-     })
-
-    }
+      return CustomersModel.findOne({ _id: args.custid })
+       .then((customer) => {
+         const estimateActions = new EstimateActions(customer);
+         estimateActions.saveEstimatePreview(args.url);
+         return true;
+       });
+    };
   }
 }
 
@@ -1069,7 +1068,18 @@ class DeleteCustomerfromSurveyor {
   }
 }
 
+class SetCustomerStatusEstimator {
+  constructor() {
+    this.SetCustomerStatusEstimator = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.setStatusEstimator(args.statusargs.status);
+      return true;
+    };
+  }
+}
+
 module.exports = {
+  SetCustomerStatusEstimator,
   DeleteCustomerfromSurveyor,
   DeleteSurveyPhoto,
   SetCustomerStatus,

@@ -258,27 +258,30 @@ const resolveFunctions = {
       const price = new ctx.constructor.AddPriceToHistory();
       return price.addPriceToHistory(args);
     },
-     deletePriceFromHistory(_, args, ctx) {
+    deletePriceFromHistory(_, args, ctx) {
       const price = new ctx.constructor.DeletePriceFromHistory();
       return price.deletePriceFromHistory(args);
     },
-     setCustomerStatus(_, args, ctx) {
+    setCustomerStatus(_, args, ctx) {
       const price = new ctx.constructor.SetCustomerStatus();
       return price.setCustomerStatus(args);
+    },
+    setCustomerStatusEstimator(_, args, ctx) {
+      const price = new ctx.constructor.SetCustomerStatusEstimator();
+      return price.setCustomerStatusEstimator(args);
     },
     dispatchCustomertoUser(_, args, ctx) {
       const price = new ctx.constructor.DispatchCustomertoUser();
       return price.dispatchCustomertoUser(args);
     },
-     deleteSurveyPhoto(_, args, ctx) {
+    deleteSurveyPhoto(_, args, ctx) {
       const price = new ctx.constructor.DeleteSurveyPhoto();
       return price.deleteSurveyPhoto(args);
     },
-      deleteCustomerfromSurveyor(_, args, ctx) {
+    deleteCustomerfromSurveyor(_, args, ctx) {
       const price = new ctx.constructor.DeleteCustomerfromSurveyor();
       return price.deleteCustomerfromSurveyor(args);
     },
-
   },
 };
 module.exports = resolveFunctions;
