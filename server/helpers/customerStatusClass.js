@@ -141,6 +141,37 @@ class CustomerStatus {
           customer.save();
         });
   }
+  getEstimateStatus(status) {
+    if (status === 0) {
+      return 6;
+    }
+    if (status === 1) {
+      return 7;
+    }
+    if (status === 2) {
+      return 8;
+    }
+  }
+
+  setStatusEstimator(status) {
+    UsersModel.findOne({ _id: this.user })
+       .then((user) => {
+          user.estimates = user.estimates.map((cust) => {
+            if(cust.id === this.customer) {
+              cust.status = status;
+              return cust;
+            }
+            return cust;
+          })
+          user.save();
+       });
+      CustomersModel.findOne({ _id: this.customer })
+        .then((customer) => {
+         customer.status = this.getEstimateStatus(status);
+          customer.save();
+        });
+  }
+
   dispatchCustomertoSurveyor() {
     CustomersModel.findOne({ _id: this.customer })
        .then((customer) => {

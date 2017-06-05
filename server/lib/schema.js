@@ -444,6 +444,7 @@ type Mutation {
   checkConnection: Boolean
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
   setCustomerStatus(custid: String, userid: String, status: Int): Boolean
+  setCustomerStatusEstimator(custid: String, userid: String, status: Int): Boolean
   searchCustomer(searchTerm: String): [Customers]
   addPriceToHistory(description: String): Price
   deletePriceFromHistory(id: String): Boolean
