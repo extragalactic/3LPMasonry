@@ -21,7 +21,7 @@ import EstimateActions from '../helpers/estimateCreationClass';
 import CustomerStatus from '../helpers/customerStatusClass';
 import SendInBlue from '../helpers/sendInBlueClass';
 import SurveyClass from '../helpers/surveyClass';
-
+import GetCustomersClass from '../helpers/getCustomersClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -793,57 +793,11 @@ class AcceptEstimate {
 class GetMyCustomers {
   constructor() {
     this.getMyCustomers = (args) => {
-      const output = {
-        newcustomers: [],
-        followup: [],
-        onsite: [],
-        inprogress: [],
-        surveycomplete: [],
-        myestimates: [],
-        estimatequeue: [],
-        estimatefollowup: [],
-        estimatesent: [],
-      };
-      if (args.id) {
-        QueueModel.find()
-          .then((q) => {
-            q.forEach(customer => output.estimatequeue.push(customer));
-          });
-
-        if (args.id.match(/^[0-9a-fA-F]{24}$/)) {
-          return UsersModel.findOne({ _id: args.id })
-           .then((user) => {
-             user.newCustomers.forEach((customer) => {
-               if (customer.status === 0) {
-                 output.newcustomers.push(customer);
-               }
-               if (customer.status === 1) {
-                 output.followup.push(customer);
-               }
-               if (customer.status === 2) {
-                 output.onsite.push(customer);
-               }
-               if (customer.status === 3) {
-                 output.inprogress.push(customer);
-               }
-               if (customer.status === 4) {
-                 output.surveycomplete.push(customer);
-               }
-             });
-             user.estimates.forEach((customer) => {
-               if (customer.status === 0) {
-                 output.myestimates.push(customer);
-               }
-               if (customer.status === 1) {
-                 output.estimatefollowup.push(customer);
-               }
-               if (customer.status === 2) {
-                 output.estimatesent.push(customer);
-               }
-             });
-           }).then(() => output);
-        }
-      }
+      const customers = new GetCustomersClass(args.id);
+      return customers.getMyCustomers().then((res) => {
+        console.log(res)
+        return res
+      });
     };
   }
  }
@@ -1111,3 +1065,4 @@ module.exports = {
   AddSurveyNotes,
   GetFinishedSurveyQuery,
 };
+
