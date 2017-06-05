@@ -2,7 +2,6 @@ import _ from 'lodash';
 import fs from 'fs';
 import axios from 'axios';
 import dotenv from 'dotenv';
-import moment from 'moment';
 import randomstring from 'randomstring';
 import sharp from 'sharp';
 import AWS from 'aws-sdk';
@@ -20,8 +19,9 @@ import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateCreationClass';
 import CustomerStatus from '../helpers/customerStatusClass';
-import PricingClass from '../helpers/pricingClass';
 import SendInBlue from '../helpers/sendInBlueClass';
+import SurveyClass from '../helpers/surveyClass';
+
 
 sharp.concurrency(1);
 dotenv.config();
@@ -530,7 +530,6 @@ class GetSurveyLocalPhotos {
   );
   }
  }
-
 class GetMessages {
   constructor() {
     this.getMessages = (args) => {
@@ -546,7 +545,6 @@ class GetMessages {
     };
   }
  }
-
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
@@ -583,7 +581,6 @@ class ToggleSurveyReady {
     };
   }
  }
-
 class SelectSurveyPhoto {
   constructor() {
     this.selectSurveyPhoto = (args) => {
@@ -601,7 +598,6 @@ class SelectSurveyPhoto {
     };
   }
  }
-
 class GetFinishedSurvey {
   constructor() {
     this.getFinishedSurvey = (args) => {
@@ -643,7 +639,6 @@ class GetFinishedSurvey {
     };
   }
  }
-
 class GetFinishedSurveyQuery {
   constructor() {
     this.getFinishedSurveyQuery = (args) => {
@@ -685,7 +680,6 @@ class GetFinishedSurveyQuery {
     };
   }
  }
-
 class AddPricing {   // NO LONGER IN USE!
   constructor() {
     this.addPricing = (args) => {
@@ -700,7 +694,6 @@ class AddPricing {   // NO LONGER IN USE!
     };
   }
  }
-
 class AddPrice {
   constructor() {
     this.addPrice = (args) => {
@@ -735,7 +728,6 @@ class AddPrice {
     };
   }
  }
-
 class DeletePrice {
   constructor() {
     this.deletePrice = (args) => {
@@ -758,44 +750,38 @@ class DeletePrice {
     };
   }
  }
-
 class EditPriceDescription {
   constructor() {
     this.editPriceDescription = (args) => {
-      console.log(args)
       CustomersModel.findById(args.custid)
       .then((customer) => {
         if (args.option === 'option0') {
           customer.prices[args.index] = { description: args.text, amount: args.amount };
         }
         if (args.option !== 'option0') {
-          customer.prices[args.index][args.option] = {description: args.text, amount: args.amount};
+          customer.prices[args.index][args.option] = { description: args.text, amount: args.amount };
         }
         customer.save();
       });
     };
   }
 }
-
 class EditPriceAmount {
   constructor() {
     this.editPriceAmount = (args) => {
-      console.log(args)
       CustomersModel.findOne({ id_: args.custid })
       .then((customer) => {
       if (args.option === 'option0') {
           customer.prices[args.index] = { description: customer.prices[args.index].description, amount: args.amount };
-
-  }
+        }
         if (args.option !== 'option0') {
-          customer.prices[args.index][args.option] = {description: customer.prices[args.index].description, amount: args.amount};
+          customer.prices[args.index][args.option] = { description: customer.prices[args.index].description, amount: args.amount };
         }
         customer.save();
       });
     };
   }
  }
-
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
@@ -804,7 +790,6 @@ class AcceptEstimate {
     };
   }
  }
-
 class GetMyCustomers {
   constructor() {
     this.getMyCustomers = (args) => {
@@ -862,7 +847,6 @@ class GetMyCustomers {
     };
   }
  }
-
 class GetPrices {
   constructor() {
     this.getPrices = () => {
@@ -877,7 +861,6 @@ class GetEstimateResults {
       .then(customer => customer.estimate);
   }
 }
-
 class GeneratePDFEstimate {
   constructor() {
     this.generatePDFEstimate = (args) => {
@@ -895,13 +878,11 @@ class GeneratePDFEstimate {
     };
   }
 }
-
 class GetImageBase64 {
   constructor() {
     this.getImageBase64 = args => PhotosModel.findOne({ docID: args.docID }).then(photo => photo);
   }
 }
-
 class AddGeneric {
   constructor() {
     this.addGeneric = (args) => {
@@ -916,7 +897,6 @@ class AddGeneric {
     };
   }
 }
-
 class SearchCustomer {
   constructor() {
     this.searchCustomer = args => CustomersModel.find()
@@ -1000,17 +980,15 @@ class GetStatus {
 class SaveEstimatePDF {
   constructor() {
     this.saveEstimatePDF = (args) => {
-  return CustomersModel.findOne({_id : args.custid})
-     .then((customer) => {
-       const estimateActions = new EstimateActions(customer);
-       estimateActions.saveEstimatePreview(args.url);
-       return true;
-     })
-
-    }
+      return CustomersModel.findOne({ _id: args.custid })
+       .then((customer) => {
+         const estimateActions = new EstimateActions(customer);
+         estimateActions.saveEstimatePreview(args.url);
+         return true;
+       });
+    };
   }
 }
-
 class AddPriceToHistory {
   constructor() {
     this.addPriceToHistory = (args) => {
@@ -1019,10 +997,10 @@ class AddPriceToHistory {
       });
       newPrice.save().then(result => console.log(result)).catch(err => console.log(err));
       return newPrice;
-
     };
   }
 }
+
 class DeletePriceFromHistory { 
   constructor() {
     this.deletePriceFromHistory = (args) => {
@@ -1031,8 +1009,57 @@ class DeletePriceFromHistory {
     };
   }
 }
+class DispatchCustomertoUser {
+  constructor() {
+    this.dispatchCustomertoUser = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.dispatchCustomertoSurveyor();
+      return true;
+    };
+  }
+}
+class SetCustomerStatus {
+  constructor() {
+    this.setCustomerStatus = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.setStatusSurveyor(args.status);
+      return true;
+    };
+  }
+}
+class DeleteSurveyPhoto {
+  constructor() {
+    this.deleteSurveyPhoto = (args) => {
+      const surveyStatus = new SurveyClass(args.custid);
+      surveyStatus.removePhotofromSurvey(args.index);
+    };
+  }
+}
 
+class DeleteCustomerfromSurveyor {
+  constructor() {
+    this.deleteCustomerfromSurveyor = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.deleteCustomerfromSurveyor();
+      return true;
+    };
+  }
+}
+class SetCustomerStatusEstimator {
+  constructor() {
+    this.SetCustomerStatusEstimator = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.setStatusEstimator(args.statusargs.status);
+      return true;
+    };
+  }
+}
 module.exports = {
+  SetCustomerStatusEstimator,
+  DeleteCustomerfromSurveyor,
+  DeleteSurveyPhoto,
+  SetCustomerStatus,
+  DispatchCustomertoUser,
   DeletePriceFromHistory,
   AddPriceToHistory,
   SaveEstimatePDF,

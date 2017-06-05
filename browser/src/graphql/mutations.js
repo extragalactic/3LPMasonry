@@ -124,7 +124,13 @@ const submitCustomer = gql `
   }
 }`;
 
+const dispatchCustomer = gql `
+  mutation DispatchCustomer($custid: String, $userid: String){
+  dispatchCustomertoUser(custid: $custid, userid: $userid)
+}`;
+
 export {
+  dispatchCustomer,
   submitCustomer,
   getImageBase64,
   getCustomer,
