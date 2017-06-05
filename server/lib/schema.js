@@ -87,7 +87,6 @@ type PricingType {
    estimatequeue: [assignedCustomers]
    estimatefollowup: [assignedCustomers]
    estimatesent: [assignedCustomers]
-   estimatefollowup: [assignedCustomers]
  }
 
   type User {
