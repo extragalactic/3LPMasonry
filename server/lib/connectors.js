@@ -795,8 +795,8 @@ class GetMyCustomers {
     this.getMyCustomers = (args) => {
       const customers = new GetCustomersClass(args.id);
       return customers.getMyCustomers().then((res) => {
-        console.log(res)
-        return res
+      //  console.log(res)
+        return res;
       });
     };
   }
@@ -1001,14 +1001,25 @@ class DeleteCustomerfromSurveyor {
 }
 class SetCustomerStatusEstimator {
   constructor() {
-    this.SetCustomerStatusEstimator = (args) => {
+    this.setCustomerStatusEstimator = (args) => {
       const customerStatus = new CustomerStatus(args.custid, args.userid);
-      customerStatus.setStatusEstimator(args.statusargs.status);
+      customerStatus.setStatusEstimator(args.status);
+      return true;
+    };
+  }
+}
+
+class DeleteCustomerfromEstimator {
+  constructor() {
+    this.deleteCustomerfromEstimator = (args) => {
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.deleteCustomerfromEstimator();
       return true;
     };
   }
 }
 module.exports = {
+  DeleteCustomerfromEstimator,
   SetCustomerStatusEstimator,
   DeleteCustomerfromSurveyor,
   DeleteSurveyPhoto,
