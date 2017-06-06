@@ -9,6 +9,7 @@ import PhotoViewerContainer from './PhotoViewerContainer';
 import WarningMessage from '../Utils/WarningMessage';
 import LocationMap from '../Maps/LocationMap';
 import AcceptEstimateButton from './AcceptEstimateButton';
+import DispatchSurveyor from './DispatchSurveyor';
 import InternalNotes from './InternalNotes';
 import SurveyNotes from './SurveyNotes';
 import { FormatPhoneNumber } from '../Utils/Utils';
@@ -22,6 +23,7 @@ CustomerDetailsTabs.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   photoData: PropTypes.arrayOf(PropTypes.object).isRequired,
   addSurveyPhoto: PropTypes.func.isRequired,
+  dispatchCustomer: PropTypes.func.isRequired,
 };
 
 function CustomerDetailsTabs(props) {
@@ -41,9 +43,9 @@ function CustomerDetailsTabs(props) {
     );
   };
   const data = props.data;
+  const isSurveyorSelected = data.surveyor.firstName && data.surveyor.firstName !== '';
 
   return (
-
     <Tabs>
       {/* ------------ CUSTOMER DATA ------------ */}
       <Tab label="Customer Data" style={styleCSS.tabsBar}>
@@ -67,15 +69,20 @@ function CustomerDetailsTabs(props) {
                 <div>H: {FormatPhoneNumber(data.hphone)}<br /></div>
               }
               <br />
-              <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName}`}</div>
-              <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
-              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]}`}</div>
-              {data.estimator !== null &&
+              { isSurveyorSelected &&
                 <div>
-                  <br />
-                  <div>{`Estimator: ${data.estimator}`}</div>
+                  <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName}`}</div>
+                  <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
                 </div>
               }
+              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]}`}</div>
+              <DispatchSurveyor
+                custid={props.custid}
+                dispatchCustomer={props.dispatchCustomer}
+                initialSurveyor={`${data.surveyor.firstName} ${data.surveyor.lastName}`}
+                title={isSurveyorSelected ? 'Change Surveyor' : 'Dispatch Surveyor'}
+              />
+              <div>{`Estimator: ${data.estimator !== null ? data.estimator : 'None assigned'}`}</div>
               <br />
             </Paper>
             <br />
@@ -85,7 +92,6 @@ function CustomerDetailsTabs(props) {
               </Row>
             </Paper>
           </Col>
-
           <Col md={7} lg={7}>
             <Row style={styleCSS.googleMapsContainer}>
               {renderGoogleMaps()}

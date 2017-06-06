@@ -10,7 +10,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import { IconButton } from 'material-ui';
-import Paper from 'material-ui/Paper';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
 import ClearIcon from 'material-ui/svg-icons/action/delete'; // clear
@@ -21,18 +20,14 @@ import EditIcon from 'material-ui/svg-icons/image/edit'; // pencil
 import Crop32Icon from 'material-ui/svg-icons/image/crop-3-2'; // rectangle
 import TextFieldsIcon from 'material-ui/svg-icons/editor/text-fields'; // textfield
 import LineIcon from 'material-ui/svg-icons/content/remove'; // line
-// import CallMadeIcon from 'material-ui/svg-icons/communication/call-made'; // arrow
 import ArrowIcon from 'material-ui/svg-icons/navigation/arrow-forward'; // arrow
 import LensIcon from 'material-ui/svg-icons/image/lens'; // colour swatch
 import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
-import ZoomInIcon from 'material-ui/svg-icons/action/zoom-in';
-import ZoomOutIcon from 'material-ui/svg-icons/action/zoom-out';
 import KeyboardArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
-import styleCSS from '../../styles/customerDetailsStyles';
 import IconBar from '../Utils/IconBar';
 import { buttonStyles } from '../Utils/IconItem';
 import PinchZoomPan from '../Utils/PinchZoomPan';
@@ -75,8 +70,6 @@ class _PhotoEditor extends React.Component {
         buttonStyle: buttonStyles.NORMAL,
         iconSize: 7,
         icons: [
-          // { label: 'ZoomIn', type: ZoomInIcon },
-          // { label: 'ZoomOut', type: ZoomOutIcon },
           { label: 'Undo', type: UndoIcon },
           { label: 'Clear', type: ClearIcon },
           { label: 'Save', type: SaveIcon },
@@ -167,9 +160,6 @@ class _PhotoEditor extends React.Component {
         }, () => {
           if (photoURL) {
             this.sketch.setBaseImage(this.baseImage);
-            // this.pinchpanzoom.zoom(this.imageViewerHeight() / this.baseImage.height * this.state.imageSizeRatio + 1, { x: 0, y: 0 });
-            // this.pinchpanzoom.zoom(this.state.imageSizeRatio, { x: 0, y: 0 });
-            // this.pinchpanzoom.zoom(this.imageViewerHeight() / (this.props.containerWidth / this.state.imageSizeRatio), { x: 0, y: 0 });
             this.pinchpanzoom.zoom();
           } else {
             this.isValidImage = false;
@@ -412,7 +402,6 @@ class _PhotoEditor extends React.Component {
                   <PinchZoomPan
                     width={this.props.containerWidth}
                     height={this.imageViewerHeight()}
-                    // initialScale={this.imageViewerHeight() / this.baseImage.height}
                     initialScale={1.0}
                     active={this.state.pinchZoomPanToggle}
                     name="pinchpanzoom"
