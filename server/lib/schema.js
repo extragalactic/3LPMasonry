@@ -87,7 +87,6 @@ type PricingType {
    estimatequeue: [assignedCustomers]
    estimatefollowup: [assignedCustomers]
    estimatesent: [assignedCustomers]
-   estimatefollowup: [assignedCustomers]
  }
 
   type User {
@@ -440,6 +439,7 @@ type Query {
 type Mutation {
   deleteSurveyPhoto(custid: String, index: Int): Boolean
   deleteCustomerfromSurveyor(custid: String, userid: String): Boolean
+  deleteCustomerfromEstimator(custid: String, userid: String): Boolean
   dispatchCustomertoUser(custid: String, userid: String): Boolean
   checkConnection: Boolean
   getCustomerPhoto(custid: String, docID: String): SurveyPhotos
