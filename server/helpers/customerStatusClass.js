@@ -204,6 +204,18 @@ class CustomerStatus {
           });
       });
   }
+  deleteCustomerfromEstimator() {
+    UsersModel.findOne({ _id: this.user })
+      .then((user) => {
+          user.estimates.forEach((customer, index) => {
+            if (customer.id === this.customer) {
+              user.estimates.splice(index, 1);
+              user.save();
+            }
+          });
+      });
+  }
+
 }
 
 
