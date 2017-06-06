@@ -795,7 +795,6 @@ class GetMyCustomers {
     this.getMyCustomers = (args) => {
       const customers = new GetCustomersClass(args.id);
       return customers.getMyCustomers().then((res) => {
-      //  console.log(res)
         return res;
       });
     };
