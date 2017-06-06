@@ -172,6 +172,32 @@ class CustomerStatus {
         });
   }
 
+  getSurveyor() {
+    const surveyor = new Promise((resolve, reject) => {
+      UsersModel.findOne({ _id: this.user })
+       .then((user) => {
+         resolve({
+           firstName: user.firstName,
+           lastName: user.lastName,
+           mobile: user.mobile,
+           id: user._id,
+         });
+       });
+    });
+    return surveyor;
+  }
+
+  setSurveyorforCustomer() {
+    this.getSurveyor()
+       .then((surveyor) => {
+         CustomersModel.findOne({ _id: this.customer })
+           .then((customer) => {
+             customer.surveyor = surveyor;
+             customer.save();
+           });
+       });
+  }
+
   dispatchCustomertoSurveyor() {
     CustomersModel.findOne({ _id: this.customer })
        .then((customer) => {
@@ -192,8 +218,9 @@ class CustomerStatus {
             user.save();
           });
        });
+    this.setSurveyorforCustomer();
   }
-  deleteCustomerfromSurveyor(){
+  deleteCustomerfromSurveyor() {
     UsersModel.findOne({ _id: this.user })
       .then((user) => {
           user.newCustomers.forEach((customer, index) => {
@@ -204,6 +231,18 @@ class CustomerStatus {
           });
       });
   }
+  deleteCustomerfromEstimator() {
+    UsersModel.findOne({ _id: this.user })
+      .then((user) => {
+          user.estimates.forEach((customer, index) => {
+            if (customer.id === this.customer) {
+              user.estimates.splice(index, 1);
+              user.save();
+            }
+          });
+      });
+  }
+
 }
 
 
