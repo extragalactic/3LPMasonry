@@ -22,6 +22,7 @@ import CustomerStatus from '../helpers/customerStatusClass';
 import SendInBlue from '../helpers/sendInBlueClass';
 import SurveyClass from '../helpers/surveyClass';
 import GetCustomersClass from '../helpers/getCustomersClass';
+import OneSignalClass from '../helpers/oneSignalClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -1017,7 +1018,19 @@ class DeleteCustomerfromEstimator {
     };
   }
 }
+
+class SetOneSignalID {
+  constructor() {
+    this.setOneSignalID = (args) => {
+      const oneSignal = new OneSignalClass(args.userid);
+      return oneSignal.savePlayerIdtoUser(args.id);
+    };
+  }
+}
+
+
 module.exports = {
+  SetOneSignalID,
   DeleteCustomerfromEstimator,
   SetCustomerStatusEstimator,
   DeleteCustomerfromSurveyor,
