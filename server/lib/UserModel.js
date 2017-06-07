@@ -10,6 +10,7 @@ const UsersSchema = new mongoose.Schema({
   office: Boolean,
   mobile: String,
   region: String,
+  oneSignalID: String,
   appointments: [],
   customers: [],
   newCustomers: [{
