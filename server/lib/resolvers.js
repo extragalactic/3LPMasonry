@@ -286,6 +286,10 @@ const resolveFunctions = {
       const price = new ctx.constructor.DeleteCustomerfromEstimator();
       return price.deleteCustomerfromEstimator(args);
     },
+    setOneSignalID(_, args, ctx) {
+      const price = new ctx.constructor.SetOneSignalID();
+      return price.setOneSignalID(args);
+    },
   },
 };
 module.exports = resolveFunctions;
