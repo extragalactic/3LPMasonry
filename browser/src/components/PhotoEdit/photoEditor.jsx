@@ -5,7 +5,7 @@ import { graphql, compose } from 'react-apollo';
 import { Row, Col } from 'react-flexbox-grid';
 import Dimensions from 'react-dimensions';
 import Dialog from 'material-ui/Dialog';
-import TextField from 'material-ui/TextField';
+// import TextField from 'material-ui/TextField';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
@@ -23,14 +23,19 @@ import LineIcon from 'material-ui/svg-icons/content/remove'; // line
 import ArrowIcon from 'material-ui/svg-icons/navigation/arrow-forward'; // arrow
 import LensIcon from 'material-ui/svg-icons/image/lens'; // colour swatch
 import PanToolIcon from 'material-ui/svg-icons/action/pan-tool'; // image pan
-import KeyboardArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
+import KeyboardArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left'; // arrow
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+// Note: colours for letter icons are hard-coded into the SVG's
+import LetterSIcon from '../../assets/icons/S.svg'; // small
+import LetterMIcon from '../../assets/icons/M.svg'; // medium
+import LetterLIcon from '../../assets/icons/L.svg'; // large
 
 import { getSinglePhoto, addSurveyPhoto } from '../../graphql/mutations';
 import WarningMessage from '../Utils/WarningMessage';
 import IconBar from '../Utils/IconBar';
 import { buttonStyles } from '../Utils/IconItem';
 import PinchZoomPan from '../Utils/PinchZoomPan';
+import LoadingPopup from '../Utils/LoadingPopup';
 
 class _PhotoEditor extends React.Component {
   static propTypes = {
@@ -57,6 +62,7 @@ class _PhotoEditor extends React.Component {
     };
     this.colourRGB = { red: '#f00', black: '#000', yellow: '#ff0' };
     this.fontSizes = { small: 11, medium: 17, large: 26 };
+    this.lineWidths = { small: 2, medium: 3, large: 4 };
     this.custID = '';
     this.photoIndex = 0;
     this.photoData = {};
@@ -106,9 +112,9 @@ class _PhotoEditor extends React.Component {
         radioSelected: [false, true, false],
         iconSize: 7,
         icons: [
-          { label: 'Small', param: 'small', type: LooksOneIcon },
-          { label: 'Medium', param: 'medium', type: LooksTwoIcon },
-          { label: 'Large', param: 'large', type: LooksThreeIcon },
+          { label: 'Small', param: 'small', type: LetterSIcon, colour: '#444' },
+          { label: 'Medium', param: 'medium', type: LetterMIcon, colour: '#444' },
+          { label: 'Large', param: 'large', type: LetterLIcon, colour: '#444' },
         ],
       },
     };
@@ -360,10 +366,10 @@ class _PhotoEditor extends React.Component {
       <FlatButton
         label="Save"
         primary
-        keyboardFocused
         onTouchTap={this.onSave}
       />,
     ];
+    console.log('Heading: ' + this.photoData.heading);
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
@@ -427,7 +433,7 @@ class _PhotoEditor extends React.Component {
                         height={`${this.props.containerWidth / this.state.imageSizeRatio}px`}
                         tool={this.state.tool}
                         lineColor={this.state.lineColor}
-                        lineWidth={3}
+                        lineWidth={this.lineWidths[this.state.fontSize]}
                         fontSize={this.fontSizes[this.state.fontSize]}
                         onChange={this.onSketchChange}
                       />
@@ -483,6 +489,9 @@ class _PhotoEditor extends React.Component {
           >
             This will keep a copy of the original image.
           </Dialog>
+          {this.state.isSaving &&
+          <LoadingPopup message="Saving image..." />
+          }
         </div>
       </MuiThemeProvider>
     );

@@ -20,6 +20,16 @@ module.exports = {
         loader: 'style!css?modules',
         include: /flexboxgrid/,
       },
+      {
+        test: /\.svg$/,
+        loader: 'babel-loader!react-svg-loader?' + JSON.stringify({
+          svgo: {
+            // svgo options
+            plugins: [{ removeTitle: false }],
+            floatPrecision: 2,
+          },
+        }),
+      },
     ],
     query: {
       presets: ['react', 'es2015'],

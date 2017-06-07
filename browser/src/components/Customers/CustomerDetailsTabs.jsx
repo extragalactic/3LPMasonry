@@ -75,7 +75,7 @@ function CustomerDetailsTabs(props) {
                   <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
                 </div>
               }
-              <div>{`Survey Type: ${SURVEY_TYPES[data.surveyType]}`}</div>
+              <div>{`Survey Type: ${data.surveyType ? SURVEY_TYPES[data.surveyType] : 'Online'}`}</div>
               <DispatchSurveyor
                 custid={props.custid}
                 dispatchCustomer={props.dispatchCustomer}

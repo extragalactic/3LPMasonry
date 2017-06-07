@@ -56,7 +56,7 @@ class _DispatchSurveyor extends React.Component {
     this.props.dispatchCustomer({
       variables: {
         custid: this.props.custid,
-        userid: this.props.data.users[this.state.selectedIndex]._id,
+        userid: this.surveyorList[this.state.selectedIndex]._id,
       },
     })
     .then(() => {
@@ -79,7 +79,6 @@ class _DispatchSurveyor extends React.Component {
       <FlatButton
         label="Select"
         primary
-        keyboardFocused
         onTouchTap={this.onSubmit}
       />,
     ];
