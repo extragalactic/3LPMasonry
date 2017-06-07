@@ -289,7 +289,7 @@ class _PhotoEditor extends React.Component {
 
     this.props.addSurveyPhoto({
       variables: {
-        heading: 'TestHeading',
+        heading: this.photoData.heading,
         description: this.photoData.description,
         orginalBase64: this.sketch.toDataURL(),
         timestamp: new Date(),
@@ -369,7 +369,6 @@ class _PhotoEditor extends React.Component {
         onTouchTap={this.onSave}
       />,
     ];
-    console.log('Heading: ' + this.photoData.heading);
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
