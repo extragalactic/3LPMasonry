@@ -187,6 +187,14 @@ class CustomerStatus {
     return surveyor;
   }
 
+  setsurveyType(type) {
+    CustomersModel.findOne({_id: this.customer})
+      .then((customer) => {
+        customer.surveyType = type;
+        customer.save();
+      });
+  }
+
   setSurveyorforCustomer() {
     this.getSurveyor()
        .then((surveyor) => {
@@ -219,6 +227,7 @@ class CustomerStatus {
           });
        });
     this.setSurveyorforCustomer();
+    this.setsurveyType(1);
   }
   deleteCustomerfromSurveyor() {
     UsersModel.findOne({ _id: this.user })
