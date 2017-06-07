@@ -40,8 +40,8 @@ class AddNewNote extends React.Component {
 
   onSubmit = () => {
     const storage = JSON.parse(localStorage.getItem('profile'));
-    const name = storage.name ? storage.name : 'user';
-    const userid = storage.user_id ? storage.user_id : 'user';
+    const name = storage && storage.name ? storage.name : 'test user';
+    const userid = storage && storage.user_id ? storage.user_id : 'user';
 
     this.props.submitNewNote({
       variables: {
@@ -50,8 +50,15 @@ class AddNewNote extends React.Component {
         custid: this.props.custid,
         userid,
         name,
-      } });
-    this.setState({ open: false });
+      } })
+      .then(() => {
+        // console.log('Note saved!');
+        this.setState({ open: false });
+      })
+      .catch(() => {
+        // console.log('Error saving note.');
+        this.setState({ open: false });
+      });
   }
 
   render() {
@@ -64,7 +71,6 @@ class AddNewNote extends React.Component {
       <FlatButton
         label="Add Note"
         primary
-        keyboardFocused
         onTouchTap={this.onSubmit}
       />,
     ];

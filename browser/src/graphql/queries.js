@@ -140,8 +140,19 @@ query{
     }
     status
   }
-  
+}`;
+
+const getUsers = gql `
+  query getUsers{
+  users {
+    _id
+    firstName
+    lastName
+    mobile
+    surveyor
+    estimator
+  }
 }`;
 
 
-export { searchAddress, getAllCustomers, getCustomer };
+export { searchAddress, getAllCustomers, getCustomer, getUsers };
