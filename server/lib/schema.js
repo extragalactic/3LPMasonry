@@ -437,6 +437,7 @@ type Query {
   getFinishedSurveyQuery(id: String): [FinishedSurvey]
 }
 type Mutation {
+  setOneSignalID(userid: String, id: String) : Boolean
   deleteSurveyPhoto(custid: String, index: Int): Boolean
   deleteCustomerfromSurveyor(custid: String, userid: String): Boolean
   deleteCustomerfromEstimator(custid: String, userid: String): Boolean
