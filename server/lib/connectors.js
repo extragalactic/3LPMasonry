@@ -11,11 +11,9 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
-import { sendPushtoEstimators } from '../methods/oneSignal';
 import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
 import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
-import { addCustomertoQueue, removeCustomerfromQueue } from '../methods/queue';
 import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateCreationClass';
 import CustomerStatus from '../helpers/customerStatusClass';
@@ -26,15 +24,6 @@ import OneSignalClass from '../helpers/oneSignalClass';
 
 sharp.concurrency(1);
 dotenv.config();
-
-// console.log(base64Img)
-// 0: New Customer, Inquiry no survery
-// 1: New Customer, Online Survey sent
-// 2: Customer, Online Survey Received
-// 3: Customer, Sent to Surveyor
-// 4: Surveyor made contact, followup required
-// 5: Onsite visit Scheduled
-// 6: Onsite Survey Complete
 
 class GetQueue {
   constructor() {
@@ -265,7 +254,7 @@ class SubmitCustomer {
                    sendEmailSurveytoCustomer({ email: customer.email2, customer });
                  }
                  customer.surveyType = 0;
-                 customer.status = 1;
+                 customer.status = 5;
                  customer.save();
                }
                if (!surveyor) {
@@ -287,7 +276,7 @@ class SubmitCustomer {
                            user.save();
                          });
                  customer.surveyType = 1;
-                 customer.status = 3;
+                 customer.status = 0;
                  customer.save();
                }
                if (inquriy) {
@@ -315,6 +304,8 @@ class SubmitFollowup {
         user.followUp.push(args);
         user.save();
       });
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.setCustomerStatus(status);
     };
   }
 }
@@ -431,8 +422,12 @@ class AddSurveyNotes {
            });
         }
       }
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.setCustomerStatus(3);
     };
+    
   }
+  
  }
 
 class AddSurveyPhoto {
@@ -549,36 +544,8 @@ class GetMessages {
 class ToggleSurveyReady {
   constructor() {
     this.toggleSurveyReady = (args) => {
-      CustomersModel.findOne({ _id: args.custid })
-        .then((customer) => {
-          if (customer.status <= 3) {
-            sendPushtoEstimators(customer);
-            addCustomertoQueue(customer);
-            customer.status = 4;
-            customer.surveyReadyforPrice = true;
-          } else {
-            removeCustomerfromQueue(customer);
-            customer.status = 3;
-            customer.surveyReadyforPrice = false;
-          }
-          customer.save();
-        });
-      if (!args.online) {
-        UsersModel.findOne({ _id: args.userid })
-         .then((user) => {
-           user.newCustomers = user.newCustomers.map((customer) => {
-             if (customer.id === args.custid) {
-               if (customer.status <= 3) {
-                 customer.status = 4;
-               } else if (customer.status === 4) {
-                 customer.status = 3;
-               }
-             }
-             return customer;
-           });
-           user.save();
-         });
-      }
+      const customerStatus = new CustomerStatus(args.custid, args.userid);
+      customerStatus.toogleCustomerReady();
     };
   }
  }
@@ -786,6 +753,7 @@ class EditPriceAmount {
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
+      console.log(args)
       const customerStatus = new CustomerStatus(args.custid, args.userid);
       customerStatus.acceptEstimate();
     };
@@ -825,6 +793,8 @@ class GeneratePDFEstimate {
           .then((pdfUrl) => { 
             if (!args.preview) {
               estimateActions.sendPdftoCustomer(pdfUrl);
+              const customerStatus = new CustomerStatus(args.custid, args.userid);
+              customerStatus.setStatusEstimator(7);
             }
             return { pdfUrl };
           });
