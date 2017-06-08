@@ -11,13 +11,14 @@ import Paper from 'material-ui/Paper';
 import { CUSTOMER_STATUS } from './CustomerDataList';
 import CustomerDetailsTabs from './CustomerDetailsTabs';
 import { getCustomer } from '../../graphql/queries';
-import { addSurveyPhoto } from '../../graphql/mutations';
+import { addSurveyPhoto, dispatchCustomer } from '../../graphql/mutations';
 import styleCSS from '../../styles/customerDetailsStyles';
 
 
 _CustomerDetails.propTypes = {
   id: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
+  dispatchCustomer: PropTypes.func.isRequired,
   addSurveyPhoto: PropTypes.func.isRequired,
 };
 
@@ -92,6 +93,7 @@ function _CustomerDetails(props) {
               photos={photos}
               photoData={photoData}
               addSurveyPhoto={props.addSurveyPhoto}
+              dispatchCustomer={props.dispatchCustomer}
             />
           </Col>
         </Row>
@@ -103,6 +105,7 @@ function _CustomerDetails(props) {
 const CustomerDetails = compose(
   graphql(getCustomer, { options: ({ id }) => ({ variables: { id }, pollInterval: 1000 }) }),
   graphql(addSurveyPhoto, { name: 'addSurveyPhoto' }),
+  graphql(dispatchCustomer, { name: 'dispatchCustomer' }),
  )(_CustomerDetails);
 
 export default CustomerDetails;

@@ -114,6 +114,7 @@ const getSinglePhoto = gql `
     caption
     localfile
     description
+    heading
   }
 }`;
 

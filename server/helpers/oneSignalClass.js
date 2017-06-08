@@ -6,6 +6,7 @@ class OneSignalClass {
     this.user = user;
     this.customer = customer;
   }
+
   savePlayerIdtoUser(id) {
     return UsersModel.findOne({ _id: this.user })
      .then((user) => {
@@ -14,6 +15,7 @@ class OneSignalClass {
        return true;
      });
   }
+
   sendPushtoEstimators() {
     axios({
       method: 'post',
@@ -29,6 +31,7 @@ class OneSignalClass {
       headers: { Authorization: `Basic ${process.env.ONE_SIGNAL_AUTH}` },
     }).then(data => console.log('data')).catch(err => console.error(err));
   }
+
 }
 
 export default OneSignalClass;

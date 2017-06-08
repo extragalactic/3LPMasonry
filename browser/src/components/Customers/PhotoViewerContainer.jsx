@@ -71,8 +71,8 @@ class PhotoViewerContainer extends React.Component {
             setTimeout(() => {
               this.props.addSurveyPhoto({
                 variables: {
-                  heading: 'OnlineEstimateTest',
-                  description: 'OnlineEstimateTest',
+                  heading: 'Office upload',
+                  description: '(Image uploaded from website)',
                   orginalBase64: reader.result,
                   timestamp: new Date(),
                   custid: this.props.custid,
