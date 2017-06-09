@@ -281,6 +281,7 @@ class SubmitCustomer {
                }
                if (inquriy) {
                  customer.status = 0;
+                 customer.surveyType = 3;
                  customer.save();
                }
                return customer;
@@ -753,7 +754,6 @@ class EditPriceAmount {
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
-      console.log(args)
       const customerStatus = new CustomerStatus(args.custid, args.userid);
       customerStatus.acceptEstimate();
     };
