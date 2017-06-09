@@ -281,6 +281,7 @@ class SubmitCustomer {
                }
                if (inquriy) {
                  customer.status = 0;
+                 customer.surveyType = 3;
                  customer.save();
                }
                return customer;
@@ -998,8 +999,20 @@ class SetOneSignalID {
   }
 }
 
+class GetCustomerStatus {
+  constructor() {
+    this.getCustomerStatus = (args) => {
+      const customerStatus = new CustomerStatus(args.custid);
+      return customerStatus.getCustomerStatus().then((status) => {
+        return status;
+      });
+    };
+  }
+}
+
 
 module.exports = {
+  GetCustomerStatus,
   SetOneSignalID,
   DeleteCustomerfromEstimator,
   SetCustomerStatusEstimator,

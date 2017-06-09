@@ -57,6 +57,10 @@ const resolveFunctions = {
       const survey = new ctx.constructor.GetFinishedSurveyQuery();
       return survey.getFinishedSurveyQuery(args);
     },
+    getCustomerStatus(_, args, ctx) {
+      const status = new ctx.constructor.GetCustomerStatus();
+      return status.getCustomerStatus(args);
+    },
   },
   Mutation: {
     newCustomer(_, {

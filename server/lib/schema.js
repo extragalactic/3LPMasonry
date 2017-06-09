@@ -432,6 +432,7 @@ type Query {
   getFinishedSurvey(id: String): [FinishedSurvey]
   getMyCustomers(id: String): CustomerStatus
   getPrices:[Price]
+  getCustomerStatus(custid: String): String
   getStatus(custid: String): emailStatus
   getEstimateResults(custid: String): EstimateResults
   getFinishedSurveyQuery(id: String): [FinishedSurvey]

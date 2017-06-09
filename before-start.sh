@@ -1,0 +1,1 @@
+sudo rm -rf /var/app/node_modules
