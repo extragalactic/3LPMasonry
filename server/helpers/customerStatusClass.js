@@ -101,21 +101,8 @@ class CustomerStatus {
 
    })
    return status;
- }
-
-  setEstimatorName() {
-    UsersModel.findOne({ _id: this.user })
-     .then((user) => {
-       CustomersModel({ _id: this.customer })
-          .then((customer) => {
-            customer.estimator = `${user.firstName} ${user.lastName}`;
-            customer.save();
-          });
-     });
-  }
-
-
-  addCustomertoUserList() {
+ } 
+  addCustomertoUserList() {   //rename this, confusing!!
     UsersModel.findOne({ _id: this.user })
         .then((user) => {
           this.getCustomer()
@@ -275,14 +262,13 @@ class CustomerStatus {
       });
   }
 
-  setsurveyType(type) {
-    CustomersModel.findOne({_id: this.customer})
-      .then((customer) => {
-        customer.surveyType = type;
-        customer.save();
-      });
+  setSurveyType(type) {
+      CustomersModel.findOne({ _id: this.customer })
+       .then((customer) => {
+         customer.surveyType = type;
+         customer.save();
+       });
   }
-
   setSurveyorforCustomer() {
     this.getSurveyor()
        .then((surveyor) => {
@@ -457,6 +443,7 @@ checkCustomerinQueue(){
          customer.save();
        });
   }
+
   sendPushNotifcationtoEstimators() {
     this.getCustomer()
        .then((customer) => {
