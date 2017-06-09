@@ -1,8 +1,8 @@
 // Wrapper class for customer data array of objects
 import { FormatPhoneNumber } from '../Utils/Utils';
 
-const CUSTOMER_STATUS = ['new customer', 'follow-up', 'on-site scheduled', 'survey in progress', 'survey ready for pricing', 'estimate in progress', 'no reply', 'estimate sent'];
-const SURVEY_TYPES = ['Online', 'On-site', 'Online'];
+const CUSTOMER_STATUS = ['new customer', 'follow-up required', 'on-site scheduled', 'survey in progress', 'survey ready for pricing', 'survey accepted by estimator', 'customer not responsive', 'estimate sent'];
+const SURVEY_TYPES = ['Online', 'On-site', 'Inquire'];
 
 const customerFieldNames = {
   ID: 'id',

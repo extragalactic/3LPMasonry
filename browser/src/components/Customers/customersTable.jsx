@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Table, Column, Cell } from 'fixed-data-table-2';
 import Dimensions from 'react-dimensions';
+import { IconButton } from 'material-ui';
+import CloseIcon from 'material-ui/svg-icons/navigation/cancel';
+
 import styles from 'style-loader!css-loader!fixed-data-table/dist/fixed-data-table.css';
 
 import { CustomerDataList, customerFieldNames } from './CustomerDataList';
@@ -36,10 +39,11 @@ TextCell.propTypes = {
   rowIndex: PropTypes.number,
   data: PropTypes.object.isRequired,
   col: PropTypes.string.isRequired,
-  activeRow: PropTypes.number.isRequired,
+  activeRow: PropTypes.number,
 };
 TextCell.defaultProps = {
   rowIndex: 0,
+  activeRow: -1,
 };
 
 
@@ -81,40 +85,52 @@ class _CustomersTable extends React.Component {
     super(props);
 
     this.dataList = new CustomerDataList(props.customers);
+
+    let filterValue = JSON.parse(localStorage.getItem('searchFilterTerm'));
+    if (!filterValue) filterValue = '';
+
     this.state = {
       filteredDataList: this.dataList,
       activeRow: -1,
+      filterValue,
     };
 
     this.onFilterChange = this.onFilterChange.bind(this);
+    this.updateFilter = this.updateFilter.bind(this);
     this.onRowClick = this.onRowClick.bind(this);
     this.onRowMouseEnter = this.onRowMouseEnter.bind(this);
     this.onRowMouseLeave = this.onRowMouseLeave.bind(this);
+    this.refreshPage = this.refreshPage.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.onClearSearchFilter = this.onClearSearchFilter.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.filterValue !== '') {
+      this.updateFilter();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.refreshPage(nextProps);
   }
 
   onFilterChange(e) {
+    let filterValue;
     if (!e.target.value) {
+      filterValue = '';
       this.setState({
         filteredDataList: this.dataList,
       });
-    }
-    const filterBy = e.target.value.toLowerCase();
-    const size = this.dataList.getSize();
-    const filteredIndexes = [];
-
-    // look in all searchable fields (columns) for input string
-    for (let index = 0; index < size; index += 1) {
-      for (let j = 0; j < SEARCHABLE_COLUMNS.length; j += 1) {
-        const val = this.dataList.getDataAt(index, SEARCHABLE_COLUMNS[j]);
-        if (val && val.toLowerCase().indexOf(filterBy) !== -1) {
-          filteredIndexes.push(index);
-          break;
-        }
-      }
+    } else {
+      filterValue = e.target.value;
+      this.updateFilter(this.state.filterValue);
     }
     this.setState({
-      filteredDataList: new DataListWrapper(this.dataList, filteredIndexes)
+      filterValue,
     });
+    localStorage.setItem('searchFilterTerm', JSON.stringify(filterValue));
   }
 
   onRowMouseEnter(e, index) {
@@ -131,26 +147,79 @@ class _CustomersTable extends React.Component {
     browserHistory.push('details');
   }
 
+  onClearSearchFilter() {
+    this.setState({
+      filterValue: '',
+    },
+      () => { this.updateFilter(this.state.filterValue); },
+    );
+    localStorage.setItem('searchFilterTerm', JSON.stringify(''));
+  }
+
+  updateFilter() {
+    const filterBy = this.state.filterValue.toLowerCase();
+    const size = this.dataList.getSize();
+    const filteredIndexes = [];
+
+    // look in all searchable fields (columns) for input string
+    for (let index = 0; index < size; index += 1) {
+      for (let j = 0; j < SEARCHABLE_COLUMNS.length; j += 1) {
+        const val = this.dataList.getDataAt(index, SEARCHABLE_COLUMNS[j]);
+        if (val && val.toLowerCase().indexOf(filterBy) !== -1) {
+          filteredIndexes.push(index);
+          break;
+        }
+      }
+    }
+    this.setState({
+      filteredDataList: new DataListWrapper(this.dataList, filteredIndexes),
+    });
+  }
+
+  refreshPage(nextProps) {
+    this.dataList = new CustomerDataList(nextProps.customers);
+    this.updateFilter();
+  }
+
   render() {
     const { filteredDataList } = this.state;
     const { activeRow } = this.state;
     // the following props are passed in via react-dimensions
     const { containerHeight, containerWidth } = this.props;
 
+    const inputBoxStyle = {
+      padding: 5,
+      marginBottom: 10,
+      fontSize: 16,
+      border: this.state.filterValue !== '' ? '2px solid #0d0' : '2px solid #bbb',
+    };
+
     return (
       <div style={styleCSS.tableStyle} >
-        <div style={{ display: 'inlineBlock' }}>
+        <div style={{ display: 'flex' }}>
           <div style={styleCSS.title}>
             <span>Customer List</span>
           </div>
           <div>
             <input
-              style={styleCSS.inputBox}
+              style={inputBoxStyle}
               onChange={this.onFilterChange}
               placeholder="Enter Search Text"
+              value={this.state.filterValue}
             />
-            <br />
           </div>
+          {this.state.filterValue !== '' &&
+          <div>
+            <IconButton
+              onTouchTap={this.onClearSearchFilter}
+              style={{ marginTop: -7, marginLeft: -3 }}
+              disabled={false}
+            >
+              <CloseIcon color={'#999'} style={{ width: 25, height: 25 }} />
+            </IconButton>
+          </div>
+          }
+          <br />
         </div>
 
         <Table

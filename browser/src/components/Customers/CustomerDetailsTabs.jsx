@@ -69,13 +69,13 @@ function CustomerDetailsTabs(props) {
                 <div>H: {FormatPhoneNumber(data.hphone)}<br /></div>
               }
               <br />
+              <div>{`Surveyor: ${data.surveyor.firstName ? data.surveyor.firstName : 'None assigned'} ${data.surveyor.lastName ? data.surveyor.lastName : ''}`}</div>
               { isSurveyorSelected &&
                 <div>
-                  <div>{`Surveyor: ${data.surveyor.firstName} ${data.surveyor.lastName}`}</div>
                   <div>{`Surveyor Mobile #: ${FormatPhoneNumber(data.surveyor.mobile)}`}</div>
                 </div>
               }
-              <div>{`Survey Type: ${data.surveyType ? SURVEY_TYPES[data.surveyType] : 'Online'}`}</div>
+              <div>{`Survey Type: ${data.surveyType ? SURVEY_TYPES[data.surveyType] : SURVEY_TYPES[2]}`}</div>
               <DispatchSurveyor
                 custid={props.custid}
                 dispatchCustomer={props.dispatchCustomer}

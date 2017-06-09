@@ -45,7 +45,7 @@ function _CustomersContainer(props) {
 
 
 const CustomersContainer = compose(
-  graphql(getAllCustomers),
+    graphql(getAllCustomers, { options: { pollInterval: 5000 } }),
  )(_CustomersContainer);
 
 export default CustomersContainer;

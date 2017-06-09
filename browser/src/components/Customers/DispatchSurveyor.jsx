@@ -60,11 +60,11 @@ class _DispatchSurveyor extends React.Component {
       },
     })
     .then(() => {
-      console.log('saved!');
+      // console.log('saved!');
       this.setState({ open: false });
     })
     .catch(() => {
-      console.log('error saving');
+      // console.log('error saving');
       this.setState({ open: false });
     });
   }

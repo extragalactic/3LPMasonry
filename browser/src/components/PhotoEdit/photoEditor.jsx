@@ -13,9 +13,6 @@ import { IconButton } from 'material-ui';
 import SaveIcon from 'material-ui/svg-icons/content/save'; // save
 import UndoIcon from 'material-ui/svg-icons/content/undo'; // undo
 import ClearIcon from 'material-ui/svg-icons/action/delete'; // clear
-import LooksOneIcon from 'material-ui/svg-icons/image/looks-one'; // small font
-import LooksTwoIcon from 'material-ui/svg-icons/image/looks-two'; // medium font
-import LooksThreeIcon from 'material-ui/svg-icons/image/looks-3'; // large font
 import EditIcon from 'material-ui/svg-icons/image/edit'; // pencil
 import Crop32Icon from 'material-ui/svg-icons/image/crop-3-2'; // rectangle
 import TextFieldsIcon from 'material-ui/svg-icons/editor/text-fields'; // textfield
