@@ -754,6 +754,7 @@ class EditPriceAmount {
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
+      console.log(args)
       const customerStatus = new CustomerStatus(args.custid, args.userid);
       customerStatus.acceptEstimate();
     };

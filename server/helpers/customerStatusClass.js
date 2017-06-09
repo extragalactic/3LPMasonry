@@ -114,6 +114,7 @@ class CustomerStatus {
      });
   }
 
+
   addCustomertoUserList() {
     UsersModel.findOne({ _id: this.user })
         .then((user) => {
