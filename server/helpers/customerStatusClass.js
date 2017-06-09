@@ -3,6 +3,7 @@ import CustomersModel from '../lib/CustomerModel';
 import UsersModel from '../lib/UserModel';
 import QueueModel from '../lib/queueModel';
 import OneSignalClass from './oneSignalClass';
+import SendInBlue from './sendInBlueClass';
 
 class CustomerStatus {
   constructor(customer, user) {
@@ -55,6 +56,52 @@ class CustomerStatus {
     });
     return surveyor;
   }
+
+ getCustomerStatus(){
+   const status = new Promise((resolve, reject) => {
+     CustomersModel.findOne({ _id: this.customer})
+      .then((customer) => {
+        if (customer.status === 0) {
+           resolve('New customer');
+         }
+         if(customer.status === 1) {
+           resolve('Follow up required');
+         }
+         if(customer.status === 2) {
+           resolve('Onsite scheduled');
+         }
+         if(customer.status === 3) {
+           resolve('Survey in progress');
+         }
+         if(customer.status === 4) {
+           resolve('Survey ready for pricing');
+         }
+         if(customer.status === 5) {
+           resolve('Survey accepted by estimator');
+         }
+         if(customer.status === 6) {
+           resolve('Customer not responsive');
+         }
+         if(customer.status === 7) {
+           const status = new SendInBlue(customer, customer.emailID);
+           status.getEmailStatus.then((status) => {
+             if(!status.clicks && !status.views & status.delivery){
+               resolve('Estimate Delivered');
+             }
+              if (!status.clicks && status.views & status.delivery){
+               resolve('Estimate email viewed');
+             }
+              if (status.clicks && status.views & status.delivery){
+               resolve('Estimate has been read');
+             }
+           });
+
+         }
+      })
+
+   })
+   return status;
+ }
 
   setEstimatorName() {
     UsersModel.findOne({ _id: this.user })
