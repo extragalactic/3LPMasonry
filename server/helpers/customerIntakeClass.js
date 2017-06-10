@@ -58,6 +58,7 @@ class CustomerIntake {
         const status = new CustomerStatus(this.customer);
         status.setSurveyType(0);
         status.setCustomerStatus(0);
+        status.addCustomertoQueue();
         status.getContactPreference()
           .then((pref) => {
             if (pref.email) {
