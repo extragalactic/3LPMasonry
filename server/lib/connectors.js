@@ -11,8 +11,6 @@ import PricingModel from '../lib/PricingModel';
 import QueueModel from '../lib/queueModel';
 import PhotosModel from '../lib/PhotosModel';
 import GenericModel from '../lib/GenericModel';
-import { sendSMStoSurveyor, sendSMStoCustomer } from '../methods/twilio';
-import { sendEmailSurveytoCustomer } from '../methods/sendInBlue';
 import { setMapsLocation } from '../methods/googleMaps';
 import saveDescription from '../methods/saveDescription';
 import EstimateActions from '../helpers/estimateCreationClass';
@@ -21,6 +19,7 @@ import SendInBlue from '../helpers/sendInBlueClass';
 import SurveyClass from '../helpers/surveyClass';
 import GetCustomersClass from '../helpers/getCustomersClass';
 import OneSignalClass from '../helpers/oneSignalClass';
+import CustomerIntake from '../helpers/customerIntakeClass';
 
 sharp.concurrency(1);
 dotenv.config();
@@ -231,62 +230,8 @@ class UpdateDispatchInfo {
 class SubmitCustomer {
   constructor() {
     this.submitCustomer = (args) => {
-      const Customer = CustomersModel.findOne({ _id: args.id })
-             .then((customer) => {
-               const surveyor = !customer.surveyor.id;
-               const survey = !customer.sendSurvey;
-               const inquriy = survey && surveyor;
-               // does customer want online estmate? send to prefered mode of contact
-               if (customer.sendSurvey === true) {
-                 if (customer.cellNotification) {
-                   sendSMStoCustomer({ number: customer.cphone, customer });
-                 }
-                 if (customer.homeNotification) {
-                   sendSMStoCustomer({ number: customer.hphone, customer });
-                 }
-                 if (customer.workNotification) {
-                   sendSMStoCustomer({ number: customer.wphone, customer });
-                 }
-                 if (customer.email1Notification) {
-                   sendEmailSurveytoCustomer({ email: customer.email1, customer });
-                 }
-                 if (customer.email2Notification) {
-                   sendEmailSurveytoCustomer({ email: customer.email2, customer });
-                 }
-                 customer.surveyType = 0;
-                 customer.status = 5;
-                 customer.save();
-               }
-               if (!surveyor) {
-                 sendSMStoSurveyor(customer);
-                 UsersModel.findOne({ _id: customer.surveyor.id })
-                         .then((user) => {
-                           user.newCustomers.push({
-                             id: customer._id,
-                             firstName: customer.firstName,
-                             lastName: customer.lastName,
-                             email1: customer.email1,
-                             email2: customer.email2,
-                             cphone: customer.cphone,
-                             hphone: customer.hphone,
-                             wphone: customer.wphone,
-                             address: customer.address,
-                             status: 0,
-                           });
-                           user.save();
-                         });
-                 customer.surveyType = 1;
-                 customer.status = 0;
-                 customer.save();
-               }
-               if (inquriy) {
-                 customer.status = 0;
-                 customer.surveyType = 3;
-                 customer.save();
-               }
-               return customer;
-             });
-      return Customer;
+      const submit = new CustomerIntake(args.id);
+      return submit.submitCustomer().then(customer => customer);
     };
   }
 }
@@ -426,9 +371,7 @@ class AddSurveyNotes {
       const customerStatus = new CustomerStatus(args.custid, args.userid);
       customerStatus.setCustomerStatus(3);
     };
-    
   }
-  
  }
 
 class AddSurveyPhoto {
@@ -481,8 +424,6 @@ class AddSurveyPhoto {
                     Body: res,
                   };
                   s3.upload(params, (err, res) => {
-                    console.log(res);
-                    console.log(err);
                   });
                 });
               });
@@ -495,13 +436,10 @@ class AddSurveyPhoto {
             Body: buffer,
           };
           s3.upload(s3Params, (err, res) => {
-            console.log('res', res);
-            console.log(err);
             payload.ETag = res.ETag.replace(/['"]+/g, '');
-            console.log(payload)
             customer.survey.photos.push(payload);
             customer.save();
-        });
+          });
           const photo = new PhotosModel({
             base64: `data:image/jpeg;base64,${parseImgString()}`,
             url: originalUrl,
@@ -683,7 +621,6 @@ class AddPrice {
         if (args.price.option5.description) {
           saveDescription(args.price.option5.description, args.price.option5.amount);
         }
-
         CustomersModel.findOne({ _id: args.custid })
           .then((customer) => {
             if (!customer.prices) {
@@ -707,12 +644,10 @@ class DeletePrice {
               customer.prices.splice(args.index, 1);
             }
           }
-
           if (args.Option !== 'option0') {
             customer.prices[args.index][args.Option].description = null;
             customer.prices[args.index][args.Option].amount = null;
           }
-
           customer.save();
         });
       return true;
@@ -740,7 +675,7 @@ class EditPriceAmount {
     this.editPriceAmount = (args) => {
       CustomersModel.findOne({ id_: args.custid })
       .then((customer) => {
-      if (args.option === 'option0') {
+        if (args.option === 'option0') {
           customer.prices[args.index] = { description: customer.prices[args.index].description, amount: args.amount };
         }
         if (args.option !== 'option0') {
@@ -754,7 +689,6 @@ class EditPriceAmount {
 class AcceptEstimate {
   constructor() {
     this.acceptEstimate = (args) => {
-      console.log(args)
       const customerStatus = new CustomerStatus(args.custid, args.userid);
       customerStatus.acceptEstimate();
     };
@@ -1071,4 +1005,3 @@ module.exports = {
   AddSurveyNotes,
   GetFinishedSurveyQuery,
 };
-
