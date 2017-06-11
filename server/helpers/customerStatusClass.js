@@ -22,8 +22,10 @@ class CustomerStatus {
 
   getUser() {
     const userObj = new Promise((resolve, reject) => {
-      UsersModel.findOne({ _id: this.customer })
-          .then(customer => resolve(customer));
+      UsersModel.findOne({ _id: this.user })
+          .then(user => {
+            resolve(user);
+          });
     });
     return userObj;
   }
@@ -333,10 +335,10 @@ class CustomerStatus {
   setEstimatorName() {
     this.getUser()
       .then((user) => {
-         CustomersModel.findOne({ _id: this.user })
+         CustomersModel.findOne({ _id: this.customer })
            .then((customer) => {
              customer.estimator = `${user.firstName} ${user.lastName}`;
-             customer.estmatorID = user._id;
+             customer.estimatorID = user._id;
              customer.save();
            });
       });
