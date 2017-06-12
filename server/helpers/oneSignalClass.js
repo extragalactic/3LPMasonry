@@ -21,7 +21,7 @@ class OneSignalClass {
       method: 'post',
       url: 'https://onesignal.com/api/v1/notifications',
       data: {
-        app_id: 'ca2c967a-2b86-4315-8a1d-ed5e58b92f95',
+        app_id: process.env.ONE_SIGNAL_APP_ID,
         included_segments: ['Estimators'],
         data: { customer: this.customer._id },
         contents: { en: 'New Estimate Ready' },
@@ -35,4 +35,3 @@ class OneSignalClass {
 }
 
 export default OneSignalClass;
-
