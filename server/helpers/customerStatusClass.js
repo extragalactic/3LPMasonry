@@ -87,7 +87,7 @@ class CustomerStatus {
         }
         if (customer.status === 7) {
           const status = new SendInBlue(customer, customer.emailID);
-          status.getEmailStatus.then((status) => {
+          status.getEmailStatus().then((status) => {
             if (!status.clicks && !status.views & status.delivery){
               resolve('Estimate Delivered');
             }
