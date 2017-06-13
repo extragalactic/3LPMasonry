@@ -327,7 +327,7 @@ const mapActionsToProps = dispatch => ({
 });
 const CustomersTable = connect(null, mapActionsToProps)(_CustomersTable);
 
-module.exports = Dimensions({
+export default Dimensions({
   getHeight() {
     return window.innerHeight - 200;
   },
