@@ -22,6 +22,28 @@ class SendInBlue {
     });
     return status;
   }
+
+  sendEmailSurveytoCustomer(email) {
+    const emailData = { id: 2,
+      to: email,
+      bcc: 'outgoingtlpmail@gmail.com',
+      attr: { CUSTOMER: this.customer.firstName, LINK: `tlpm.ca/upload/${this.customer.id}` },
+    };
+    this.client.send_transactional_template(emailData).on('complete', (data) => {
+      console.log(data);
+    });
+  }
+
+  sendEmailEstimatetoCustomer(customer, url) {
+    const emailData = { id: 3,
+      to: this.customer.email1 ? this.customer.email1 : this.customer.email2,
+      bcc: 'outgoingtlpmail@gmail.com',
+      attr: { CUSTOMER: customer.firstName, LINK: `3lpm.s3.ca-central-1.amazonaws.com/${url}` },
+    };
+    this.client.send_transactional_template(emailData).on('complete', (data) => {
+      console.log(data);
+    });
+  }
 }
 
 export default SendInBlue;
