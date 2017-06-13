@@ -82,6 +82,7 @@
     "s3-uploader": "^2.0.3",
     "sharp": "^0.17.1",
     "style-loader": "^0.13.2",
+    "svg-loader": "0.0.2",
     "tape": "^4.6.2",
     "twilio": "^2.11.1",
     "ui": "^0.2.4"

@@ -28,6 +28,7 @@ const CustomerSchema = new mongoose.Schema({
     id: String,
   },
   estimator: String,
+  estimatorID: String,
   status: Number,
   email1Notification: Boolean,
   email2Notification: Boolean,
